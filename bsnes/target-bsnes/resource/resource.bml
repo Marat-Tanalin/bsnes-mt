@@ -1,0 +1,7 @@
+namespace name=Resource
+  binary name=Icon file=bsnes-mt-logo-128.png
+  binary name=Logo file=logo.png
+  binary name=SameBoy file=sameboy.png
+  namespace name=System
+    binary name=Boards file="system/boards.bml"
+    binary name=IPLROM file="system/ipl.rom"
