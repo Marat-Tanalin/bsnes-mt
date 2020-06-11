@@ -304,7 +304,7 @@ auto Presentation::create() -> void {
     program.quit();
   });
 
-  setTitle({bsnesMt::app::title, " ", bsnesMt::app::version});
+  setTitle(bsnesMt::app::windowTitle.data()); // {"bsnes v", Emulator::Version} // MT.
   setBackgroundColor({0, 0, 0});
   resizeWindow();
   setAlignment(Alignment::Center);

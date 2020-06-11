@@ -35,6 +35,8 @@ static const string infoRu = u8"Улучшенная версия bsnes:\n\n"
                              u8"• PNG-скриншоты со сжатием, и проч.\n\n"
                              u8"© 2020 " + authorRu + "\n" + linkRu;
 
+static const string windowTitle = string(title) + ' ' + version;
+
 static const vector<unsigned char> pngInfo = {
 	0, 0, 0, 60, 116, 69, 88, 116, 83, 111, 102, 116, 119, 97, 114, 101, 0, 98,
 	115, 110, 101, 115, 45, 109, 116, 32, 124, 32, 104, 116, 116, 112, 58, 47,
