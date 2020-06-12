@@ -4,11 +4,10 @@
 
 #include <cstdint>
 #include <string>
-#include <vector>
 
 namespace MaratTanalin::PizzaPNG {
 
-using std::string, std::vector;
+using std::string;
 
 class Chunk {
 protected:
