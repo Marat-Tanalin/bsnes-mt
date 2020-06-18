@@ -1,4 +1,9 @@
 #include "extension.hpp"
+
+#include "bsnes-mt/strings.h" // MT.
+
+namespace bms = bsnesMt::strings; // MT.
+
 using namespace nall;
 
 namespace hiro {

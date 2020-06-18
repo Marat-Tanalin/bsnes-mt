@@ -1947,6 +1947,62 @@ static map<string, map<uint8_t, string>> strings = {
 			{EN, "Captured screenshot"},
 			{RU, "Снят скриншот"}
 		}
+	},
+	{
+		"About.Version",
+		{
+			{EN, "Version"},
+			{RU, "Версия"}
+		}
+	},
+	{
+		"About.Copyright",
+		{
+			{EN, "Copyright"},
+			{RU, "Авторские права"}
+		}
+	},
+	{
+		"About.License",
+		{
+			{EN, "License"},
+			{RU, "Лицензия"}
+		}
+	},
+	{
+		"About.Website",
+		{
+			{EN, "Website"},
+			{RU, "Сайт"}
+		}
+	},
+	{
+		"AboutSameBoy.description",
+		{
+			{EN, "Super Game Boy emulator"},
+			{RU, "Эмулятор Super Game Boy"}
+		}
+	},
+	{
+		"AboutBsnes.description",
+		{
+			{EN, "Super Nintendo emulator"},
+			{RU, "Эмулятор Super Nintendo"}
+		}
+	},
+	{
+		"AboutBsnes.copyright",
+		{
+			{EN, "byuu et al"},
+			{RU, "byuu и другие"}
+		}
+	},
+	{
+		"AboutBsnes.license",
+		{
+			{EN, "GPLv3 or later"},
+			{RU, "GPLv3 или новее"}
+		}
 	}
 	/*{
 		"",

@@ -227,11 +227,11 @@ auto Presentation::create() -> void {
 
   std::string aboutPrefix = bms::get("Help.About");
 
-  aboutSameBoy.setIcon(Icon::Prompt::Question).setText({aboutPrefix.data(), " SameBoy", ellipsis}).onActivate([&] { // tr("About SameBoy")
+  aboutSameBoy.setIcon(Icon::Prompt::Question).setText({aboutPrefix.data(), " ", Emulator::SameBoyName, ellipsis}).onActivate([&] { // tr("About SameBoy")
     AboutDialog()
-    .setName("SameBoy")
+    .setName(Emulator::SameBoyName)
     .setLogo(Resource::SameBoy)
-    .setDescription("Super Game Boy emulator")
+    .setDescription(bms::get("AboutSameBoy.description").data()) // "Super Game Boy emulator"
     .setVersion("0.12.1")
     .setCopyright("Lior Halphon")
     .setLicense("MIT")
@@ -239,14 +239,14 @@ auto Presentation::create() -> void {
     .setAlignment(*this)
     .show();
   });
-  aboutBsnes.setIcon(Icon::Prompt::Question).setText({aboutPrefix.data(), " bsnes", ellipsis}).onActivate([&] { // tr("About bsnes")
+  aboutBsnes.setIcon(Icon::Prompt::Question).setText({aboutPrefix.data(), " ", Emulator::Name, ellipsis}).onActivate([&] { // tr("About bsnes")
     AboutDialog()
     .setName(Emulator::Name)
     .setLogo(Resource::Logo)
-    .setDescription("Super Nintendo emulator")
+    .setDescription(bms::get("AboutBsnes.description").data()) // "Super Nintendo emulator"
     .setVersion(Emulator::Version)
-    .setCopyright(Emulator::Copyright)
-    .setLicense(Emulator::License)
+    .setCopyright(bms::get("AboutBsnes.copyright").data()) // Emulator::Copyright
+    .setLicense(bms::get("AboutBsnes.license").data()) // Emulator::License
     .setWebsite(Emulator::Website)
     .setAlignment(*this)
     .show();
