@@ -7,7 +7,7 @@
 
 namespace bsnesMt::scaling {
 
-using std::pair, std::make_pair;
+using std::pair;
 
 static const uint32_t origWidth      = 256,
                       origHeight     = 224,

@@ -3,12 +3,12 @@
 #pragma once
 
 #include <cstdint>
-#include <string>
 #include <map>
+#include <string>
 
 namespace bsnesMt::strings {
 
-using std::string, std::map;
+using std::map, std::string;
 
 const uint8_t RU = 1,
               EN = 2,
@@ -2161,4 +2161,4 @@ static map<string, map<uint8_t, string>> hotkeyStrings = {
 	}
 };
 
-} // namespace bsnesMt
+} // namespace bsnesMt::strings

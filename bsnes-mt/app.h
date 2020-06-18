@@ -1,5 +1,7 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
+#pragma once
+
 #include <string>
 #include <vector>
 
@@ -7,35 +9,46 @@ namespace bsnesMt::app {
 
 using std::string, std::vector;
 
-static const char* title        = "bsnes-mt";
-static const char* version      = "1.0";
-static const char* urlEn        = "http://tanalin.com/en/projects/bsnes-mt/";
-static const char* urlRu        = "http://tanalin.com/projects/bsnes-mt/";
-static const char* articleUrlEn = "http://tanalin.com/en/articles/integer-scaling/";
-static const char* articleUrlRu = "http://tanalin.com/articles/integer-scaling/";
+static const string title       = "bsnes-mt";
+static const string version     = "1.0";
+static const string copyYear    = u8"© 2020";
+static const string authorEn    = "Marat Tanalin";
+static const string authorRu    = u8"Марат Таналин";
+static const string urlRoot     = "http://tanalin.com";
+static const string pagePath    = "/projects/bsnes-mt/";
+static const string articlePath = "/articles/integer-scaling/";
+static const string urlEnPrefix = "/en";
 
-static const string authorEn      = "Marat Tanalin";
-static const string authorRu      = u8"Марат Таналин";
-static const string articleLinkEn = string("<a href=\"") + articleUrlEn + "\">" + articleUrlEn + "</a>";
-static const string articleLinkRu = string("<a href=\"") + articleUrlRu + "\">" + articleUrlRu + "</a>";
-static const string linkEn        = string("<a href=\"") + urlEn + "\">" + urlEn + "</a>";
-static const string linkRu        = string("<a href=\"") + urlRu + "\">" + urlRu + "</a>";
+static const string linkStartTagStart = "<a href=\"";
+static const string linkStartTagEnd   = "\">";
+static const string linkEndTag        = "</a>";
 
-static const string infoEn = u8"Improved version of bsnes:\n\n"
-                             u8"• " + string("<a href=\"") + articleUrlEn + "\">" +
-                             u8"pixel-perfect integer-ratio scaling" + "</a>;\n" +
-                             u8"• precise 4:3 in the “Center” and “Scale” modes;\n"
-                             u8"• compressed PNG screenshots, and more.\n\n"
-                             u8"© 2020 " + authorEn + "\n" + linkEn;
+static const string bullet = u8"• ";
+static const string space  = " ";
 
-static const string infoRu = u8"Улучшенная версия bsnes:\n\n"
-                             u8"• " + string("<a href=\"") + articleUrlRu + "\">" +
-                             u8"целочисленное масштабирование без размытия" + "</a>;\n" +
-                             u8"• точное 4:3 в режимах «Center» и «Scale»;\n"
-                             u8"• PNG-скриншоты со сжатием, и проч.\n\n"
-                             u8"© 2020 " + authorRu + "\n" + linkRu;
+static const string pageUrlEn  = urlRoot + urlEnPrefix + pagePath;
+static const string pageUrlRu  = urlRoot + pagePath;
+static const string pageLinkEn = linkStartTagStart + pageUrlEn + linkStartTagEnd + pageUrlEn + linkEndTag;
+static const string pageLinkRu = linkStartTagStart + pageUrlRu + linkStartTagEnd + pageUrlRu + linkEndTag;
 
-static const string windowTitle = string(title) + ' ' + version;
+static const string articleUrlEn = urlRoot + urlEnPrefix + articlePath;
+static const string articleUrlRu = urlRoot + articlePath;
+
+static const string infoEn = u8"Improved version of bsnes:\n\n" +
+                             bullet + linkStartTagStart + articleUrlEn + linkStartTagEnd +
+                             u8"pixel-perfect integer-ratio scaling" + linkEndTag + ";\n" +
+                             bullet + u8"precise 4:3 in the “Center” and “Scale” modes;\n" +
+                             bullet + u8"compressed PNG screenshots, and more.\n\n" +
+                             copyYear + space + authorEn + "\n" + pageLinkEn;
+
+static const string infoRu = u8"Улучшенная версия bsnes:\n\n" +
+                             bullet + linkStartTagStart + articleUrlRu + linkStartTagEnd +
+                             u8"целочисленное масштабирование без размытия" + linkEndTag + ";\n" +
+                             bullet + u8"точное 4:3 в режимах «Center» и «Scale»;\n" +
+                             bullet + u8"PNG-скриншоты со сжатием, и проч.\n\n" +
+                             copyYear + space + authorRu + "\n" + pageLinkRu;
+
+static const string windowTitle = title + space + version;
 
 static const vector<unsigned char> pngInfo = {
 	0, 0, 0, 60, 116, 69, 88, 116, 83, 111, 102, 116, 119, 97, 114, 101, 0, 98,

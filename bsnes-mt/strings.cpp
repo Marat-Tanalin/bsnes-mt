@@ -1,23 +1,23 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
 #include <stdexcept>
-#include <string>
 
 #include <windows.h>
 
-#include "strings.h"
 #include "utils.h"
+
+#include "strings.h"
 
 namespace bsnesMt::strings {
 
-using std::out_of_range;
+using std::wstring, std::out_of_range;
 
 auto getLocale() -> uint8_t {
 	wstring commandLine = GetCommandLineW();
 	wstring paramStart  = L"--locale=";
 	auto    paramPos    = commandLine.find(paramStart);
 
-	if (std::string::npos != paramPos) {
+	if (string::npos != paramPos) {
 		wstring value = commandLine.substr(paramPos + paramStart.size(), 2);
 
 		if (L"ru" == value) {
@@ -106,4 +106,4 @@ auto getHotkeyString(const string &name) -> string {
 	return hasHotkeyString(name) ? get(hotkeyStrings.at(name)) : "";
 }
 
-} // namespace bsnesMt
+} // namespace bsnesMt::strings

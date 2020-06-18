@@ -6,6 +6,7 @@
 #include "app.h"
 #include "strings.h"
 #include "utils.h"
+
 #include "windows.h"
 
 namespace bsnesMt::windows {

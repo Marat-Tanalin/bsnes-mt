@@ -6,9 +6,10 @@
 
 #include "scaling.h"
 
-using namespace MaratTanalin;
-
 namespace bsnesMt::scaling {
+
+using namespace MaratTanalin;
+using std::make_pair;
 
 auto getWidth(bool aspectCorrection) -> uint32_t {
 	return aspectCorrection ? std::round(origHeight * defaultAspectX / defaultAspectY) : origWidth;

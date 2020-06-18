@@ -5,8 +5,9 @@
 #include "pizza-png/Image.h"
 
 #include "app.h"
-#include "utils.h"
 #include "windows.h"
+
+#include "utils.h"
 
 namespace bsnesMt {
 
