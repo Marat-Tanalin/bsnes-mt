@@ -253,7 +253,7 @@ auto Presentation::create() -> void {
   });
 
 	/* MT. */
-	aboutBsnesMt.setIcon(Icon::Prompt::Question).setText({aboutPrefix.data(), " ", bsnesMt::app::title, ellipsis}).onActivate([&] { // tr("About ")
+	aboutBsnesMt.setIcon(Icon::Prompt::Question).setText({aboutPrefix.data(), " ", bsnesMt::app::title.data(), ellipsis}).onActivate([&] { // tr("About ")
 		bsnesMt::windows::showAbout((HWND)presentation.handle());
 	});
 	/* /MT. */
