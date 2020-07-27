@@ -147,7 +147,17 @@ auto InputSettings::reloadMappings() -> void {
     for(uint n : range(BindingLimit)) item.append(TableViewCell());
   }
   refreshMappings();
-  cancelMapping();
+
+  /* MT. */
+  if (activeMapping) {
+    cancelMapping();
+  }
+  else {
+  /* /MT. */
+    updateControls();
+  /* MT. */
+  }
+  /* /MT. */
 }
 
 auto InputSettings::refreshMappings() -> void {
