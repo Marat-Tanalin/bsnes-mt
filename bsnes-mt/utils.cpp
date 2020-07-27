@@ -92,8 +92,14 @@ auto getUiLang() -> BYTE {
 	return LOBYTE(GetUserDefaultUILanguage());
 }
 
-auto isUiLangRu() -> bool {
-	return LANG_RUSSIAN == getUiLang();
+auto replace(const string &s, char search, const string replace) -> string {
+	auto pos = s.find(search);
+
+	if (string::npos == pos) {
+		return s;
+	}
+
+	return s.substr(0, pos) + replace + s.substr(pos + 1);
 }
 
 } // namespace bsnesMt

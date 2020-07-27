@@ -22,9 +22,13 @@ auto Program::updateVideoDriver(Window parent) -> void {
   });
 
   if(!video.ready()) {
-    MessageDialog({
-      "Error: failed to initialize [", settings.video.driver, "] video driver."
-    }).setAlignment(parent).error();
+    /* MT. */
+    string message = bms::get("Settings.Drivers.Video.failedToInitialize").data();
+    /* MT. */
+
+    // "Error: failed to initialize [", settings.video.driver, "] video driver."
+    // MessageDialog(message.replace('|', settings.video.driver)).setAlignment(parent).error(); // Commented-out by MT.
+    bmw::showError(message.replace('|', settings.video.driver).data(), "", parent.handle()); // MT.
     settings.video.driver = "None";
     return updateVideoDriver(parent);
   }

@@ -1,12 +1,16 @@
+/* MT. */
+#include "bsnes-mt/strings.h"
+#include "bsnes-mt/messagebox.h"
+
+namespace bms = bsnesMt::strings;
+namespace bmw = bsnesMt::windows;
+/* /MT. */
+
 #include "../bsnes.hpp"
 #include "cheat-finder.cpp"
 #include "cheat-editor.cpp"
 #include "state-manager.cpp"
 #include "manifest-viewer.cpp"
-
-#include "bsnes-mt/strings.h" // MT.
-
-namespace bms = bsnesMt::strings; // MT.
 
 namespace Instances { Instance<CheatDatabase> cheatDatabase; }
 CheatFinder cheatFinder;

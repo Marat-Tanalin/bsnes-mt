@@ -26,7 +26,7 @@ auto CheatFinder::create() -> void {
     }
   });
   searchValue.onActivate([&] { eventScan(); });
-  searchLabel.setText("Value:");
+  searchLabel.setText({bms::get("Tools.CheatFinder.Value").data(), ':'}); // "Value:"
   searchSize.append(ComboButtonItem().setText("Byte"));
   searchSize.append(ComboButtonItem().setText("Word"));
   searchSize.append(ComboButtonItem().setText("Long"));
@@ -37,9 +37,9 @@ auto CheatFinder::create() -> void {
   searchMode.append(ComboButtonItem().setText(">"));
   searchMode.append(ComboButtonItem().setText("<"));
   searchSpan.append(ComboButtonItem().setText("WRAM"));
-  searchSpan.append(ComboButtonItem().setText("All"));
-  searchScan.setText("Scan").onActivate([&] { eventScan(); });
-  searchClear.setText("Clear").onActivate([&] { eventClear(); });
+  searchSpan.append(ComboButtonItem().setText(bms::get("Tools.CheatFinder.All").data())); // "All"
+  searchScan.setText(bms::get("Tools.CheatFinder.Scan").data()).onActivate([&] { eventScan(); }); // "Scan"
+  searchClear.setText(bms::get("Common.Clear").data()).onActivate([&] { eventClear(); }); // "Clear"
 
   refresh();
 }
@@ -55,8 +55,8 @@ auto CheatFinder::restart() -> void {
 
 auto CheatFinder::refresh() -> void {
   searchList.reset();
-  searchList.append(TableViewColumn().setText("Address"));
-  searchList.append(TableViewColumn().setText("Value"));
+  searchList.append(TableViewColumn().setText(bms::get("Tools.CheatFinder.Address").data())); // "Address"
+  searchList.append(TableViewColumn().setText(bms::get("Tools.CheatFinder.Value").data())); // "Value"
 
   for(auto& candidate : candidates) {
     TableViewItem item{&searchList};

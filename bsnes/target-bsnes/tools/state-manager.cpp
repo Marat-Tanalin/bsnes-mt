@@ -2,11 +2,11 @@
 
 auto StateWindow::create() -> void {
   layout.setPadding(5_sx);
-  nameLabel.setText("Name:");
+  nameLabel.setText({bms::get("Common.Name").data(), ':'}); // "Name:"
   nameValue.onActivate([&] { if(acceptButton.enabled()) acceptButton.doActivate(); });
   nameValue.onChange([&] { doChange(); });
   acceptButton.onActivate([&] { doAccept(); });
-  cancelButton.setText("Cancel").onActivate([&] { setVisible(false); });
+  cancelButton.setText(bms::get("Common.Cancel").data()).onActivate([&] { setVisible(false); }); // "Cancel"
 
   setSize({400_sx, layout.minimumSize().height()});
   setDismissable();
@@ -17,12 +17,12 @@ auto StateWindow::show(string name) -> void {
   setAttribute("name", {name.split("/").last()});
   nameValue.setText(attribute("name"));
   doChange();
-  setTitle(!attribute("name") ? "Add State" : "Rename State");
+  setTitle(!attribute("name") ? bms::get("Tools.StateManager.AddState").data() : bms::get("Tools.StateManager.RenameState").data()); // "Add State" // "Rename State"
   setAlignment(*toolsWindow);
   setVisible();
   setFocused();
   nameValue.setFocused();
-  acceptButton.setText(!attribute("name") ? "Add" : "Rename");
+  acceptButton.setText(!attribute("name") ? bms::get("Common.Add").data() : bms::get("Common.Rename").data()); // "Add" // "Rename"
 }
 
 auto StateWindow::doChange() -> void {
@@ -38,7 +38,7 @@ auto StateWindow::doChange() -> void {
 
 auto StateWindow::doAccept() -> void {
   string name = {attribute("type"), nameValue.text().strip()};
-  if(acceptButton.text() == "Add") {
+  if(acceptButton.text() == bms::get("Common.Add").data()) { // "Add"
     stateManager.createState(name);
   } else {
     stateManager.modifyState(name);
@@ -63,26 +63,26 @@ auto StateManager::create() -> void {
   stateList.onSize([&] {
     stateList.resizeColumns();
   });
-  categoryLabel.setText("Category:");
-  categoryOption.append(ComboButtonItem().setText("Managed States").setAttribute("type", "Managed/"));
-  categoryOption.append(ComboButtonItem().setText("Quick States").setAttribute("type", "Quick/"));
+  categoryLabel.setText({bms::get("Tools.StateManager.Category").data(), ':'}); // "Category:"
+  categoryOption.append(ComboButtonItem().setText(bms::get("Tools.StateManager.Category.ManagedStates").data()).setAttribute("type", "Managed/")); // "Managed States"
+  categoryOption.append(ComboButtonItem().setText(bms::get("Tools.StateManager.Category.QuickStates").data()).setAttribute("type", "Quick/")); // "Quick States"
   categoryOption.onChange([&] { loadStates(); });
   statePreviewSeparator1.setColor({192, 192, 192});
-  statePreviewLabel.setFont(Font().setBold()).setText("Preview");
+  statePreviewLabel.setFont(Font().setBold()).setText(bms::get("Tools.StateManager.Preview").data()); // "Preview"
   statePreviewSeparator2.setColor({192, 192, 192});
-  loadButton.setText("Load").onActivate([&] {
+  loadButton.setText(bms::get("Common.Load").data()).onActivate([&] { // "Load"
     if(auto item = stateList.selected()) program.loadState(item.attribute("name"));
   });
-  saveButton.setText("Save").onActivate([&] {
+  saveButton.setText(bms::get("Common.Save").data()).onActivate([&] { // "Save"
     if(auto item = stateList.selected()) program.saveState(item.attribute("name"));
   });
-  addButton.setText("Add").onActivate([&] {
+  addButton.setText(bms::get("Common.Add").data()).onActivate([&] { // "Add"
     stateWindow.show(type());
   });
-  editButton.setText("Rename").onActivate([&] {
+  editButton.setText(bms::get("Common.Rename").data()).onActivate([&] { // "Rename"
     if(auto item = stateList.selected()) stateWindow.show(item.attribute("name"));
   });
-  removeButton.setText("Remove").onActivate([&] {
+  removeButton.setText(bms::get("Common.Remove").data()).onActivate([&] { // "Remove"
     removeStates();
   });
 }
@@ -93,13 +93,30 @@ auto StateManager::type() const -> string {
 
 auto StateManager::loadStates() -> void {
   stateList.reset();
-  stateList.append(TableViewColumn().setText("Name").setSorting(Sort::Ascending).setExpandable());
-  stateList.append(TableViewColumn().setText("Date").setForegroundColor({160, 160, 160}));
+  stateList.append(TableViewColumn().setText(bms::get("Common.Name").data()).setSorting(Sort::Ascending).setExpandable()); // "Name"
+  stateList.append(TableViewColumn().setText(bms::get("Common.Date").data()).setForegroundColor({160, 160, 160})); // "Date"
   auto type = this->type();
+
+  /* MT. */
+  string undoTranslated = bms::get("Tools.StateManager.QuickStates.Undo").data();
+  string slotTranslated = bms::get("Tools.SaveState.Slot").data();
+  /* /MT. */
+
   for(auto& state : program.availableStates(type)) {
     TableViewItem item{&stateList};
     item.setAttribute("name", state.name);
-    item.append(TableViewCell().setText(state.name.trimLeft(type, 1L)));
+
+    /* MT. */
+    string stateName = state.name.trimLeft(type, 1L);
+
+    if (type == "Quick/") {
+      stateName = stateName == "Undo"
+                ? undoTranslated
+                : stateName.replace("Slot", slotTranslated);
+    }
+    /* /MT. */
+
+    item.append(TableViewCell().setText(stateName)); // `state.name.trimLeft(type, 1L)` => `stateName` by MT.
     item.append(TableViewCell().setText(chrono::local::datetime(state.date)));
   }
   stateList.resizeColumns().doChange();
@@ -132,8 +149,12 @@ auto StateManager::modifyState(string name) -> void {
 
 auto StateManager::removeStates() -> void {
   if(auto batched = stateList.batched()) {
-    if(MessageDialog("Are you sure you want to permanently remove the selected state(s)?")
-    .setAlignment(*toolsWindow).question() == "Yes") {
+    /* // Commented-out by MT.
+    if(MessageDialog(bms::get("Tools.StateManager.remove.confirm").data()) // "Are you sure you want to permanently remove the selected state(s)?"
+    .setAlignment(*toolsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) { // "Yes"
+    */
+
+    if (bmw::confirmById("Tools.StateManager.remove.confirm"), toolsWindow->handle()) { // MT.
       auto lock = acquire();
       for(auto& item : batched) program.removeState(item.attribute("name"));
       loadStates();

@@ -2,12 +2,16 @@
 
 #pragma once
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
 namespace bsnesMt::app {
 
 using std::string, std::vector;
+
+static const uint8_t quickStatesNumber = 25;
+static const uint8_t recentGamesNumber = 25;
 
 static const string title       = "bsnes-mt";
 static const string version     = "1.0";

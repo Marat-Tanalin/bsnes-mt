@@ -66,7 +66,7 @@ auto MessageDialog::warning(const vector<string>& buttons) -> string {
 
 auto MessageDialog::_run() -> string {
   if(!state.buttons) return {};  //nothing to do
-  Application::Namespace tr{"MessageDialog"};
+  // Application::Namespace tr{"MessageDialog"}; // Commented-out by MT.
 
   Window window;
     VerticalLayout layout{&window};
@@ -95,13 +95,13 @@ auto MessageDialog::_run() -> string {
       state.response = state.buttons[n];
       window.setModal(false);
     });
-    button.setText(tr(state.buttons[n]));
+    button.setText(state.buttons[n]); // `tr(state.buttons[n])` => `state.buttons[n]` by MT.
     button.setFocused();  //the last button will have effective focus
   }
 
   int widthMessage = 5_sx + 16 + 5_sx + Font().size(state.text).width() + 5_sx;
   int widthButtons = 5_sx + state.buttons.size() * 85_sx;
-  int width = max(320_sx, widthMessage, widthButtons);
+  int width = max(360_sx, widthMessage, widthButtons); // `320_sx` => `360_sx` by MT.
 
   window.onClose([&] {
     //if the dialog is dismissed (escape pressed, or window manager close button clicked),

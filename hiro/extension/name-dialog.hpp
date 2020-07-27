@@ -23,8 +23,8 @@ private:
         LineEdit nameValue{&nameLayout, Size{~0, 0}};
       HorizontalLayout controlLayout{&layout, Size{~0, 0}};
         Widget controlSpacer{&controlLayout, Size{~0, 0}};
-        Button acceptButton{&controlLayout, Size{80, 0}};
-        Button cancelButton{&controlLayout, Size{80, 0}};
+        Button acceptButton{&controlLayout, Size{170, 0}}; // `80` => `170` by MT.
+        Button cancelButton{&controlLayout, Size{90, 0}};  // `80` =>  `90` by MT.
 
   struct State {
     Alignment alignment = Alignment::Center;

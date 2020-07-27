@@ -48,9 +48,9 @@ auto getLocale() -> uint8_t {
 	return locale;
 }
 
-auto genericHas(const map<string, map<uint8_t, string>> &strings, const string &name) -> bool {
+auto genericHas(const map<string, map<uint8_t, string>> &items, const string &key) -> bool {
 	try {
-		auto test = strings.at(name);
+		auto test = items.at(key);
 	}
 	catch (const out_of_range &e) {
 		return false;
@@ -59,8 +59,19 @@ auto genericHas(const map<string, map<uint8_t, string>> &strings, const string &
 	return true;
 }
 
-auto has(const string &name) -> bool {
-	return genericHas(strings, name);
+auto genericHas(const map<string, string> &items, const string &key) -> bool {
+	try {
+		auto test = items.at(key);
+	}
+	catch (const out_of_range &e) {
+		return false;
+	}
+
+	return true;
+}
+
+auto has(const string &id) -> bool {
+	return genericHas(strings, id);
 }
 
 auto valueHasLocale(const map<uint8_t, string> &value, uint8_t locale) -> bool {
@@ -82,28 +93,41 @@ auto get(const map<uint8_t, string> &value) -> string {
 	return valueHasLocale(value, EN) ? value.at(EN) : "";
 }
 
-auto get(const string &name) -> string {
-	return has(name) ? get(strings.at(name)) : "";
+auto get(const string &id) -> string {
+	return has(id) ? get(strings.at(id)) : "";
 }
 
-auto hasDeviceString(const string &name) -> bool {
-	return genericHas(deviceStrings, name);
-}
+auto getStringOrId(const map<string, map<uint8_t, string>> &values, const string &id) -> string {
+	auto value = values.at(id);
 
-auto getDeviceString(const string &name) -> string {
-	if (hasDeviceString(name)) {
-		return get(deviceStrings.at(name));
+	if (valueHasLocale(value, locale)) {
+		return value.at(locale);
 	}
 
-	return "None" == name ? get("Common.None") : "";	
+	return valueHasLocale(value, EN) ? value.at(EN) : id;
 }
 
-auto hasHotkeyString(const string &name) -> bool {
-	return genericHas(hotkeyStrings, name);
+auto getDedicatedString(
+	const map<string, map<uint8_t, string>> &values,
+	const map<string, string> &dedicatedToRegularStrings,
+	const string &id
+) -> string
+{
+	if (genericHas(values, id)) {
+		return getStringOrId(values, id);
+	}
+
+	return genericHas(dedicatedToRegularStrings, id)
+	     ? get(dedicatedToRegularStrings.at(id))
+	     : id;
 }
 
-auto getHotkeyString(const string &name) -> string {
-	return hasHotkeyString(name) ? get(hotkeyStrings.at(name)) : "";
+auto getDeviceString(const string &id) -> string {
+	return getDedicatedString(deviceStrings, deviceStringsToRegularStrings, id);
+}
+
+auto getHotkeyString(const string &id) -> string {
+	return getDedicatedString(hotkeyStrings, hotkeyStringsToRegularStrings, id);
 }
 
 } // namespace bsnesMt::strings

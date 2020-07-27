@@ -1,5 +1,7 @@
-#include <memory> // MT.
-#include <vector> // MT.
+/* MT. */
+#include <memory>
+#include <vector>
+/* /MT. */
 
 namespace Emulator {
 

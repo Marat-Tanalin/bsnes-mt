@@ -25,8 +25,8 @@ public:
     ComboButton searchSize{&controlLayout, Size{0, 0}};
     ComboButton searchMode{&controlLayout, Size{0, 0}};
     ComboButton searchSpan{&controlLayout, Size{0, 0}};
-    Button searchScan{&controlLayout, Size{80, 0}};
-    Button searchClear{&controlLayout, Size{80, 0}};
+    Button searchScan{&controlLayout, Size{150, 0}};  // `80` => `150` by MT.
+    Button searchClear{&controlLayout, Size{110, 0}}; // `80` => `110` by MT.
 };
 
 struct Cheat {
@@ -114,7 +114,7 @@ struct StateWindow : Window {
 public:
   VerticalLayout layout{this};
     HorizontalLayout nameLayout{&layout, Size{~0, 0}};
-      Label nameLabel{&nameLayout, Size{40_sx, 0}};
+      Label nameLabel{&nameLayout, Size{50_sx, 0}}; // `40_sx` => `50_sx` by MT.
       LineEdit nameValue{&nameLayout, Size{~0, 0}};
     HorizontalLayout controlLayout{&layout, Size{~0, 0}};
       Widget spacer{&controlLayout, Size{~0, 0}};

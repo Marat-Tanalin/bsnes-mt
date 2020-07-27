@@ -27,6 +27,6 @@ auto ucharVectorToString(const vector<unsigned char> &data) -> string;
 
 auto getUiLang() -> BYTE;
 
-auto isUiLangRu() -> bool;
+auto replace(const string &s, char search, const string replace) -> string;
 
 } // namespace bsnesMt

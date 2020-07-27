@@ -8,7 +8,7 @@ NameDialog::NameDialog() {
     response = nameValue.text();
     window.doClose();
   });
-  cancelButton.setText("Cancel").onActivate([&] { window.doClose(); });
+  cancelButton.setText(bms::get("Common.Cancel").data()).onActivate([&] { window.doClose(); }); // "Cancel"
 
   window.onClose([&] {
     window.setModal(false);
@@ -56,9 +56,13 @@ auto NameDialog::setTitle(const string& title) -> type& {
 auto NameDialog::show(string mode, string name) -> string {
   response = {};
   setTitle(state.title);
-  if(!state.title && mode == "Create") setTitle("Create");
-  if(!state.title && mode == "Rename") setTitle({"Rename ", name});
-  textLabel.setText(state.text ? state.text : "Enter a name:");
+  if(!state.title && mode == "Create") setTitle(bms::get("Browser.Create").data()); // "Create"
+  if(!state.title && mode == "Rename") setTitle({bms::get("Common.Rename").data(), ' ', name}); // "Rename "
+
+  string enterNameString = {bms::get("Browser.Create.EnterName").data(), ':'}; // MT.
+
+  textLabel.setText(state.text ? state.text : enterNameString); // "Enter a name:"
+
   if(state.icon) {
     image icon{state.icon};
     icon.scale(16_sx, 16_sy);
@@ -67,7 +71,7 @@ auto NameDialog::show(string mode, string name) -> string {
     typeIcon.setVisible(false);
   }
   nameValue.setText(name);
-  acceptButton.setText(mode);
+  acceptButton.setText(mode == "Rename" ? bms::get("Common.Rename").data() : bms::get("Browser.Create").data());
   window.setTitle(state.title);
   window.setSize({400_sx, layout.minimumSize().height()});
   window.setAlignment(state.relativeTo, state.alignment);

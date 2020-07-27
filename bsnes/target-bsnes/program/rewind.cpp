@@ -33,7 +33,7 @@ auto Program::rewindRun() -> void {
     auto t = rewind.history.takeLast();
     serializer s{t.data(), t.size()};  //convert serializer::Save to serializer::Load
     if(!rewind.history) {
-      showMessage("Rewind history exhausted");
+      showMessage(bms::get("Rewind.HistoryExhausted").data()); // "Rewind history exhausted"
       rewindReset();
     }
     emulator->unserialize(s);

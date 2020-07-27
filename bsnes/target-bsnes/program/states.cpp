@@ -64,11 +64,14 @@ auto Program::loadState(string filename) -> bool {
     if(filename == "Quick/Undo") saveRedoState();
     auto serializerRLE = Decode::RLE<1>({memory.data() + 3 * sizeof(uint), memory.size() - 3 * sizeof(uint)});
     serializer s{serializerRLE.data(), (uint)serializerRLE.size()};
-    if(!emulator->unserialize(s)) return showMessage({"[", prefix, "] is in incompatible format"}), false;
+    string message = bms::get("States.incompatibleFormat").data(); // MT.
+    if(!emulator->unserialize(s)) return showMessage(message.replace('|', prefix)), false; // {"[", prefix, "] is in incompatible format"}
     rewindReset();  //do not allow rewinding past a state load event
-    return showMessage({"Loaded [", prefix, "]"}), true;
+    string loadedMessage = bms::get("States.Loaded").data(); // MT.
+    return showMessage(loadedMessage.replace('|', prefix)), true; // {"Loaded [", prefix, "]"}
   } else {
-    return showMessage({"[", prefix, "] not found"}), false;
+    string notFoundMessage = bms::get("States.NotFound").data(); // MT.
+    return showMessage(notFoundMessage.replace('|', prefix)), false; // {"[", prefix, "] not found"}
   }
 }
 
@@ -77,7 +80,8 @@ auto Program::saveState(string filename) -> bool {
   string prefix = Location::file(filename);
 
   serializer s = emulator->serialize();
-  if(!s.size()) return showMessage({"Failed to save [", prefix, "]"}), false;
+  string message = bms::get("States.FailedToSave").data(); // MT.
+  if(!s.size()) return showMessage(message.replace('|', prefix)), false; // {"Failed to save [", prefix, "]"}
   auto serializerRLE = Encode::RLE<1>({s.data(), s.size()});
 
   vector<uint8_t> previewRLE;
@@ -102,7 +106,8 @@ auto Program::saveState(string filename) -> bool {
     string location = {statePath(), filename, ".bst"};
     directory::create(Location::path(location));
     if(!file::write(location, saveState)) {
-      return showMessage({"Unable to write [", prefix, "] to disk"}), false;
+      string unableMessage = bms::get("States.UnableToWriteToDisk").data(); // MT.
+      return showMessage(unableMessage.replace('|', prefix)), false; // {"Unable to write [", prefix, "] to disk"}
     }
   } else {
     string location = {filename, ".bst"};
@@ -129,7 +134,8 @@ auto Program::saveState(string filename) -> bool {
 
   if(filename.beginsWith("Quick/")) presentation.updateStateMenus();
   stateManager.stateEvent(filename);
-  return showMessage({"Saved [", prefix, "]"}), true;
+  string savedMessage = bms::get("States.Saved").data(); // MT.
+  return showMessage(savedMessage.replace('|', prefix)), true; // {"Saved [", prefix, "]"}
 }
 
 auto Program::saveUndoState() -> bool {

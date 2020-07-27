@@ -40,10 +40,11 @@ auto nall::main(Arguments arguments) -> void {
       program.resetDrivers = true;
     }
     /* /MT. */
-    else if(argument.beginsWith("--locale=")) {
+    /*else if(argument.beginsWith("--locale=")) {
       Application::locale().scan(locate("Locale/"));
       Application::locale().select(argument.trimLeft("--locale=", 1L));
-    } else if(argument.beginsWith("--settings=")) {
+    }*/ // Commented-out by MT.
+    else if(argument.beginsWith("--settings=")) {
       settings.location = argument.trimLeft("--settings=", 1L);
     } else if(inode::exists(argument)) {
       //game without option

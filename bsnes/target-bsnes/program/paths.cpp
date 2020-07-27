@@ -1,8 +1,10 @@
+/* MT. */
 #include <string>
 
 #include <Windows.h>
 
-#include "bsnes-mt/utils.h" // MT.
+#include "bsnes-mt/utils.h"
+/* /MT. */
 
 // Refactored by MT.
 auto Program::path(string type, string location, string extension) -> string {

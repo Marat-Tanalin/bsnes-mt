@@ -1,8 +1,10 @@
-#include "bsnes-mt/strings.h" // MT.
-#include "bsnes-mt/utils.h" // MT.
-#include "bsnes-mt/windows.h" // MT.
+/* MT. */
+#include "bsnes-mt/strings.h"
+#include "bsnes-mt/utils.h"
+#include "bsnes-mt/windows.h"
 
-namespace bms = bsnesMt::strings; // MT.
+namespace bms = bsnesMt::strings;
+/* /MT. */
 
 auto Program::openGame(BrowserDialog& dialog) -> string {
   if(!settings.general.nativeFileDialogs) {

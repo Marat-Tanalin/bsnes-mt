@@ -2,48 +2,53 @@
 
 #include <cmath>
 
-#include "integer-scaling/IntegerScaling.h"
-
 #include "scaling.h"
 
 namespace bsnesMt::scaling {
 
-using namespace MaratTanalin;
-using std::make_pair;
+static constexpr uint32_t origWidth            = 256,
+                          origHeight           = 224,
+                          origOverHeight       = 240,
+                          origDoubleHeight     = origHeight     << 1, // 448
+                          origDoubleOverHeight = origOverHeight << 1; // 480
+
+static constexpr double overscanRatio = (double)origOverHeight / origHeight;
+
+static constexpr double defaultAspectX = 4.0,
+                        defaultAspectY = 3.0,
+                        defaultAspect  = defaultAspectX / defaultAspectY;
 
 auto getWidth(bool aspectCorrection) -> uint32_t {
-	return aspectCorrection ? std::round(origHeight * defaultAspectX / defaultAspectY) : origWidth;
+	return aspectCorrection ? std::round(origHeight * defaultAspect) : origWidth;
 }
 
-auto getHeight(bool showOverscan) -> uint32_t {
-	return showOverscan ? origOverHeight : origHeight;
+auto getWidth(bool aspectCorrection, uint32_t width) -> uint32_t {
+	return aspectCorrection ? std::round(origHeight * (width / origWidth) * defaultAspect) : width;
 }
 
-auto getAspectYOverscanRatio() -> double {
-	return (double)origOverHeight / origHeight;
+auto getHeight(bool showOverscan, uint32_t height) -> uint32_t {
+	return showOverscan ? std::round(height * overscanRatio) : height;
 }
 
 auto getAspectY(bool showOverscan) -> double {
-	double aspectY = defaultAspectY;
+	return showOverscan ? defaultAspectY * overscanRatio : defaultAspectY;
+}
 
-	if (showOverscan) {
-		aspectY *= getAspectYOverscanRatio();
-	}
-
-	return aspectY;
+auto getHeightForPar1(uint32_t width, uint32_t height) -> uint32_t {
+	return (height == origHeight || height == origOverHeight)
+	     ? (width == origWidth ? origHeight : origDoubleHeight)
+	     : origDoubleHeight;
 }
 
 auto calculateScaledSizeScale(
 	uint32_t areaWidth, uint32_t areaHeight,
 	bool aspectCorrection, bool showOverscan
-) -> pair<uint32_t, uint32_t>
+) -> is::Size
 {
-	double aspect = aspectCorrection
-	              ? defaultAspectX / defaultAspectY
-	              : (double)origWidth / origHeight;
+	double aspect = aspectCorrection ? defaultAspect : (double)origWidth / origHeight;
 
 	if (showOverscan) {
-		aspect *= (double)origHeight / origOverHeight;
+		aspect /= overscanRatio;
 	}
 
 	uint32_t width, height;
@@ -65,41 +70,49 @@ auto calculateScaledSizeScale(
 		}
 	}
 
-	return make_pair(width, height);
+	return {width, height};
 }
 
 auto calculateScaledSizeCenter(
 	uint32_t areaWidth,  uint32_t areaHeight,
 	uint32_t imageWidth, uint32_t imageHeight,
 	bool aspectCorrection, bool showOverscan
-) -> pair<uint32_t, uint32_t>
+) -> is::Size
 {
-	auto size = aspectCorrection
-		? IntegerScaling::calculateSizeCorrectedPerfectY(
-			areaWidth,  areaHeight,
+	return aspectCorrection
+		? is::calculateSizeCorrectedPerfectY(
+			areaWidth, areaHeight,
 			imageHeight,
 			defaultAspectX, getAspectY(showOverscan)
 		)
-		: IntegerScaling::calculateSize(areaWidth, areaHeight, imageWidth, imageHeight);
-
-	return make_pair(size.width, size.height);
+		: is::calculateSize(
+			areaWidth, areaHeight,
+			imageWidth, getHeightForPar1(imageWidth, imageHeight)
+		);
 }
 
 auto calculateScaledSizePerfect(
-	uint32_t areaWidth, uint32_t areaHeight,
-	uint32_t imageHeight,
+	uint32_t areaWidth,  uint32_t areaHeight,
+	uint32_t imageWidth, uint32_t imageHeight,
 	bool aspectCorrection, bool showOverscan
-) -> pair<uint32_t, uint32_t>
+) -> is::Size
 {
-	auto size = aspectCorrection
-		? IntegerScaling::calculateSizeCorrected(
-			areaWidth, areaHeight,
-			origWidth, imageHeight,
+	if (aspectCorrection) {
+		return is::calculateSizeCorrected(
+			areaWidth,  areaHeight,
+			imageWidth, imageHeight,
 			defaultAspectX, getAspectY(showOverscan)
-		)
-		: IntegerScaling::calculateSize(areaWidth, areaHeight, origWidth, imageHeight);
+		);
+	}
 
-	return make_pair(size.width, size.height);
-}
+	uint32_t imageHeightForPar1     = getHeightForPar1(imageWidth, imageHeight);
+	uint32_t imageOverHeightForPar1 = imageHeightForPar1 == origHeight ? origOverHeight : origDoubleOverHeight;	
+
+	return is::calculateSize(
+		areaWidth, areaHeight,
+		imageWidth,
+		showOverscan ? imageOverHeightForPar1 : imageHeightForPar1
+	);
+};
 
 } // namespace bsnesMt::scaling

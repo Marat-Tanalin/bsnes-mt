@@ -8,7 +8,7 @@ namespace hiro {
   #include "vertical-resize-grip.hpp"
   #include "list-view.hpp"
   #include "shared.hpp"
-  #include "message-dialog.hpp"
+  // #include "message-dialog.hpp" // Commented-out by MT.
   #include "name-dialog.hpp"
   #include "browser-dialog.hpp"
   #include "about-dialog.hpp"

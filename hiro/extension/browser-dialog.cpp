@@ -1,7 +1,7 @@
 #if defined(Hiro_BrowserDialog)
 
 struct BrowserDialogWindow {
-  Application::Namespace tr{"BrowserDialog"};
+  // Application::Namespace tr{"BrowserDialog"}; // Commented-out by MT.
 
   BrowserDialogWindow(BrowserDialog::State& state) : state(state) {}
   auto accept() -> void;
@@ -85,7 +85,13 @@ auto BrowserDialogWindow::accept() -> void {
     string name = fileName.text();
     if(!name || isFolder(name)) return;
     if(file::exists({state.path, name})) {
-      if(MessageDialog("File already exists. Overwrite it?").question() != "Yes") return;
+      /* // Commented-out by MT.
+      if(MessageDialog(bms::get("Browser.SaveFile.fileExists").data()).question({bms::get("Common.Yes").data(), 
+        bms::get("Common.No").data()}) != bms::get("Common.Yes").data())
+      */
+      if (!bmw::confirmById("Browser.SaveFile.fileExists"), window.handle()) { // MT.
+        return;
+      } // "File already exists. Overwrite it?" // "Yes"
     }
     response.selected.append({state.path, name});
   }
@@ -251,10 +257,10 @@ auto BrowserDialogWindow::run() -> BrowserDialog::Response {
     if(state.action == "saveFile") acceptButton.setEnabled(name && !isFolder(name));
   });
   acceptButton.setEnabled(false).onActivate([&] { accept(); });
-  if(state.action.beginsWith("open")) acceptButton.setText(tr("Open"));
-  if(state.action.beginsWith("save")) acceptButton.setText(tr("Save"));
-  if(state.action.beginsWith("select")) acceptButton.setText(tr("Select"));
-  cancelButton.setText(tr("Cancel")).onActivate([&] { window.setModal(false); });
+  if(state.action.beginsWith("open")) acceptButton.setText(bms::get("Common.Open").data()); // tr("Open")
+  if(state.action.beginsWith("save")) acceptButton.setText(bms::get("Common.Save").data()); // tr("Save")
+  if(state.action.beginsWith("select")) acceptButton.setText(bms::get("Browser.Select").data()); // tr("Select")
+  cancelButton.setText(bms::get("Common.Cancel").data()).onActivate([&] { window.setModal(false); }); // tr("Cancel")
 
   if(!state.filters) state.filters.append("All|*");
   for(auto& filter : state.filters) {
@@ -262,10 +268,16 @@ auto BrowserDialogWindow::run() -> BrowserDialog::Response {
     filters.append(part.right().split(":"));
   }
 
-  createAction.setIcon(Icon::Action::NewFolder).setText("Create Folder...").onActivate([&] {
+  /* MT. */
+  char colon = ':';
+  char space = ' ';
+  string ellipsis = "...";
+  /* /MT. */
+
+  createAction.setIcon(Icon::Action::NewFolder).setText({bms::get("Browser.CreateFolder").data(), ellipsis}).onActivate([&] { // "Create Folder..."
     if(auto name = NameDialog()
-    .setTitle("Create Folder")
-    .setText("Enter a new folder name:")
+    .setTitle(bms::get("Browser.CreateFolder").data()) // "Create Folder"
+    .setText({bms::get("Browser.CreateFolder.EnterNewFolderName").data(), colon}) // "Enter a new folder name:"
     .setIcon(Icon::Emblem::Folder)
     .setAlignment(window)
     .create()
@@ -275,75 +287,134 @@ auto BrowserDialogWindow::run() -> BrowserDialog::Response {
     }
   });
 
-  renameAction.setIcon(Icon::Application::TextEditor).setText("Rename...").onActivate([&] {
+  renameAction.setIcon(Icon::Application::TextEditor).setText({bms::get("Common.Rename").data(), ellipsis}).onActivate([&] { // "Rename..."
     auto batched = view.batched();
     if(batched.size() != 1) return;
     auto name = batched[0].text();
+
     if(directory::exists({state.path, name})) {
       if(auto rename = NameDialog()
-      .setTitle({"Rename ", name})
-      .setText("Enter the new folder name:")
+      .setTitle({bms::get("Common.Rename").data(), space, name}) // "Rename "
+      .setText({bms::get("Browser.Rename.EnterNewFolderName").data(), colon}) // "Enter the new folder name:"
       .setIcon(Icon::Emblem::Folder)
       .setAlignment(window)
       .rename(name)
       ) {
         if(name == rename) return;
-        if(!directory::rename({state.path, name}, {state.path, rename})) return (void)MessageDialog()
-        .setTitle("Error")
-        .setText("Failed to rename folder.")
-        .setAlignment(window)
-        .error();
+        if(!directory::rename({state.path, name}, {state.path, rename})) {
+          /* // Commented-out by MT.
+          return (void)MessageDialog()
+            .setTitle(bms::get("Common.Error").data()) // "Error"
+            .setText(bms::get("Browser.Rename.FailedToRenameFolder").data()) // "Failed to rename folder."
+            .setAlignment(window)
+            .error();
+          */
+
+          /* MT. */
+          bmw::showError(bms::get("Browser.Rename.FailedToRenameFolder"), "", window.handle());
+          return;
+          /* /MT. */
+        }
         pathRefresh.doActivate();
       }
     } else if(file::exists({state.path, name})) {
       if(auto rename = NameDialog()
-      .setTitle({"Rename ", name})
-      .setText("Enter the new file name:")
+      .setTitle({bms::get("Common.Rename").data(), space, name}) // "Rename "
+      .setText({bms::get("Browser.Rename.EnterNewFileName").data(), colon}) // "Enter the new file name:"
       .setIcon(Icon::Emblem::File)
       .setAlignment(window)
       .rename(name)
       ) {
         if(name == rename) return;
-        if(!file::rename({state.path, name}, {state.path, rename})) return (void)MessageDialog()
-        .setTitle("Error")
-        .setText("Failed to rename file.")
-        .setAlignment(window)
-        .error();
+        if(!file::rename({state.path, name}, {state.path, rename})) {
+          /* // Commented-out by MT.
+          return (void)MessageDialog()
+            .setTitle(bms::get("Common.Error").data()) // "Error"
+            .setText(bms::get("Browser.Rename.FailedToRenameFile").data()) // "Failed to rename file."
+            .setAlignment(window)
+            .error();
+          */
+
+          /* MT. */
+          bmw::showError(bms::get("Browser.Rename.FailedToRenameFile"), "", window.handle());
+          return;
+          /* /MT. */
+        }
+
         pathRefresh.doActivate();
       }
     }
   });
 
-  removeAction.setIcon(Icon::Action::Remove).setText("Delete...").onActivate([&] {
+  removeAction.setIcon(Icon::Action::Remove).setText({bms::get("Common.Delete").data(), ellipsis}).onActivate([&] { // "Delete..."
     auto batched = view.batched();
     if(!batched) return;
+
+    /* // Commented-out by MT.
     if(MessageDialog()
-    .setTitle("Remove Selected")
-    .setText({"Are you sure you want to permanently delete the selected item", batched.size() == 1 ? "" : "s", "?"})
+    .setTitle(bms::get("Browser.Delete.DeleteSelected").data()) // "Remove Selected"
+    .setText({bms::get("Browser.Delete.confirm").data(), space, batched.size() == 1 ? 
+      bms::get("Browser.Delete.SelectedItem").data() : 
+      bms::get("Browser.Delete.SelectedItems").data(), "?"}) // "Are you sure you want to permanently delete the selected item" // "s"
     .setAlignment(window)
-    .question() == "No") return;
+    .question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.No").data()) { // "No"
+    */
+
+    /* MT. */
+    string selectedItemsString = batched.size() == 1
+                               ? bms::get("Browser.Delete.confirm.item").data()
+                               : bms::get("Browser.Delete.confirm.items").data();
+
+    string messageText = {
+      string(bms::get("Browser.Delete.confirm").data()).replace('|', selectedItemsString), "?"
+    };
+    /* /MT. */
+
+    if (!bmw::confirm(messageText.data(), bms::get("Browser.Delete.DeleteSelected"), window.handle())) { // MT.
+      return;
+    }
+
     for(auto& item : batched) {
       auto name = item.text();
+
+      /* MT. */
+      string continueMessageText = string(bms::get("Browser.Delete.FailedToDelete").data()).replace('|', name);
+      /* /MT. */
+
       if(directory::exists({state.path, name})) {
         if(!directory::remove({state.path, name})) {
+          /* // Commented-out by MT.
           if(MessageDialog()
-          .setTitle("Warning")
-          .setText({"Failed to remove ", name, "\n\nContinue trying to remove remaining items?"})
-          .question() == "No") break;
+          .setTitle(bms::get("Common.Warning").data()) // "Warning"
+          .setText({bms::get("Browser.Delete.FailedToDelete").data(), space, name, "\n\n", 
+            bms::get("Browser.Delete.continueDeletingRemaining").data(), "?"}) // "Failed to remove " // Continue trying to remove remaining items
+          .question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.No").data()) { // "No"
+          */
+
+          if (!bmw::confirm(continueMessageText.data(), bms::get("Common.Warning"), window.handle())) { // MT.
+            break;
+          }
         }
       } else if(file::exists({state.path, name})) {
         if(!file::remove({state.path, name})) {
+          /*
           if(MessageDialog()
-          .setTitle("Warning")
-          .setText({"Failed to remove ", name, "\n\nContinue trying to remove remaining items?"})
-          .question() == "No") break;
+          .setTitle(bms::get("Common.Warning").data()) // "Warning"
+          .setText({bms::get("Browser.Delete.FailedToDelete").data(), space, name, "\n\n", 
+            bms::get("Browser.Delete.continueDeletingRemaining").data(), "?"}) // "Failed to remove " // Continue trying to remove remaining items
+          .question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.No").data()) { // "No"
+          */
+
+          if (!bmw::confirm(continueMessageText.data(), bms::get("Common.Warning"), window.handle())) { // MT.
+            break;
+          }
         }
       }
     }
     pathRefresh.doActivate();
   });
 
-  showHiddenOption.setChecked(settings.showHidden).setText("Show Hidden").onToggle([&] {
+  showHiddenOption.setChecked(settings.showHidden).setText(bms::get("Browser.ShowHidden").data()).onToggle([&] { // "Show Hidden"
     auto document = BML::unserialize(file::read({Path::userSettings(), "hiro/browser-dialog.bml"}));
     document("BrowserDialog/ShowHidden").setValue(showHiddenOption.checked());
     directory::create({Path::userSettings(), "hiro/"});
@@ -427,28 +498,28 @@ auto BrowserDialog::filters() const -> vector<string> {
 
 auto BrowserDialog::openFile() -> string {
   state.action = "openFile";
-  if(!state.title) state.title = "Open File";
+  if(!state.title) state.title = bms::get("Browser.OpenFile").data(); // "Open File"
   if(auto result = _run()) return result.left();
   return {};
 }
 
 auto BrowserDialog::openFiles() -> vector<string> {
   state.action = "openFiles";
-  if(!state.title) state.title = "Open Files";
+  if(!state.title) state.title = bms::get("Browser.OpenFiles").data(); // "Open Files"
   if(auto result = _run()) return result;
   return {};
 }
 
 auto BrowserDialog::openFolder() -> string {
   state.action = "openFolder";
-  if(!state.title) state.title = "Open Folder";
+  if(!state.title) state.title = bms::get("Browser.OpenFolder").data(); // "Open Folder"
   if(auto result = _run()) return result.left();
   return {};
 }
 
 auto BrowserDialog::openObject() -> string {
   state.action = "openObject";
-  if(!state.title) state.title = "Open Object";
+  if(!state.title) state.title = bms::get("Browser.OpenObject").data(); // "Open Object"
   if(auto result = _run()) return result.left();
   return {};
 }
@@ -463,7 +534,7 @@ auto BrowserDialog::path() const -> string {
 
 auto BrowserDialog::saveFile() -> string {
   state.action = "saveFile";
-  if(!state.title) state.title = "Save File";
+  if(!state.title) state.title = bms::get("Browser.SaveFile").data(); // "Save File"
   if(auto result = _run()) return result.left();
   return {};
 }
@@ -474,7 +545,7 @@ auto BrowserDialog::selected() -> vector<string> {
 
 auto BrowserDialog::selectFolder() -> string {
   state.action = "selectFolder";
-  if(!state.title) state.title = "Select Folder";
+  if(!state.title) state.title = bms::get("Browser.SelectFolder").data(); // "Select Folder"
   if(auto result = _run()) return result.left();
   return {};
 }

@@ -1,3 +1,10 @@
+/* MT. */
+#include "bsnes-mt/app.h"
+#include "bsnes-mt/strings.h"
+
+namespace bms = bsnesMt::strings;
+/* /MT. */
+
 auto InputHotkey::logic() const -> Logic {
   return inputManager.hotkeyLogic;
 }
@@ -32,7 +39,7 @@ auto InputManager::bindHotkeys() -> void {
   hotkeys.append(InputHotkey("Rewind").onPress([&] {
     if(!emulator->loaded() || program.fastForwarding) return;
     if(program.rewind.frequency == 0) {
-      return program.showMessage("Please enable rewind support in Settings->Emulator first");
+      return program.showMessage(bms::get("Settings.Hotkeys.Rewind.enableFirst").data()); // "Please enable rewind support in Settings->Emulator first"
     }
     program.rewinding = true;
     program.rewindMode(Program::Rewind::Mode::Rewinding);
@@ -66,14 +73,16 @@ auto InputManager::bindHotkeys() -> void {
     program.loadState("Quick/Redo");
   }));
 
+  char space = ' '; // MT.
+
   hotkeys.append(InputHotkey("Decrement State Slot").onPress([&] {
-    if(--stateSlot < 1) stateSlot = 9;
-    program.showMessage({"Selected state slot ", stateSlot});
+    if(--stateSlot < 1) stateSlot = bsnesMt::app::quickStatesNumber;
+    program.showMessage({bms::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot}); // "Selected state slot "
   }));
 
   hotkeys.append(InputHotkey("Increment State Slot").onPress([&] {
-    if(++stateSlot > 9) stateSlot = 1;
-    program.showMessage({"Selected state slot ", stateSlot});
+    if(++stateSlot > bsnesMt::app::quickStatesNumber) stateSlot = 1;
+    program.showMessage({bms::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot}); // "Selected state slot "
   }));
 
   hotkeys.append(InputHotkey("Capture Screenshot").onPress([] {

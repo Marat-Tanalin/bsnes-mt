@@ -1,12 +1,12 @@
 auto CheatDatabase::create() -> void {
   layout.setPadding(5_sx);
-  selectAllButton.setText("Select All").onActivate([&] {
+  selectAllButton.setText(bms::get("Tools.CheatEditor.SelectAll").data()).onActivate([&] { // "Select All"
     for(auto item : cheatList.items()) item.setChecked(true);
   });
-  unselectAllButton.setText("Unselect All").onActivate([&] {
+  unselectAllButton.setText(bms::get("Tools.CheatEditor.UnselectAll").data()).onActivate([&] { // "Unselect All"
     for(auto item : cheatList.items()) item.setChecked(false);
   });
-  addCheatsButton.setText("Add Cheats").onActivate([&] {
+  addCheatsButton.setText(bms::get("Tools.CheatEditor.AddCheats").data()).onActivate([&] { // "Add Cheats"
     addCheats();
   });
 
@@ -47,7 +47,15 @@ auto CheatDatabase::findCheats() -> void {
     return;
   }
 
-  MessageDialog().setAlignment(*toolsWindow).setText("Sorry, no cheats were found for this game.").information();
+  /* // Commented-out by MT.
+  MessageDialog().setAlignment(*toolsWindow).setText(bms::get("Tools.CheatEditor.noCheats").data()).information(); // "Sorry, no cheats were found for this game."
+  */
+
+  bmw::showInfo(
+    bms::get("Tools.CheatEditor.noCheats"),
+    "",
+    toolsWindow->handle()
+  ); // MT.
 }
 
 auto CheatDatabase::addCheats() -> void {
@@ -66,15 +74,15 @@ auto CheatWindow::create() -> void {
   tableLayout.setSize({2, 2});
   tableLayout.cell(0).setAlignment({1.0, 0.5});
   tableLayout.cell(2).setAlignment({1.0, 0.0});
-  nameLabel.setText("Name:");
+  nameLabel.setText({bms::get("Common.Name").data(), ':'}); // "Name:"
   nameValue.onActivate([&] { if(acceptButton.enabled()) acceptButton.doActivate(); });
   nameValue.onChange([&] { doChange(); });
-  codeLabel.setText("Code(s):");
+  codeLabel.setText({bms::get("Tools.CheatEditor.Codes").data(), ':'}); // "Code(s):"
   codeValue.setFont(Font().setFamily(Font::Mono));
   codeValue.onChange([&] { doChange(); });
-  enableOption.setText("Enable");
+  enableOption.setText(bms::get("Tools.CheatEditor.Enable").data()); // "Enable"
   acceptButton.onActivate([&] { doAccept(); });
-  cancelButton.setText("Cancel").onActivate([&] { setVisible(false); });
+  cancelButton.setText(bms::get("Common.Cancel").data()).onActivate([&] { setVisible(false); }); // "Cancel"
 
   setSize({400_sx, layout.minimumSize().height() + 100_sx});
   setDismissable();
@@ -85,12 +93,12 @@ auto CheatWindow::show(Cheat cheat) -> void {
   codeValue.setText(cheat.code.split("+").strip().merge("\n"));
   enableOption.setChecked(cheat.enable);
   doChange();
-  setTitle(!cheat.name ? "Add Cheat" : "Edit Cheat");
+  setTitle(!cheat.name ? bms::get("Tools.CheatEditor.AddCheat").data() : bms::get("Tools.CheatEditor.EditCheat").data()); // "Add Cheat" // "Edit Cheat"
   setAlignment(*toolsWindow);
   setVisible();
   setFocused();
   nameValue.setFocused();
-  acceptButton.setText(!cheat.name ? "Add" : "Edit");
+  acceptButton.setText(!cheat.name ? bms::get("Common.Add").data() : bms::get("Tools.CheatEditor.Edit").data()); // "Add" // "Edit"
 }
 
 auto CheatWindow::doChange() -> void {
@@ -107,30 +115,43 @@ auto CheatWindow::doAccept() -> void {
     if(!program.gameBoy.program) {
       if(!cheatEditor.decodeSNES(code)) {
         invalid =
-          "Invalid code(s), please only use codes in the following format:\n"
-          "\n"
-          "Game Genie (eeee-eeee)\n"
-          "Pro Action Replay (aaaaaadd)\n"
-          "higan (aaaaaa=dd)\n"
-          "higan (aaaaaa=cc?dd)";
+          {
+            bms::get("Tools.CheatEditor.invalidFormat").data(),
+            ":\n\n"
+            "Game Genie (eeee-eeee)\n"
+            "Pro Action Replay (aaaaaadd)\n"
+            "higan (aaaaaa=dd)\n"
+            "higan (aaaaaa=cc?dd)"
+          };
       }
     } else {
       if(!cheatEditor.decodeGB(code)) {
         invalid =
-          "Invalid code(s), please only use codes in the following format:\n"
-          "\n"
-          "Game Genie (eee-eee)\n"
-          "Game Genie (eee-eee-eee)\n"
-          "GameShark (01ddaaaa)\n"
-          "higan (aaaa=dd)\n"
-          "higan (aaaa=cc?dd)";
+          {
+            bms::get("Tools.CheatEditor.invalidFormat").data(),
+            ":\n\n"
+            "Game Genie (eee-eee)\n"
+            "Game Genie (eee-eee-eee)\n"
+            "GameShark (01ddaaaa)\n"
+            "higan (aaaa=dd)\n"
+            "higan (aaaa=cc?dd)"
+          };
       }
     }
   }
-  if(invalid) return (void)MessageDialog().setAlignment(*toolsWindow).setText(invalid).error();
+  if(invalid) {
+    /* // Commented-out by MT.
+    return (void)MessageDialog().setAlignment(*toolsWindow).setText(invalid).error();
+    */
+
+    /* MT. */
+    bmw::showError(invalid.data(), "", toolsWindow->handle());
+    return;
+    /* /MT. */
+  }
 
   Cheat cheat = {nameValue.text().strip(), codes.merge("+"), enableOption.checked()};
-  if(acceptButton.text() == "Add") {
+  if(acceptButton.text() == bms::get("Common.Add").data()) { // "Add"
     cheatEditor.addCheat(cheat);
   } else {
     cheatEditor.editCheat(cheat);
@@ -172,31 +193,29 @@ auto CheatEditor::create() -> void {
   cheatList.onSize([&] {
     cheatList.resizeColumns();
   });
-  findCheatsButton.setText("Find Cheats...").onActivate([&] {
+  findCheatsButton.setText({bms::get("Tools.CheatEditor.FindCheats").data(), "..."}).onActivate([&] { // "Find Cheats..."
     cheatDatabase.findCheats();
   });
-  enableCheats.setText("Enable Cheats").setToolTip(
-    "Master enable for all cheat codes.\n"
-    "When unchecked, no cheat codes will be active.\n\n"
-    "Use this to bypass game areas that have problems with cheats."
+  enableCheats.setText(bms::get("Tools.CheatEditor.EnableCheats").data()).setToolTip( // "Enable Cheats"
+    bms::get("Tools.CheatEditor.EnableCheats.tooltip").data()
   ).setChecked(settings.emulator.cheats.enable).onToggle([&] {
     settings.emulator.cheats.enable = enableCheats.checked();
     if(!enableCheats.checked()) {
-      program.showMessage("All cheat codes disabled");
+      program.showMessage(bms::get("Tools.CheatEditor.EnableCheats.disabled").data()); // "All cheat codes disabled"
     } else {
-      program.showMessage("Active cheat codes enabled");
+      program.showMessage(bms::get("Tools.CheatEditor.EnableCheats.enabled").data()); // "Active cheat codes enabled"
     }
     synchronizeCodes();
   });
-  addButton.setText("Add").onActivate([&] {
+  addButton.setText(bms::get("Common.Add").data()).onActivate([&] { // "Add"
     cheatWindow.show();
   });
-  editButton.setText("Edit").onActivate([&] {
+  editButton.setText(bms::get("Tools.CheatEditor.Edit").data()).onActivate([&] { // "Edit"
     if(auto item = cheatList.selected()) {
       cheatWindow.show(cheats[item.offset()]);
     }
   });
-  removeButton.setText("Remove").onActivate([&] {
+  removeButton.setText(bms::get("Common.Remove").data()).onActivate([&] { // "Remove"
     removeCheats();
   });
 
@@ -207,7 +226,7 @@ auto CheatEditor::create() -> void {
 auto CheatEditor::refresh() -> void {
   cheatList.reset();
   cheatList.append(TableViewColumn());
-  cheatList.append(TableViewColumn().setText("Name").setSorting(Sort::Ascending).setExpandable());
+  cheatList.append(TableViewColumn().setText(bms::get("Common.Name").data()).setSorting(Sort::Ascending).setExpandable()); // "Name"
   for(auto& cheat : cheats) {
     TableViewItem item{&cheatList};
     item.append(TableViewCell().setCheckable().setChecked(cheat.enable));
@@ -242,8 +261,12 @@ auto CheatEditor::editCheat(Cheat cheat) -> void {
 
 auto CheatEditor::removeCheats() -> void {
   if(auto batched = cheatList.batched()) {
-    if(MessageDialog("Are you sure you want to permanently remove the selected cheat(s)?")
-    .setAlignment(*toolsWindow).question() == "Yes") {
+    /* // Commented-out by MT.
+    if(MessageDialog(bms::get("Tools.CheatEditor.remove.confirm").data()) // "Are you sure you want to permanently remove the selected cheat(s)?"
+    .setAlignment(*toolsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) { // "Yes"
+    */
+
+    if (bmw::confirmById("Tools.CheatEditor.remove.confirm", toolsWindow->handle())) { // MT.
       for(auto& item : reverse(batched)) cheats.remove(item.offset());
       cheats.sort();
       refresh();

@@ -1,5 +1,14 @@
 #if defined(Hiro_BrowserWindow)
 
+/* MT. */
+#include <string>
+
+#include "bsnes-mt/strings.h"
+#include "bsnes-mt/utils.h"
+
+namespace bms = bsnesMt::strings;
+/* /MT. */
+
 namespace hiro {
 
 static auto CALLBACK BrowserWindowCallbackProc(HWND hwnd, UINT msg, LPARAM lparam, LPARAM lpdata) -> signed {
@@ -63,12 +72,13 @@ static auto BrowserWindow_fileDialog(bool save, BrowserWindow::State& state) -> 
 
 auto pBrowserWindow::directory(BrowserWindow::State& state) -> string {
   wchar_t wname[PATH_MAX + 1] = L"";
+  auto chooseFolder = bsnesMt::utf8ToWideString(std::string("\n") + bms::get("Browser.ChooseFolder") + ":"); // MT.
 
   BROWSEINFO bi;
   bi.hwndOwner = state.parent ? state.parent->self()->hwnd : 0;
   bi.pidlRoot = NULL;
   bi.pszDisplayName = wname;
-  bi.lpszTitle = L"\nChoose a directory:";
+  bi.lpszTitle = chooseFolder.data(); // L"\nChoose a directory:"
   bi.ulFlags = BIF_NEWDIALOGSTYLE | BIF_RETURNONLYFSDIRS;
   bi.lpfn = BrowserWindowCallbackProc;
   bi.lParam = (LPARAM)&state;

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "bsnes-mt/windows.h" // MT.
-
 namespace nall::Encode {
 
 struct BMP {
@@ -9,7 +7,6 @@ struct BMP {
     auto fp = file::open(filename, file::mode::write);
 
     if (!fp) {
-      bsnesMt::windows::showError("Cannot create screenshot file.", "Cannot take screenshot"); // MT.
       return false;
     }
 

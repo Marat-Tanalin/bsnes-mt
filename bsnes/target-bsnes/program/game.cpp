@@ -1,7 +1,11 @@
-#include "bsnes-mt/strings.h" // MT.
-#include "bsnes-mt/app.h" // MT.
+/* MT. */
+#include "bsnes-mt/messagebox.h"
+#include "bsnes-mt/strings.h"
+#include "bsnes-mt/app.h"
 
-namespace bms = bsnesMt::strings; // MT.
+namespace bms = bsnesMt::strings;
+namespace bmw = bsnesMt::windows;
+/* /MT. */
 
 auto Program::load() -> void {
   unload();
@@ -34,6 +38,7 @@ auto Program::load() -> void {
     //prevent Program::main() from calling Emulator::run() during this dialog window
     auto lock = acquire();
 
+    /* // Commented-out by MT.
     string alwaysString = bms::get("Common.Always").data(); // MT.
     string noString     = bms::get("Common.No").data();     // MT.
 
@@ -42,11 +47,26 @@ auto Program::load() -> void {
     ).setAlignment(*presentation).question({alwaysString, bms::get("Common.Yes").data(), noString}); // "Always", "Yes", "No"
     if(response == noString) {
       emulator->unload();
-      return showMessage(bms::get("Game.GameLoadedingCancelled").data()); // "Game loading cancelled"
+      return showMessage(bms::get("Game.GameOpeningCancelled").data()); // "Game loading cancelled"
     }
     if(response == alwaysString) {
       emulatorSettings.warnOnUnverifiedGames.setChecked(false).doToggle();
     }
+    */
+
+    /* MT. */
+    auto windowId = presentation->handle();
+
+    if (bmw::confirmById("Game.unverifiedGameWarning", windowId)) {
+      if (bmw::confirmById("Game.unverifiedGameWarning.alwaysQuestion", windowId)) {
+        emulatorSettings.warnOnUnverifiedGames.setChecked(false).doToggle();
+      }
+    }
+    else {
+      emulator->unload();
+      return showMessage(bms::get("Game.GameOpeningCancelled").data());
+    }
+    /* /MT. */
   }
   hackCompatibility();
   emulator->power();
@@ -54,7 +74,7 @@ auto Program::load() -> void {
     program.loadState("Quick/Undo");
   }
   showMessage({
-    verified() ? bms::get("Game.VerifiedGameLoaded").data() : bms::get("Game.GameLoaded").data(), // "Verified game loaded" : "Game loaded"
+    verified() ? bms::get("Game.VerifiedGameOpened").data() : bms::get("Game.GameOpened").data(), // "Verified game loaded" : "Game loaded"
     appliedPatch() ? bms::get("Game.AndPatchApplied").data() : "" // " and patch applied"
   });
   presentation.setFocused();
@@ -312,7 +332,7 @@ auto Program::reset() -> void {
   rewindReset();  //don't allow rewinding past a reset point
   hackCompatibility();
   emulator->reset();
-  showMessage("Game reset");
+  showMessage(bms::get("Game.GameReset").data()); // "Game reset"
 }
 
 auto Program::unload() -> void {
@@ -332,7 +352,7 @@ auto Program::unload() -> void {
     saveUndoState();
   }
   emulator->unload();
-  showMessage(bms::get("Game.GameUnloaded").data()); // "Game unloaded"
+  showMessage(bms::get("Game.GameClosed").data()); // "Game unloaded"
   superFamicom = {};
   gameBoy = {};
   bsMemory = {};

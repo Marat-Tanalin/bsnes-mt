@@ -29,14 +29,20 @@ auto Program::applyPatchIPS(vector<uint8_t>& data, string location) -> bool {
   }
   if(!patch) return false;
 
+  /* // Commented-out by MT.
   bool headered = false;
-  if(MessageDialog().setAlignment(*presentation).setTitle({Location::prefix(location), ".ips"}).setText({
-    "(You're seeing this prompt because IPS is a terrible patch file format,\n"
-    " and nobody can agree on whether SNES ROMs should be headered or not.\n"
-    " Please consider asking the patch author to use BPS patches instead.)\n\n"
-    "Does this IPS patch expect to be applied to a headered ROM?\n"
-    "If you're not sure, try 'No', and if it fails to work, try again with 'Yes'."
-  }).question() == "Yes") headered = true;
+  if(MessageDialog().setAlignment(*presentation).setTitle({Location::prefix(location), ".ips"}).setText(
+    bms::get("Patch.ipsWarning").data()
+  ).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) headered = true; // "Yes"
+  */
+
+  /* MT. */
+  bool headered = bmw::confirm(
+    bms::get("Patch.ipsWarning"),
+    string({Location::prefix(location), ".ips"}).data(),
+    presentation->handle()
+  );
+  /* /MT. */
 
   //sanity checks
   if(patch.size() < 8) return false;
@@ -133,9 +139,14 @@ auto Program::applyPatchBPS(vector<uint8_t>& input, string location) -> bool {
     }
   }
 
+  /* // Commented-out by MT.
   MessageDialog({
     error, "\n\n",
-    "Please ensure you are using the correct (headerless) ROM for this patch."
+    bms::get("Patch.ensureHeaderless").data() // "Please ensure you are using the correct (headerless) ROM for this patch."
   }).setAlignment(*presentation).error();
+  */
+
+  bmw::showError(string({error, "\n\n", bms::get("Patch.ensureHeaderless").data()}).data(), "", presentation->handle()); // MT.
+
   return false;
 }

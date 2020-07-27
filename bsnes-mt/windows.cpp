@@ -29,48 +29,6 @@ auto isTopLevelWindow(HWND window) -> bool {
 	return window == GetAncestor(window, GA_ROOT);
 }
 
-static bool messageBoxShown = false;
-
-auto messageBox(const string &text, const string &title, UINT flags, HWND parentWindow) -> void {
-	if (messageBoxShown) {
-		return;
-	}
-
-	messageBoxShown = true;
-
-	MessageBoxW(
-		parentWindow,
-		utf8ToWideString(text).data(),
-		utf8ToWideString(title).data(),
-		flags
-	);
-
-	messageBoxShown = false;
-}
-
-auto showMessage(const string &text, const string &title, UINT flags, HWND parentWindow) -> void {
-	const UINT defaultFlags = MB_OK | MB_TOPMOST;
-
-	messageBox(
-		text,
-		title,
-		flags ? defaultFlags | flags : defaultFlags,
-		parentWindow
-	);
-}
-
-auto showError(const string &text, const string &title, HWND parentWindow) -> void {
-	showMessage(text, title, MB_ICONERROR, parentWindow);
-}
-
-auto showNotice(const string &text, const string &title, HWND parentWindow) -> void {
-	showMessage(text, title, MB_ICONEXCLAMATION, parentWindow);
-}
-
-auto showInfo(const string &text, const string &title, HWND parentWindow) -> void {
-	showMessage(text, title, MB_ICONINFORMATION, parentWindow);
-}
-
 auto showAboutCallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData) -> HRESULT {
 	if (TDN_HYPERLINK_CLICKED == msg) {
 		open((wchar_t*)lParam);
@@ -85,7 +43,7 @@ auto showAbout(HWND parentWindow) -> void {
 	TASKDIALOGCONFIG config{};
 
 	// Variables are needed, otherwise `TaskDialogIndirect()` may display random garbage.
-	const wstring windowTitleWide = utf8ToWideString(strings::get("Help.About") + " " + appTitle);
+	const wstring windowTitleWide = utf8ToWideString(replace(strings::get("Menu.Help.About"), '|', appTitle));
 	const wstring headingWide     = utf8ToWideString(appTitle + " " + app::version);
 
 	const wstring textWide        = utf8ToWideString(strings::get({

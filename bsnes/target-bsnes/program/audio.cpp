@@ -14,9 +14,11 @@ auto Program::updateAudioDriver(Window parent) -> void {
   updateAudioDynamic();
 
   if(!audio.ready()) {
-    MessageDialog({
-      "Error: failed to initialize [", settings.audio.driver, "] audio driver."
-    }).setAlignment(parent).error();
+    string message = bms::get("Settings.Drivers.Audio.failedToInitialize").data(); // MT.
+
+    // "Error: failed to initialize [", settings.audio.driver, "] audio driver."
+    // MessageDialog(message.replace('|', settings.audio.driver)).setAlignment(parent).error(); // Commented-out by MT.
+    bmw::showError(message.replace('|', settings.audio.driver).data(), "", parent.handle()); // MT.
     settings.audio.driver = "None";
     return updateAudioDriver(parent);
   }

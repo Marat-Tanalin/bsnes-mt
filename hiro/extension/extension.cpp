@@ -1,8 +1,12 @@
 #include "extension.hpp"
 
-#include "bsnes-mt/strings.h" // MT.
+/* MT. */
+#include "bsnes-mt/strings.h"
+#include "bsnes-mt/messagebox.h"
 
-namespace bms = bsnesMt::strings; // MT.
+namespace bms = bsnesMt::strings;
+namespace bmw = bsnesMt::windows;
+/* /MT. */
 
 using namespace nall;
 
@@ -15,7 +19,7 @@ namespace hiro {
   #include "horizontal-resize-grip.cpp"
   #include "vertical-resize-grip.cpp"
   #include "list-view.cpp"
-  #include "message-dialog.cpp"
+  // #include "message-dialog.cpp" // Commented-out by MT.
   #include "name-dialog.cpp"
   #include "browser-dialog.cpp"
   #include "about-dialog.cpp"

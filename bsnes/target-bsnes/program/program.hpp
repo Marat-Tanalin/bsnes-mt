@@ -1,5 +1,5 @@
 struct Program : Lock, Emulator::Platform {
-  Application::Namespace tr{"Program"};
+  // Application::Namespace tr{"Program"}; // Commented-out by MT.
 
   //program.cpp
   auto create() -> void;
@@ -138,7 +138,13 @@ struct Program : Lock, Emulator::Platform {
   auto filterSelect(uint& width, uint& height, uint scale) -> Filter::Render;
 
   //viewport.cpp
-  auto viewportSize(uint& width, uint& height, uint scale) -> void;
+  auto showScalingStatus(
+  	uint width, uint height, uint scaledWidth, uint scaledHeight,
+  	uint areaWidth, uint areaHeight, string outputSetting
+  ) -> void; // MT.
+  // 1st and 2nd parameters renamed, 3rd one (`scale`) removed, and new 3rd and 4th parameters added by MT.
+  auto viewportSize(uint& outWidth, uint& outHeight, uint width, uint height) -> void;
+
   auto viewportRefresh() -> void;
 
 public:

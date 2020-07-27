@@ -1,5 +1,11 @@
 #include <sfc/sfc.hpp>
 
+/* MT. */
+#include "bsnes-mt/strings.h"
+
+namespace bms = bsnesMt::strings;
+/* /MT. */
+
 namespace SuperFamicom {
 
 #include "load.cpp"
@@ -57,7 +63,7 @@ auto Cartridge::load() -> bool {
   slotSufamiTurboA = {};
   slotSufamiTurboB = {};
 
-  if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {"Auto", "NTSC", "PAL"})) {
+  if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {bms::get("Common.Auto").data(), "NTSC", "PAL"})) { // "Auto"
     information.pathID = loaded.pathID;
     information.region = loaded.option;
   } else return false;

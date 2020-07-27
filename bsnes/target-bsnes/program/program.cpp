@@ -1,3 +1,11 @@
+/* MT. */
+#include "bsnes-mt/strings.h"
+#include "bsnes-mt/messagebox.h"
+
+namespace bms = bsnesMt::strings;
+namespace bmw = bsnesMt::windows;
+/* /MT. */
+
 #include "../bsnes.hpp"
 #include "platform.cpp"
 #include "game.cpp"
@@ -62,10 +70,11 @@ auto Program::create() -> void {
 
 	/* MT. */
 	if (resetDrivers) {
-		bsnesMt::windows::showNotice(u8"Hardware drivers have been reset according\n"
-			"to the `--resetdrivers` command-line option.\n\n"
-			"Please reconfigure drivers in the Settings \u2192 Drivers\n"
-			"window that will now open.", "Reset drivers", (HWND)presentation.handle());
+		bmw::showNotice(
+		  bms::get("ResetDrivers.message"),
+		  bms::get("ResetDrivers.message.title"),
+		  presentation.handle()
+		);
 
 		auto none = "None";
 

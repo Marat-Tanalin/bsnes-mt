@@ -1,6 +1,10 @@
 #if defined(Hiro_Window)
 
-#include "bsnes-mt/windows.h" // MT.
+/* MT. */
+#include "bsnes-mt/windows.h"
+
+namespace bmw = bsnesMt::windows;
+/* /MT. */
 
 namespace hiro {
 
@@ -161,16 +165,18 @@ auto pWindow::setGeometry(Geometry geometry) -> void {
   auto left = geometry.x() - margin.x() - efb.x;
   auto top  = geometry.y() - margin.y() - efb.y;
 
-  auto windowWidth  = geometry.width()  + margin.width()  + efb.width;  // MT.
-  auto windowHeight = geometry.height() + margin.height() + efb.height; // MT.
+  /* MT. */
+  auto windowWidth  = geometry.width()  + margin.width()  + efb.width;
+  auto windowHeight = geometry.height() + margin.height() + efb.height;
 
   // MT. Workaround for window being invisible when starting after changing Windows zoom.
-  if (bsnesMt::windows::isTopLevelWindow(hwnd) && left < 0) {
-    SIZE areaSize = bsnesMt::windows::getWorkAreaSize();
+  if (bmw::isTopLevelWindow(hwnd) && left < 0) {
+    SIZE areaSize = bmw::getWorkAreaSize();
 
     left = (areaSize.cx - windowWidth)  / 2;
     top  = (areaSize.cy - windowHeight) / 2;
   }
+  /* /MT. */
 
   SetWindowPos(
     hwnd, nullptr,

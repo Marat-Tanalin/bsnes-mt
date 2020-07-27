@@ -151,7 +151,7 @@ auto AboutDialog::show() -> void {
   });
   if(!state.website) websiteLayout.setVisible(false);
 
-  window.setTitle({bms::get("Help.About").data(), " ", state.name ? state.name : Application::name()}); // "About "
+  window.setTitle(string(bms::get("Menu.Help.About").data()).replace('|', state.name ? state.name : Application::name())); // "About "
   window.setBackgroundColor({255, 255, 240});
   window.setSize({max(320_sx, layout.minimumSize().width()), layout.minimumSize().height()});
   window.setResizable(false);

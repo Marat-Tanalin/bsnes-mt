@@ -1,131 +1,176 @@
-#include <tuple> // MT.
-
 #include "bsnes-mt/scaling.h" // MT.
+
+namespace bmi = bsnesMt::scaling;
 
 extern uint16_t SnowData[800];
 extern  uint8_t SnowVelDist[800];
 
-auto Program::viewportSize(uint& width, uint& height, uint scale) -> void {
+/* MT. */
+auto Program::showScalingStatus(
+	uint width, uint height, uint scaledWidth, uint scaledHeight,
+	uint areaWidth, uint areaHeight, string outputSetting
+) -> void
+{
+	showMessage({
+		width, "×", height, " → ", scaledWidth, "×", scaledHeight,
+		" <", areaWidth, "×", areaHeight, "> [", outputSetting , "]"
+	});
+}
+/* /MT. */
+
+auto Program::viewportSize(uint& scaledWidth, uint& scaledHeight, uint width, uint height) -> void {
 	auto [areaWidth, areaHeight] = video.size();
 
 	string outputSetting = settings.video.output;
 
 	if (outputSetting == "Stretch") {
-		width  = areaWidth;
-		height = areaHeight;
+		scaledWidth  = areaWidth;
+		scaledHeight = areaHeight;
+
+		if (settings.video.scalingInfo) {
+			showScalingStatus(width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting);
+		}
+
 		return;
 	}
 
 	bool aspectCorrection = settings.video.aspectCorrection,
 	     showOverscan     = settings.video.overscan;
 
-	uint imageWidth  = bsnesMt::scaling::getWidth(aspectCorrection),
-	     imageHeight = bsnesMt::scaling::getHeight(showOverscan);
+	if (outputSetting == "Pixel-Perfect") {
+		auto scaledSize = bmi::calculateScaledSizePerfect(
+			areaWidth, areaHeight,
+			width, height,
+			aspectCorrection, showOverscan
+		);
 
-	if (imageWidth > areaWidth || imageHeight > areaHeight || outputSetting == "Scale") {
-		std::tie(width, height) = bsnesMt::scaling::calculateScaledSizeScale(
-			areaWidth, areaHeight,
-			aspectCorrection, showOverscan
-		);
-	}
-	else if (outputSetting == "Pixel-Perfect") {
-		std::tie(width, height) = bsnesMt::scaling::calculateScaledSizePerfect(
-			areaWidth, areaHeight,
-			imageHeight,
-			aspectCorrection, showOverscan
-		);
+		scaledWidth  = scaledSize.width;
+		scaledHeight = scaledSize.height;
 	}
 	else if (outputSetting == "Center") {
-		std::tie(width, height) = bsnesMt::scaling::calculateScaledSizeCenter(
+		auto scaledSize = bmi::calculateScaledSizeCenter(
 			areaWidth, areaHeight,
-			imageWidth, imageHeight,
+			width, height,
 			aspectCorrection, showOverscan
 		);
+
+		scaledWidth  = scaledSize.width;
+		scaledHeight = scaledSize.height;
+	}
+	else if (outputSetting == "Scale") {
+		auto scaledSize = bmi::calculateScaledSizeScale(
+			areaWidth, areaHeight,
+			aspectCorrection, showOverscan
+		);
+
+		scaledWidth  = scaledSize.width;
+		scaledHeight = scaledSize.height;
 	}
 	else {
-		width  = imageWidth;
-		height = imageHeight;
+		scaledWidth  = bmi::getWidth(aspectCorrection, width);
+		scaledHeight = bmi::getHeight(showOverscan, height);
+	}
+
+	if (settings.video.scalingInfo) {
+		showScalingStatus(width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting);
 	}
 }
 
 auto Program::viewportRefresh() -> void {
-  if(!emulator->loaded() && !settings.video.snow) return;
+	if (!emulator->loaded() && !settings.video.snow) {
+		return;
+	}
 
-  static uint32_t SnowMover = 0;
-  static uint32_t SnowTimer = 18;
-  static uint32_t NumSnow = 0;
-  if(settings.video.snow) SnowMover++;
+	static uint32_t SnowMover = 0;
+	static uint32_t SnowTimer = 18;
+	static uint32_t NumSnow = 0;
 
-  static const uint16 nullData[256 * 240] = {};
-  auto data   = nullData;
-  uint pitch  = 512;
-  uint width  = 256;
-  uint height = 240;
-  uint scale  = 1;
+	if (settings.video.snow) {
+		SnowMover++;
+	}
 
-  if(emulator->loaded() && screenshot.data) {
-    data   = screenshot.data;
-    pitch  = screenshot.pitch;
-    width  = screenshot.width;
-    height = screenshot.height;
-    scale  = screenshot.scale;
-  }
+	static const uint16 nullData[256 * 240] = {};
+	auto data   = nullData;
+	uint pitch  = 512;
+	uint width  = 256;
+	uint height = 240;
+	uint scale  = 1;
 
-  if(!settings.video.overscan) {
-    uint multiplier = height / 240;
-    data += 8 * multiplier * (pitch >> 1);
-    height -= 16 * multiplier;
-  }
+	if (emulator->loaded() && screenshot.data) {
+		data   = screenshot.data;
+		pitch  = screenshot.pitch;
+		width  = screenshot.width;
+		height = screenshot.height;
+		scale  = screenshot.scale;
+	}
 
-  uint outputWidth, outputHeight;
-  viewportSize(outputWidth, outputHeight, scale);
+	if (!settings.video.overscan) {
+		uint multiplier = height / 240;
+		data   += 8 * multiplier * (pitch >> 1);
+		height -= 16 * multiplier;
+	}
 
-  uint filterWidth = width, filterHeight = height;
-  auto filterRender = filterSelect(filterWidth, filterHeight, scale);
+	uint outputWidth, outputHeight;
 
-  if(auto [output, length] = video.acquire(filterWidth, filterHeight); output) {
-    bool dimmed = settings.video.dimming && !presentation.frameAdvance.checked();
-    filterRender(dimmed ? paletteDimmed : palette, output, length, (const uint16_t*)data, pitch, width, height);
-    length >>= 2;
+	viewportSize(outputWidth, outputHeight, width / scale, height / scale);
 
-    if(settings.video.snow) {
-      uint32_t i = 0;
-      float snowX = filterWidth  / 256.0;
-      float snowY = filterHeight / 256.0;
-      do {
-        uint x = uint8_t(SnowData[i * 2 + 0] >> 8) * snowX;
-        uint y = uint8_t(SnowData[i * 2 + 1] >> 8) * snowY;
-        if((SnowVelDist[i * 2] & 8) != 0 && y) {
-          uint32_t pixel = output[y * length + x];
-          float   a = SnowVelDist[i * 2] / 255.0;
-          uint8_t r = (pixel >> 16 & 0xff) * a + 255 * (1.0 - a);
-          uint8_t g = (pixel >>  8 & 0xff) * a + 255 * (1.0 - a);
-          uint8_t b = (pixel >>  0 & 0xff) * a + 255 * (1.0 - a);
-          output[y * length + x] = 255u << 24 | r << 16 | g << 8 | b << 0;
-        }
-      } while(++i != 200);
+	uint filterWidth  = width,
+	     filterHeight = height;
 
-      for(; SnowMover != 0; --SnowMover) {
-        if(--SnowTimer == 0) {
-          if(NumSnow < 400) ++NumSnow;
-          SnowTimer = 18;
-        }
-        uint32_t i = 0;
-        uint32_t n = NumSnow;
-        while(n-- != 0) {
-          SnowData[i * 2 + 0] += SnowVelDist[i * 2 + 0] + 4 * (uint8_t)(100 - 50);
-          SnowData[i * 2 + 1] += SnowVelDist[i * 2 + 1] + 256;
-          if(SnowData[i * 2 + 1] <= 0x200) {
-            SnowVelDist[i * 2] |= 8;
-          }
-          ++i;
-        }
-      }
-    }
+	auto filterRender = filterSelect(filterWidth, filterHeight, scale);
 
-    video.release();
-    video.output(outputWidth, outputHeight);
-  }
+	if (auto [output, length] = video.acquire(filterWidth, filterHeight); output) {
+		bool dimmed = settings.video.dimming && !presentation.frameAdvance.checked();
+		filterRender(dimmed ? paletteDimmed : palette, output, length, (const uint16_t*)data, pitch, width, height);
+		length >>= 2;
+
+		if (settings.video.snow) {
+			uint32_t i = 0;
+			float snowX = filterWidth  / 256.0;
+			float snowY = filterHeight / 256.0;
+
+			do {
+				uint x = uint8_t(SnowData[i * 2 + 0] >> 8) * snowX;
+				uint y = uint8_t(SnowData[i * 2 + 1] >> 8) * snowY;
+
+				if ((SnowVelDist[i * 2] & 8) != 0 && y) {
+					uint32_t pixel = output[y * length + x];
+					float   a = SnowVelDist[i * 2] / 255.0;
+					uint8_t r = (pixel >> 16 & 0xff) * a + 255 * (1.0 - a);
+					uint8_t g = (pixel >>  8 & 0xff) * a + 255 * (1.0 - a);
+					uint8_t b = (pixel >>  0 & 0xff) * a + 255 * (1.0 - a);
+					output[y * length + x] = 255u << 24 | r << 16 | g << 8 | b << 0;
+				}
+			} while (++i != 200);
+
+			for (; SnowMover != 0; --SnowMover) {
+				if (--SnowTimer == 0) {
+					if (NumSnow < 400) {
+						++NumSnow;
+					}
+
+					SnowTimer = 18;
+				}
+
+				uint32_t i = 0;
+				uint32_t n = NumSnow;
+
+				while (n-- != 0) {
+					SnowData[i * 2 + 0] += SnowVelDist[i * 2 + 0] + 4 * (uint8_t)(100 - 50);
+					SnowData[i * 2 + 1] += SnowVelDist[i * 2 + 1] + 256;
+
+					if (SnowData[i * 2 + 1] <= 0x200) {
+						SnowVelDist[i * 2] |= 8;
+					}
+
+					++i;
+				}
+			}
+		}
+
+		video.release();
+		video.output(outputWidth, outputHeight);
+	}
 }
 
 uint16_t SnowData[800] = {

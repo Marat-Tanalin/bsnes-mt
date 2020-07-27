@@ -22,9 +22,9 @@ auto Program::movieMode(Movie::Mode mode) -> void {
 
 auto Program::moviePlay() -> void {
   BrowserDialog dialog;
-  dialog.setTitle("Play Movie");
+  dialog.setTitle(bms::get("Movies.PlayMovie").data()); // "Play Movie"
   dialog.setPath(Path::desktop());
-  dialog.setFilters({string{"Movies (.bsv)|*.bsv"}});
+  dialog.setFilters({{bms::get("Movies.Movies").data(), " (.bsv)|*.bsv"}}); // "Movies"
   if(auto location = openFile(dialog)) {
     if(auto fp = file::open(location, file::mode::read)) {
       bool failed = false;
@@ -51,9 +51,9 @@ auto Program::moviePlay() -> void {
         while(fp.size() - fp.offset() >= 2) {
           movie.input.append(fp.readl(2L));
         }
-        showMessage("Movie playback started");
+        showMessage(bms::get("Movies.playbackStarted").data()); // "Movie playback started"
       } else {
-        showMessage("Movie format not supported");
+        showMessage(bms::get("Movies.formatNotSupported").data()); // "Movie format not supported"
       }
     }
   }
@@ -71,7 +71,7 @@ auto Program::movieRecord(bool fromBeginning) -> void {
       movie.state = emulator->serialize();
     }
     movie.input.reset();
-    showMessage("Movie recording started");
+    showMessage(bms::get("Movies.recordingStarted").data()); // "Movie recording started"
   }
 }
 
@@ -81,7 +81,7 @@ auto Program::movieStop() -> void {
   }
 
   if(movie.mode == Movie::Mode::Playing) {
-    showMessage("Movie playback stopped");
+    showMessage(bms::get("Movies.playbackStopped").data()); // "Movie playback stopped"
   }
 
   if(movie.mode == Movie::Mode::Recording) {
@@ -89,9 +89,9 @@ auto Program::movieStop() -> void {
     movieMode(Movie::Mode::Inactive);
 
     BrowserDialog dialog;
-    dialog.setTitle("Save Movie");
+    dialog.setTitle(bms::get("Movies.SaveMovie").data()); // "Save Movie"
     dialog.setPath(Path::desktop());
-    dialog.setFilters({string{"Movies (.bsv)|*.bsv"}});
+    dialog.setFilters({{bms::get("Movies.Movies").data(), " (.bsv)|*.bsv"}}); // "Movies"
     if(auto location = saveFile(dialog)) {
       if(!location.endsWith(".bsv")) location.append(".bsv");
       if(auto fp = file::open(location, file::mode::write)) {
@@ -102,12 +102,12 @@ auto Program::movieStop() -> void {
         fp.writel(movie.state.size(), 4L);
         fp.write({movie.state.data(), movie.state.size()});
         for(auto& input : movie.input) fp.writel(input, 2L);
-        showMessage("Movie recorded");
+        showMessage(bms::get("Movies.MovieRecorded").data()); // "Movie recorded"
       } else {
-        showMessage("Movie could not be recorded");
+        showMessage(bms::get("Movies.cantRecord").data()); // "Movie could not be recorded"
       }
     } else {
-      showMessage("Movie not recorded");
+      showMessage(bms::get("Movies.MovieNotRecorded").data()); // "Movie not recorded"
     }
   }
 
