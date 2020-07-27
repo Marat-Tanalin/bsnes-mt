@@ -22,7 +22,7 @@ auto Presentation::create() -> void {
 
 	fileMenu.setText(bms::get("Menu.File").data()); // MT.
 
-	loadGame.setIcon(Icon::Action::Open).setText({bms::get("Menu.File.OpenGame").data(), ellipsis}).onActivate([&] { // tr("Load Game")
+	loadGame.setIcon(Icon::Action::Open).setText({bms::get("Menu.File.OpenGame").data(), ellipsis, "\tCtrl+O"}).onActivate([&] { // tr("Load Game")
 		program.load();
 	});
 
@@ -33,7 +33,7 @@ auto Presentation::create() -> void {
 		program.unload();
 	});
 
-	quit.setIcon(Icon::Action::Quit).setText(bms::get("Menu.File.Exit").data()).onActivate([&] { program.quit(); }); // tr("Quit")
+	quit.setIcon(Icon::Action::Quit).setText({bms::get("Menu.File.Exit").data(), "\tAlt+F4"}).onActivate([&] { program.quit(); }); // tr("Quit")
 
 	systemMenu.setText(bms::get("Menu.System").data()); // tr("System")
 
@@ -629,13 +629,13 @@ auto Presentation::updateSizeMenu() -> void {
 	}));
 
 	/* MT. */
-	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText(bms::get("Menu.Settings.Size.FullScreenMode").data()).onActivate([&] {
+	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText({bms::get("Menu.Settings.Size.FullScreenMode").data(), "\tAlt+Enter"}).onActivate([&] {
 		program.toggleVideoFullScreen();
 	}));
 	/* /MT. */
 
 	/* MT. */
-	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText(bms::get("Menu.Settings.Size.PseudoFullScreenMode").data()).onActivate([&] {
+	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText({bms::get("Menu.Settings.Size.PseudoFullScreenMode").data(), "\tShift+Enter"}).onActivate([&] {
 		program.toggleVideoPseudoFullScreen();
 	}));
 	/* /MT. */

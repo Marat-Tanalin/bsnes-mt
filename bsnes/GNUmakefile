@@ -47,7 +47,7 @@ else ifneq ($(filter $(platform),linux bsd),)
 endif
 
 # `bsnes-mt-*` are added by MT.
-objects := libco emulator filter lzma bsnes-mt-scaling bsnes-mt-windows bsnes-mt-messagebox bsnes-mt-is bsnes-mt-png-chunk bsnes-mt-png-image bsnes-mt-strings bsnes-mt-utils
+objects := libco emulator filter lzma bsnes-mt-scaling bsnes-mt-windows bsnes-mt-messagebox bsnes-mt-is bsnes-mt-png-chunk bsnes-mt-png-image bsnes-mt-strings bsnes-mt-utils bsnes-mt-kb
 
 obj/bsnes-mt-scaling.o: ../bsnes-mt/scaling.cpp # MT.
 obj/bsnes-mt-windows.o: ../bsnes-mt/windows.cpp # MT.
@@ -57,6 +57,7 @@ obj/bsnes-mt-png-chunk.o: ../bsnes-mt/pizza-png/Chunk.cpp # MT.
 obj/bsnes-mt-png-image.o: ../bsnes-mt/pizza-png/Image.cpp # MT.
 obj/bsnes-mt-strings.o: ../bsnes-mt/strings.cpp # MT.
 obj/bsnes-mt-utils.o: ../bsnes-mt/utils.cpp # MT.
+obj/bsnes-mt-kb.o: ../bsnes-mt/keyboard.cpp # MT.
 obj/libco.o: ../libco/libco.c
 obj/emulator.o: emulator/emulator.cpp
 obj/filter.o: filter/filter.cpp

@@ -126,32 +126,73 @@ auto Program::updateVideoEffects() -> void {
   emulator->configure("Video/BlurEmulation", settings.video.blur);
 }
 
-auto Program::toggleVideoFullScreen() -> void {
-  if(!video.hasFullScreen()) return;
-  if(presentation.fullScreen()) return;
+/* MT. */
+auto Program::enableVideoFullScreen() -> void {
+  video.setFullScreen(true);
 
-  video.clear();
-
-  if(!video.fullScreen()) {
-    video.setFullScreen(true);
-    if(!input.acquired() && (video.exclusive() || video.hasMonitors().size() == 1)) input.acquire();
-  } else {
-    if(input.acquired()) input.release();
-    video.setFullScreen(false);
-    presentation.viewport.setFocused();
+  if (!input.acquired() && (video.exclusive() || video.hasMonitors().size() == 1)) {
+    input.acquire();
   }
 }
 
-auto Program::toggleVideoPseudoFullScreen() -> void {
-  if(video.fullScreen()) return;
+auto Program::disableVideoFullScreen() -> void {
+    if (input.acquired()) {
+      input.release();
+    }
 
-  if(!presentation.fullScreen()) {
-    presentation.setFullScreen(true);
-    presentation.menuBar.setVisible(false);
-    if(!input.acquired() && video.hasMonitors().size() == 1) input.acquire();
-  } else {
-    if(input.acquired()) input.release();
-    presentation.menuBar.setVisible(true);
-    presentation.setFullScreen(false);
+    video.setFullScreen(false);
+    presentation.viewport.setFocused();
+}
+
+auto Program::enableVideoPseudoFullScreen() -> void {
+  presentation.setFullScreen(true);
+  presentation.menuBar.setVisible(false);
+
+  if (!input.acquired() && video.hasMonitors().size() == 1) {
+    input.acquire();
+  }
+}
+
+auto Program::disableVideoPseudoFullScreen() -> void {
+  if (input.acquired()) {
+    input.release();
+  }
+
+  presentation.menuBar.setVisible(true);
+  presentation.setFullScreen(false);
+}
+/* /MT. */
+
+// Refactored and modified by MT.
+auto Program::toggleVideoFullScreen() -> void {
+  if (!video.hasFullScreen()) {
+    return;
+  }
+
+  if (presentation.fullScreen()) {
+    disableVideoPseudoFullScreen();
+  }
+
+  video.clear();
+
+  if (video.fullScreen()) {
+    disableVideoFullScreen();
+  }
+  else {
+    enableVideoFullScreen();
+  }
+}
+
+// Refactored and modified by MT.
+auto Program::toggleVideoPseudoFullScreen() -> void {
+  if (video.fullScreen()) {
+    disableVideoFullScreen();
+  }
+
+  if (presentation.fullScreen()) {
+    disableVideoPseudoFullScreen();
+  }
+  else {
+    enableVideoPseudoFullScreen();
   }
 }
