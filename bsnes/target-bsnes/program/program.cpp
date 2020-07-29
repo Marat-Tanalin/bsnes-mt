@@ -25,6 +25,8 @@ namespace bmw = bsnesMt::windows;
 #include "viewport.cpp"
 Program program;
 
+static bool quitInProgress = false; // Used in `Program::quit()`. // MT.
+
 auto Program::create() -> void {
   Emulator::platform = this;
 
@@ -157,6 +159,14 @@ auto Program::main() -> void {
 }
 
 auto Program::quit() -> void {
+  /* MT. */
+  if (quitInProgress) {
+    return;
+  }
+
+  quitInProgress = true;
+  /* /MT. */
+
   //make closing the program feel more responsive
   presentation.setVisible(false);
   Application::processEvents();

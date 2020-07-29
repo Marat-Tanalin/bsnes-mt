@@ -29,7 +29,7 @@ auto CALLBACK hotkeyHookCallback(int code, WPARAM wParam, LPARAM lParam) -> LRES
 			}
 		}
 		else if (VK_F4 == wParam && altPressed) {
-			Application::quit();
+			program.quit();
 		}
 		else if (ctrlPressed && 0x4F == wParam && GetActiveWindow() == (HWND)presentation.handle()) {
 			program.load();
