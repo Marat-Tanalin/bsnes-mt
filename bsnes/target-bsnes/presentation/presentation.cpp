@@ -12,6 +12,7 @@
 
 namespace bms = bsnesMt::strings;
 namespace bmw = bsnesMt::windows;
+namespace bma = bsnesMt::app;
 /* /MT. */
 
 namespace Instances { Instance<Presentation> presentation; }
@@ -359,7 +360,7 @@ auto Presentation::create() -> void {
 	});
 
 	/* MT. */
-	aboutBsnesMt.setIcon(Icon::Prompt::Question).setText({string(aboutString).replace('|', bsnesMt::app::title.data()), ellipsis}).onActivate([&] { // tr("About ")
+	aboutBsnesMt.setIcon(Icon::Prompt::Question).setText({string(aboutString).replace('|', bma::title.data()), ellipsis}).onActivate([&] { // tr("About ")
 		bmw::showAbout((HWND)presentation.handle());
 	});
 	/* /MT. */
@@ -412,7 +413,7 @@ auto Presentation::create() -> void {
 		program.quit();
 	});
 
-	setTitle(bsnesMt::app::windowTitle.data()); // {"bsnes v", Emulator::Version} // MT.
+	setTitle(bma::windowTitle.data()); // {"bsnes v", Emulator::Version} // MT.
 	setBackgroundColor({0, 0, 0});
 	resizeWindow();
 	setAlignment(Alignment::Center);

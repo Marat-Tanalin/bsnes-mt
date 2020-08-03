@@ -5,6 +5,7 @@
 
 namespace bms = bsnesMt::strings;
 namespace bmw = bsnesMt::windows;
+namespace bma = bsnesMt::app;
 /* /MT. */
 
 auto Program::load() -> void {
@@ -78,7 +79,7 @@ auto Program::load() -> void {
     appliedPatch() ? bms::get("Game.AndPatchApplied").data() : "" // " and patch applied"
   });
   presentation.setFocused();
-  presentation.setTitle({emulator->title(), " — ", bsnesMt::app::windowTitle.data()}); // Added emulator title and version by MT.
+  presentation.setTitle({emulator->title(), " — ", bma::windowTitle.data()}); // Added emulator title and version by MT.
   presentation.resetSystem.setEnabled(true);
   presentation.unloadGame.setEnabled(true);
   presentation.toolsMenu.setVisible(true);
@@ -358,7 +359,7 @@ auto Program::unload() -> void {
   bsMemory = {};
   sufamiTurboA = {};
   sufamiTurboB = {};
-  presentation.setTitle(bsnesMt::app::windowTitle.data()); // {"bsnes v", Emulator::Version} // MT.
+  presentation.setTitle(bma::windowTitle.data()); // {"bsnes v", Emulator::Version} // MT.
   presentation.resetSystem.setEnabled(false);
   presentation.unloadGame.setEnabled(false);
   presentation.toolsMenu.setVisible(false);

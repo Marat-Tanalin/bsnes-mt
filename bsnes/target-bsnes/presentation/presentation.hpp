@@ -1,10 +1,14 @@
-#include "bsnes-mt/app.h" // MT.
+/* MT. */
+#include "bsnes-mt/app.h"
+
+namespace bma = bsnesMt::app;
+/* /MT. */
 
 struct Presentation : Window {
 	// Application::Namespace tr{"Presentation"}; // Commented-out by MT.
 	auto create() -> void;
 
-	enum : uint { RecentGames = bsnesMt::app::recentGamesNumber, QuickStates = bsnesMt::app::quickStatesNumber }; // Changed from 9 to 25 by MT.
+	enum : uint { RecentGames = bma::recentGamesNumber, QuickStates = bma::quickStatesNumber }; // Changed from 9 to 25 by MT.
 	enum : uint { StatusHeight = 24 };
 
 	auto onDrop(vector<string> locations) -> void;

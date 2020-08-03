@@ -3,6 +3,7 @@
 #include "bsnes-mt/strings.h"
 
 namespace bms = bsnesMt::strings;
+namespace bma = bsnesMt::app;
 /* /MT. */
 
 auto InputHotkey::logic() const -> Logic {
@@ -76,12 +77,12 @@ auto InputManager::bindHotkeys() -> void {
   char space = ' '; // MT.
 
   hotkeys.append(InputHotkey("Decrement State Slot").onPress([&] {
-    if(--stateSlot < 1) stateSlot = bsnesMt::app::quickStatesNumber;
+    if(--stateSlot < 1) stateSlot = bma::quickStatesNumber;
     program.showMessage({bms::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot}); // "Selected state slot "
   }));
 
   hotkeys.append(InputHotkey("Increment State Slot").onPress([&] {
-    if(++stateSlot > bsnesMt::app::quickStatesNumber) stateSlot = 1;
+    if(++stateSlot > bma::quickStatesNumber) stateSlot = 1;
     program.showMessage({bms::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot}); // "Selected state slot "
   }));
 
