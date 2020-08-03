@@ -749,7 +749,8 @@ auto Presentation::updateRecentGames() -> void {
 	} // MT.
 	/* MT. */
 	else {
-		loadRecentGame.append(MenuItem().setIcon(Icon::Emblem::File).setText({"(", bms::get("Menu.File.OpenRecentGame.NoRecentGames").data(), ")"})); // "(No recent games)"
+		loadRecentGame.append(MenuItem().setIcon(Icon::Emblem::File).setEnabled(false)
+			.setText({"(", bms::get("Menu.File.OpenRecentGame.NoRecentGames").data(), ")"})); // "(No recent games)"
 	}
 	/* /MT. */
 }
