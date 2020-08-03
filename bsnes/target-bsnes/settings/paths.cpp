@@ -110,45 +110,47 @@ auto PathSettings::create() -> void {
 }
 
 auto PathSettings::refreshPaths() -> void {
+	Color textColor = {128, 128, 128}; // MT.
+
 	if (auto location = settings.path.games) {
 		gamesPath.setText(location).setForegroundColor();
 	}
 	else {
-		gamesPath.setText({"(", bms::get("Settings.Paths.LastRecentlyUsed").data(), ")"}).setForegroundColor({128, 128, 128}); // "(last recently used)"
+		gamesPath.setText({"(", bms::get("Settings.Paths.LastRecentlyUsed").data(), ")"}).setForegroundColor(textColor); // "(last recently used)"
 	}
 
 	if (auto location = settings.path.patches) {
 		patchesPath.setText(location).setForegroundColor();
 	}
 	else {
-		patchesPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor({128, 128, 128}); // "(same as loaded game)"
+		patchesPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor(textColor); // "(same as loaded game)"
 	}
 
 	if (auto location = settings.path.saves) {
 		savesPath.setText(location).setForegroundColor();
 	}
 	else {
-		savesPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor({128, 128, 128}); // "(same as loaded game)"
+		savesPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor(textColor); // "(same as loaded game)"
 	}
 
 	if (auto location = settings.path.cheats) {
 		cheatsPath.setText(location).setForegroundColor();
 	}
 	else {
-		cheatsPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor({128, 128, 128}); // "(same as loaded game)"
+		cheatsPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor(textColor); // "(same as loaded game)"
 	}
 
 	if (auto location = settings.path.states) {
 		statesPath.setText(location).setForegroundColor();
 	}
 	else {
-		statesPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor({128, 128, 128}); // "(same as loaded game)"
+		statesPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor(textColor); // "(same as loaded game)"
 	}
 
 	if (auto location = settings.path.screenshots) {
 		screenshotsPath.setText(location).setForegroundColor();
 	}
 	else {
-		screenshotsPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor({128, 128, 128}); // "(same as loaded game)"
+		screenshotsPath.setText({"(", bms::get("Settings.Paths.SameAsLoadedGame").data(), ")"}).setForegroundColor(textColor); // "(same as loaded game)"
 	}
 }

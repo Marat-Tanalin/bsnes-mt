@@ -61,7 +61,9 @@ auto DriverSettings::create() -> void {
 		program.updateVideoFlush();
 	});
 
-	videoSpacer.setColor({192, 192, 192});
+	Color spacerColor = {192, 192, 192}; // MT.
+
+	videoSpacer.setColor(spacerColor);
 
 	audioLabel.setText(bms::get("Common.Audio").data()).setFont(Font().setBold()); // "Audio"
 	audioDriverLabel.setText(driverString); // "Driver:"
@@ -105,7 +107,7 @@ auto DriverSettings::create() -> void {
 		program.updateAudioDynamic();
 	});
 
-	audioSpacer.setColor({192, 192, 192});
+	audioSpacer.setColor(spacerColor);
 
 	inputLabel.setText(bms::get("Settings.Input").data()).setFont(Font().setBold()); // "Input"
 	inputDriverLabel.setText(driverString);
@@ -123,7 +125,7 @@ auto DriverSettings::create() -> void {
 		bms::get("Settings.Drivers.Input.Reload.tooltip").data()
 	).onActivate([&] { inputDriverChange(); });
 
-	inputSpacer.setColor({192, 192, 192});
+	inputSpacer.setColor(spacerColor);
 
 	syncModeLabel.setText({bms::get("Settings.Drivers.syncModePresets").data(), colon}).setFont(Font().setBold()); // "Synchronization Mode Presets:"
 

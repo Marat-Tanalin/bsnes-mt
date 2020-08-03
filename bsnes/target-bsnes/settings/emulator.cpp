@@ -42,7 +42,9 @@ auto EmulatorSettings::create() -> void {
 		settings.general.nativeFileDialogs = nativeFileDialogs.checked();
 	});
 
-	optionsSpacer.setColor({192, 192, 192});
+	Color spacerColor = {192, 192, 192}; // MT.
+
+	optionsSpacer.setColor(spacerColor);
 
 	fastForwardLabel.setText(bms::get("Settings.Emulator.FastForward").data()).setFont(Font().setBold()); // "Fast Forward"
 
@@ -159,7 +161,7 @@ auto EmulatorSettings::create() -> void {
 		settings.fastForward.mute = fastForwardMute.checked();
 	});
 
-	fastForwardSpacer.setColor({192, 192, 192});
+	fastForwardSpacer.setColor(spacerColor);
 
 	rewindLabel.setText(bms::get("Settings.Emulator.Rewind").data()).setFont(Font().setBold()); // "Rewind"
 

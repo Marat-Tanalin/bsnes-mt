@@ -67,9 +67,12 @@ auto StateManager::create() -> void {
   categoryOption.append(ComboButtonItem().setText(bms::get("Tools.StateManager.Category.ManagedStates").data()).setAttribute("type", "Managed/")); // "Managed States"
   categoryOption.append(ComboButtonItem().setText(bms::get("Tools.StateManager.Category.QuickStates").data()).setAttribute("type", "Quick/")); // "Quick States"
   categoryOption.onChange([&] { loadStates(); });
-  statePreviewSeparator1.setColor({192, 192, 192});
+
+  Color separatorColor = {192, 192, 192}; // MT.
+
+  statePreviewSeparator1.setColor(separatorColor);
   statePreviewLabel.setFont(Font().setBold()).setText(bms::get("Tools.StateManager.Preview").data()); // "Preview"
-  statePreviewSeparator2.setColor({192, 192, 192});
+  statePreviewSeparator2.setColor(separatorColor);
   loadButton.setText(bms::get("Common.Load").data()).onActivate([&] { // "Load"
     if(auto item = stateList.selected()) program.loadState(item.attribute("name"));
   });

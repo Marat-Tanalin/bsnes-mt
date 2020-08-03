@@ -57,7 +57,9 @@ auto EnhancementSettings::create() -> void {
 		runAhead4.setChecked();
 	}
 
-	runAheadSpacer.setColor({192, 192, 192});
+	Color spacerColor = {192, 192, 192}; // MT.
+
+	runAheadSpacer.setColor(spacerColor);
 
 	overclockingLabel.setText(bms::get("Settings.Enhancements.Overclocking").data()).setFont(Font().setBold()); // "Overclocking"
 
@@ -89,7 +91,7 @@ auto EnhancementSettings::create() -> void {
 		sfxValue.setText({settings.emulator.hack.superfx.overclock, "%"});
 	}).doChange();
 
-	overclockingSpacer.setColor({192, 192, 192});
+	overclockingSpacer.setColor(spacerColor);
 
 	ppuLabel.setText({"PPU (", bms::get("Settings.Enhancements.Ppu.Video").data(), ")"}).setFont(Font().setBold()); // "PPU (video)"
 
@@ -197,7 +199,7 @@ auto EnhancementSettings::create() -> void {
 		settings.emulator.hack.coprocessor.preferHLE = coprocessorPreferHLEOption.checked();
 	});
 
-	coprocessorSpacer.setColor({192, 192, 192});
+	coprocessorSpacer.setColor(spacerColor);
 
 	gameLabel.setText(bms::get("Settings.Enhancements.GameEnhancements").data()).setFont(Font().setBold()); // "Game Enhancements"
 
