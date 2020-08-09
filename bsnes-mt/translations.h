@@ -2222,10 +2222,17 @@ static map<string, map<uint8_t, string>> strings = {
 		}
 	},
 	{
+		"Tools.StateManager.QuickStates.Redo",
+		{
+			{EN, "Redo"},
+			{RU, "Вернуть"}
+		}
+	},
+	{
 		"Tools.StateManager.QuickStates.Undo",
 		{
 			{EN, "Undo"},
-			{RU, "Отмена"}
+			{RU, "Отменить"}
 		}
 	},
 	{

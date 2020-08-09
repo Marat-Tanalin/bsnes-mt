@@ -101,6 +101,7 @@ auto StateManager::loadStates() -> void {
   auto type = this->type();
 
   /* MT. */
+  string redoTranslated = bms::get("Tools.StateManager.QuickStates.Redo").data();
   string undoTranslated = bms::get("Tools.StateManager.QuickStates.Undo").data();
   string slotTranslated = bms::get("Tools.SaveState.Slot").data();
   /* /MT. */
@@ -115,7 +116,7 @@ auto StateManager::loadStates() -> void {
     if (type == "Quick/") {
       stateName = stateName == "Undo"
                 ? undoTranslated
-                : stateName.replace("Slot", slotTranslated);
+                : (stateName == "Redo" ? redoTranslated : stateName.replace("Slot", slotTranslated));
     }
     /* /MT. */
 
