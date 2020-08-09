@@ -132,10 +132,14 @@ auto Program::saveState(string filename) -> bool {
     output.append(location, saveState.data(), saveState.size());
   }
 
-  if(filename.beginsWith("Quick/")) presentation.updateStateMenus();
+  string slotString = prefix; // MT.
+  if(filename.beginsWith("Quick/")) {
+    presentation.updateStateMenus();
+    slotString.replace("Slot", bms::get("Tools.SaveState.Slot").data()); // MT.
+  }
   stateManager.stateEvent(filename);
-  string savedMessage = bms::get("States.Saved").data(); // MT.
-  return showMessage(savedMessage.replace('|', prefix)), true; // {"Saved [", prefix, "]"}
+  string savedMessage = string(bms::get("States.Saved").data()).replace('|', slotString); // MT.
+  return showMessage(savedMessage), true; // {"Saved [", prefix, "]"}
 }
 
 auto Program::saveUndoState() -> bool {
