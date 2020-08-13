@@ -74,10 +74,7 @@ auto Program::load() -> void {
   if(emulatorSettings.autoLoadStateOnLoad.checked()) {
     program.loadState("Quick/Undo");
   }
-  showMessage({
-    verified() ? bms::get("Game.VerifiedGameOpened").data() : bms::get("Game.GameOpened").data(), // "Verified game loaded" : "Game loaded"
-    appliedPatch() ? bms::get("Game.AndPatchApplied").data() : "" // " and patch applied"
-  });
+
   presentation.setFocused();
   presentation.setTitle({emulator->title(), " — ", bma::windowTitle.data()}); // Added emulator title and version by MT.
   presentation.resetSystem.setEnabled(true);
@@ -96,11 +93,33 @@ auto Program::load() -> void {
   manifestViewer.loadManifest();
 
   string games;
-  if(auto& game = superFamicom) games.append(game.option, ";", game.location, "|");
+
+  /* MT. */
+  bool   snesGame   = false;
+  string gameRegion = "";
+  /* /MT. */
+
+  if(auto& game = superFamicom) {
+    games.append(game.option, ";", game.location, "|");
+
+    /* MT. */
+    snesGame   = true;
+    gameRegion = game.region;
+    /* /MT. */
+  }
+
   if(auto& game = gameBoy     ) games.append(game.option, ";", game.location, "|");
   if(auto& game = bsMemory    ) games.append(game.option, ";", game.location, "|");
   if(auto& game = sufamiTurboA) games.append(game.option, ";", game.location, "|");
   if(auto& game = sufamiTurboB) games.append(game.option, ";", game.location, "|");
+
+  // Moved down by MT.
+  showMessage({
+    verified() ? bms::get("Game.VerifiedGameOpened").data() : bms::get("Game.GameOpened").data(), // "Verified game loaded" : "Game loaded"
+    appliedPatch() ? bms::get("Game.AndPatchApplied").data() : "" // " and patch applied",
+    snesGame ? string({" [", gameRegion, "]"}) : "" // MT.
+  });
+
   presentation.addRecentGame(games.trimRight("|", 1L));
 
   updateVideoPalette();
