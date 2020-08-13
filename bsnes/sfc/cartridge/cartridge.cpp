@@ -63,10 +63,19 @@ auto Cartridge::load() -> bool {
   slotSufamiTurboA = {};
   slotSufamiTurboB = {};
 
-  string autoTranslated = bms::get("Common.Auto").data(); // MT.
-  if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {autoTranslated, "NTSC", "PAL"})) { // "Auto"
+  /* MT. */
+  string ntsc = "NTSC";
+  string pal  = "PAL";
+  /* /MT. */
+
+  if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {bms::get("Common.Auto").data(), ntsc, pal})) { // "Auto"
+    /* MT. */
+    auto   option = loaded.option;
+    string auto_  = "Auto";
+    /* /MT. */
+
     information.pathID = loaded.pathID;
-    information.region = loaded.option == autoTranslated ? "Auto" : loaded.option;
+    information.region = option == auto_ || option == ntsc || option == pal ? option : auto_;
   } else return false;
 
   if(auto fp = platform->open(ID::SuperFamicom, "manifest.bml", File::Read, File::Required)) {
