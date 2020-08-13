@@ -3,15 +3,16 @@
 namespace SuperFamicom {
 
 PPU ppu;
-#include "main.cpp"
-#include "io.cpp"
-#include "mosaic.cpp"
-#include "background.cpp"
-#include "object.cpp"
-#include "window.cpp"
-#include "screen.cpp"
-#include "serialization.cpp"
-#include "counter/serialization.cpp"
+
+#include "_main.cpp"
+#include "_io.cpp"
+#include "_mosaic.cpp"
+#include "_background.cpp"
+#include "_object.cpp"
+#include "_window.cpp"
+#include "_screen.cpp"
+#include "_serialization.cpp"
+#include "counter/_serialization.cpp"
 
 PPU::PPU() :
 bg1(Background::ID::BG1),

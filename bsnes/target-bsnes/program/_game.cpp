@@ -82,11 +82,6 @@ auto Program::load() -> void {
 		program.loadState("Quick/Undo");
 	}
 
-	showMessage({
-		verified() ? bms::get("Game.VerifiedGameOpened").data() : bms::get("Game.GameOpened").data(),
-		appliedPatch() ? bms::get("Game.AndPatchApplied").data() : ""
-	});
-
 	presentation.setFocused();
 	presentation.setTitle({emulator->title(), " — ", bma::windowTitle.data()}); // Added emulator title and version by MT.
 	presentation.resetSystem.setEnabled(true);
@@ -106,8 +101,18 @@ auto Program::load() -> void {
 
 	string games;
 
+	/* MT. */
+	bool   snesGame   = false;
+	string gameRegion = "";
+	/* /MT. */
+
 	if (auto& game = superFamicom) {
 		games.append(game.option, ";", game.location, "|");
+
+		/* MT. */
+		snesGame   = true;
+		gameRegion = game.region;
+		/* /MT. */
 	}
 
 	if (auto& game = gameBoy) {
@@ -125,6 +130,13 @@ auto Program::load() -> void {
 	if (auto& game = sufamiTurboB) {
 		games.append(game.option, ";", game.location, "|");
 	}
+
+	// Moved down by MT.
+	showMessage({
+		verified() ? bms::get("Game.VerifiedGameOpened").data() : bms::get("Game.GameOpened").data(),
+		appliedPatch() ? bms::get("Game.AndPatchApplied").data() : "",
+		snesGame ? string({" [", gameRegion, "]"}) : "" // MT.
+	});
 
 	presentation.addRecentGame(games.trimRight("|", 1L));
 

@@ -1,5 +1,5 @@
-#include "keyboard/quartz.cpp"
-#include "joypad/iokit.cpp"
+#include "keyboard/_quartz.cpp"
+#include "joypad/_iokit.cpp"
 
 struct InputQuartz : InputDriver {
   InputQuartz& self = *this;

@@ -1,5 +1,6 @@
 #include "../bsnes.hpp"
-#include "hotkeys.cpp"
+
+#include "_hotkeys.cpp"
 
 InputManager inputManager;
 

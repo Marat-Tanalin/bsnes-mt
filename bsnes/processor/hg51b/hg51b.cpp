@@ -3,10 +3,10 @@
 
 namespace Processor {
 
-#include "registers.cpp"
-#include "instruction.cpp"
-#include "instructions.cpp"
-#include "serialization.cpp"
+#include "_registers.cpp"
+#include "_instruction.cpp"
+#include "_instructions.cpp"
+#include "_serialization.cpp"
 
 auto HG51B::lock() -> void {
   io.lock = 1;

@@ -4,8 +4,8 @@ namespace SuperFamicom {
 
 DSP dsp;
 
-#include "serialization.cpp"
-#include "SPC_DSP.cpp"
+#include "_serialization.cpp"
+#include "_SPC_DSP.cpp"
 
 auto DSP::main() -> void {
   if(!configuration.hacks.dsp.fast) {

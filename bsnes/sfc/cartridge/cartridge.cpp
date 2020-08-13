@@ -8,9 +8,10 @@ namespace bms = bsnesMt::strings;
 
 namespace SuperFamicom {
 
-#include "load.cpp"
-#include "save.cpp"
-#include "serialization.cpp"
+#include "_load.cpp"
+#include "_save.cpp"
+#include "_serialization.cpp"
+
 Cartridge cartridge;
 
 auto Cartridge::hashes() const -> vector<string> {

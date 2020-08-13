@@ -29,7 +29,7 @@ static void audio_queue(int16_t left, int16_t right)
 	}
 }
 
-#include "program.cpp"
+#include "_program.cpp"
 
 static string sgb_bios;
 static vector<string> cheatList;

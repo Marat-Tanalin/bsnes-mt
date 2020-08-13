@@ -2,9 +2,9 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
-#include "keyboard/xlib.cpp"
-#include "mouse/xlib.cpp"
-#include "joypad/sdl.cpp"
+#include "keyboard/_xlib.cpp"
+#include "mouse/_xlib.cpp"
+#include "joypad/_sdl.cpp"
 
 struct InputSDL : InputDriver {
   InputSDL& self = *this;

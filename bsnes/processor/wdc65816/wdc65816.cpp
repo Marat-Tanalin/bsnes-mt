@@ -4,15 +4,15 @@
 namespace Processor {
 
 #include "registers.hpp"
-#include "memory.cpp"
-#include "algorithms.cpp"
 
-#include "instructions-read.cpp"
-#include "instructions-write.cpp"
-#include "instructions-modify.cpp"
-#include "instructions-pc.cpp"
-#include "instructions-other.cpp"
-#include "instruction.cpp"
+#include "_memory.cpp"
+#include "_algorithms.cpp"
+#include "_instructions-read.cpp"
+#include "_instructions-write.cpp"
+#include "_instructions-modify.cpp"
+#include "_instructions-pc.cpp"
+#include "_instructions-other.cpp"
+#include "_instruction.cpp"
 
 auto WDC65816::power() -> void {
   r.pc.d = 0x000000;
@@ -35,7 +35,8 @@ auto WDC65816::power() -> void {
 }
 
 #include "registers.hpp"
-#include "serialization.cpp"
-#include "disassembler.cpp"
+
+#include "_serialization.cpp"
+#include "_disassembler.cpp"
 
 }

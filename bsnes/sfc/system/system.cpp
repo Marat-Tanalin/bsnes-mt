@@ -6,7 +6,8 @@ System system;
 Scheduler scheduler;
 Random random;
 Cheat cheat;
-#include "serialization.cpp"
+
+#include "_serialization.cpp"
 
 auto System::run() -> void {
   scheduler.mode = Scheduler::Mode::Run;

@@ -8,14 +8,15 @@ PPU& ppubase = ppu;
 #define ppu ppufast
 
 PPU ppu;
-#include "io.cpp"
-#include "line.cpp"
-#include "background.cpp"
-#include "mode7.cpp"
-#include "mode7hd.cpp"
-#include "object.cpp"
-#include "window.cpp"
-#include "serialization.cpp"
+
+#include "_io.cpp"
+#include "_line.cpp"
+#include "_background.cpp"
+#include "_mode7.cpp"
+#include "_mode7hd.cpp"
+#include "_object.cpp"
+#include "_window.cpp"
+#include "_serialization.cpp"
 
 auto PPU::interlace() const -> bool { return ppubase.display.interlace; }
 auto PPU::overscan() const -> bool { return ppubase.display.overscan; }

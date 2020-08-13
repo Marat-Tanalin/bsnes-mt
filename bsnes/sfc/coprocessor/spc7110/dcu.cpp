@@ -1,4 +1,4 @@
-#include "decompressor.cpp"
+#include "_decompressor.cpp"
 
 auto SPC7110::dcuLoadAddress() -> void {
   uint table = r4801 | r4802 << 8 | r4803 << 16;

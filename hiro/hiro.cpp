@@ -2,7 +2,8 @@
 #define HIRO_CPP
 
 #include "components.hpp"
-#include "core/core.cpp"
-#include "extension/extension.cpp"
+
+#include "core/_core.cpp"
+#include "extension/_extension.cpp"
 
 #endif

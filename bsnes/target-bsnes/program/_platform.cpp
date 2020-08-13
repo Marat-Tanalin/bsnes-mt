@@ -1,10 +1,11 @@
 #include <nall/encode/bmp.hpp>
 #include <heuristics/heuristics.hpp>
-#include <heuristics/heuristics.cpp>
-#include <heuristics/super-famicom.cpp>
-#include <heuristics/game-boy.cpp>
-#include <heuristics/bs-memory.cpp>
-#include <heuristics/sufami-turbo.cpp>
+
+#include <heuristics/_heuristics.cpp>
+#include <heuristics/_super-famicom.cpp>
+#include <heuristics/_game-boy.cpp>
+#include <heuristics/_bs-memory.cpp>
+#include <heuristics/_sufami-turbo.cpp>
 
 /* MT. */
 #include "bsnes-mt/strings.h"

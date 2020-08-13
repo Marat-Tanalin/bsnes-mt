@@ -1,26 +1,26 @@
-#include <sfc/coprocessor/icd/icd.cpp>
-#include <sfc/coprocessor/mcc/mcc.cpp>
-#include <sfc/coprocessor/dip/dip.cpp>
-#include <sfc/coprocessor/event/event.cpp>
+#include <sfc/coprocessor/icd/_icd.cpp>
+#include <sfc/coprocessor/mcc/_mcc.cpp>
+#include <sfc/coprocessor/dip/_dip.cpp>
+#include <sfc/coprocessor/event/_event.cpp>
 
-#include <sfc/coprocessor/sa1/sa1.cpp>
-#include <sfc/coprocessor/superfx/superfx.cpp>
+#include <sfc/coprocessor/sa1/_sa1.cpp>
+#include <sfc/coprocessor/superfx/_superfx.cpp>
 
-#include <sfc/coprocessor/armdsp/armdsp.cpp>
-#include <sfc/coprocessor/hitachidsp/hitachidsp.cpp>
-#include <sfc/coprocessor/necdsp/necdsp.cpp>
+#include <sfc/coprocessor/armdsp/_armdsp.cpp>
+#include <sfc/coprocessor/hitachidsp/_hitachidsp.cpp>
+#include <sfc/coprocessor/necdsp/_necdsp.cpp>
 
-#include <sfc/coprocessor/epsonrtc/epsonrtc.cpp>
-#include <sfc/coprocessor/sharprtc/sharprtc.cpp>
+#include <sfc/coprocessor/epsonrtc/_epsonrtc.cpp>
+#include <sfc/coprocessor/sharprtc/_sharprtc.cpp>
 
-#include <sfc/coprocessor/spc7110/spc7110.cpp>
-#include <sfc/coprocessor/sdd1/sdd1.cpp>
-#include <sfc/coprocessor/obc1/obc1.cpp>
+#include <sfc/coprocessor/spc7110/_spc7110.cpp>
+#include <sfc/coprocessor/sdd1/_sdd1.cpp>
+#include <sfc/coprocessor/obc1/_obc1.cpp>
 
-#include <sfc/coprocessor/msu1/msu1.cpp>
+#include <sfc/coprocessor/msu1/_msu1.cpp>
 
-#include <sfc/coprocessor/cx4/cx4.cpp>
-#include <sfc/coprocessor/dsp1/dsp1.cpp>
-#include <sfc/coprocessor/dsp2/dsp2.cpp>
-#include <sfc/coprocessor/dsp4/dsp4.cpp>
-#include <sfc/coprocessor/st0010/st0010.cpp>
+#include <sfc/coprocessor/cx4/_cx4.cpp>
+#include <sfc/coprocessor/dsp1/_dsp1.cpp>
+#include <sfc/coprocessor/dsp2/_dsp2.cpp>
+#include <sfc/coprocessor/dsp4/_dsp4.cpp>
+#include <sfc/coprocessor/st0010/_st0010.cpp>

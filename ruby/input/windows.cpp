@@ -2,11 +2,11 @@
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 
-#include "shared/rawinput.cpp"
-#include "keyboard/rawinput.cpp"
-#include "mouse/rawinput.cpp"
-#include "joypad/xinput.cpp"
-#include "joypad/directinput.cpp"
+#include "shared/_rawinput.cpp"
+#include "keyboard/_rawinput.cpp"
+#include "mouse/_rawinput.cpp"
+#include "joypad/_xinput.cpp"
+#include "joypad/_directinput.cpp"
 
 struct InputWindows : InputDriver {
   InputWindows& self = *this;

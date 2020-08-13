@@ -8,9 +8,9 @@
 #include <linux/types.h>
 #include <linux/input.h>
 
-#include "keyboard/xlib.cpp"
-#include "mouse/xlib.cpp"
-#include "joypad/udev.cpp"
+#include "keyboard/_xlib.cpp"
+#include "mouse/_xlib.cpp"
+#include "joypad/_udev.cpp"
 
 struct InputUdev : InputDriver {
   InputUdev& self = *this;

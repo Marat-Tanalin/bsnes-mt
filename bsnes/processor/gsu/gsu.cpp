@@ -7,10 +7,10 @@
 
 namespace Processor {
 
-#include "instruction.cpp"
-#include "instructions.cpp"
-#include "serialization.cpp"
-#include "disassembler.cpp"
+#include "_instruction.cpp"
+#include "_instructions.cpp"
+#include "_serialization.cpp"
+#include "_disassembler.cpp"
 
 auto GSU::power() -> void {
   for(auto& r : regs.r) {

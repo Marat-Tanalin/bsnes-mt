@@ -1,4 +1,4 @@
-#include "oam.cpp"
+#include "_oam.cpp"
 
 auto PPU::Object::addressReset() -> void {
   ppu.io.oamAddress = ppu.io.oamBaseAddress;

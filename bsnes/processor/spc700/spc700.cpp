@@ -22,12 +22,12 @@ namespace Processor {
 
 #define alu (this->*op)
 
-#include "memory.cpp"
-#include "algorithms.cpp"
-#include "instructions.cpp"
-#include "instruction.cpp"
-#include "serialization.cpp"
-#include "disassembler.cpp"
+#include "_memory.cpp"
+#include "_algorithms.cpp"
+#include "_instructions.cpp"
+#include "_instruction.cpp"
+#include "_serialization.cpp"
+#include "_disassembler.cpp"
 
 auto SPC700::power() -> void {
   PC = 0x0000;

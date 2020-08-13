@@ -3,12 +3,13 @@
 namespace SuperFamicom {
 
 CPU cpu;
-#include "dma.cpp"
-#include "memory.cpp"
-#include "io.cpp"
-#include "timing.cpp"
-#include "irq.cpp"
-#include "serialization.cpp"
+
+#include "_dma.cpp"
+#include "_memory.cpp"
+#include "_io.cpp"
+#include "_timing.cpp"
+#include "_irq.cpp"
+#include "_serialization.cpp"
 
 auto CPU::synchronizeSMP() -> void {
   if(smp.clock < 0) scheduler.resume(smp.thread);

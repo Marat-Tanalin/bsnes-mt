@@ -5,7 +5,7 @@
 
 namespace Emulator {
 
-#include "stream.cpp"
+#include "_stream.cpp"
 Audio audio;
 
 Audio::~Audio() {

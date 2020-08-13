@@ -1,13 +1,14 @@
 #include "../bsnes.hpp"
-#include "video.cpp"
-#include "audio.cpp"
-#include "input.cpp"
-#include "hotkeys.cpp"
-#include "paths.cpp"
-#include "emulator.cpp"
-#include "enhancements.cpp"
-#include "compatibility.cpp"
-#include "drivers.cpp"
+
+#include "_video.cpp"
+#include "_audio.cpp"
+#include "_input.cpp"
+#include "_hotkeys.cpp"
+#include "_paths.cpp"
+#include "_emulator.cpp"
+#include "_enhancements.cpp"
+#include "_compatibility.cpp"
+#include "_drivers.cpp"
 
 /* MT. */
 #include "bsnes-mt/strings.h"

@@ -1,5 +1,6 @@
 #include <emulator/emulator.hpp>
-#include <emulator/audio/audio.cpp>
+
+#include <emulator/audio/_audio.cpp>
 
 namespace Emulator {
 

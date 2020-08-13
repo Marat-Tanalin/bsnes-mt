@@ -3,7 +3,8 @@
 namespace SuperFamicom {
 
 Settings settings;
-#include "configuration.cpp"
+
+#include "_configuration.cpp"
 
 auto Interface::information() -> Information {
   Information information;

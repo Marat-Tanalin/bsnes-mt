@@ -3,10 +3,10 @@
 
 namespace Processor {
 
-#include "instructions.cpp"
-#include "memory.cpp"
-#include "disassembler.cpp"
-#include "serialization.cpp"
+#include "_instructions.cpp"
+#include "_memory.cpp"
+#include "_disassembler.cpp"
+#include "_serialization.cpp"
 
 auto uPD96050::power() -> void {
   if(revision == Revision::uPD7725) {

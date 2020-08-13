@@ -7,10 +7,11 @@ namespace bmw = bsnesMt::windows;
 /* /MT. */
 
 #include "../bsnes.hpp"
-#include "cheat-finder.cpp"
-#include "cheat-editor.cpp"
-#include "state-manager.cpp"
-#include "manifest-viewer.cpp"
+
+#include "_cheat-finder.cpp"
+#include "_cheat-editor.cpp"
+#include "_state-manager.cpp"
+#include "_manifest-viewer.cpp"
 
 namespace Instances {
 	Instance<CheatDatabase> cheatDatabase;

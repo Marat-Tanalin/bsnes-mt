@@ -4,8 +4,8 @@
 #include <X11/Xutil.h>
 #include <X11/Xatom.h>
 
-#include "keyboard/xlib.cpp"
-#include "mouse/xlib.cpp"
+#include "keyboard/_xlib.cpp"
+#include "mouse/_xlib.cpp"
 
 struct InputXlib : InputDriver {
   InputXlib& self = *this;
