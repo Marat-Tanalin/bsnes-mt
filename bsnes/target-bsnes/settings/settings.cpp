@@ -185,31 +185,14 @@ public:
 auto SettingsWindow::create() -> void {
 	layout.setPadding(5_sx);
 
-	// "Video"
 	panelList.append(ListViewItem().setText(bms::get("Common.Video").data()).setIcon(Icon::Device::Display));
-
- 	// "Audio"
 	panelList.append(ListViewItem().setText(bms::get("Common.Audio").data()).setIcon(Icon::Device::Speaker));
-
-	// "Input"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Input").data()).setIcon(Icon::Device::Joypad));
-
-	// "Hotkeys"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Hotkeys").data()).setIcon(Icon::Device::Keyboard));
-
-	// "Paths"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Paths").data()).setIcon(Icon::Emblem::Folder));
-
-	// "Emulator"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Emulator").data()).setIcon(Icon::Action::Settings));
-
-	// "Enhancements"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Enhancements").data()).setIcon(Icon::Action::Add));
-
-	// "Compatibility"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Compatibility").data()).setIcon(Icon::Action::Remove));
-
-	// "Drivers"
 	panelList.append(ListViewItem().setText(bms::get("Settings.Drivers").data()).setIcon(Icon::Place::Settings));
 
 	panelList.onChange([&] {
@@ -233,7 +216,7 @@ auto SettingsWindow::create() -> void {
 	panelContainer.append(driverSettings, Size{~0, ~0});
 	statusBar.setFont(Font().setBold());
 
-	setTitle(bms::get("Settings").data()); // "Settings"
+	setTitle(bms::get("Settings").data());
 	setSize({680_sx, 400_sy});
 	setAlignment({0.0, 1.0});
 	setDismissable();

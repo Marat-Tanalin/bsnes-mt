@@ -6,7 +6,7 @@ extern uint16_t SnowData[800];
 extern  uint8_t SnowVelDist[800];
 
 /* MT. */
-auto Program::showScalingStatus(
+auto Program::showScalingInfo(
 	uint width, uint height, uint scaledWidth, uint scaledHeight,
 	uint areaWidth, uint areaHeight, string outputSetting
 ) -> void
@@ -28,7 +28,7 @@ auto Program::viewportSize(uint& scaledWidth, uint& scaledHeight, uint width, ui
 		scaledHeight = areaHeight;
 
 		if (settings.video.scalingInfo) {
-			showScalingStatus(width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting);
+			showScalingInfo(width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting);
 		}
 
 		return;
@@ -72,7 +72,7 @@ auto Program::viewportSize(uint& scaledWidth, uint& scaledHeight, uint width, ui
 	}
 
 	if (settings.video.scalingInfo) {
-		showScalingStatus(width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting);
+		showScalingInfo(width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting);
 	}
 }
 
@@ -83,7 +83,7 @@ auto Program::viewportRefresh() -> void {
 
 	static uint32_t SnowMover = 0;
 	static uint32_t SnowTimer = 18;
-	static uint32_t NumSnow = 0;
+	static uint32_t NumSnow   = 0;
 
 	if (settings.video.snow) {
 		SnowMover++;

@@ -76,7 +76,7 @@ auto nall::main(Arguments arguments) -> void {
 			program.resetDrivers = true;
 		}
 		/* /MT. */
-		/*else if(argument.beginsWith("--locale=")) {
+		/*else if (argument.beginsWith("--locale=")) {
 			Application::locale().scan(locate("Locale/"));
 			Application::locale().select(argument.trimLeft("--locale=", 1L));
 		}*/ // Commented-out by MT.

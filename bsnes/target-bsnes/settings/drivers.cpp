@@ -16,8 +16,8 @@ auto DriverSettings::create() -> void {
 	const string changeString = bms::get("Settings.Drivers.Change").data();
 	/* /MT. */
 
-	videoLabel.setText(bms::get("Common.Video").data()).setFont(Font().setBold()); // "Video"
-	videoDriverLabel.setText(driverString); // "Driver:"
+	videoLabel.setText(bms::get("Common.Video").data()).setFont(Font().setBold());
+	videoDriverLabel.setText(driverString);
 
 	videoDriverOption.onChange([&] {
 		/* MT. */
@@ -29,44 +29,51 @@ auto DriverSettings::create() -> void {
 		videoDriverUpdate.setText(driver == video.driver() ? bms::get("Settings.Drivers.Reload").data() : bms::get("Settings.Drivers.Change").data());
 	});
 
-	videoDriverUpdate.setText(changeString).onActivate([&] { videoDriverChange(); }); // "Change"
-
-	videoMonitorLabel.setText({bms::get("Settings.Drivers.Video.FullScreenMonitor").data(), colon}).setToolTip( // "Fullscreen monitor:"
-		bms::get("Settings.Drivers.Video.FullScreenMonitor.tooltip").data()
-	);
-
-	videoMonitorOption.onChange([&] { videoMonitorChange(); });
-	videoFormatLabel.setText({bms::get("Settings.Drivers.Video.Format").data(), colon}); // "Format:"
-	videoFormatOption.onChange([&] { videoFormatChange(); });
-
-	videoExclusiveToggle.setText(bms::get("Settings.Drivers.ExclusiveMode").data()).setToolTip( // "Exclusive mode"
-		bms::get("Settings.Drivers.Video.ExclusiveMode.tooltip").data()
-	).onToggle([&] {
-		settings.video.exclusive = videoExclusiveToggle.checked();
-		program.updateVideoExclusive();
+	videoDriverUpdate.setText(changeString).onActivate([&] {
+		videoDriverChange();
 	});
 
-	videoBlockingToggle.setText(bms::get("Settings.Drivers.Synchronize").data()).setToolTip( // "Synchronize"
-		bms::get("Settings.Drivers.Video.Synchronize.tooltip").data()
-	).onToggle([&] {
-		settings.video.blocking = videoBlockingToggle.checked();
-		program.updateVideoBlocking();
-		presentation.speedMenu.setEnabled(!videoBlockingToggle.checked() && audioBlockingToggle.checked());
+	videoMonitorLabel.setText({bms::get("Settings.Drivers.Video.FullScreenMonitor").data(), colon})
+		.setToolTip(bms::get("Settings.Drivers.Video.FullScreenMonitor.tooltip").data());
+
+	videoMonitorOption.onChange([&] {
+		videoMonitorChange();
 	});
 
-	videoFlushToggle.setText(bms::get("Settings.Drivers.Video.GpuSync").data()).setToolTip( // "GPU sync"
-		bms::get("Settings.Drivers.Video.GpuSync.tooltip").data()
-	).onToggle([&] {
-		settings.video.flush = videoFlushToggle.checked();
-		program.updateVideoFlush();
+	videoFormatLabel.setText({bms::get("Settings.Drivers.Video.Format").data(), colon});
+
+	videoFormatOption.onChange([&] {
+		videoFormatChange();
 	});
+
+	videoExclusiveToggle.setText(bms::get("Settings.Drivers.ExclusiveMode").data())
+		.setToolTip(bms::get("Settings.Drivers.Video.ExclusiveMode.tooltip").data())
+		.onToggle([&] {
+			settings.video.exclusive = videoExclusiveToggle.checked();
+			program.updateVideoExclusive();
+		});
+
+	videoBlockingToggle.setText(bms::get("Settings.Drivers.Synchronize").data())
+		.setToolTip(bms::get("Settings.Drivers.Video.Synchronize.tooltip").data())
+		.onToggle([&] {
+			settings.video.blocking = videoBlockingToggle.checked();
+			program.updateVideoBlocking();
+			presentation.speedMenu.setEnabled(!videoBlockingToggle.checked() && audioBlockingToggle.checked());
+		});
+
+	videoFlushToggle.setText(bms::get("Settings.Drivers.Video.GpuSync").data())
+		.setToolTip(bms::get("Settings.Drivers.Video.GpuSync.tooltip").data())
+		.onToggle([&] {
+			settings.video.flush = videoFlushToggle.checked();
+			program.updateVideoFlush();
+		});
 
 	Color spacerColor = {192, 192, 192}; // MT.
 
 	videoSpacer.setColor(spacerColor);
 
-	audioLabel.setText(bms::get("Common.Audio").data()).setFont(Font().setBold()); // "Audio"
-	audioDriverLabel.setText(driverString); // "Driver:"
+	audioLabel.setText(bms::get("Common.Audio").data()).setFont(Font().setBold());
+	audioDriverLabel.setText(driverString);
 
 	audioDriverOption.onChange([&] {
 		/* MT. */
@@ -77,39 +84,53 @@ auto DriverSettings::create() -> void {
 		audioDriverUpdate.setText(driver == audio.driver() ? bms::get("Settings.Drivers.Reload").data() : bms::get("Settings.Drivers.Change").data());
 	});
 
-	audioDriverUpdate.setText(changeString).onActivate([&] { audioDriverChange(); }); // "Change"
-	audioDeviceLabel.setText({bms::get("Settings.Drivers.Audio.OutputDevice").data(), colon}); // "Output device:"
-	audioDeviceOption.onChange([&] { audioDeviceChange(); });
-	audioFrequencyLabel.setText({bms::get("Settings.Drivers.Audio.SampleRate").data(), colon}); // "Frequency:"
-	audioFrequencyOption.onChange([&] { audioFrequencyChange(); });
-	audioLatencyLabel.setText({bms::get("Settings.Drivers.Audio.Latency").data(), colon}); // "Latency:"
-	audioLatencyOption.onChange([&] { audioLatencyChange(); });
-
-	audioExclusiveToggle.setText(bms::get("Settings.Drivers.ExclusiveMode").data()).setToolTip( // "Exclusive mode"
-		bms::get("Settings.Drivers.Audio.ExclusiveMode.tooltip").data()
-	).onToggle([&] {
-		settings.audio.exclusive = audioExclusiveToggle.checked();
-		program.updateAudioExclusive();
+	audioDriverUpdate.setText(changeString).onActivate([&] {
+		audioDriverChange();
 	});
 
-	audioBlockingToggle.setText(bms::get("Settings.Drivers.Synchronize").data()).setToolTip( // "Synchronize"
-		bms::get("Settings.Drivers.Audio.Synchronize.tooltip").data()
-	).onToggle([&] {
-		settings.audio.blocking = audioBlockingToggle.checked();
-		program.updateAudioBlocking();
-		presentation.speedMenu.setEnabled(!videoBlockingToggle.checked() && audioBlockingToggle.checked());
+	audioDeviceLabel.setText({bms::get("Settings.Drivers.Audio.OutputDevice").data(), colon});
+
+	audioDeviceOption.onChange([&] {
+		audioDeviceChange();
 	});
 
-	audioDynamicToggle.setText(bms::get("Settings.Drivers.Audio.DynamicRate").data()).setToolTip( // "Dynamic rate"
-		bms::get("Settings.Drivers.Audio.DynamicRate.tooltip").data()
-	).onToggle([&] {
-		settings.audio.dynamic = audioDynamicToggle.checked();
-		program.updateAudioDynamic();
+	audioFrequencyLabel.setText({bms::get("Settings.Drivers.Audio.SampleRate").data(), colon});
+
+	audioFrequencyOption.onChange([&] {
+		audioFrequencyChange();
 	});
+
+	audioLatencyLabel.setText({bms::get("Settings.Drivers.Audio.Latency").data(), colon});
+
+	audioLatencyOption.onChange([&] {
+		audioLatencyChange();
+	});
+
+	audioExclusiveToggle.setText(bms::get("Settings.Drivers.ExclusiveMode").data())
+		.setToolTip(bms::get("Settings.Drivers.Audio.ExclusiveMode.tooltip").data())
+		.onToggle([&] {
+			settings.audio.exclusive = audioExclusiveToggle.checked();
+			program.updateAudioExclusive();
+		});
+
+	audioBlockingToggle.setText(bms::get("Settings.Drivers.Synchronize").data())
+		.setToolTip(bms::get("Settings.Drivers.Audio.Synchronize.tooltip").data())
+		.onToggle([&] {
+			settings.audio.blocking = audioBlockingToggle.checked();
+			program.updateAudioBlocking();
+			presentation.speedMenu.setEnabled(!videoBlockingToggle.checked() && audioBlockingToggle.checked());
+		});
+
+	audioDynamicToggle.setText(bms::get("Settings.Drivers.Audio.DynamicRate").data())
+		.setToolTip(bms::get("Settings.Drivers.Audio.DynamicRate.tooltip").data())
+		.onToggle([&] {
+			settings.audio.dynamic = audioDynamicToggle.checked();
+			program.updateAudioDynamic();
+		});
 
 	audioSpacer.setColor(spacerColor);
 
-	inputLabel.setText(bms::get("Settings.Input").data()).setFont(Font().setBold()); // "Input"
+	inputLabel.setText(bms::get("Settings.Input").data()).setFont(Font().setBold());
 	inputDriverLabel.setText(driverString);
 
 	inputDriverOption.onChange([&] {
@@ -121,22 +142,24 @@ auto DriverSettings::create() -> void {
 		inputDriverUpdate.setText(driver == input.driver() ? bms::get("Settings.Drivers.Reload").data() : bms::get("Settings.Drivers.Change").data());
 	});
 
-	inputDriverUpdate.setText(changeString).setToolTip(
-		bms::get("Settings.Drivers.Input.Reload.tooltip").data()
-	).onActivate([&] { inputDriverChange(); });
+	inputDriverUpdate.setText(changeString)
+		.setToolTip(bms::get("Settings.Drivers.Input.Reload.tooltip").data())
+		.onActivate([&] {
+			inputDriverChange();
+		});
 
 	inputSpacer.setColor(spacerColor);
 
-	syncModeLabel.setText({bms::get("Settings.Drivers.syncModePresets").data(), colon}).setFont(Font().setBold()); // "Synchronization Mode Presets:"
+	syncModeLabel.setText({bms::get("Settings.Drivers.syncModePresets").data(), colon}).setFont(Font().setBold());
 
 	syncModeRequirements.setText(
 		bms::get("Settings.Drivers.syncModePresets.requirements").data()
 	);
 
-	adaptiveSyncMode.setText(bms::get("Settings.Drivers.syncModePresets.AdaptiveSync").data()).onActivate([&] { // "Adaptive Sync"
+	adaptiveSyncMode.setText(bms::get("Settings.Drivers.syncModePresets.AdaptiveSync").data()).onActivate([&] {
 		if (!audioBlockingToggle.enabled()) {
 			/* // Commented-out by MT.
-			return (void)MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Failure").data()).setText({ // "Failure"
+			return (void)MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Failure").data()).setText({
 				bms::get("Settings.Drivers.syncModePresets.AdaptiveSync.failure").data()
 			}).error();
 			*/
@@ -169,7 +192,7 @@ auto DriverSettings::create() -> void {
 		}
 
 		/* // Commented-out by MT.
-		MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Success").data()).setText({ // "Success"
+		MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Success").data()).setText({
 			bms::get("Settings.Drivers.syncModePresets.AdaptiveSync.success").data()
 		}).information();
 		*/
@@ -183,10 +206,10 @@ auto DriverSettings::create() -> void {
 		/* /MT. */
 	});
 
-	dynamicRateControlMode.setText(bms::get("Settings.Drivers.syncModePresets.DynamicRateControl").data()).onActivate([&] { // "Dynamic Rate Control"
+	dynamicRateControlMode.setText(bms::get("Settings.Drivers.syncModePresets.DynamicRateControl").data()).onActivate([&] {
 		if (!videoBlockingToggle.enabled() || !audioDynamicToggle.enabled()) {
 			/* // Commented-out by MT.
-			return (void)MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Failure").data()).setText({ // "Failure"
+			return (void)MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Failure").data()).setText({
 				bms::get("Settings.Drivers.syncModePresets.DynamicRateControl.failure").data()
 			}).error();
 			*/
@@ -219,7 +242,7 @@ auto DriverSettings::create() -> void {
 		}
 
 		/* // Commented-out by MT.
-		MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Success").data()).setText({ // "Success"
+		MessageDialog().setAlignment(settingsWindow).setTitle(bms::get("Common.Success").data()).setText({
 			bms::get("Settings.Drivers.syncModePresets.DynamicRateControl.success").data()
 		}).information();
 		*/
@@ -248,14 +271,14 @@ auto DriverSettings::videoDriverChanged() -> void {
 
 	for (auto& driver : video.hasDrivers()) {
 		ComboButtonItem item{&videoDriverOption};
-		item.setText(driver == none ? noneTranslated : driver); // driver
+		item.setText(driver == none ? noneTranslated : driver);
 
 		if (driver == activeDriver) {
 			item.setSelected();
 		}
 	}
 
-	videoDriverActive.setText({bms::get("Settings.Drivers.ActiveDriver").data(), ": ", activeDriverTranslated}); // "Active driver" // video.driver()
+	videoDriverActive.setText({bms::get("Settings.Drivers.ActiveDriver").data(), ": ", activeDriverTranslated});
 	videoDriverOption.doChange();
 	videoMonitorChanged();
 	videoFormatChanged();
@@ -273,12 +296,12 @@ auto DriverSettings::videoDriverChange() -> void {
 	bool   isNone   = itemText == bms::get("Common.None").data();
 	/* /MT. */
 
-	settings.video.driver = isNone ? "None" : itemText; // item.text()
+	settings.video.driver = isNone ? "None" : itemText;
 
 	/* // Commented-out by MT.
-	if (!emulator->loaded() || isNone || MessageDialog( // "None"
+	if (!emulator->loaded() || isNone || MessageDialog(
 		bms::get("Settings.Drivers.changeConfirm").data()
-	).setAlignment(*settingsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) { // "Yes"
+	).setAlignment(*settingsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) {
 	*/
 
 	if (!emulator->loaded() || isNone || bmw::confirmById("Settings.Drivers.changeConfirm", settingsWindow->handle())) { // MT.
@@ -353,14 +376,14 @@ auto DriverSettings::audioDriverChanged() -> void {
 
 	for (auto& driver : audio.hasDrivers()) {
 		ComboButtonItem item{&audioDriverOption};
-		item.setText(driver == none ? noneTranslated : driver); // driver
+		item.setText(driver == none ? noneTranslated : driver);
 
-		if (driver == activeDriver) { // driver
+		if (driver == activeDriver) {
 			item.setSelected();
 		}
 	}
 
-	audioDriverActive.setText({bms::get("Settings.Drivers.ActiveDriver").data(), ": ", activeDriverTranslated}); // "Active driver: " // audio.driver()
+	audioDriverActive.setText({bms::get("Settings.Drivers.ActiveDriver").data(), ": ", activeDriverTranslated});
 	audioDriverOption.doChange();
 	audioDeviceChanged();
 	audioFrequencyChanged();
@@ -379,12 +402,12 @@ auto DriverSettings::audioDriverChange() -> void {
 	bool   isNone   = itemText == bms::get("Common.None").data();
 	/* /MT. */
 
-	settings.audio.driver = isNone ? "None" : itemText; // item.text()
+	settings.audio.driver = isNone ? "None" : itemText;
 
 	/* // Commented-out by MT.
-	if (!emulator->loaded() || isNone || MessageDialog( // `item.text() == "None"` => `isNone` by MT.
+	if (!emulator->loaded() || isNone || MessageDialog(
 		bms::get("Settings.Drivers.changeConfirm").data()
-	).setAlignment(*settingsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) { // "Yes"
+	).setAlignment(*settingsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) {
 	*/
 
 	if (!emulator->loaded() || isNone || bmw::confirmById("Settings.Drivers.changeConfirm", settingsWindow->handle())) { // MT.
@@ -411,9 +434,9 @@ auto DriverSettings::audioDeviceChanged() -> void {
 
 	for (auto& device : audio.hasDevices()) {
 		ComboButtonItem item{&audioDeviceOption};
-		item.setText(device == defaultString ? defaultTranslated : device); // device
+		item.setText(device == defaultString ? defaultTranslated : device);
 
-		if (device == activeDevice) { // `audio.device()` => `activeDevice` by MT.
+		if (device == activeDevice) {
 			item.setSelected();
 		}
 	}
@@ -431,7 +454,7 @@ auto DriverSettings::audioDeviceChange() -> void {
 	string itemText          = item.text();
 	/* /MT. */
 
-	settings.audio.device = itemText == defaultTranslated ? defaultString : itemText; // item.text()
+	settings.audio.device = itemText == defaultTranslated ? defaultString : itemText;
 	program.updateAudioDevice();
 	audioFrequencyChanged();
 	audioLatencyChanged();
@@ -442,7 +465,7 @@ auto DriverSettings::audioFrequencyChanged() -> void {
 
 	for (auto& frequency : audio.hasFrequencies()) {
 		ComboButtonItem item{&audioFrequencyOption};
-		item.setText({frequency, ' ', bms::get("Common.Hz").data()}); // "Hz"
+		item.setText({frequency, ' ', bms::get("Common.Hz").data()});
 
 		if (frequency == audio.frequency()) {
 			item.setSelected();
@@ -495,14 +518,14 @@ auto DriverSettings::inputDriverChanged() -> void {
 
 	for (auto& driver : input.hasDrivers()) {
 		ComboButtonItem item{&inputDriverOption};
-		item.setText(driver == none ? noneTranslated : driver); // driver
+		item.setText(driver == none ? noneTranslated : driver);
 
-		if (driver == activeDriver) { // input.driver()
+		if (driver == activeDriver) {
 			item.setSelected();
 		}
 	}
 
-	inputDriverActive.setText({bms::get("Settings.Drivers.ActiveDriver").data(), ": ", activeDriverTranslated}); // "Active driver: " // input.driver()
+	inputDriverActive.setText({bms::get("Settings.Drivers.ActiveDriver").data(), ": ", activeDriverTranslated});
 	inputDriverOption.doChange();
 	setGeometry(geometry());
 }
@@ -515,12 +538,12 @@ auto DriverSettings::inputDriverChange() -> void {
 	bool   isNone   = itemText == bms::get("Common.None").data();
 	/* /MT. */
 
-	settings.input.driver = isNone ? "None" : itemText; // item.text()
+	settings.input.driver = isNone ? "None" : itemText;
 
 	/* // Commented-out by MT.
-	if (!emulator->loaded() || isNone || MessageDialog( // "None"
+	if (!emulator->loaded() || isNone || MessageDialog(
 		bms::get("Settings.Drivers.changeConfirm").data()
-	).setAlignment(*settingsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) { // "Yes"
+	).setAlignment(*settingsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) {
 	*/
 
 	if (!emulator->loaded() || isNone || bmw::confirmById("Settings.Drivers.changeConfirm", settingsWindow->handle())) { // MT.

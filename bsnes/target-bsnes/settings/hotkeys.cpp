@@ -10,7 +10,10 @@ auto HotkeySettings::create() -> void {
 
 	mappingList.setBatchable();
 	mappingList.setHeadered();
-	mappingList.onActivate([&](auto cell) { assignMapping(cell); });
+
+	mappingList.onActivate([&](auto cell) {
+		assignMapping(cell);
+	});
 
 	mappingList.onChange([&] {
 		auto batched = mappingList.batched();
@@ -22,23 +25,22 @@ auto HotkeySettings::create() -> void {
 		mappingList.resizeColumns();
 	});
 
-	logicLabel.setText({bms::get("Settings.Hotkeys.CombinationalLogic").data(), ':'}).setToolTip( // "Combinational logic:"
-		bms::get("Settings.Hotkeys.CombinationalLogic.tooltip").data()
-	);
+	logicLabel.setText({bms::get("Settings.Hotkeys.CombinationalLogic").data(), ':'})
+		.setToolTip(bms::get("Settings.Hotkeys.CombinationalLogic.tooltip").data());
 
-	logicAND.setText(bms::get("Settings.Hotkeys.CombinationalLogic.And").data()).setToolTip( // "And"
-		bms::get("Settings.Hotkeys.CombinationalLogic.And.tooltip").data() // "Every mapping must be pressed to activate a given hotkey."
-	).onActivate([&] {
-		settings.input.hotkey.logic = "and";
-		inputManager.hotkeyLogic = InputMapping::Logic::AND;
-	});
+	logicAND.setText(bms::get("Settings.Hotkeys.CombinationalLogic.And").data())
+		.setToolTip(bms::get("Settings.Hotkeys.CombinationalLogic.And.tooltip").data())
+		.onActivate([&] {
+			settings.input.hotkey.logic = "and";
+			inputManager.hotkeyLogic = InputMapping::Logic::AND;
+		});
 
-	logicOR.setText(bms::get("Settings.Hotkeys.CombinationalLogic.Or").data()).setToolTip(
-		bms::get("Settings.Hotkeys.CombinationalLogic.Or.tooltip").data() // "Any mapping can be pressed to activate a given hotkey."
-	).onActivate([&] { // "Or"
-		settings.input.hotkey.logic = "or";
-		inputManager.hotkeyLogic = InputMapping::Logic::OR;
-	});
+	logicOR.setText(bms::get("Settings.Hotkeys.CombinationalLogic.Or").data())
+		.setToolTip(bms::get("Settings.Hotkeys.CombinationalLogic.Or.tooltip").data())
+		.onActivate([&] {
+			settings.input.hotkey.logic = "or";
+			inputManager.hotkeyLogic = InputMapping::Logic::OR;
+		});
 
 	auto logic = settings.input.hotkey.logic; // MT.
 
@@ -51,12 +53,12 @@ auto HotkeySettings::create() -> void {
 
 	inputSink.setFocusable();
 
-	assignButton.setText(bms::get("Settings.Common.Assign").data()).onActivate([&] { // "Assign"
+	assignButton.setText(bms::get("Settings.Common.Assign").data()).onActivate([&] {
 		clearButton.doActivate();
 		assignMapping(mappingList.selected().cell(0));
 	});
 
-	clearButton.setText(bms::get("Common.Clear").data()).onActivate([&] { // "Clear"
+	clearButton.setText(bms::get("Common.Clear").data()).onActivate([&] {
 		cancelMapping();
 
 		for (auto mapping : mappingList.batched()) {
@@ -73,7 +75,7 @@ auto HotkeySettings::create() -> void {
 
 auto HotkeySettings::reloadMappings() -> void {
 	mappingList.reset();
-	mappingList.append(TableViewColumn().setText(bms::get("Common.Name").data())); // "Name"
+	mappingList.append(TableViewColumn().setText(bms::get("Common.Name").data()));
 
 	/* MT. */
 	char space = ' ';
@@ -81,12 +83,12 @@ auto HotkeySettings::reloadMappings() -> void {
 	/* /MT. */
 
 	for (uint index : range(BindingLimit)) {
-		mappingList.append(TableViewColumn().setText({mappingTextPrefix, 1 + index}).setExpandable()); // Mapping
+		mappingList.append(TableViewColumn().setText({mappingTextPrefix, 1 + index}).setExpandable());
 	}
 
 	for (auto& hotkey : inputManager.hotkeys) {
 		TableViewItem item{&mappingList};
-		item.append(TableViewCell().setText(bms::getHotkeyString(hotkey.name.data()).data()).setFont(Font().setBold())); // hotkey.name
+		item.append(TableViewCell().setText(bms::getHotkeyString(hotkey.name.data()).data()).setFont(Font().setBold()));
 
 		for (uint index : range(BindingLimit)) {
 			item.append(TableViewCell());
@@ -127,8 +129,8 @@ auto HotkeySettings::assignMapping(TableViewCell cell) -> void {
 	for (auto mapping : mappingList.batched()) {
 		activeMapping = inputManager.hotkeys[mapping.offset()];
 		activeBinding = max(0, (int)cell.offset() - 1);
-		mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText(awaitingString); // "(assign ...)"
-		settingsWindow.statusBar.setText({statusPrefix, 1 + activeBinding, " [", activeMapping->name, "] ..."}); // "Press a key or button for mapping# "
+		mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText(awaitingString);
+		settingsWindow.statusBar.setText({statusPrefix, 1 + activeBinding, " [", activeMapping->name, "] ..."});
 		settingsWindow.setDismissable(false);
 		inputSink.setFocused();
 		return; //map only one input at a time
@@ -150,7 +152,7 @@ auto HotkeySettings::inputEvent(shared_pointer<HID::Device> device, uint group, 
 
 	if (activeMapping->bind(device, group, input, oldValue, newValue, activeBinding)) {
 		activeMapping.reset();
-		settingsWindow.statusBar.setText(bms::get("Settings.Common.MappingAssigned").data()); // "Mapping assigned."
+		settingsWindow.statusBar.setText(bms::get("Settings.Common.MappingAssigned").data());
 		refreshMappings();
 
 		timer.onActivate([&] {

@@ -23,59 +23,60 @@ namespace bmw = bsnesMt::windows;
 #include "hacks.cpp"
 #include "filter.cpp"
 #include "viewport.cpp"
+
 Program program;
 
 static bool quitInProgress = false; // Used in `Program::quit()`. // MT.
 
 auto Program::create() -> void {
-  Emulator::platform = this;
+	Emulator::platform = this;
 
-  presentation.create();
-  presentation.setVisible();
-  presentation.viewport.setFocused();
+	presentation.create();
+	presentation.setVisible();
+	presentation.viewport.setFocused();
 
-  settingsWindow.create();
-  videoSettings.create();
-  audioSettings.create();
-  inputSettings.create();
-  hotkeySettings.create();
-  pathSettings.create();
-  emulatorSettings.create();
-  enhancementSettings.create();
-  compatibilitySettings.create();
-  driverSettings.create();
+	settingsWindow.create();
+	videoSettings.create();
+	audioSettings.create();
+	inputSettings.create();
+	hotkeySettings.create();
+	pathSettings.create();
+	emulatorSettings.create();
+	enhancementSettings.create();
+	compatibilitySettings.create();
+	driverSettings.create();
 
-  toolsWindow.create();
-  cheatFinder.create();
-  cheatDatabase.create();
-  cheatWindow.create();
-  cheatEditor.create();
-  stateWindow.create();
-  stateManager.create();
-  manifestViewer.create();
+	toolsWindow.create();
+	cheatFinder.create();
+	cheatDatabase.create();
+	cheatWindow.create();
+	cheatEditor.create();
+	stateWindow.create();
+	stateManager.create();
+	manifestViewer.create();
 
-  // Commented-out by MT.
-  /*
-  if(settings.general.crashed) {
-    MessageDialog(
-      "Driver crash detected. Hardware drivers have been disabled.\n"
-      "Please reconfigure drivers in the advanced settings panel."
-    ).setAlignment(*presentation).information();
-    settings.video.driver = "None";
-    settings.audio.driver = "None";
-    settings.input.driver = "None";
-  }
+	/* // Commented-out by MT.
+	if (settings.general.crashed) {
+		MessageDialog(
+			"Driver crash detected. Hardware drivers have been disabled.\n"
+			"Please reconfigure drivers in the advanced settings panel."
+		).setAlignment(*presentation).information();
 
-  settings.general.crashed = true;
-  settings.save();
-  */
+		settings.video.driver = "None";
+		settings.audio.driver = "None";
+		settings.input.driver = "None";
+	}
+
+	settings.general.crashed = true;
+	settings.save();
+	*/
 
 	/* MT. */
 	if (resetDrivers) {
 		bmw::showNotice(
-		  bms::get("ResetDrivers.message"),
-		  bms::get("ResetDrivers.message.title"),
-		  presentation.handle()
+			bms::get("ResetDrivers.message"),
+			bms::get("ResetDrivers.message.title"),
+			presentation.handle()
 		);
 
 		auto none = "None";
@@ -86,25 +87,29 @@ auto Program::create() -> void {
 	}
 	/* /MT. */
 
-  updateVideoDriver(presentation);
-  updateAudioDriver(presentation);
-  updateInputDriver(presentation);
+	updateVideoDriver(presentation);
+	updateAudioDriver(presentation);
+	updateInputDriver(presentation);
 
-  // Commented-out by MT.
-  /*
-  settings.general.crashed = false;
-  settings.save();
-  */
+	// Commented-out by MT.
+	/*
+	settings.general.crashed = false;
+	settings.save();
+	*/
 
-  driverSettings.videoDriverChanged();
-  driverSettings.audioDriverChanged();
-  driverSettings.inputDriverChanged();
+	driverSettings.videoDriverChanged();
+	driverSettings.audioDriverChanged();
+	driverSettings.inputDriverChanged();
 
-  if(gameQueue) load();
-  if(startFullScreen && emulator->loaded()) {
-    toggleVideoFullScreen();
-  }
-  Application::onMain({&Program::main, this});
+	if (gameQueue) {
+		load();
+	}
+
+	if (startFullScreen && emulator->loaded()) {
+		toggleVideoFullScreen();
+	}
+
+	Application::onMain({&Program::main, this});
 
 	/* MT. */
 	if (resetDrivers) {
@@ -114,79 +119,96 @@ auto Program::create() -> void {
 }
 
 auto Program::main() -> void {
-  updateStatus();
-  video.poll();
+	updateStatus();
+	video.poll();
 
-  if(Application::modal()) {
-    audio.clear();
-    return;
-  }
+	if (Application::modal()) {
+		audio.clear();
+		return;
+	}
 
-  inputManager.poll();
-  inputManager.pollHotkeys();
+	inputManager.poll();
+	inputManager.pollHotkeys();
 
-  if(inactive()) {
-    audio.clear();
-    usleep(20 * 1000);
-    if(settings.emulator.runAhead.frames == 0) viewportRefresh();
-    return;
-  }
+	if (inactive()) {
+		audio.clear();
+		usleep(20 * 1000);
 
-  rewindRun();
+		if (settings.emulator.runAhead.frames == 0) {
+			viewportRefresh();
+		}
 
-  if(!settings.emulator.runAhead.frames || fastForwarding || rewinding) {
-    emulator->run();
-  } else {
-    emulator->setRunAhead(true);
-    emulator->run();
-    auto state = emulator->serialize(0);
-    if(settings.emulator.runAhead.frames >= 2) emulator->run();
-    if(settings.emulator.runAhead.frames >= 3) emulator->run();
-    if(settings.emulator.runAhead.frames >= 4) emulator->run();
-    emulator->setRunAhead(false);
-    emulator->run();
-    state.setMode(serializer::Mode::Load);
-    emulator->unserialize(state);
-  }
+		return;
+	}
 
-  if(emulatorSettings.autoSaveMemory.checked()) {
-    auto currentTime = chrono::timestamp();
-    if(currentTime - autoSaveTime >= settings.emulator.autoSaveMemory.interval) {
-      autoSaveTime = currentTime;
-      emulator->save();
-    }
-  }
+	rewindRun();
+
+	if (!settings.emulator.runAhead.frames || fastForwarding || rewinding) {
+		emulator->run();
+	}
+	else {
+		emulator->setRunAhead(true);
+		emulator->run();
+
+		auto state = emulator->serialize(0);
+
+		if (settings.emulator.runAhead.frames >= 2) {
+			emulator->run();
+		}
+
+		if (settings.emulator.runAhead.frames >= 3) {
+			emulator->run();
+		}
+
+		if (settings.emulator.runAhead.frames >= 4) {
+			emulator->run();
+		}
+
+		emulator->setRunAhead(false);
+		emulator->run();
+		state.setMode(serializer::Mode::Load);
+		emulator->unserialize(state);
+	}
+
+	if (emulatorSettings.autoSaveMemory.checked()) {
+		auto currentTime = chrono::timestamp();
+
+		if (currentTime - autoSaveTime >= settings.emulator.autoSaveMemory.interval) {
+			autoSaveTime = currentTime;
+			emulator->save();
+		}
+	}
 }
 
 auto Program::quit() -> void {
-  /* MT. */
-  if (quitInProgress) {
-    return;
-  }
+	/* MT. */
+	if (quitInProgress) {
+		return;
+	}
 
-  quitInProgress = true;
-  /* /MT. */
+	quitInProgress = true;
+	/* /MT. */
 
-  //make closing the program feel more responsive
-  presentation.setVisible(false);
-  Application::processEvents();
+	//make closing the program feel more responsive
+	presentation.setVisible(false);
+	Application::processEvents();
 
-  //in case the emulator was closed prior to initialization completing:
-  settings.general.crashed = false;
+	//in case the emulator was closed prior to initialization completing:
+	settings.general.crashed = false;
 
-  unload();
-  settings.save();
-  video.reset();
-  audio.reset();
-  input.reset();
+	unload();
+	settings.save();
+	video.reset();
+	audio.reset();
+	input.reset();
 
-  #if defined(PLATFORM_WINDOWS)
-  //in rare cases, when Application::exit() calls exit(0), a crash will occur.
-  //this seems to be due to the internal state of certain ruby drivers.
-  auto processID = GetCurrentProcessId();
-  auto handle = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, true, processID);
-  TerminateProcess(handle, 0);
-  #endif
+	#if defined(PLATFORM_WINDOWS)
+	//in rare cases, when Application::exit() calls exit(0), a crash will occur.
+	//this seems to be due to the internal state of certain ruby drivers.
+	auto processID = GetCurrentProcessId();
+	auto handle    = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, true, processID);
+	TerminateProcess(handle, 0);
+	#endif
 
-  Application::exit();
+	Application::exit();
 }

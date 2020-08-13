@@ -78,6 +78,7 @@ auto Program::statePath() -> string {
 	return path("States", location, ".bsz");
 }
 
+// Modified by MT.
 auto Program::screenshotPath() -> string {
 	if (!emulator->loaded()) {
 		return "";
@@ -87,14 +88,14 @@ auto Program::screenshotPath() -> string {
 
 	if (location.endsWith("/")) {
 		location = {location, "bsnes/screenshots/"};
-		directory::create(location);
 	}
 	else {
 		location = {path("Screenshots", location), "/"};
-		directory::create(location); // MT.
 	}
 
-	auto ext  = ".png"; // MT.
+	directory::create(location);
+
+	auto ext  = ".png";
 	auto time = bsnesMt::getTime();
 
 	string basePath = {

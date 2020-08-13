@@ -10,17 +10,17 @@ auto InputSettings::create() -> void {
 
 	char colon = ':';
 
-	inputFocusLabel.setText({bms::get("Settings.Input.WhenFocusIsLost").data(), colon}); // "When focus is lost:"
+	inputFocusLabel.setText({bms::get("Settings.Input.WhenFocusIsLost").data(), colon});
 
-	pauseEmulation.setText(bms::get("Settings.Input.WhenFocusIsLost.PauseEmulation").data()).onActivate([&] { // "Pause emulation"
+	pauseEmulation.setText(bms::get("Settings.Input.WhenFocusIsLost.PauseEmulation").data()).onActivate([&] {
 		settings.input.defocus = "Pause";
 	});
 
-	blockInput.setText(bms::get("Settings.Input.WhenFocusIsLost.BlockInput").data()).onActivate([&] { // "Block input"
+	blockInput.setText(bms::get("Settings.Input.WhenFocusIsLost.BlockInput").data()).onActivate([&] {
 		settings.input.defocus = "Block";
 	});
 
-	allowInput.setText(bms::get("Settings.Input.WhenFocusIsLost.AllowInput").data()).onActivate([&] { // "Allow input"
+	allowInput.setText(bms::get("Settings.Input.WhenFocusIsLost.AllowInput").data()).onActivate([&] {
 		settings.input.defocus = "Allow";
 	});
 
@@ -38,14 +38,20 @@ auto InputSettings::create() -> void {
 
 	separator.setColor({192, 192, 192});
 
-	portLabel.setText({bms::get("Settings.Input.Port").data(), colon}); // "Port:"
-	portList.onChange([&] { reloadDevices(); });
-	deviceLabel.setText({bms::get("Settings.Input.Device").data(), colon}); // "Device:"
-	deviceList.onChange([&] { reloadMappings(); });
+	portLabel.setText({bms::get("Settings.Input.Port").data(), colon});
 
-	turboLabel.setText({bms::get("Settings.Input.TurboRate").data(), colon}).setToolTip( // "Turbo rate:"
-		bms::get("Settings.Input.TurboRate.tooltip").data()
-	);
+	portList.onChange([&] {
+		reloadDevices();
+	});
+
+	deviceLabel.setText({bms::get("Settings.Input.Device").data(), colon});
+
+	deviceList.onChange([&] {
+		reloadMappings();
+	});
+
+	turboLabel.setText({bms::get("Settings.Input.TurboRate").data(), colon})
+		.setToolTip(bms::get("Settings.Input.TurboRate.tooltip").data());
 
 	for (uint frequency : range(1, 9)) {
 		ComboButtonItem item{&turboList};
@@ -65,20 +71,39 @@ auto InputSettings::create() -> void {
 
 	mappingList.setBatchable();
 	mappingList.setHeadered();
-	mappingList.onActivate([&](auto cell) { assignMapping(cell); });
-	mappingList.onChange([&] { updateControls(); });
-	mappingList.onSize([&] { mappingList.resizeColumns(); });
-	inputSink.setFocusable();
-	assignMouse1.onActivate([&] { assignMouseInput(0); });
-	assignMouse2.onActivate([&] { assignMouseInput(1); });
-	assignMouse3.onActivate([&] { assignMouseInput(2); });
 
-	assignButton.setText(bms::get("Settings.Common.Assign").data()).onActivate([&] { // "Assign"
+	mappingList.onActivate([&](auto cell) {
+		assignMapping(cell);
+	});
+
+	mappingList.onChange([&] {
+		updateControls();
+	});
+
+	mappingList.onSize([&] {
+		mappingList.resizeColumns();
+	});
+
+	inputSink.setFocusable();
+
+	assignMouse1.onActivate([&] {
+		assignMouseInput(0);
+	});
+
+	assignMouse2.onActivate([&] {
+		assignMouseInput(1);
+	});
+
+	assignMouse3.onActivate([&] {
+		assignMouseInput(2);
+	});
+
+	assignButton.setText(bms::get("Settings.Common.Assign").data()).onActivate([&] {
 		clearButton.doActivate();
 		assignMapping(mappingList.selected().cell(0));
 	});
 
-	clearButton.setText(bms::get("Common.Clear").data()).onActivate([&] { // "Clear"
+	clearButton.setText(bms::get("Common.Clear").data()).onActivate([&] {
 		cancelMapping();
 
 		for (auto mapping : mappingList.batched()) {
@@ -103,13 +128,13 @@ auto InputSettings::updateControls() -> void {
 		auto& input = activeDevice().mappings[batched.left().offset()];
 
 		if (input.isDigital()) {
-			assignMouse1.setVisible().setText(bms::get("Settings.Input.MouseLeft").data());   // "Mouse Left"
-			assignMouse2.setVisible().setText(bms::get("Settings.Input.MouseMiddle").data()); // "Mouse Middle"
-			assignMouse3.setVisible().setText(bms::get("Settings.Input.MouseRight").data());  // "Mouse Right"
+			assignMouse1.setVisible().setText(bms::get("Settings.Input.MouseLeft").data());
+			assignMouse2.setVisible().setText(bms::get("Settings.Input.MouseMiddle").data());
+			assignMouse3.setVisible().setText(bms::get("Settings.Input.MouseRight").data());
 		}
 		else if (input.isAnalog()) {
-			assignMouse1.setVisible().setText(bms::get("Settings.Input.MouseXAxis").data());  // "Mouse X-axis"
-			assignMouse2.setVisible().setText(bms::get("Settings.Input.MouseYAxis").data());  // "Mouse Y-axis"
+			assignMouse1.setVisible().setText(bms::get("Settings.Input.MouseXAxis").data());
+			assignMouse2.setVisible().setText(bms::get("Settings.Input.MouseYAxis").data());
 		}
 	}
 
@@ -129,7 +154,9 @@ auto InputSettings::reloadPorts() -> void {
 	portList.reset();
 
 	for (auto& port : inputManager.ports) {
-		if (port.name == "Expansion Port") continue;
+		if (port.name == "Expansion Port") {
+			continue;
+		}
 
 		string portText;
 		auto portName = port.name;
@@ -156,7 +183,10 @@ auto InputSettings::reloadDevices() -> void {
 
 	for (auto& device : activePort().devices) {
 		if (device.mappings) { // only display devices that have configurable inputs
-			deviceList.append(ComboButtonItem().setText(bms::getDeviceString(device.name.data()).data()).setAttribute("index", index)); // device.name
+			auto item = ComboButtonItem().setText(bms::getDeviceString(device.name.data()).data())
+			                             .setAttribute("index", index);
+
+			deviceList.append(item);
 		}
 
 		index++;
@@ -167,7 +197,7 @@ auto InputSettings::reloadDevices() -> void {
 
 auto InputSettings::reloadMappings() -> void {
 	mappingList.reset();
-	mappingList.append(TableViewColumn().setText(bms::get("Common.Name").data())); // "Name"
+	mappingList.append(TableViewColumn().setText(bms::get("Common.Name").data()));
 
 	/* MT. */
 	char space = ' ';
@@ -175,7 +205,7 @@ auto InputSettings::reloadMappings() -> void {
 	/* /MT. */
 
 	for (uint n : range(BindingLimit)) {
-		mappingList.append(TableViewColumn().setText({mappingTextPrefix, 1 + n}).setExpandable()); // "Mapping #"
+		mappingList.append(TableViewColumn().setText({mappingTextPrefix, 1 + n}).setExpandable());
 	}
 
 	for (auto& mapping : activeDevice().mappings) {
@@ -231,8 +261,8 @@ auto InputSettings::assignMapping(TableViewCell cell) -> void {
 	for (auto mapping : mappingList.batched()) {
 		activeMapping = activeDevice().mappings[mapping.offset()];
 		activeBinding = max(0, (int)cell.offset() - 1);
-		mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText(awaitingString); // "assign"
-		settingsWindow.statusBar.setText({statusPrefix, 1 + activeBinding, " [", activeMapping->name, "] ..."}); // "Press a key or button for mapping #"
+		mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText(awaitingString);
+		settingsWindow.statusBar.setText({statusPrefix, 1 + activeBinding, " [", activeMapping->name, "] ..."});
 		settingsWindow.setDismissable(false);
 		updateControls();
 		Application::processEvents();
@@ -251,13 +281,16 @@ auto InputSettings::cancelMapping() -> void {
 }
 
 auto InputSettings::assignMouseInput(uint id) -> void {
-	if (!activeMapping) return;
+	if (!activeMapping) {
+		return;
+	}
 
 	if (auto mouse = inputManager.findMouse()) {
 		if (activeMapping->isDigital()) {
 			return inputEvent(mouse, HID::Mouse::GroupID::Button, id, 0, 1, true);
 		}
-		else if (activeMapping->isAnalog()) {
+
+		if (activeMapping->isAnalog()) {
 			return inputEvent(mouse, HID::Mouse::GroupID::Axis, id, 0, +32767, true);
 		}
 	}
@@ -270,7 +303,7 @@ auto InputSettings::inputEvent(shared_pointer<HID::Device> device, uint group, u
 
 	if (activeMapping->bind(device, group, input, oldValue, newValue, activeBinding)) {
 		activeMapping.reset();
-		settingsWindow.statusBar.setText(bms::get("Settings.Common.MappingAssigned").data()); // "Mapping assigned."
+		settingsWindow.statusBar.setText(bms::get("Settings.Common.MappingAssigned").data());
 		refreshMappings();
 
 		timer.onActivate([&] {

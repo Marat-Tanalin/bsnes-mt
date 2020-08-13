@@ -23,53 +23,59 @@ auto Presentation::create() -> void {
 
 	fileMenu.setText(bms::get("Menu.File").data()); // MT.
 
-	loadGame.setIcon(Icon::Action::Open).setText({bms::get("Menu.File.OpenGame").data(), ellipsis, "\tCtrl+O"}).onActivate([&] { // tr("Load Game")
+	loadGame.setIcon(Icon::Action::Open).setText({bms::get("Menu.File.OpenGame").data(), ellipsis, "\tCtrl+O"}).onActivate([&] {
 		program.load();
 	});
 
-	loadRecentGame.setIcon(Icon::Action::Open).setText(bms::get("Menu.File.OpenRecentGame").data()); // tr("Load Recent Game")
+	loadRecentGame.setIcon(Icon::Action::Open).setText(bms::get("Menu.File.OpenRecentGame").data());
 	updateRecentGames();
 
-	unloadGame.setIcon(Icon::Action::Remove).setText(bms::get("Menu.File.CloseGame").data()).setEnabled(false).onActivate([&] { // tr("Unload Game")
+	unloadGame.setIcon(Icon::Action::Remove).setText(bms::get("Menu.File.CloseGame").data()).setEnabled(false).onActivate([&] {
 		program.unload();
 	});
 
-	quit.setIcon(Icon::Action::Quit).setText({bms::get("Menu.File.Exit").data(), "\tAlt+F4"}).onActivate([&] { program.quit(); }); // tr("Quit")
+	quit.setIcon(Icon::Action::Quit).setText({bms::get("Menu.File.Exit").data(), "\tAlt+F4"}).onActivate([&] {
+		program.quit();
+	});
 
-	systemMenu.setText(bms::get("Menu.System").data()); // tr("System")
+	systemMenu.setText(bms::get("Menu.System").data());
 
-	resetSystem.setIcon(Icon::Action::Refresh).setText(bms::get("Common.Reset").data()).setEnabled(false).onActivate([&] { // tr("Reset System")
+	resetSystem.setIcon(Icon::Action::Refresh).setText(bms::get("Common.Reset").data()).setEnabled(false).onActivate([&] {
 		program.reset();
 	});
 
-	controllerPort1.setIcon(Icon::Device::Joypad).setText({bms::get("Menu.System.ControllerPort").data(), " 1"}); // tr("Controller Port 1")
-	controllerPort2.setIcon(Icon::Device::Joypad).setText({bms::get("Menu.System.ControllerPort").data(), " 2"}); // tr("Controller Port 2")
-	expansionPort.setIcon(Icon::Device::Storage).setText(bms::get("Menu.System.ExpansionPort").data()); // tr("Expansion Port")
+	controllerPort1.setIcon(Icon::Device::Joypad).setText({bms::get("Menu.System.ControllerPort").data(), " 1"});
+	controllerPort2.setIcon(Icon::Device::Joypad).setText({bms::get("Menu.System.ControllerPort").data(), " 2"});
+
+	expansionPort.setIcon(Icon::Device::Storage).setText(bms::get("Menu.System.ExpansionPort").data());
 	updateDeviceMenu();
 
-	settingsMenu.setText(bms::get("Settings").data()); // tr("Settings")
-	sizeMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Size").data()); // "Size"
-	updateSizeMenu();
-	outputMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Output").data()); // "Output"
+	settingsMenu.setText(bms::get("Settings").data());
 
-	centerViewport.setText(bms::get("Menu.Settings.Output.Center").data()).onActivate([&] { // "Center"
+	sizeMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Size").data());
+
+	updateSizeMenu();
+
+	outputMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Output").data());
+
+	centerViewport.setText(bms::get("Menu.Settings.Output.Center").data()).onActivate([&] {
 		settings.video.output = "Center";
 		video.clear();
 	});
 
 	/* MT */
-	perfectViewport.setText(bms::get("Menu.Settings.Output.PixelPerfect").data()).onActivate([&] {//"Pixel-Perfect"
+	perfectViewport.setText(bms::get("Menu.Settings.Output.PixelPerfect").data()).onActivate([&] {
 		settings.video.output = "Pixel-Perfect";
 		video.clear();
 	});
 	/* /MT */
 
-	scaleViewport.setText(bms::get("Menu.Settings.Output.Scale").data()).onActivate([&] { // "Scale"
+	scaleViewport.setText(bms::get("Menu.Settings.Output.Scale").data()).onActivate([&] {
 		settings.video.output = "Scale";
 		video.clear();
 	});
 
-	stretchViewport.setText(bms::get("Menu.Settings.Output.Stretch").data()).onActivate([&] { // "Stretch"
+	stretchViewport.setText(bms::get("Menu.Settings.Output.Stretch").data()).onActivate([&] {
 		settings.video.output = "Stretch";
 		video.clear();
 	});
@@ -91,48 +97,99 @@ auto Presentation::create() -> void {
 		stretchViewport.setChecked();
 	}
 
-	// "Aspect-Ratio Correction"
-	aspectCorrection.setText(bms::get("Menu.Settings.Output.AspectRatioCorrection").data()).setChecked(settings.video.aspectCorrection).onToggle([&] {
-		settings.video.aspectCorrection = aspectCorrection.checked();
-		video.clear(); // MT.
-		//resizeWindow(); // Commented-out by MT.
-	});
+	aspectCorrection.setText(bms::get("Menu.Settings.Output.AspectRatioCorrection").data())
+		.setChecked(settings.video.aspectCorrection)
+		.onToggle([&] {
+			settings.video.aspectCorrection = aspectCorrection.checked();
+			video.clear(); // MT.
+			//resizeWindow(); // Commented-out by MT.
+		});
 
-	// "Show Overscan Area"
-	showOverscanArea.setText(bms::get("Menu.Settings.Output.ShowOverscanArea").data()).setChecked(settings.video.overscan).onToggle([&] {
-		settings.video.overscan = showOverscanArea.checked();
-		video.clear(); // MT.
-		//resizeWindow(); // Commented-out by MT.
-	});
+	showOverscanArea.setText(bms::get("Menu.Settings.Output.ShowOverscanArea").data())
+		.setChecked(settings.video.overscan)
+		.onToggle([&] {
+			settings.video.overscan = showOverscanArea.checked();
+			video.clear(); // MT.
+			//resizeWindow(); // Commented-out by MT.
+		});
 
 	/* MT. */
-	scalingInfo.setText(bms::get("Menu.Settings.Output.scalingInfo").data()).setChecked(settings.video.scalingInfo).onToggle([&] {
-		settings.video.scalingInfo = scalingInfo.checked();
-	});
+	scalingInfo.setText(bms::get("Menu.Settings.Output.scalingInfo").data())
+		.setChecked(settings.video.scalingInfo)
+		.onToggle([&] {
+			settings.video.scalingInfo = scalingInfo.checked();
+		});
 	/* /MT. */
 
-	// "Hires Blur Emulation"
-	blurEmulation.setText(bms::get("Menu.Settings.Output.HiresBlurEmulation").data()).setChecked(settings.video.blur).onToggle([&] {
-		settings.video.blur = blurEmulation.checked();
-		emulator->configure("Video/BlurEmulation", settings.video.blur);
-	}).doToggle();
+	blurEmulation.setText(bms::get("Menu.Settings.Output.HiresBlurEmulation").data())
+		.setChecked(settings.video.blur)
+		.onToggle([&] {
+			settings.video.blur = blurEmulation.checked();
+			emulator->configure("Video/BlurEmulation", settings.video.blur);
+		})
+		.doToggle();
 
-	filterMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Filter").data()); // "Filter"
-	filterNone.setText(bms::get("Common.None").data()).onActivate([&] { settings.video.filter = "None"; }); // "None"
-	filterScanlinesLight.setText("Scanlines (66%)").onActivate([&] { settings.video.filter = "Scanlines (66%)"; });
-	filterScanlinesDark.setText("Scanlines (33%)").onActivate([&] { settings.video.filter = "Scanlines (33%)"; });
-	filterScanlinesBlack.setText("Scanlines (0%)").onActivate([&] { settings.video.filter = "Scanlines (0%)"; });
-	filterPixellate2x.setText("Pixellate2x").onActivate([&] { settings.video.filter = "Pixellate2x"; });
-	filterScale2x.setText("Scale2x").onActivate([&] { settings.video.filter = "Scale2x"; });
-	filter2xSaI.setText("2xSaI").onActivate([&] { settings.video.filter = "2xSaI"; });
-	filterSuper2xSaI.setText("Super 2xSaI").onActivate([&] { settings.video.filter = "Super 2xSaI"; });
-	filterSuperEagle.setText("Super Eagle").onActivate([&] { settings.video.filter = "Super Eagle"; });
-	filterLQ2x.setText("LQ2x").onActivate([&] { settings.video.filter = "LQ2x"; });
-	filterHQ2x.setText("HQ2x").onActivate([&] { settings.video.filter = "HQ2x"; });
-	filterNTSC_RF.setText("NTSC (RF)").onActivate([&] { settings.video.filter = "NTSC (RF)"; });
-	filterNTSC_Composite.setText("NTSC (Composite)").onActivate([&] { settings.video.filter = "NTSC (Composite)"; });
-	filterNTSC_SVideo.setText("NTSC (S-Video)").onActivate([&] { settings.video.filter = "NTSC (S-Video)"; });
-	filterNTSC_RGB.setText("NTSC (RGB)").onActivate([&] { settings.video.filter = "NTSC (RGB)"; });
+	filterMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Filter").data());
+
+	filterNone.setText(bms::get("Common.None").data()).onActivate([&] {
+		settings.video.filter = "None";
+	});
+
+	filterScanlinesLight.setText("Scanlines (66%)").onActivate([&] {
+		settings.video.filter = "Scanlines (66%)";
+	});
+
+	filterScanlinesDark.setText("Scanlines (33%)").onActivate([&] {
+		settings.video.filter = "Scanlines (33%)";
+	});
+
+	filterScanlinesBlack.setText("Scanlines (0%)").onActivate([&] {
+		settings.video.filter = "Scanlines (0%)";
+	});
+
+	filterPixellate2x.setText("Pixellate2x").onActivate([&] {
+		settings.video.filter = "Pixellate2x";
+	});
+
+	filterScale2x.setText("Scale2x").onActivate([&] {
+		settings.video.filter = "Scale2x";
+	});
+
+	filter2xSaI.setText("2xSaI").onActivate([&] {
+		settings.video.filter = "2xSaI";
+	});
+
+	filterSuper2xSaI.setText("Super 2xSaI").onActivate([&] {
+		settings.video.filter = "Super 2xSaI";
+	});
+
+	filterSuperEagle.setText("Super Eagle").onActivate([&] {
+		settings.video.filter = "Super Eagle";
+	});
+
+	filterLQ2x.setText("LQ2x").onActivate([&] {
+		settings.video.filter = "LQ2x";
+	});
+
+	filterHQ2x.setText("HQ2x").onActivate([&] {
+		settings.video.filter = "HQ2x";
+	});
+
+	filterNTSC_RF.setText("NTSC (RF)").onActivate([&] {
+		settings.video.filter = "NTSC (RF)";
+	});
+
+	filterNTSC_Composite.setText("NTSC (Composite)").onActivate([&] {
+		settings.video.filter = "NTSC (Composite)";
+	});
+
+	filterNTSC_SVideo.setText("NTSC (S-Video)").onActivate([&] {
+		settings.video.filter = "NTSC (S-Video)";
+	});
+
+	filterNTSC_RGB.setText("NTSC (RGB)").onActivate([&] {
+		settings.video.filter = "NTSC (RGB)";
+	});
 
 	auto filter = settings.video.filter; // MT.
 
@@ -182,45 +239,75 @@ auto Presentation::create() -> void {
 		filterNTSC_RGB.setChecked();
 	}
 
-	shaderMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Shader").data()); // "Shader"
+	shaderMenu.setIcon(Icon::Emblem::Image).setText(bms::get("Menu.Settings.Shader").data());
 
-	muteAudio.setText(bms::get("Menu.Settings.MuteAudio").data()).setChecked(settings.audio.mute).onToggle([&] { // "Mute Audio"
-		settings.audio.mute = muteAudio.checked();
+	muteAudio.setText(bms::get("Menu.Settings.MuteAudio").data())
+		.setChecked(settings.audio.mute)
+		.onToggle([&] {
+			settings.audio.mute = muteAudio.checked();
+	
+			if (settings.audio.mute) {
+				program.mute |= Program::Mute::Always;
+			}
+			else {
+				program.mute &= ~Program::Mute::Always;
+			}
+		})
+		.doToggle();  //set initial mute state flag
 
-		if (settings.audio.mute) {
-			program.mute |= Program::Mute::Always;
-		}
-		else {
-			program.mute &= ~Program::Mute::Always;
-		}
-	}).doToggle();  //set initial mute state flag
+	showStatusBar.setText(bms::get("Menu.Settings.ShowStatusBar").data())
+		.setChecked(settings.general.statusBar)
+		.onToggle([&] {
+			settings.general.statusBar = showStatusBar.checked();
+	
+			if (showStatusBar.checked()) {
+				layout.append(statusLayout, Size{~0, StatusHeight});
+			}
+			else {
+				layout.remove(statusLayout);
+			}
+	
+			//if (visible()) resizeWindow(); // Commented-out by MT.
+		});
 
-	// "Show Status Bar"
-	showStatusBar.setText(bms::get("Menu.Settings.ShowStatusBar").data()).setChecked(settings.general.statusBar).onToggle([&] {
-		settings.general.statusBar = showStatusBar.checked();
-
-		if (!showStatusBar.checked()) {
-			layout.remove(statusLayout);
-		}
-		else {
-			layout.append(statusLayout, Size{~0, StatusHeight});
-		}
-
-		//if(visible()) resizeWindow(); // Commented-out by MT.
+	videoSettings.setIcon(Icon::Device::Display).setText({bms::get("Common.Video").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(0);
 	});
 
-	videoSettings.setIcon(Icon::Device::Display).setText({bms::get("Common.Video").data(), ellipsis}).onActivate([&] { settingsWindow.show(0); }); // "Video..."
-	audioSettings.setIcon(Icon::Device::Speaker).setText({bms::get("Common.Audio").data(), ellipsis}).onActivate([&] { settingsWindow.show(1); }); // "Audio..."
-	inputSettings.setIcon(Icon::Device::Joypad).setText({bms::get("Settings.Input").data(), ellipsis}).onActivate([&] { settingsWindow.show(2); }); // "Input..."
-	hotkeySettings.setIcon(Icon::Device::Keyboard).setText({bms::get("Settings.Hotkeys").data(), ellipsis}).onActivate([&] { settingsWindow.show(3); }); // "Hotkeys..."
-	pathSettings.setIcon(Icon::Emblem::Folder).setText({bms::get("Settings.Paths").data(), ellipsis}).onActivate([&] { settingsWindow.show(4); }); // "Paths..."
-	emulatorSettings.setIcon(Icon::Action::Settings).setText({bms::get("Settings.Emulator").data(), ellipsis}).onActivate([&] { settingsWindow.show(5); }); // "Emulator..."
-	enhancementSettings.setIcon(Icon::Action::Add).setText({bms::get("Settings.Enhancements").data(), ellipsis}).onActivate([&] { settingsWindow.show(6); }); // "Enhancements..."
-	compatibilitySettings.setIcon(Icon::Action::Remove).setText({bms::get("Settings.Compatibility").data(), ellipsis}).onActivate([&] { settingsWindow.show(7); }); // "Compatibility..."
-	driverSettings.setIcon(Icon::Place::Settings).setText({bms::get("Settings.Drivers").data(), ellipsis}).onActivate([&] { settingsWindow.show(8); }); // "Drivers..."
-  
+	audioSettings.setIcon(Icon::Device::Speaker).setText({bms::get("Common.Audio").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(1);
+	});
+
+	inputSettings.setIcon(Icon::Device::Joypad).setText({bms::get("Settings.Input").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(2);
+	});
+
+	hotkeySettings.setIcon(Icon::Device::Keyboard).setText({bms::get("Settings.Hotkeys").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(3);
+	});
+
+	pathSettings.setIcon(Icon::Emblem::Folder).setText({bms::get("Settings.Paths").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(4);
+	});
+
+	emulatorSettings.setIcon(Icon::Action::Settings).setText({bms::get("Settings.Emulator").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(5);
+	});
+
+	enhancementSettings.setIcon(Icon::Action::Add).setText({bms::get("Settings.Enhancements").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(6);
+	});
+
+	compatibilitySettings.setIcon(Icon::Action::Remove).setText({bms::get("Settings.Compatibility").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(7);
+	});
+
+	driverSettings.setIcon(Icon::Place::Settings).setText({bms::get("Settings.Drivers").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(8);
+	});
+
 	/* MT. */
-	settingsFolder.setIcon(Icon::Emblem::Folder).setText(bms::get("Menu.Settings.OpenSettingsFolder").data()).onActivate([&] { // "Open Settings Folder"
+	settingsFolder.setIcon(Icon::Emblem::Folder).setText(bms::get("Menu.Settings.OpenSettingsFolder").data()).onActivate([&] {
 		string path = nall::Location::path(locate("bsnes-mt-settings.bml"));
 		bsnesMt::open(path.get());
 	});
@@ -228,157 +315,208 @@ auto Presentation::create() -> void {
 
 	char space = ' '; // MT.
 
-	toolsMenu.setText(bms::get("Tools").data()).setVisible(false); // tr("Tools")
-	saveState.setIcon(Icon::Media::Record).setText(bms::get("Tools.SaveState").data()); // "Save State"
+	toolsMenu.setText(bms::get("Tools").data()).setVisible(false);
+
+	saveState.setIcon(Icon::Media::Record).setText(bms::get("Tools.SaveState").data());
 
 	for (uint index : range(QuickStates)) {
 		MenuItem item{&saveState};
+
 		item.setAttribute("name", {"Quick/Slot ", 1 + index});
-		item.setAttribute("title", {bms::get("Tools.SaveState.Slot").data(), space, 1 + index}); // "Slot "
-		item.setText({bms::get("Tools.SaveState.Slot").data(), space, 1 + index}); // "Slot "
-		item.onActivate([=] { program.saveState({"Quick/Slot ", 1 + index}); });
+		item.setAttribute("title", {bms::get("Tools.SaveState.Slot").data(), space, 1 + index});
+		item.setText({bms::get("Tools.SaveState.Slot").data(), space, 1 + index});
+
+		item.onActivate([=] {
+			program.saveState({"Quick/Slot ", 1 + index});
+		});
 	}
 
-	loadState.setIcon(Icon::Media::Rewind).setText(bms::get("Tools.LoadState").data()); // "Load State"
+	loadState.setIcon(Icon::Media::Rewind).setText(bms::get("Tools.LoadState").data());
 
 	for (uint index : range(QuickStates)) {
 		MenuItem item{&loadState};
+
 		item.setAttribute("name", {"Quick/Slot ", 1 + index});
-		item.setAttribute("title", {bms::get("Tools.SaveState.Slot").data(), space, 1 + index}); // "Slot "
-		item.setText({bms::get("Tools.SaveState.Slot").data(), space, 1 + index}); // "Slot "
-		item.onActivate([=] { program.loadState({"Quick/Slot ", 1 + index}); });
+		item.setAttribute("title", {bms::get("Tools.SaveState.Slot").data(), space, 1 + index});
+		item.setText({bms::get("Tools.SaveState.Slot").data(), space, 1 + index});
+
+		item.onActivate([=] {
+			program.loadState({"Quick/Slot ", 1 + index});
+		});
 	}
 
 	loadState.append(MenuSeparator());
 
 	loadState.append(MenuItem()
 		.setAttribute("name", "Quick/Undo")
-		.setAttribute("title", bms::get("Tools.LoadState.UndoLastSave").data()) // "Undo Last Save"
-		.setIcon(Icon::Edit::Undo).setText(bms::get("Tools.LoadState.UndoLastSave").data()).onActivate([&] { // "Undo Last Save"
+		.setAttribute("title", bms::get("Tools.LoadState.UndoLastSave").data())
+		.setIcon(Icon::Edit::Undo).setText(bms::get("Tools.LoadState.UndoLastSave").data()).onActivate([&] {
 			program.loadState("Quick/Undo");
 		}));
 
 	loadState.append(MenuItem()
 		.setAttribute("name", "Quick/Redo")
-		.setAttribute("title", bms::get("Tools.LoadState.RedoLastUndo").data()) // "Redo Last Undo"
-		.setIcon(Icon::Edit::Redo).setText(bms::get("Tools.LoadState.RedoLastUndo").data()).onActivate([&] { // "Redo Last Undo"
+		.setAttribute("title", bms::get("Tools.LoadState.RedoLastUndo").data())
+		.setIcon(Icon::Edit::Redo).setText(bms::get("Tools.LoadState.RedoLastUndo").data()).onActivate([&] {
 			program.loadState("Quick/Redo");
 		}));
 
-	// "Remove All States"
-	loadState.append(MenuItem().setIcon(Icon::Edit::Clear).setText(bms::get("Tools.LoadState.RemoveAllStates").data()).onActivate([&] {
-		/* // Commented-out by MT.
-		if(MessageDialog(bms::get("Tools.LoadState.RemoveAllStates.confirm").data()).setAlignment(*this)
-		.question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data())
-		{ // "Are you sure you want to permanently\nremove all quick states for this game?" // "Yes"
-		*/
+	loadState.append(MenuItem().setIcon(Icon::Edit::Clear)
+		.setText(bms::get("Tools.LoadState.RemoveAllStates").data())
+		.onActivate([&] {
+			/* // Commented-out by MT.
+			if (MessageDialog(bms::get("Tools.LoadState.RemoveAllStates.confirm").data()).setAlignment(*this)
+			.question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data())
+			{
+			*/
+	
+			if (bmw::confirmById("Tools.LoadState.RemoveAllStates.confirm", handle())) {
+				for (uint index : range(QuickStates)) {
+					program.removeState({"Quick/Slot ", 1 + index});
+				}
+				program.removeState("Quick/Undo");
+				program.removeState("Quick/Redo");
+			}
+		}));
 
-		if (bmw::confirmById("Tools.LoadState.RemoveAllStates.confirm", handle())) {
-			for(uint index : range(QuickStates)) program.removeState({"Quick/Slot ", 1 + index});
-			program.removeState("Quick/Undo");
-			program.removeState("Quick/Redo");
-		}
-	}));
+	speedMenu.setIcon(Icon::Device::Clock).setText(bms::get("Tools.Speed").data()).setEnabled(!settings.video.blocking && settings.audio.blocking);
 
-	speedMenu.setIcon(Icon::Device::Clock).setText(bms::get("Tools.Speed").data()).setEnabled(!settings.video.blocking && settings.audio.blocking); // "Speed"
-
-	speedSlowest.setText({"50% (", bms::get("Tools.Speed.Slowest").data(), ")"}).setAttribute("multiplier", "2.0").onActivate([&] { // "50% (Slowest)"
+	speedSlowest.setText({"50% (", bms::get("Tools.Speed.Slowest").data(), ")"}).setAttribute("multiplier", "2.0").onActivate([&] {
 		program.updateAudioFrequency();
 	});
 
-	speedSlow.setText({"75% (", bms::get("Tools.Speed.Slow").data(), ")"}).setAttribute("multiplier", "1.333").onActivate([&] { // "75% (Slow)"
+	speedSlow.setText({"75% (", bms::get("Tools.Speed.Slow").data(), ")"}).setAttribute("multiplier", "1.333").onActivate([&] {
 		program.updateAudioFrequency();
 	});
 
-	speedNormal.setText({"100% (", bms::get("Tools.Speed.Normal").data(), ")"}).setAttribute("multiplier", "1.0").onActivate([&] { // "100% (Normal)"
+	speedNormal.setText({"100% (", bms::get("Tools.Speed.Normal").data(), ")"}).setAttribute("multiplier", "1.0").onActivate([&] {
 		program.updateAudioFrequency();
 	});
 
-	speedFast.setText({"150% (", bms::get("Tools.Speed.Fast").data(), ")"}).setAttribute("multiplier", "0.667").onActivate([&] { // "150% (Fast)"
+	speedFast.setText({"150% (", bms::get("Tools.Speed.Fast").data(), ")"}).setAttribute("multiplier", "0.667").onActivate([&] {
 		program.updateAudioFrequency();
 	});
 
-	speedFastest.setText({"200% (", bms::get("Tools.Speed.Fastest").data(), ")"}).setAttribute("multiplier", "0.5").onActivate([&] { // "200% (Fastest)"
+	speedFastest.setText({"200% (", bms::get("Tools.Speed.Fastest").data(), ")"}).setAttribute("multiplier", "0.5").onActivate([&] {
 		program.updateAudioFrequency();
 	});
 
-	runMenu.setIcon(Icon::Media::Play).setText(bms::get("Tools.RunMode").data()); // "Run Mode"
-	runEmulation.setText(bms::get("Tools.RunMode.Normal").data()).onActivate([&] {}); // "Normal"
+	runMenu.setIcon(Icon::Media::Play).setText(bms::get("Tools.RunMode").data());
 
-	pauseEmulation.setText(bms::get("Tools.RunMode.PauseEmulation").data()).onActivate([&] { // "Pause Emulation"
+	runEmulation.setText(bms::get("Tools.RunMode.Normal").data()).onActivate([&] {});
+
+	pauseEmulation.setText(bms::get("Tools.RunMode.PauseEmulation").data()).onActivate([&] {
 		audio.clear();
 	});
 
-	frameAdvance.setText(bms::get("Tools.RunMode.FrameAdvance").data()).onActivate([&] { // "Frame Advance"
+	frameAdvance.setText(bms::get("Tools.RunMode.FrameAdvance").data()).onActivate([&] {
 		audio.clear();
 		program.frameAdvanceLock = true;
 	});
 
-	movieMenu.setIcon(Icon::Emblem::Video).setText(bms::get("Tools.Movie").data()); // "Movie"
-	moviePlay.setIcon(Icon::Media::Play).setText(bms::get("Tools.Movie.Play").data()).onActivate([&] { program.moviePlay(); }); // "Play"
-	movieRecord.setIcon(Icon::Media::Record).setText(bms::get("Tools.Movie.Record").data()).onActivate([&] { program.movieRecord(false); }); // "Record"
-	movieRecordFromBeginning.setIcon(Icon::Media::Record).setText(bms::get("Tools.Movie.ResetAndRecord").data()).onActivate([&] { program.movieRecord(true); }); // "Reset and Record"
-	movieStop.setIcon(Icon::Media::Stop).setText(bms::get("Tools.Movie.Stop").data()).onActivate([&] { program.movieStop(); }); // "Stop"
+	movieMenu.setIcon(Icon::Emblem::Video).setText(bms::get("Tools.Movie").data());
 
-	captureScreenshot.setIcon(Icon::Emblem::Image).setText(bms::get("Tools.TakeScreenshot").data()).onActivate([&] { // "Capture Screenshot"
+	moviePlay.setIcon(Icon::Media::Play).setText(bms::get("Tools.Movie.Play").data()).onActivate([&] {
+		program.moviePlay();
+	});
+
+	movieRecord.setIcon(Icon::Media::Record).setText(bms::get("Tools.Movie.Record").data()).onActivate([&] {
+		program.movieRecord(false);
+	});
+
+	movieRecordFromBeginning.setIcon(Icon::Media::Record).setText(bms::get("Tools.Movie.ResetAndRecord").data()).onActivate([&] {
+		program.movieRecord(true);
+	});
+
+	movieStop.setIcon(Icon::Media::Stop).setText(bms::get("Tools.Movie.Stop").data()).onActivate([&] {
+		program.movieStop();
+	});
+
+	captureScreenshot.setIcon(Icon::Emblem::Image).setText(bms::get("Tools.TakeScreenshot").data()).onActivate([&] {
 		program.captureScreenshot();
 	});
 
-	cheatFinder.setIcon(Icon::Action::Search).setText({bms::get("Tools.CheatFinder").data(), ellipsis}).onActivate([&] { toolsWindow.show(0); }); // "Cheat Finder..."
-	cheatEditor.setIcon(Icon::Edit::Replace).setText({bms::get("Tools.CheatEditor").data(), ellipsis}).onActivate([&] { toolsWindow.show(1); }); // "Cheat Editor..."
-	stateManager.setIcon(Icon::Application::FileManager).setText({bms::get("Tools.StateManager").data(), ellipsis}).onActivate([&] { toolsWindow.show(2); }); // "State Manager..."
-	manifestViewer.setIcon(Icon::Emblem::Text).setText({bms::get("Tools.ManifestViewer").data(), ellipsis}).onActivate([&] { toolsWindow.show(3); }); // "Manifest Viewer..."
+	cheatFinder.setIcon(Icon::Action::Search).setText({bms::get("Tools.CheatFinder").data(), ellipsis}).onActivate([&] {
+		toolsWindow.show(0);
+	});
 
-	helpMenu.setText(bms::get("Menu.Help").data()); // tr("Help")
+	cheatEditor.setIcon(Icon::Edit::Replace).setText({bms::get("Tools.CheatEditor").data(), ellipsis}).onActivate([&] {
+		toolsWindow.show(1);
+	});
+
+	stateManager.setIcon(Icon::Application::FileManager).setText({bms::get("Tools.StateManager").data(), ellipsis}).onActivate([&] {
+		toolsWindow.show(2);
+	});
+
+	manifestViewer.setIcon(Icon::Emblem::Text).setText({bms::get("Tools.ManifestViewer").data(), ellipsis}).onActivate([&] {
+		toolsWindow.show(3);
+	});
+
+	helpMenu.setText(bms::get("Menu.Help").data());
 
 	string aboutString = bms::get("Menu.Help.About").data(); // MT.
 
-	aboutSameBoy.setIcon(Icon::Prompt::Question).setText({string(aboutString).replace('|', Emulator::SameBoyName), ellipsis}).onActivate([&] { // tr("About SameBoy")
-		AboutDialog()
-			.setName(Emulator::SameBoyName)
-			.setLogo(Resource::SameBoy)
-			.setDescription(bms::get("About.SameBoy.description").data()) // "Super Game Boy emulator"
-			.setVersion("0.12.1")
-			.setCopyright("Lior Halphon")
-			.setLicense("MIT")
-			.setWebsite("https://sameboy.github.io")
-			.setAlignment(*this)
-			.show();
-	});
+	aboutSameBoy.setIcon(Icon::Prompt::Question)
+		.setText({string(aboutString).replace('|', Emulator::SameBoyName), ellipsis})
+		.onActivate([&] {
+			AboutDialog()
+				.setName(Emulator::SameBoyName)
+				.setLogo(Resource::SameBoy)
+				.setDescription(bms::get("About.SameBoy.description").data())
+				.setVersion("0.12.1")
+				.setCopyright("Lior Halphon")
+				.setLicense("MIT")
+				.setWebsite("https://sameboy.github.io")
+				.setAlignment(*this)
+				.show();
+		});
 
-	aboutBsnes.setIcon(Icon::Prompt::Question).setText({string(aboutString).replace('|', Emulator::Name), ellipsis}).onActivate([&] { // tr("About bsnes")
-		AboutDialog()
-			.setName(Emulator::Name)
-			.setLogo(Resource::Logo)
-			.setDescription(bms::get("About.Bsnes.description").data()) // "Super Nintendo emulator"
-			.setVersion(Emulator::Version)
-			.setCopyright(bms::get("About.Bsnes.copyright").data()) // Emulator::Copyright
-			.setLicense(bms::get("About.Bsnes.license").data()) // Emulator::License
-			.setWebsite(Emulator::Website)
-			.setAlignment(*this)
-			.show();
-	});
+	aboutBsnes.setIcon(Icon::Prompt::Question)
+		.setText({string(aboutString).replace('|', Emulator::Name), ellipsis})
+		.onActivate([&] {
+			AboutDialog()
+				.setName(Emulator::Name)
+				.setLogo(Resource::Logo)
+				.setDescription(bms::get("About.Bsnes.description").data())
+				.setVersion(Emulator::Version)
+				.setCopyright(bms::get("About.Bsnes.copyright").data())
+				.setLicense(bms::get("About.Bsnes.license").data())
+				.setWebsite(Emulator::Website)
+				.setAlignment(*this)
+				.show();
+		});
 
 	/* MT. */
-	aboutBsnesMt.setIcon(Icon::Prompt::Question).setText({string(aboutString).replace('|', bma::title.data()), ellipsis}).onActivate([&] { // tr("About ")
-		bmw::showAbout((HWND)presentation.handle());
-	});
+	aboutBsnesMt.setIcon(Icon::Prompt::Question)
+		.setText({string(aboutString).replace('|', bma::title.data()), ellipsis})
+		.onActivate([&] {
+			bmw::showAbout((HWND)presentation.handle());
+		});
 	/* /MT. */
 
 	viewport.setFocusable(false);  //true would also capture Alt, which breaks keyboard menu navigation
 	viewport.setDroppable();
-	viewport.onDrop([&](auto locations) { onDrop(locations); });
+
+	viewport.onDrop([&](auto locations) {
+		onDrop(locations);
+	});
 
 	iconSpacer.setColor({0, 0, 0});
 	iconSpacer.setDroppable();
-	iconSpacer.onDrop([&](auto locations) { onDrop(locations); });
+
+	iconSpacer.onDrop([&](auto locations) {
+		onDrop(locations);
+	});
 
 	iconLayout.setAlignment(0.0).setCollapsible();
 	image icon{Resource::Icon};
 	icon.alphaBlend(0x000000);
 	iconCanvas.setIcon(icon);
 	iconCanvas.setDroppable();
-	iconCanvas.onDrop([&](auto locations) { onDrop(locations); });
+
+	iconCanvas.onDrop([&](auto locations) {
+		onDrop(locations);
+	});
 
 	if (!settings.general.statusBar) {
 		layout.remove(statusLayout);
@@ -413,16 +551,27 @@ auto Presentation::create() -> void {
 		program.quit();
 	});
 
-	setTitle(bma::windowTitle.data()); // {"bsnes v", Emulator::Version} // MT.
+	setTitle(bma::windowTitle.data());
 	setBackgroundColor({0, 0, 0});
 	resizeWindow();
 	setAlignment(Alignment::Center);
 
 	#if defined(PLATFORM_MACOS)
-	Application::Cocoa::onAbout([&] { aboutBsnes.doActivate(); });
-	Application::Cocoa::onActivate([&] { setFocused(); });
-	Application::Cocoa::onPreferences([&] { settingsWindow.show(2); });
-	Application::Cocoa::onQuit([&] { doClose(); });
+	Application::Cocoa::onAbout([&] {
+		aboutBsnes.doActivate();
+	});
+
+	Application::Cocoa::onActivate([&] {
+		setFocused();
+	});
+
+	Application::Cocoa::onPreferences([&] {
+		settingsWindow.show(2);
+	});
+
+	Application::Cocoa::onQuit([&] {
+		doClose();
+	});
 	#endif
 }
 
@@ -459,7 +608,7 @@ auto Presentation::updateStatusIcon() -> void {
 		icon.impose(image::blend::sourceAlpha, 0, (StatusHeight - 16) / 2, emblem, 0, 0, 16, 16);
 
 		statusIcon.setIcon(icon).setToolTip(
-			bms::get("StatusIcon.verifiedRom.tooltip").data() // "This is a known clean game image.\n" "PCB emulation is 100% accurate."
+			bms::get("StatusIcon.verifiedRom.tooltip").data()
 		);
 	}
 	else if (emulator->loaded()) {
@@ -467,7 +616,7 @@ auto Presentation::updateStatusIcon() -> void {
 		icon.impose(image::blend::sourceAlpha, 0, (StatusHeight - 16) / 2, emblem, 0, 0, 16, 16);
 
 		statusIcon.setIcon(icon).setToolTip(
-			bms::get("StatusIcon.unverifiedRom.tooltip").data() // "This is not a verified game image.\n" "PCB emulation is relying on heuristics."
+			bms::get("StatusIcon.unverifiedRom.tooltip").data()
 		);
 	}
 	else {
@@ -503,7 +652,7 @@ auto Presentation::updateDeviceMenu() -> void {
 
 	for (auto& port : emulator->ports()) {
 		Menu* menu = nullptr;
-		auto name = port.name; // MT.
+		auto  name = port.name; // MT.
 
 		if (name == "Controller Port 1") {
 			menu = &controllerPort1;
@@ -532,7 +681,7 @@ auto Presentation::updateDeviceMenu() -> void {
 
 			MenuRadioItem item{menu};
 			item.setAttribute("deviceID", device.id);
-			item.setText(bms::getDeviceString(device.name.data()).data()); // tr(device.name)
+			item.setText(bms::getDeviceString(device.name.data()).data());
 
 			item.onActivate([=] {
 				settings(path).setValue(device.name);
@@ -558,7 +707,7 @@ auto Presentation::updateDeviceMenu() -> void {
 auto Presentation::updateDeviceSelections() -> void {
 	for (auto& port : emulator->ports()) {
 		Menu* menu = nullptr;
-		auto name = port.name; // MT.
+		auto  name = port.name; // MT.
 
 		if (name == "Controller Port 1") {
 			menu = &controllerPort1;
@@ -621,11 +770,11 @@ auto Presentation::updateSizeMenu() -> void {
 
 	sizeMenu.append(MenuSeparator());
 
-	sizeMenu.append(MenuItem().setIcon(Icon::Action::Remove).setText(bms::get("Menu.Settings.Size.ShrinkWindowToSize").data()).onActivate([&] { // "Shrink Window To Size"
+	sizeMenu.append(MenuItem().setIcon(Icon::Action::Remove).setText(bms::get("Menu.Settings.Size.ShrinkWindowToSize").data()).onActivate([&] {
 		resizeWindow();
 	}));
 
-	sizeMenu.append(MenuItem().setIcon(Icon::Place::Settings).setText(bms::get("Menu.Settings.Size.CenterWindow").data()).onActivate([&] { // "Center Window"
+	sizeMenu.append(MenuItem().setIcon(Icon::Place::Settings).setText(bms::get("Menu.Settings.Size.CenterWindow").data()).onActivate([&] {
 		setAlignment(Alignment::Center);
 	}));
 
@@ -652,7 +801,7 @@ auto Presentation::updateStateMenus() -> void {
 					item.setText({item.attribute("title"), " (", chrono::local::datetime(states[*offset].date), ")"});
 				}
 				else {
-					item.setText({item.attribute("title"), " (", bms::get("Tools.SaveState.Slot.Empty").data(), ")"}); // empty
+					item.setText({item.attribute("title"), " (", bms::get("Tools.SaveState.Slot.Empty").data(), ")"});
 				}
 			}
 		}
@@ -667,7 +816,7 @@ auto Presentation::updateStateMenus() -> void {
 				}
 				else {
 					item.setEnabled(false);
-					item.setText({item.attribute("title"), " (", bms::get("Tools.SaveState.Slot.Empty").data(), ")"}); // empty
+					item.setText({item.attribute("title"), " (", bms::get("Tools.SaveState.Slot.Empty").data(), ")"});
 				}
 			}
 		}
@@ -679,7 +828,7 @@ auto Presentation::updateRecentGames() -> void {
 
 	//remove missing games from list
 	for (uint index = 0; index < RecentGames;) {
-		auto games = settings[{"Game/Recent/", 1 + index}].text();
+		auto games   = settings[{"Game/Recent/", 1 + index}].text();
 		bool missing = false;
 
 		if (games) {
@@ -739,18 +888,20 @@ auto Presentation::updateRecentGames() -> void {
 	if (recentGamesCount) { // MT.
 		loadRecentGame.append(MenuSeparator());
 
-		loadRecentGame.append(MenuItem().setIcon(Icon::Edit::Clear).setText(bms::get("Menu.File.OpenRecentGame.ClearList").data()).onActivate([&] { // tr("Clear List")
-			for (auto index : range(RecentGames)) {
-				settings({"Game/Recent/", 1 + index}).setValue("");
-			}
-
-			updateRecentGames();
-		}));
+		loadRecentGame.append(MenuItem().setIcon(Icon::Edit::Clear)
+			.setText(bms::get("Menu.File.OpenRecentGame.ClearList").data())
+			.onActivate([&] {
+				for (auto index : range(RecentGames)) {
+					settings({"Game/Recent/", 1 + index}).setValue("");
+				}
+	
+				updateRecentGames();
+			}));
 	} // MT.
 	/* MT. */
 	else {
 		loadRecentGame.append(MenuItem().setIcon(Icon::Emblem::File).setEnabled(false)
-			.setText({"(", bms::get("Menu.File.OpenRecentGame.NoRecentGames").data(), ")"})); // "(No recent games)"
+			.setText({"(", bms::get("Menu.File.OpenRecentGame.NoRecentGames").data(), ")"}));
 	}
 	/* /MT. */
 }
@@ -787,7 +938,7 @@ auto Presentation::updateShaders() -> void {
 	Group shaders;
 	MenuRadioItem none{&shaderMenu};
 
-	none.setText(bms::get("Common.None").data()).onActivate([&] { // "None"
+	none.setText(bms::get("Common.None").data()).onActivate([&] {
 		settings.video.shader = "None";
 		program.updateVideoShader();
 	});
@@ -796,7 +947,7 @@ auto Presentation::updateShaders() -> void {
 
 	MenuRadioItem blur{&shaderMenu};
 
-	blur.setText(bms::get("Menu.Settings.Shader.Blur").data()).onActivate([&] { // "Blur"
+	blur.setText(bms::get("Menu.Settings.Shader.Blur").data()).onActivate([&] {
 		settings.video.shader = "Blur";
 		program.updateVideoShader();
 	});
@@ -830,10 +981,11 @@ auto Presentation::updateShaders() -> void {
 	else if (shader == "Blur") {
 		blur.setChecked();
 	}
-
-	for (auto item : shaders.objects<MenuRadioItem>()) {
-		if (settings.video.shader == string{location, item.text(), ".shader/"}) {
-			item.setChecked();
+	else {
+		for (auto item : shaders.objects<MenuRadioItem>()) {
+			if (shader == string{location, item.text(), ".shader/"}) {
+				item.setChecked();
+			}
 		}
 	}
 }
