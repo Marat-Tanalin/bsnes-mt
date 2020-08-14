@@ -6,11 +6,11 @@
 #include <map>
 #include <string>
 
+#include "translations.h"
+
 namespace bsnesMt::strings {
 
 using std::map, std::string;
-
-#include "translations.h"
 
 auto getLocale() -> uint8_t;
 
