@@ -23,6 +23,9 @@ auto getLocale() -> uint8_t {
 		if (L"ru" == value) {
 			return RU;
 		}
+		else if (L"it" == value) {
+			return IT;
+		}
 		else if (L"jp" == value) {
 			return JP;
 		}
@@ -37,6 +40,9 @@ auto getLocale() -> uint8_t {
 
 	if (LANG_RUSSIAN == lang) {
 		locale = RU;
+	}
+	else if (LANG_ITALIAN == lang) {
+		locale = IT;
 	}
 	else if (LANG_JAPANESE == lang) {
 		locale = JP;
