@@ -8,7 +8,8 @@ using std::map, std::string;
 
 const uint8_t EN = 1, // English
               RU = 2, // Russian
-              JP = 3; // Japanese
+              JP = 3, // Japanese
+              IT = 4; // Italian
 
 static map<string, map<uint8_t, string>> strings = {
 	{
@@ -16,7 +17,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Yes"},
 			{RU, u8"Да"},
-			{JP, u8"はい"}
+			{JP, u8"はい"},
+			{IT, u8"Si"}
 		}
 	},
 	{
@@ -24,7 +26,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"No"},
 			{RU, u8"Нет"},
-			{JP, u8"いいえ"}
+			{JP, u8"いいえ"},
+			{IT, u8"No"}
 		}
 	},
 	{
@@ -32,21 +35,24 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Cancel"},
 			{RU, u8"Отмена"},
-			{JP, u8"キャンセル"}
+			{JP, u8"キャンセル"},
+			{IT, u8"Cancella"}
 		}
 	},
 	{
 		"Common.Always",
 		{
 			{EN, u8"Always"},
-			{RU, u8"Всегда"}
+			{RU, u8"Всегда"},
+			{IT, u8"Sempre"}
 		}
 	},
 	{
 		"Common.AreYouSure",
 		{
 			{EN, u8"Are you sure?"},
-			{RU, u8"Вы уверены?"}
+			{RU, u8"Вы уверены?"},
+			{IT, u8"Sei sicuro?"}
 		}
 	},
 	{
@@ -54,14 +60,16 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Open"},
 			{RU, u8"Открыть"},
-			{JP, u8"開く"}
+			{JP, u8"開く"},
+			{IT, u8"Apri"}
 		}
 	},
 	{
 		"Common.Load",
 		{
 			{EN, u8"Load"},
-			{RU, u8"Загрузить"}
+			{RU, u8"Загрузить"},
+			{IT, u8"Carica"}
 		}
 	},
 	{
@@ -69,35 +77,40 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Save"},
 			{RU, u8"Сохранить"},
-			{JP, u8"保存"}
+			{JP, u8"保存"},
+			{IT, u8"Salva"}
 		}
 	},
 	{
 		"Common.Add",
 		{
 			{EN, u8"Add"},
-			{RU, u8"Добавить"}
+			{RU, u8"Добавить"},
+			{IT, u8"Aggiungi"}
 		}
 	},
 	{
 		"Common.Remove",
 		{
 			{EN, u8"Remove"},
-			{RU, u8"Удалить"}
+			{RU, u8"Удалить"},
+			{IT, u8"Rimuovi"}
 		}
 	},
 	{
 		"Common.Delete",
 		{
 			{EN, u8"Delete"},
-			{RU, u8"Удалить"}
+			{RU, u8"Удалить"},
+			{IT, u8"Cancella"}
 		}
 	},
 	{
 		"Common.Rename",
 		{
 			{EN, u8"Rename"},
-			{RU, u8"Переименовать"}
+			{RU, u8"Переименовать"},
+			{IT, u8"Rinomina"}
 		}
 	},
 	{
@@ -105,14 +118,16 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Reset"},
 			{RU, u8"Сброс"},
-			{JP, u8"リセット"}
+			{JP, u8"リセット"},
+			{IT, u8"Resetta"}
 		}
 	},
 	{
 		"Common.Clear",
 		{
 			{EN, u8"Clear"},
-			{RU, u8"Очистить"}
+			{RU, u8"Очистить"},
+			{IT, u8"Pulisci"}
 		}
 	},
 	{
@@ -120,105 +135,120 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"None"},
 			{RU, u8"Нет"},
-			{JP, u8"なし"}
+			{JP, u8"なし"},
+			{IT, u8"Niente"}
 		}
 	},
 	{
 		"Common.Disabled",
 		{
 			{EN, u8"Disabled"},
-			{RU, u8"Отключено"}
+			{RU, u8"Отключено"},
+			{IT, u8"Disabilita"}
 		}
 	},
 	{
 		"Common.Default",
 		{
 			{EN, u8"Default"},
-			{RU, u8"По умолчанию"}
+			{RU, u8"По умолчанию"},
+			{IT, u8"Predefinito"}
 		}
 	},
 	{
 		"Common.Name",
 		{
 			{EN, u8"Name"},
-			{RU, u8"Название"}
+			{RU, u8"Название"},
+			{IT, u8"Nome"}
 		}
 	},
 	{
 		"Common.Date",
 		{
 			{EN, u8"Date"},
-			{RU, u8"Дата"}
+			{RU, u8"Дата"},
+			{IT, u8"Data"}
 		}
 	},
 	{
 		"Common.Success",
 		{
 			{EN, u8"Success"},
-			{RU, u8"Успех"}
+			{RU, u8"Успех"},
+			{IT, u8"Successo"}
 		}
 	},
 	{
 		"Common.Failure",
 		{
 			{EN, u8"Failure"},
-			{RU, u8"Неудача"}
+			{RU, u8"Неудача"},
+			{IT, u8"Fallito"}
 		}
 	},
 	{
 		"Common.Error",
 		{
 			{EN, u8"Error"},
-			{RU, u8"Ошибка"}
+			{RU, u8"Ошибка"},
+			{IT, u8"Errore"}
 		}
 	},
 	{
 		"Common.Warning",
 		{
 			{EN, u8"Warning"},
-			{RU, u8"Внимание"}
+			{RU, u8"Внимание"},
+			{IT, u8"Attenzione"}
 		}
 	},
 	{
 		"Common.Auto",
 		{
 			{EN, u8"Auto"},
-			{RU, u8"Авто"}
+			{RU, u8"Авто"},
+			{IT, u8"Automatico"}
 		}
 	},
 	{
 		"Common.Video",
 		{
 			{EN, u8"Video"},
-			{RU, u8"Видео"}
+			{RU, u8"Видео"},
+			{IT, u8"Video"}
 		}
 	},
 	{
 		"Common.Audio",
 		{
 			{EN, u8"Audio"},
-			{RU, u8"Звук"}
+			{RU, u8"Звук"},
+			{IT, u8"Audio"}
 		}
 	},
 	{
 		"Common.Fps", // Frames per second (frame-rate unit).
 		{
 			{EN, u8"FPS"},
-			{RU, u8"к/с"}
+			{RU, u8"к/с"},
+			{IT, u8"FPS"}
 		}
 	},
 	{
 		"Common.Hz",
 		{
 			{EN, u8"Hz"},
-			{RU, u8"Гц"}
+			{RU, u8"Гц"},
+			{IT, u8"Hz"}
 		}
 	},
 	{
 		"Common.number",
 		{
 			{EN, u8"#"},
-			{RU, u8"№"}
+			{RU, u8"№"},
+			{IT, u8"#"}
 		}
 	},
 
@@ -226,7 +256,8 @@ static map<string, map<uint8_t, string>> strings = {
 		"Menu.File",
 		{
 			{EN, u8"File"},
-			{RU, u8"Файл"}
+			{RU, u8"Файл"},
+			{IT, u8"File"}
 		}
 	},
 	{
@@ -234,7 +265,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Open Game"},
 			{RU, u8"Открыть игру"},
-			{JP, u8"ゲームを読み込み"}
+			{JP, u8"ゲームを読み込み"},
+			{IT, u8"Apri un Gioco"}
 		}
 	},
 	{
@@ -242,7 +274,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Open Recent Game"},
 			{RU, u8"Открыть недавнюю игру"},
-			{JP, u8"最新ゲームを読み込み"}
+			{JP, u8"最新ゲームを読み込み"},
+			{IT, u8"Apri un gioco lanciato di recente"}
 		}
 	},
 	{
@@ -250,14 +283,16 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Clear List"},
 			{RU, u8"Очистить список"},
-			{JP, u8"全部を消す"}
+			{JP, u8"全部を消す"},
+			{IT, u8"Pulisci Lista"}
 		}
 	},
 	{
 		"Menu.File.OpenRecentGame.NoRecentGames",
 		{
 			{EN, u8"No Recent Games"},
-			{RU, u8"Нет недавних игр"}
+			{RU, u8"Нет недавних игр"},
+			{IT, u8"Nessun Gioco Recente"}
 		}
 	},
 	{
@@ -265,7 +300,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Close Game"},
 			{RU, u8"Закрыть игру"},
-			{JP, u8"ゲームをアンロード"}
+			{JP, u8"ゲームをアンロード"},
+			{IT, u8"Chiudi Gioco"}
 		}
 	},
 	{
@@ -273,7 +309,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Exit"},
 			{RU, u8"Выход"},
-			{JP, u8"終了"}
+			{JP, u8"終了"},
+			{IT, u8"Esci"}
 		}
 	},
 
@@ -282,7 +319,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"System"},
 			{RU, u8"Система"},
-			{JP, u8"システム"}
+			{JP, u8"システム"},
+			{IT, u8"Sistema"}
 		}
 	},
 	{
@@ -290,7 +328,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Controller Port"},
 			{RU, u8"Порт контроллера"},
-			{JP, u8"コントローラポート"}
+			{JP, u8"コントローラポート"},
+			{IT, u8"Porta del Controller"}
 		}
 	},
 	{
@@ -298,7 +337,8 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Expansion Port"},
 			{RU, u8"Порт расширения"},
-			{JP, u8"拡張ポート"}
+			{JP, u8"拡張ポート"},
+			{IT, u8"Espansione della Porta"}
 		}
 	},
 
@@ -306,42 +346,48 @@ static map<string, map<uint8_t, string>> strings = {
 		"Menu.Settings.Size",
 		{
 			{EN, u8"Size"},
-			{RU, u8"Размер"}
+			{RU, u8"Размер"},
+			{IT, u8"Dimensione"}
 		}
 	},
 	{
 		"Menu.Settings.Size.ShrinkWindowToSize",
 		{
 			{EN, u8"Shrink Window to Size"},
-			{RU, u8"Подогнать окно под размер"}
+			{RU, u8"Подогнать окно под размер"},
+			{IT, u8"Riduci la finestra alle dimensioni"}
 		}
 	},
 	{
 		"Menu.Settings.Size.CenterWindow",
 		{
 			{EN, u8"Center Window"},
-			{RU, u8"Центрировать окно"}
+			{RU, u8"Центрировать окно"},
+			{IT, u8"Finestra centrata"}
 		}
 	},
 	{
 		"Menu.Settings.Size.FullScreenMode",
 		{
 			{EN, u8"Full-Screen Mode"},
-			{RU, u8"Полноэкранный режим"}
+			{RU, u8"Полноэкранный режим"},
+			{IT, u8"Modalità Schermo intero"}
 		}
 	},
 	{
 		"Menu.Settings.Size.PseudoFullScreenMode",
 		{
 			{EN, u8"Pseudo-Full-Screen Mode"},
-			{RU, u8"Псевдополноэкранный режим"}
+			{RU, u8"Псевдополноэкранный режим"},
+			{IT, u8"Modalità Pseudo schermo intero"}
 		}
 	},
 	{
 		"Menu.Settings.Output",
 		{
 			{EN, u8"Output"},
-			{RU, u8"Изображение"}
+			{RU, u8"Изображение"},
+			{IT, u8"Output"}
 		}
 	},
 	{
