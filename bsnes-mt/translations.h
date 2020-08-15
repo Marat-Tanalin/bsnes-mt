@@ -8,7 +8,7 @@ using std::map, std::string;
 
 const uint8_t EN = 1, // English
               RU = 2, // Russian
-              JP = 3, // Japanese
+              JA = 3, // Japanese
               IT = 4; // Italian
 
 static map<string, map<uint8_t, string>> strings = {
@@ -17,7 +17,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Yes"},
 			{RU, u8"Да"},
-			{JP, u8"はい"},
+			{JA, u8"はい"},
 			{IT, u8"Si"}
 		}
 	},
@@ -26,7 +26,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"No"},
 			{RU, u8"Нет"},
-			{JP, u8"いいえ"},
+			{JA, u8"いいえ"},
 			{IT, u8"No"}
 		}
 	},
@@ -35,7 +35,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Cancel"},
 			{RU, u8"Отмена"},
-			{JP, u8"キャンセル"},
+			{JA, u8"キャンセル"},
 			{IT, u8"Cancella"}
 		}
 	},
@@ -60,7 +60,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Open"},
 			{RU, u8"Открыть"},
-			{JP, u8"開く"},
+			{JA, u8"開く"},
 			{IT, u8"Apri"}
 		}
 	},
@@ -77,7 +77,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Save"},
 			{RU, u8"Сохранить"},
-			{JP, u8"保存"},
+			{JA, u8"保存"},
 			{IT, u8"Salva"}
 		}
 	},
@@ -118,7 +118,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Reset"},
 			{RU, u8"Сброс"},
-			{JP, u8"リセット"},
+			{JA, u8"リセット"},
 			{IT, u8"Resetta"}
 		}
 	},
@@ -135,7 +135,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"None"},
 			{RU, u8"Нет"},
-			{JP, u8"なし"},
+			{JA, u8"なし"},
 			{IT, u8"Niente"}
 		}
 	},
@@ -265,7 +265,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Open Game"},
 			{RU, u8"Открыть игру"},
-			{JP, u8"ゲームを読み込み"},
+			{JA, u8"ゲームを読み込み"},
 			{IT, u8"Apri un Gioco"}
 		}
 	},
@@ -274,7 +274,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Open Recent Game"},
 			{RU, u8"Открыть недавнюю игру"},
-			{JP, u8"最新ゲームを読み込み"},
+			{JA, u8"最新ゲームを読み込み"},
 			{IT, u8"Apri un gioco lanciato di recente"}
 		}
 	},
@@ -283,7 +283,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Clear List"},
 			{RU, u8"Очистить список"},
-			{JP, u8"全部を消す"},
+			{JA, u8"全部を消す"},
 			{IT, u8"Pulisci Lista"}
 		}
 	},
@@ -300,7 +300,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Close Game"},
 			{RU, u8"Закрыть игру"},
-			{JP, u8"ゲームをアンロード"},
+			{JA, u8"ゲームをアンロード"},
 			{IT, u8"Chiudi Gioco"}
 		}
 	},
@@ -309,7 +309,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Exit"},
 			{RU, u8"Выход"},
-			{JP, u8"終了"},
+			{JA, u8"終了"},
 			{IT, u8"Esci"}
 		}
 	},
@@ -319,7 +319,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"System"},
 			{RU, u8"Система"},
-			{JP, u8"システム"},
+			{JA, u8"システム"},
 			{IT, u8"Sistema"}
 		}
 	},
@@ -328,7 +328,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Controller Port"},
 			{RU, u8"Порт контроллера"},
-			{JP, u8"コントローラポート"},
+			{JA, u8"コントローラポート"},
 			{IT, u8"Porta del Controller"}
 		}
 	},
@@ -337,7 +337,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Expansion Port"},
 			{RU, u8"Порт расширения"},
-			{JP, u8"拡張ポート"},
+			{JA, u8"拡張ポート"},
 			{IT, u8"Espansione della Porta"}
 		}
 	},
@@ -495,7 +495,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Help"},
 			{RU, u8"Справка"},
-			{JP, u8"ヘルプ"}
+			{JA, u8"ヘルプ"}
 		}
 	},
 	{
@@ -503,7 +503,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"About |"},
 			{RU, u8"О программе |"},
-			{JP, u8"| について"}
+			{JA, u8"| について"}
 		}
 	},
 
@@ -512,7 +512,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Settings"},
 			{RU, u8"Настройки"},
-			{JP, u8"設定"}
+			{JA, u8"設定"}
 		}
 	},
 
@@ -1877,7 +1877,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Tools"},
 			{RU, u8"Инструменты"},
-			{JP, u8"ツール"}
+			{JA, u8"ツール"}
 		}
 	},
 
@@ -1900,7 +1900,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"empty"},
 			{RU, u8"пусто"},
-			{JP, u8"なし"}
+			{JA, u8"なし"}
 		}
 	},
 
@@ -2422,7 +2422,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Paused"},
 			{RU, u8"Пауза"},
-			{JP, u8"ポーズ"}
+			{JA, u8"ポーズ"}
 		}
 	},
 	{
@@ -2430,7 +2430,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Unloaded"},
 			{RU, u8"Простой"},
-			{JP, u8"アンロードされる"}
+			{JA, u8"アンロードされる"}
 		}
 	},
 	{
@@ -2495,7 +2495,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Version"},
 			{RU, u8"Версия"},
-			{JP, u8"バージョン"}
+			{JA, u8"バージョン"}
 		}
 	},
 	{
@@ -2510,7 +2510,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"License"},
 			{RU, u8"Лицензия"},
-			{JP, u8"ライセンス"}
+			{JA, u8"ライセンス"}
 		}
 	},
 	{
@@ -2518,7 +2518,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Website"},
 			{RU, u8"Сайт"},
-			{JP, u8"公式サイト"}
+			{JA, u8"公式サイト"}
 		}
 	},
 
@@ -2578,7 +2578,7 @@ static map<string, map<uint8_t, string>> strings = {
 		{
 			{EN, u8"Select"},
 			{RU, u8"Выбрать"},
-			{JP, u8"選択"}
+			{JA, u8"選択"}
 		}
 	},
 	{
@@ -2966,44 +2966,44 @@ static map<string, map<uint8_t, string>> deviceStrings = {
 		"Gamepad",
 		{
 			{RU, u8"Геймпад"},
-			{JP, u8"ゲームパッド"}
+			{JA, u8"ゲームパッド"}
 		}
 	},
 	{
 		"Mouse",
 		{
 			{RU, u8"Мышь"},
-			{JP, u8"マウス"}
+			{JA, u8"マウス"}
 		}
 	},
 	{
 		"Super Multitap",
 		{
-			{JP, u8"スーパーマルチタップ"}
+			{JA, u8"スーパーマルチタップ"}
 		}
 	},
 	{
 		"Super Scope",
 		{
-			{JP, u8"スーパースコップ"}
+			{JA, u8"スーパースコップ"}
 		}
 	},
 	{
 		"Justifier",
 		{
-			{JP, u8"1挺のジャスティファイアー"}
+			{JA, u8"1挺のジャスティファイアー"}
 		}
 	},
 	{
 		"Justifiers",
 		{
-			{JP, u8"2挺のジャスティファイアー"}
+			{JA, u8"2挺のジャスティファイアー"}
 		}
 	},
 	{
 		"Satellaview",
 		{
-			{JP, u8"サテラビュー"}
+			{JA, u8"サテラビュー"}
 		}
 	}
 };

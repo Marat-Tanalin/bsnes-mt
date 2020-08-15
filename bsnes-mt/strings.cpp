@@ -26,8 +26,8 @@ auto getLocale() -> uint8_t {
 		else if (L"it" == value) {
 			return IT;
 		}
-		else if (L"jp" == value) {
-			return JP;
+		else if (L"ja" == value || L"jp" == value) { // `jp` for backward compatibility.
+			return JA;
 		}
 		else if (L"en" == value) {
 			return EN;
@@ -45,7 +45,7 @@ auto getLocale() -> uint8_t {
 		locale = IT;
 	}
 	else if (LANG_JAPANESE == lang) {
-		locale = JP;
+		locale = JA;
 	}
 	else {
 		locale = EN;
