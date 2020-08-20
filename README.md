@@ -1,4 +1,4 @@
-# bsnes-mt
+# bsnes-mt by Marat Tanalin
 
 bsnes version with image-quality, user-experience and other improvements:
 
