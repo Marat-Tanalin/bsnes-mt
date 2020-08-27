@@ -1,7 +1,7 @@
 name := bsnes-mt
 
 hiro.path := ../hiro
-hiro.resource := $(ui)/resource/bsnes.rc
+hiro.resource := $(ui)/resource/app.rc
 include $(hiro.path)/GNUmakefile
 
 ruby.path := ../ruby
