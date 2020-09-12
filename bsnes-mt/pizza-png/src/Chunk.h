@@ -10,11 +10,6 @@ namespace MaratTanalin::PizzaPNG {
 using std::string;
 
 class Chunk {
-protected:
-	auto init(const string &fileData, const uint32_t offset = 0) -> void;
-	auto getFourBytesAsNumber(const string &bytes, uint32_t offset = 0) -> uint32_t;
-	auto toString() const -> string;
-
 public:
 	string length, type, data, hash;
 
@@ -28,6 +23,11 @@ public:
 	operator string() const {
 		return toString();
 	}
+
+protected:
+	auto init(const string &fileData, const uint32_t offset = 0) -> void;
+	auto getFourBytesAsNumber(const string &bytes, uint32_t offset = 0) -> uint32_t;
+	auto toString() const -> string;
 };
 
 } // namespace MaratTanalin::PizzaPNG

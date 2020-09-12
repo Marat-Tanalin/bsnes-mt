@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "pizza-png/Image.h"
+#include "pizza-png/src/Image.h"
 
 #include "app.h"
 #include "windows.h"
