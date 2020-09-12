@@ -19,6 +19,7 @@ struct Presentation : Window {
 	auto updateDeviceMenu() -> void;
 	auto updateDeviceSelections() -> void;
 	auto updateSizeMenu() -> void;
+	auto findState(vector<Program::State> &states, const string &name) -> maybe<uint64_t>; // MT.
 	auto updateStateMenus() -> void;
 	auto clearRecentGames() -> void;
 	auto updateRecentGames() -> void;

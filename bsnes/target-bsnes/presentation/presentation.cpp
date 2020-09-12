@@ -374,6 +374,7 @@ auto Presentation::create() -> void {
 				for (uint index : range(QuickStates)) {
 					program.removeState({"Quick/Slot ", 1 + index});
 				}
+
 				program.removeState("Quick/Undo");
 				program.removeState("Quick/Redo");
 			}
@@ -606,18 +607,12 @@ auto Presentation::updateStatusIcon() -> void {
 	if (emulator->loaded() && program.verified()) {
 		image emblem{Icon::Emblem::Program};
 		icon.impose(image::blend::sourceAlpha, 0, (StatusHeight - 16) / 2, emblem, 0, 0, 16, 16);
-
-		statusIcon.setIcon(icon).setToolTip(
-			bms::get("StatusIcon.verifiedRom.tooltip").data()
-		);
+		statusIcon.setIcon(icon).setToolTip(bms::get("StatusIcon.verifiedRom.tooltip").data());
 	}
 	else if (emulator->loaded()) {
 		image emblem{Icon::Emblem::Binary};
 		icon.impose(image::blend::sourceAlpha, 0, (StatusHeight - 16) / 2, emblem, 0, 0, 16, 16);
-
-		statusIcon.setIcon(icon).setToolTip(
-			bms::get("StatusIcon.unverifiedRom.tooltip").data()
-		);
+		statusIcon.setIcon(icon).setToolTip(bms::get("StatusIcon.unverifiedRom.tooltip").data());
 	}
 	else {
 		statusIcon.setIcon(icon).setToolTip();
@@ -634,9 +629,9 @@ auto Presentation::resizeWindow() -> void {
 	}
 
 	/*uint width = 256 * (settings.video.aspectCorrection ? 8.0 / 7.0 : 1.0);*/ // Commented-out by MT.
-	uint width  = bsnesMt::scaling::getWidth(settings.video.aspectCorrection); // MT.
-	uint height = (settings.video.overscan ? 240.0 : 224.0);
-	uint multiplier = max(1, settings.video.multiplier);
+	uint width        = bsnesMt::scaling::getWidth(settings.video.aspectCorrection); // MT.
+	uint height       = settings.video.overscan ? 240 : 224;
+	uint multiplier   = max(1, settings.video.multiplier);
 	uint statusHeight = settings.general.statusBar ? StatusHeight : 0;
 
 	setMinimumSize({width, height + statusHeight});
@@ -668,9 +663,9 @@ auto Presentation::updateDeviceMenu() -> void {
 			continue;
 		}
 
-		auto path = string{information.name, "/", port.name}.replace(" ", "");
+		auto path       = string{information.name, "/", port.name}.replace(" ", "");
 		auto deviceName = settings(path).text();
-		auto deviceID = emulator->connected(port.id);
+		auto deviceID   = emulator->connected(port.id);
 
 		Group devices;
 
@@ -791,18 +786,32 @@ auto Presentation::updateSizeMenu() -> void {
 	/* /MT. */
 }
 
+/* MT. */
+auto Presentation::findState(vector<Program::State> &states, const string &name) -> maybe<uint64_t> {
+	return states.find([&](auto& state) {
+		return state.name == name;
+	});
+}
+/* /MT. */
+
 auto Presentation::updateStateMenus() -> void {
 	auto states = program.availableStates("Quick/");
+
+	string emptySlotString = bms::get("Tools.SaveState.Slot.Empty").data(); // MT.
 
 	for (auto& action : saveState.actions()) {
 		if (auto item = action.cast<MenuItem>()) {
 			if (auto name = item.attribute("name")) {
-				if (auto offset = states.find([&](auto& state) { return state.name == name; })) {
-					item.setText({item.attribute("title"), " (", chrono::local::datetime(states[*offset].date), ")"});
+				string suffix; // MT.
+
+				if (auto offset = findState(states, name)) {
+					suffix = chrono::local::datetime(states[*offset].date);
 				}
 				else {
-					item.setText({item.attribute("title"), " (", bms::get("Tools.SaveState.Slot.Empty").data(), ")"});
+					suffix = emptySlotString;
 				}
+
+				item.setText({item.attribute("title"), " (", suffix, ")"}); // MT.
 			}
 		}
 	}
@@ -810,14 +819,24 @@ auto Presentation::updateStateMenus() -> void {
 	for (auto& action : loadState.actions()) {
 		if (auto item = action.cast<MenuItem>()) {
 			if (auto name = item.attribute("name")) {
-				if (auto offset = states.find([&](auto& state) { return state.name == name; })) {
-					item.setEnabled(true);
-					item.setText({item.attribute("title"), " (", chrono::local::datetime(states[*offset].date), ")"});
+				/* MT. */
+				string suffix; // MT.
+				bool enabled;
+				/* /MT. */
+
+				if (auto offset = findState(states, name)) {
+					enabled = true;
+					suffix  = chrono::local::datetime(states[*offset].date);
 				}
 				else {
-					item.setEnabled(false);
-					item.setText({item.attribute("title"), " (", bms::get("Tools.SaveState.Slot.Empty").data(), ")"});
+					enabled = false;
+					suffix  = emptySlotString;
 				}
+
+				/* MT. */
+				item.setText({item.attribute("title"), " (", suffix, ")"});
+				item.setEnabled(enabled);
+				/* /MT. */
 			}
 		}
 	}
@@ -826,9 +845,11 @@ auto Presentation::updateStateMenus() -> void {
 auto Presentation::updateRecentGames() -> void {
 	loadRecentGame.reset();
 
+	static string gameRecentPrefix = "Game/Recent/"; // MT.
+
 	//remove missing games from list
 	for (uint index = 0; index < RecentGames;) {
-		auto games   = settings[{"Game/Recent/", 1 + index}].text();
+		auto games   = settings[{gameRecentPrefix, 1 + index}].text();
 		bool missing = false;
 
 		if (games) {
@@ -843,8 +864,8 @@ auto Presentation::updateRecentGames() -> void {
 			//will read one past the end of Games/Recent[RecentGames] by design:
 			//this will always return an empty string to clear the last item in the list
 			for (uint offset = index; offset < RecentGames; offset++) {
-				settings[{"Game/Recent/", 1 + offset}].setValue(
-					settings[{"Game/Recent/", 2 + offset}].text()
+				settings[{gameRecentPrefix, 1 + offset}].setValue(
+					settings[{gameRecentPrefix, 2 + offset}].text()
 				);
 			}
 		}
@@ -857,7 +878,7 @@ auto Presentation::updateRecentGames() -> void {
 	uint8_t recentGamesCount = 0; // MT.
 
 	for (auto index : range(RecentGames)) {
-		if (auto game = settings[{"Game/Recent/", 1 + index}].text()) {
+		if (auto game = settings[{gameRecentPrefix, 1 + index}].text()) {
 			MenuItem item{&loadRecentGame}; // Moved inside `if` block by MT.
 			string displayName;
 			auto games = game.split("|");
@@ -893,11 +914,11 @@ auto Presentation::updateRecentGames() -> void {
 			.onActivate([&] {
 				if (bmw::confirmById("Menu.File.OpenRecentGame.ClearList.confirm", handle())) {
 					for (auto index : range(RecentGames)) {
-						settings({"Game/Recent/", 1 + index}).setValue("");
+						settings({gameRecentPrefix, 1 + index}).setValue("");
 					}
-
+		
 					updateRecentGames();
- 				}
+				}
 			}));
 	} // MT.
 	/* MT. */
@@ -909,8 +930,10 @@ auto Presentation::updateRecentGames() -> void {
 }
 
 auto Presentation::addRecentGame(string location) -> void {
+	static string gameRecentPrefix = "Game/Recent/"; // MT.
+
 	for (uint index : range(RecentGames + 1)) {
-		auto value = settings[{"Game/Recent/", 1 + index}].text();
+		auto value = settings[{gameRecentPrefix, 1 + index}].text();
 
 		if (!value || value == location) {
 			for (uint n : reverse(range(index + 1))) {
@@ -918,14 +941,14 @@ auto Presentation::addRecentGame(string location) -> void {
 					continue;
 				}
 
-				settings({"Game/Recent/", 1 + n}).setValue(settings[{"Game/Recent/", n}].text());
+				settings({gameRecentPrefix, 1 + n}).setValue(settings[{gameRecentPrefix, n}].text());
 			}
 
 			break;
 		}
 	}
 
-	settings("Game/Recent/1").setValue(location);
+	settings({gameRecentPrefix, "1"}).setValue(location);
 	updateRecentGames();
 }
 
