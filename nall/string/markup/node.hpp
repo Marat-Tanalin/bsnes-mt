@@ -29,8 +29,9 @@ struct ManagedNode {
     }
   }
 
+  string _name; // Moved from `protected` by MT for Visual Studio compatibility.
+
 protected:
-  string _name;
   string _value;
   uintptr _metadata = 0;
   vector<SharedNode> _children;
@@ -140,7 +141,7 @@ struct Node {
   auto begin() const -> iterator { return iterator(*this, 0); }
   auto end() const -> iterator { return iterator(*this, size()); }
 
-protected:
+//protected: // Commented-out by MT for Visual Studio compatibility.
   SharedNode shared;
 };
 
