@@ -2,7 +2,7 @@
 #define NALL_WINDOWS_GUARD_HPP
 
 #define boolean WindowsBoolean
-#define interface WindowsInterface
+//#define interface WindowsInterface // Commented-out by MT.
 
 #undef UNICODE
 #undef WINVER
@@ -26,7 +26,7 @@
 #undef NALL_WINDOWS_GUARD_HPP
 
 #undef boolean
-#undef interface
+//#undef interface // Commented-out by MT.
 
 #undef far
 #undef near
