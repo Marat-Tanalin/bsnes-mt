@@ -891,11 +891,13 @@ auto Presentation::updateRecentGames() -> void {
 		loadRecentGame.append(MenuItem().setIcon(Icon::Edit::Clear)
 			.setText(bms::get("Menu.File.OpenRecentGame.ClearList").data())
 			.onActivate([&] {
-				for (auto index : range(RecentGames)) {
-					settings({"Game/Recent/", 1 + index}).setValue("");
-				}
-	
-				updateRecentGames();
+				if (bmw::confirmById("Menu.File.OpenRecentGame.ClearList.confirm", handle())) {
+					for (auto index : range(RecentGames)) {
+						settings({"Game/Recent/", 1 + index}).setValue("");
+					}
+
+					updateRecentGames();
+ 				}
 			}));
 	} // MT.
 	/* MT. */

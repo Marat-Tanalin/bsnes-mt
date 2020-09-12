@@ -288,6 +288,20 @@ static map<string, map<uint8_t, string>> strings = {
 		}
 	},
 	{
+		"Menu.File.OpenRecentGame.ClearList.confirm.title",
+		{
+			{EN, u8"Clear the list of recent games?"},
+			{RU, u8"Очистить список недавних игр?"}
+		}
+	},
+	{
+		"Menu.File.OpenRecentGame.ClearList.confirm",
+		{
+			{EN, u8"Are you sure you want to clear the list of recent games?"},
+			{RU, u8"Вы уверены, что хотите очистить список недавних игр?"}
+		}
+	},
+	{
 		"Menu.File.OpenRecentGame.NoRecentGames",
 		{
 			{EN, u8"No Recent Games"},
