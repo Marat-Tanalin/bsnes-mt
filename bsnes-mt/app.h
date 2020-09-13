@@ -14,7 +14,7 @@ static const uint8_t quickStatesNumber = 25;
 static const uint8_t recentGamesNumber = 25;
 
 static const string title       = "bsnes-mt";
-static const string version     = "1.2";
+static const string version     = "1.3";
 static const string copyYear    = u8"© 2020";
 static const string authorEn    = "Marat Tanalin";
 static const string authorRu    = u8"Марат Таналин";
