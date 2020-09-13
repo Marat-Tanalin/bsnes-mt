@@ -1,5 +1,7 @@
 #if defined(Hiro_Application)
 
+#include <target-bsnes/resource/resources.h>
+
 namespace hiro {
 
 static auto Application_keyboardProc(HWND, UINT, WPARAM, LPARAM) -> bool;
@@ -79,7 +81,7 @@ auto pApplication::initialize() -> void {
   wc.cbWndExtra = 0;
   wc.hbrBackground = GetSysColorBrush(COLOR_3DFACE);
   wc.hCursor = LoadCursor(0, IDC_ARROW);
-  wc.hIcon = LoadIcon(GetModuleHandle(0), MAKEINTRESOURCE(2));
+  wc.hIcon = LoadIcon(GetModuleHandle(0), MAKEINTRESOURCE(IDI_APPICON)); // `2` => `IDI_APPICON` by MT.
   wc.hInstance = GetModuleHandle(0);
   wc.lpfnWndProc = Window_windowProc;
   wc.lpszClassName = L"hiroWindow";
@@ -93,7 +95,7 @@ auto pApplication::initialize() -> void {
   wc.cbWndExtra = 0;
   wc.hbrBackground = GetSysColorBrush(COLOR_3DFACE);
   wc.hCursor = LoadCursor(0, IDC_ARROW);
-  wc.hIcon = LoadIcon(GetModuleHandle(0), MAKEINTRESOURCE(2));
+  wc.hIcon = LoadIcon(GetModuleHandle(0), MAKEINTRESOURCE(IDI_APPICON)); // `2` => `IDI_APPICON` by MT.
   wc.hInstance = GetModuleHandle(0);
   wc.lpfnWndProc = Menu_windowProc;
   wc.lpszClassName = L"hiroPopupMenu";

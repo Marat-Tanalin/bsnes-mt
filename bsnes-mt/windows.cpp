@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <Commctrl.h>
 
+#include <target-bsnes/resource/resources.h>
+
 #include "app.h"
 #include "strings.h"
 #include "utils.h"
@@ -53,7 +55,7 @@ auto showAbout(HWND parentWindow) -> void {
 
 	config.cbSize             = sizeof(config);
 	config.dwFlags            = TDF_USE_HICON_MAIN | TDF_ENABLE_HYPERLINKS | TDF_ALLOW_DIALOG_CANCELLATION;
-	config.hMainIcon          = LoadIconW(GetModuleHandleW(NULL), MAKEINTRESOURCEW(2));
+	config.hMainIcon          = LoadIconW(GetModuleHandleW(NULL), MAKEINTRESOURCEW(IDI_APPICON));
 	config.hwndParent         = parentWindow;
 	config.pszWindowTitle     = windowTitleWide.data();
 	config.pszMainInstruction = headingWide.data();
