@@ -4,6 +4,10 @@
 
 namespace bmt = bsnesMt::translations;
 namespace bmw = bsnesMt::windows;
+
+auto enableDisableDropdownBasedOnItemCount(hiro::ComboButton dropdown) -> void {
+	dropdown.setEnabled(dropdown.itemCount() > 1);
+}
 /* /MT. */
 
 auto DriverSettings::create() -> void {
@@ -442,6 +446,7 @@ auto DriverSettings::audioDeviceChanged() -> void {
 	}
 
 	//audioDeviceOption.setEnabled(audio->hasDevice());
+	enableDisableDropdownBasedOnItemCount(audioDeviceOption); // MT.
 	setGeometry(geometry());
 }
 
@@ -473,6 +478,7 @@ auto DriverSettings::audioFrequencyChanged() -> void {
 	}
 
 	//audioSampleRateOption.setEnabled(audio->hasFrequency());
+	enableDisableDropdownBasedOnItemCount(audioSampleRateOption); // MT.
 	setGeometry(geometry());
 }
 
@@ -495,6 +501,7 @@ auto DriverSettings::audioLatencyChanged() -> void {
 	}
 
 	//audioLatencyOption.setEnabled(audio->hasLatency());
+	enableDisableDropdownBasedOnItemCount(audioLatencyOption); // MT.
 	setGeometry(geometry());
 }
 
