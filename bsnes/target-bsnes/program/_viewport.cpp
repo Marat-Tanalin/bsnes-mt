@@ -35,13 +35,15 @@ auto Program::viewportSize(uint& scaledWidth, uint& scaledHeight, uint width, ui
 	}
 
 	bool aspectCorrection = settings.video.aspectCorrection,
-	     showOverscan     = settings.video.overscan;
+	     showOverscan     = settings.video.overscan,
+	     parInsteadOfAr   = settings.video.parInsteadOfAr;
 
 	if (outputSetting == "Pixel-Perfect") {
 		auto scaledSize = bmi::calculateScaledSizePerfect(
 			areaWidth, areaHeight,
 			width, height,
-			aspectCorrection, showOverscan
+			aspectCorrection, showOverscan,
+			parInsteadOfAr
 		);
 
 		scaledWidth  = scaledSize.width;
@@ -51,7 +53,8 @@ auto Program::viewportSize(uint& scaledWidth, uint& scaledHeight, uint width, ui
 		auto scaledSize = bmi::calculateScaledSizeCenter(
 			areaWidth, areaHeight,
 			width, height,
-			aspectCorrection, showOverscan
+			aspectCorrection, showOverscan,
+			parInsteadOfAr
 		);
 
 		scaledWidth  = scaledSize.width;
@@ -60,7 +63,8 @@ auto Program::viewportSize(uint& scaledWidth, uint& scaledHeight, uint width, ui
 	else if (outputSetting == "Scale") {
 		auto scaledSize = bmi::calculateScaledSizeScale(
 			areaWidth, areaHeight,
-			aspectCorrection, showOverscan
+			aspectCorrection, showOverscan,
+			parInsteadOfAr
 		);
 
 		scaledWidth  = scaledSize.width;

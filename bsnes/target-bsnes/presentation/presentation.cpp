@@ -105,6 +105,15 @@ auto Presentation::create() -> void {
 			//resizeWindow(); // Commented-out by MT.
 		});
 
+	/* MT. */
+	parInsteadOfAr.setText(bmt::get("Menu.Settings.Output.parInsteadOfAr").data())
+		.setChecked(settings.video.parInsteadOfAr)
+		.onToggle([&] {
+			settings.video.parInsteadOfAr = parInsteadOfAr.checked();
+			video.clear(); // MT.
+		});
+	/* /MT. */
+
 	showOverscanArea.setText(bmt::get("Menu.Settings.Output.ShowOverscanArea").data())
 		.setChecked(settings.video.overscan)
 		.onToggle([&] {

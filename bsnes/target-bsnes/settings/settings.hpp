@@ -25,6 +25,7 @@ struct Settings : Markup::Node {
 		string output = "Pixel-Perfect"; // Changed from "Scale" by MT.
 		uint multiplier = 2;
 		bool aspectCorrection = true;
+		bool parInsteadOfAr = false; // MT.
 		bool overscan = false;
 		bool scalingInfo = false; // MT.
 		bool blur = false;

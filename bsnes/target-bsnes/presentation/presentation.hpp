@@ -50,6 +50,7 @@ struct Presentation : Window {
 				Group outputGroup{&centerViewport, &perfectViewport, &scaleViewport, &stretchViewport}; // `&perfectViewport,` added by MT.
 				MenuSeparator outputSeparator{&outputMenu};
 				MenuCheckItem aspectCorrection{&outputMenu};
+				MenuCheckItem parInsteadOfAr{&outputMenu};
 				MenuCheckItem showOverscanArea{&outputMenu};
 				MenuCheckItem scalingInfo{&outputMenu}; // MT.
 				MenuCheckItem blurEmulation{&outputMenu};

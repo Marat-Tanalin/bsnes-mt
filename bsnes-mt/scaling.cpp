@@ -18,6 +18,10 @@ static constexpr double defaultAspectX = 4.0,
                         defaultAspectY = 3.0,
                         defaultAspect  = defaultAspectX / defaultAspectY;
 
+static constexpr double par           = 8.0 / 7.0,
+                        parAspect     = par * origWidth / origHeight,
+                        parOverAspect = par * origWidth / origOverHeight;
+
 auto getWidth(bool aspectCorrection) -> uint32_t {
 	return aspectCorrection ? std::round(origHeight * defaultAspect) : origWidth;
 }
@@ -34,6 +38,10 @@ auto getAspectY(bool showOverscan) -> double {
 	return showOverscan ? defaultAspectY * overscanRatio : defaultAspectY;
 }
 
+auto getParAspect(bool showOverscan) -> double {
+	return showOverscan ? parOverAspect : parAspect;
+}
+
 auto getHeightForPar1(uint32_t width, uint32_t height) -> uint32_t {
 	return (height == origHeight || height == origOverHeight)
 	     ? (width == origWidth ? origHeight : origDoubleHeight)
@@ -42,10 +50,13 @@ auto getHeightForPar1(uint32_t width, uint32_t height) -> uint32_t {
 
 auto calculateScaledSizeScale(
 	uint32_t areaWidth, uint32_t areaHeight,
-	bool aspectCorrection, bool showOverscan
+	bool aspectCorrection, bool showOverscan,
+	bool parInsteadOfAr
 ) -> is::Size
 {
-	double aspect = aspectCorrection ? defaultAspect : (double)origWidth / origHeight;
+	double aspect = aspectCorrection
+	              ? (parInsteadOfAr ? parAspect : defaultAspect)
+	              : (double)origWidth / origHeight;
 
 	if (showOverscan) {
 		aspect /= overscanRatio;
@@ -76,42 +87,68 @@ auto calculateScaledSizeScale(
 auto calculateScaledSizeCenter(
 	uint32_t areaWidth,  uint32_t areaHeight,
 	uint32_t imageWidth, uint32_t imageHeight,
-	bool aspectCorrection, bool showOverscan
+	bool aspectCorrection, bool showOverscan,
+	bool parInsteadOfAr
 ) -> is::Size
 {
-	return aspectCorrection
-		? is::calculateSizeCorrectedPerfectY(
-			areaWidth, areaHeight,
-			imageHeight,
-			defaultAspectX, getAspectY(showOverscan)
-		)
-		: is::calculateSize(
+	if (!aspectCorrection) {
+		return is::calculateSize(
 			areaWidth, areaHeight,
 			imageWidth, getHeightForPar1(imageWidth, imageHeight)
 		);
+	}
+
+	double aspectX, aspectY;
+
+	if (parInsteadOfAr) {
+		aspectX = getParAspect(showOverscan);
+		aspectY = 1.0;
+	}
+	else {
+		aspectX = defaultAspectX;
+		aspectY = getAspectY(showOverscan);
+	}
+
+	return is::calculateSizeCorrectedPerfectY(
+		areaWidth, areaHeight,
+		imageHeight,
+		aspectX, aspectY
+	);
 }
 
 auto calculateScaledSizePerfect(
 	uint32_t areaWidth,  uint32_t areaHeight,
 	uint32_t imageWidth, uint32_t imageHeight,
-	bool aspectCorrection, bool showOverscan
+	bool aspectCorrection, bool showOverscan,
+	bool parInsteadOfAr
 ) -> is::Size
 {
-	if (aspectCorrection) {
-		return is::calculateSizeCorrected(
-			areaWidth,  areaHeight,
-			imageWidth, imageHeight,
-			defaultAspectX, getAspectY(showOverscan)
+	if (!aspectCorrection) {
+		uint32_t imageHeightForPar1     = getHeightForPar1(imageWidth, imageHeight);
+		uint32_t imageOverHeightForPar1 = imageHeightForPar1 == origHeight ? origOverHeight : origDoubleOverHeight;	
+
+		return is::calculateSize(
+			areaWidth, areaHeight,
+			imageWidth,
+			showOverscan ? imageOverHeightForPar1 : imageHeightForPar1
 		);
 	}
 
-	uint32_t imageHeightForPar1     = getHeightForPar1(imageWidth, imageHeight);
-	uint32_t imageOverHeightForPar1 = imageHeightForPar1 == origHeight ? origOverHeight : origDoubleOverHeight;	
+	double aspectX, aspectY;
 
-	return is::calculateSize(
-		areaWidth, areaHeight,
-		imageWidth,
-		showOverscan ? imageOverHeightForPar1 : imageHeightForPar1
+	if (parInsteadOfAr) {
+		aspectX = getParAspect(showOverscan);
+		aspectY = 1.0;
+	}
+	else {
+		aspectX = defaultAspectX;
+		aspectY = getAspectY(showOverscan);
+	}
+
+	return is::calculateSizeCorrected(
+		areaWidth,  areaHeight,
+		imageWidth, imageHeight,
+		aspectX, aspectY
 	);
 };
 

@@ -73,6 +73,7 @@ auto Settings::process(bool load) -> void {
 	bind(text,    "Video/Output",           video.output);
 	bind(natural, "Video/Multiplier",       video.multiplier);
 	bind(boolean, "Video/AspectCorrection", video.aspectCorrection);
+	bind(boolean, "Video/ParInsteadOfAr",   video.parInsteadOfAr); // MT.
 	bind(boolean, "Video/Overscan",         video.overscan);
 	bind(boolean, "Video/ScalingInfo",      video.scalingInfo); // MT.
 	bind(boolean, "Video/Blur",             video.blur);

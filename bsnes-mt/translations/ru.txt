@@ -53,6 +53,7 @@ Menu.Settings.Output.PixelPerfect = "Целочисленное масштаби
 Menu.Settings.Output.Scale = "Масштабирование с сохранением пропорций"
 Menu.Settings.Output.Stretch = "Растяжение без сохранения пропорций"
 Menu.Settings.Output.AspectRatioCorrection = "Коррекция соотношения сторон"
+Menu.Settings.Output.parInsteadOfAr = "PAR 8:7 вместо AR 4:3"
 Menu.Settings.Output.ShowOverscanArea = "Показать область «overscan»"
 Menu.Settings.Output.scalingInfo = "Информация о масштабировании в строке состояния"
 Menu.Settings.Output.HiresBlurEmulation = "Эмуляция размытия в режиме высокого разрешения"
