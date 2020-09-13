@@ -100,10 +100,17 @@ auto parseTranslation(const string &code, map<string, string> &strings) -> void 
 auto initTranslation(const string &locale) -> void {
 	getInternalStrings(strings);
 
-	string path = string("translations/") + locale + ".txt";
+	string folderPath = string("translations/");
+	string extension  = ".txt";
+	string path       = folderPath + locale + extension;
 
 	if (!files::fileExists(path)) {
-		return;
+		string locale = getLocaleName();
+		path = folderPath + locale + extension;
+
+		if (!files::fileExists(path)) {
+			return;
+		}
 	}
 
 	parseTranslation(files::getTextFileContents(path), strings);
