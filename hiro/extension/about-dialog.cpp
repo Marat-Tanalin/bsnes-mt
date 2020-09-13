@@ -89,7 +89,7 @@ auto AboutDialog::show() -> void {
   versionLabel.setAlignment(1.0);
   versionLabel.setFont(Font().setBold());
   versionLabel.setForegroundColor({0, 0, 0});
-  versionLabel.setText({bms::get("About.Version").data(), colon}); // "Version:"
+  versionLabel.setText({bmt::get("About.Version").data(), colon}); // "Version:"
   Label versionValue{&versionLayout, Size{~0, 0}};
   versionValue.setAlignment(0.0);
   versionValue.setFont(Font().setBold());
@@ -103,7 +103,7 @@ auto AboutDialog::show() -> void {
   copyrightLabel.setAlignment(1.0);
   copyrightLabel.setFont(Font().setBold());
   copyrightLabel.setForegroundColor({0, 0, 0});
-  copyrightLabel.setText({bms::get("About.Copyright").data(), colon}); // "Copyright:"
+  copyrightLabel.setText({bmt::get("About.Copyright").data(), colon}); // "Copyright:"
   Label copyrightValue{&copyrightLayout, Size{~0, 0}};
   copyrightValue.setAlignment(0.0);
   copyrightValue.setFont(Font().setBold());
@@ -117,7 +117,7 @@ auto AboutDialog::show() -> void {
   licenseLabel.setAlignment(1.0);
   licenseLabel.setFont(Font().setBold());
   licenseLabel.setForegroundColor({0, 0, 0});
-  licenseLabel.setText({bms::get("About.License").data(), colon}); // "License:"
+  licenseLabel.setText({bmt::get("About.License").data(), colon}); // "License:"
   Label licenseValue{&licenseLayout, Size{~0, 0}};
   licenseValue.setAlignment(0.0);
   licenseValue.setFont(Font().setBold());
@@ -131,7 +131,7 @@ auto AboutDialog::show() -> void {
   websiteLabel.setAlignment(1.0);
   websiteLabel.setFont(Font().setBold());
   websiteLabel.setForegroundColor({0, 0, 0});
-  websiteLabel.setText({bms::get("About.Website").data(), colon}); // "Website:"
+  websiteLabel.setText({bmt::get("About.Website").data(), colon}); // "Website:"
   //add a layout for the website value to fill 50% of the window,
   HorizontalLayout websiteValueLayout{&websiteLayout, Size{~0, 0}};
   //so that the label is only as long as its text content,
@@ -151,7 +151,7 @@ auto AboutDialog::show() -> void {
   });
   if(!state.website) websiteLayout.setVisible(false);
 
-  window.setTitle(string(bms::get("Menu.Help.About").data()).replace('|', state.name ? state.name : Application::name())); // "About "
+  window.setTitle(string(bmt::get("Menu.Help.About").data()).replace('|', state.name ? state.name : Application::name())); // "About "
   window.setBackgroundColor({255, 255, 240});
   window.setSize({max(320_sx, layout.minimumSize().width()), layout.minimumSize().height()});
   window.setResizable(false);

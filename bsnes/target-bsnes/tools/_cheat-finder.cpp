@@ -39,7 +39,7 @@ auto CheatFinder::create() -> void {
 		eventScan();
 	});
 
-	searchLabel.setText({bms::get("Tools.CheatFinder.Value").data(), ':'});
+	searchLabel.setText({bmt::get("Tools.CheatFinder.Value").data(), ':'});
 
 	searchSize.append(ComboButtonItem().setText("Byte"));
 	searchSize.append(ComboButtonItem().setText("Word"));
@@ -53,13 +53,13 @@ auto CheatFinder::create() -> void {
 	searchMode.append(ComboButtonItem().setText("<"));
 
 	searchSpan.append(ComboButtonItem().setText("WRAM"));
-	searchSpan.append(ComboButtonItem().setText(bms::get("Tools.CheatFinder.All").data()));
+	searchSpan.append(ComboButtonItem().setText(bmt::get("Tools.CheatFinder.All").data()));
 
-	searchScan.setText(bms::get("Tools.CheatFinder.Scan").data()).onActivate([&] {
+	searchScan.setText(bmt::get("Tools.CheatFinder.Scan").data()).onActivate([&] {
 		eventScan();
 	});
 
-	searchClear.setText(bms::get("Common.Clear").data()).onActivate([&] {
+	searchClear.setText(bmt::get("Common.Clear").data()).onActivate([&] {
 		eventClear();
 	});
 
@@ -77,8 +77,8 @@ auto CheatFinder::restart() -> void {
 
 auto CheatFinder::refresh() -> void {
 	searchList.reset();
-	searchList.append(TableViewColumn().setText(bms::get("Tools.CheatFinder.Address").data()));
-	searchList.append(TableViewColumn().setText(bms::get("Tools.CheatFinder.Value").data()));
+	searchList.append(TableViewColumn().setText(bmt::get("Tools.CheatFinder.Address").data()));
+	searchList.append(TableViewColumn().setText(bmt::get("Tools.CheatFinder.Value").data()));
 
 	for (auto& candidate : candidates) {
 		TableViewItem item{&searchList};

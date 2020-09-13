@@ -1,0 +1,617 @@
+﻿Common.Yes        = "Yes"
+Common.No         = "No"
+Common.Cancel     = "Cancel"
+Common.Always     = "Always"
+Common.AreYouSure = "Are you sure?"
+Common.Open       = "Open"
+Common.Load       = "Load"
+Common.Save       = "Save"
+Common.Add        = "Add"
+Common.Remove     = "Remove"
+Common.Delete     = "Delete"
+Common.Rename     = "Rename"
+Common.Reset      = "Reset"
+Common.Clear      = "Clear"
+Common.None       = "None"
+Common.Disabled   = "Disabled"
+Common.Default    = "Default"
+Common.Name       = "Name"
+Common.Date       = "Date"
+Common.Success    = "Success"
+Common.Failure    = "Failure"
+Common.Error      = "Error"
+Common.Warning    = "Warning"
+Common.Auto       = "Auto"
+Common.Video      = "Video"
+Common.Audio      = "Audio"
+Common.Fps        = "fps"
+Common.Hz         = "Hz"
+Common.number     = "#"
+
+Menu.File = "File"
+Menu.File.OpenGame = "Open Game"
+Menu.File.OpenRecentGame = "Open Recent Game"
+Menu.File.OpenRecentGame.ClearList = "Clear List"
+Menu.File.OpenRecentGame.ClearList.confirm.title = "Clear the list of recent games?"
+Menu.File.OpenRecentGame.ClearList.confirm = "Are you sure you want to clear the list of recent games?"
+Menu.File.OpenRecentGame.NoRecentGames = "No Recent Games"
+Menu.File.CloseGame = "Close Game"
+Menu.File.Exit = "Exit"
+
+Menu.System = "System"
+Menu.System.ControllerPort = "Controller Port"
+Menu.System.ExpansionPort = "Expansion Port"
+
+Menu.Settings.Size = "Size"
+Menu.Settings.Size.ShrinkWindowToSize = "Shrink Window to Size"
+Menu.Settings.Size.CenterWindow = "Center Window"
+Menu.Settings.Size.FullScreenMode = "Full-Screen Mode"
+Menu.Settings.Size.PseudoFullScreenMode = "Pseudo-Full-Screen Mode"
+Menu.Settings.Output = "Output"
+Menu.Settings.Output.Center = "Center"
+Menu.Settings.Output.PixelPerfect = "Pixel-Perfect"
+Menu.Settings.Output.Scale = "Scale"
+Menu.Settings.Output.Stretch = "Stretch"
+Menu.Settings.Output.AspectRatioCorrection = "Aspect-Ratio Correction"
+Menu.Settings.Output.ShowOverscanArea = "Show Overscan Area"
+Menu.Settings.Output.scalingInfo = "Scaling Info in Status Bar"
+Menu.Settings.Output.HiresBlurEmulation = "Hires Blur Emulation"
+Menu.Settings.Filter = "Filter"
+Menu.Settings.Shader = "Shader"
+Menu.Settings.Shader.Blur = "Blur"
+Menu.Settings.MuteAudio = "Mute Audio"
+Menu.Settings.ShowStatusBar = "Show Status Bar"
+Menu.Settings.OpenSettingsFolder = "Open Settings Folder"
+
+Menu.Help = "Help"
+Menu.Help.About = "About |"
+
+Settings = "Settings"
+
+Settings.Common.Assign = "Assign"
+Settings.Common.AssignLowercase = "assign"
+Settings.Common.Mapping = "Mapping"
+Settings.Common.MappingAssigned = "Mapping assigned."
+Settings.Common.PressKeyOrButtonForMapping = "Press a key or button for mapping"
+Settings.Common.FrameLowercase = "frame"
+
+Settings.Video.ColorAdjustment = "Color Adjustment"
+Settings.Video.Luminance       = "Luminance"
+Settings.Video.Saturation      = "Saturation"
+Settings.Video.Gamma           = "Gamma"
+Settings.Video.DimVideoWhenIdle = "Dim video when idle"
+Settings.Video.DimVideoWhenIdle.tooltip = "Darkens the video to indicate that the emulation is not running."
+Settings.Video.DrawSnowEffectWhenIdle = "Draw snow effect when idle"
+
+Settings.Audio.Effects = "Effects"
+Settings.Audio.Skew = "Skew"
+
+Settings.Audio.Skew.tooltip = "
+Adjusts the audio frequency by the skew amount (in Hz).
+
+This is essentially static rate control.
+First, enable both video and audio sync.
+Then, raise or lower this value to try to reduce errors.
+One direction will help video, but hurt audio.
+The other direction will do the reverse.
+The idea is to find the best middle ground.
+
+You should leave this at 0 when using dynamic rate control.
+"
+
+Settings.Audio.Volume = "Volume"
+
+Settings.Audio.Volume.tooltip = "
+Adjusts the audio output volume.
+
+You should not use values above 100%, if possible!
+If you do, audio clipping distortion can occur.
+"
+
+Settings.Audio.Balance = "Balance"
+
+Settings.Audio.Balance.tooltip = "
+Pans audio to the left (lower values) or right (higher values).
+
+50% (centered) is the recommended setting.
+"
+
+Settings.Audio.MuteWhenUnfocused = "Mute when unfocused"
+
+Settings.Input = "Input"
+Settings.Input.WhenFocusIsLost = "When focus is lost"
+Settings.Input.WhenFocusIsLost.PauseEmulation = "Pause emulation"
+Settings.Input.WhenFocusIsLost.BlockInput = "Block input"
+Settings.Input.WhenFocusIsLost.AllowInput = "Allow input"
+Settings.Input.Port = "Port"
+Settings.Input.Device = "Device"
+Settings.Input.TurboRate = "Turbo rate"
+Settings.Input.TurboRate.tooltip = "The number of frames to wait between toggling turbo buttons."
+Settings.Input.MouseLeft = "Mouse Left"
+Settings.Input.MouseMiddle = "Mouse Middle"
+Settings.Input.MouseRight = "Mouse Right"
+Settings.Input.MouseXAxis = "Mouse X-axis"
+Settings.Input.MouseYAxis = "Mouse Y-axis"
+
+Settings.Hotkeys = "Hotkeys"
+Settings.Hotkeys.CombinationalLogic = "Combinational logic"
+
+Settings.Hotkeys.CombinationalLogic.tooltip = "
+Determines whether all or any mappings must be pressed to activate hotkeys.
+Use “AND” logic if you want keyboard combinations such as Ctrl+F to trigger a hotkey.
+Use “OR” logic if you want both a keyboard and joypad to trigger the same hotkey.
+"
+
+Settings.Hotkeys.CombinationalLogic.And = "AND"
+Settings.Hotkeys.CombinationalLogic.And.tooltip = "Every mapping must be pressed to activate a given hotkey."
+Settings.Hotkeys.CombinationalLogic.Or = "OR"
+Settings.Hotkeys.CombinationalLogic.Or.tooltip = "Any mapping can be pressed to activate a given hotkey."
+Settings.Hotkeys.Rewind.enableFirst = "Please enable rewind support in “Settings” → “Emulator” first"
+
+Settings.BuiltinHotkeys = "Hotkeys (built-in)"
+
+Settings.Paths = "Paths"
+Settings.Paths.Games            = "Games"
+Settings.Paths.Patches          = "Patches"
+Settings.Paths.Saves            = "Saves"
+Settings.Paths.Cheats           = "Cheats"
+Settings.Paths.States           = "States"
+Settings.Paths.Screenshots      = "Screenshots"
+Settings.Paths.LastRecentlyUsed = "last recently used"
+Settings.Paths.SameAsLoadedGame = "same as loaded game"
+
+Settings.Emulator = "Emulator"
+Settings.Emulator.General = "General"
+Settings.Emulator.General.warnOnUnverifiedGames = "Warn when opening games that have not been verified"
+Settings.Emulator.General.autoSaveMemory = "Save memory periodically"
+Settings.Emulator.General.autoSaveStateOnUnload = "Save undo state when unloading games"
+Settings.Emulator.General.AutoResumeOnLoad = "Resume on load"
+Settings.Emulator.General.UseNativeFileDialogs = "Use native file dialogs"
+Settings.Emulator.FastForward = "Fast Forward"
+Settings.Emulator.FastForward.FrameSkip = "Frame skip"
+
+Settings.Emulator.FastForward.FrameSkip.tooltip = "
+Sets how many frames to skip while fast forwarding.
+Frame skipping allows a higher maximum fast forwarding frame rate.
+"
+
+Settings.Emulator.FastForward.FrameSkip.Frames2to4 = "| frames"
+Settings.Emulator.FastForward.FrameSkip.Frames     = "| frames"
+Settings.Emulator.FastForward.Limiter = "Limiter"
+Settings.Emulator.FastForward.Limiter.tooltip = "Sets the maximum speed when fast forwarding."
+Settings.Emulator.FastForward.mute = "Mute while fast forwarding"
+Settings.Emulator.Rewind = "Rewind"
+Settings.Emulator.Rewind.Frequency = "Frequency"
+Settings.Emulator.Rewind.Frequency.everyFrames = "Every | frames"
+Settings.Emulator.Rewind.Length = "Length"
+Settings.Emulator.Rewind.Length.states = "| states"
+Settings.Emulator.Rewind.mute = "Mute while rewinding"
+
+Settings.Enhancements = "Enhancements"
+Settings.Enhancements.FastMode = "Fast mode"
+Settings.Enhancements.RunAhead = "Run-Ahead"
+Settings.Enhancements.RunAhead.Frames = "frames"
+Settings.Enhancements.RunAhead.One    = "One"
+Settings.Enhancements.RunAhead.Two    = "Two"
+Settings.Enhancements.RunAhead.Three  = "Three"
+Settings.Enhancements.RunAhead.Four   = "Four"
+Settings.Enhancements.Overclocking = "Overclocking"
+Settings.Enhancements.Ppu.Video         = "video"
+Settings.Enhancements.Ppu.Deinterlace   = "Deinterlace"
+Settings.Enhancements.Ppu.NoSpriteLimit = "No sprite limit"
+Settings.Enhancements.hdMode7.FastPpuOnly           = "fast PPU only"
+Settings.Enhancements.hdMode7.Scale                 = "Scale"
+Settings.Enhancements.hdMode7.PerspectiveCorrection = "Perspective correction"
+Settings.Enhancements.hdMode7.Supersampling         = "Supersampling"
+Settings.Enhancements.hdMode7.HdToSdMosaic          = "HD→SD Mosaic"
+Settings.Enhancements.Dsp.Audio = "audio"
+Settings.Enhancements.Dsp.CubicInterpolation = "Cubic interpolation"
+Settings.Enhancements.Coprocessors = "Coprocessors"
+Settings.Enhancements.Coprocessors.PreferHle = "Prefer high-level emulation (HLE)"
+
+Settings.Enhancements.Coprocessors.PreferHle.tooltip = "
+When checked, less accurate HLE emulation will always be used when available.
+When unchecked, HLE will only be used when low-level-emulation (LLE) firmware is missing.
+"
+
+Settings.Enhancements.GameEnhancements = "Game Enhancements"
+Settings.Enhancements.GameEnhancements.Hotfixes = "Hotfixes"
+
+Settings.Enhancements.GameEnhancements.Hotfixes.tooltip = "
+Even commercially licensed and officially released software sometimes shipped with bugs.
+This option will correct certain issues that occurred even on real hardware.
+"
+
+Settings.Compatibility = "Compatibility"
+Settings.Compatibility.entropy = "Entropy (randomization)"
+
+Settings.Compatibility.entropy.None.tooltip = "
+All memory and registers are initialized to constant values at startup.
+Use this for compatibility with very old demoscene homebrew games.
+"
+
+Settings.Compatibility.entropy.Low = "Low"
+
+Settings.Compatibility.entropy.Low.tooltip = "
+All memory is randomized with repeating patterns, all registers are randomized at startup.
+Use this for the most accurate representation of a real SNES.
+"
+
+Settings.Compatibility.entropy.High = "High"
+
+Settings.Compatibility.entropy.High.tooltip = "
+All memory and registers are randomized as much as possible.
+Use this when developing new SNES software to ensure 
+maximum compatibility with real hardware.
+"
+
+Settings.Compatibility.cpu.Processor = "processor"
+Settings.Compatibility.cpu.FastMath  = "Fast math"
+
+Settings.Compatibility.cpu.FastMath.tooltip = "
+CPU multiplication and division take time to complete on a real SNES.
+Older emulators did not simulate these delays, and provided results immediately.
+Some older ROM hacks do not wait for math operations to complete and need this hack.
+"
+
+Settings.Compatibility.ppu.Video          = "video"
+Settings.Compatibility.ppu.NoVramBlocking = "No video-memory (VRAM) blocking"
+
+Settings.Compatibility.ppu.NoVramBlocking.tooltip = "
+This option enables emulating a bug in older releases of ZSNES and Snes9x where VRAM blocking was not emulated.
+A few older ROM hacks relied on this behavior, and will render graphics incorrectly if not enabled.
+Not only is this extremely inaccurate to real hardware, it also hurts the speed of the fast PPU.
+Do not enable this option unless you need to play a game that works incorrectly otherwise.
+"
+
+Settings.Compatibility.dsp.Audio         = "audio"
+Settings.Compatibility.dsp.EchoShadowRam = "Echo shadow RAM"
+
+Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
+This option enables emulating a bug in ZSNES where echo RAM was treated as separate from APU RAM.
+Many older ROM hacks for “Super Mario World” relied on this behavior, and will crash without enabling this.
+It is, however, extremely inaccurate to real hardware and should not be enabled unless required.
+"
+
+Settings.Drivers = "Drivers"
+Settings.Drivers.Driver        = "Driver"
+Settings.Drivers.Change        = "Change"
+Settings.Drivers.Reload        = "Reload"
+Settings.Drivers.ExclusiveMode = "Exclusive mode"
+Settings.Drivers.Synchronize   = "Synchronize"
+Settings.Drivers.ActiveDriver  = "Active driver"
+Settings.Drivers.changeConfirm.title = "Change driver?"
+
+Settings.Drivers.changeConfirm = "
+Warning: incompatible drivers may cause the application to crash.
+It is highly recommended you unload your game first to be safe.
+Do you wish to proceed with the driver change now anyway?
+"
+
+Settings.noteGameRestart = "Note: some settings do not take effect until reloading the game."
+
+Settings.Drivers.Video.failedToInitialize = "Failed to initialize [|] video driver"
+Settings.Drivers.Video.FullScreenMonitor = "Full-screen monitor"
+Settings.Drivers.Video.FullScreenMonitor.tooltip = "Sets which monitor video is sent to in full-screen mode."
+Settings.Drivers.Video.Format = "Format"
+
+Settings.Drivers.Video.ExclusiveMode.tooltip = "
+Causes full-screen mode to take over all monitors.
+This allows adaptive sync to work better and reduces input latency.
+However, multi-monitor users should turn this option off.
+Note: Direct3D exclusive mode also does not honor the requested monitor.
+"
+
+Settings.Drivers.Video.Synchronize.tooltip = "
+Waits for the video card to be ready before rendering frames.
+Eliminates dropped or duplicated frames, but can distort audio.
+
+With this option, it’s recommended to disable audio sync,
+and enable dynamic rate control. Or alternatively, adjust
+the audio skew option to reduce buffer under/overflows.
+"
+
+Settings.Drivers.Video.GpuSync = "GPU sync"
+
+Settings.Drivers.Video.GpuSync.tooltip = "
+(OpenGL driver only)
+
+Causes the GPU to wait until frames are fully rendered.
+In the best case, this can remove up to one frame of input lag.
+However, it incurs a roughly 20% performance penalty.
+
+You should disable this option unless you find it necessary.
+"
+
+Settings.Drivers.Audio.failedToInitialize = "Failed to initialize [|] audio driver"
+Settings.Drivers.Audio.OutputDevice       = "Output device"
+Settings.Drivers.Audio.SampleRate         = "Sample Rate"
+Settings.Drivers.Audio.Latency            = "Latency"
+
+Settings.Drivers.Audio.ExclusiveMode.tooltip = "
+(WASAPI driver only)
+
+Acquires exclusive control of the sound card device.
+This can significantly reduce audio latency.
+However, it will block sounds from all other applications.
+"
+
+Settings.Drivers.Audio.Synchronize.tooltip = "
+Waits for the audio card to be ready before outputting samples.
+Eliminates audio distortion, but can distort video.
+
+With this option, it’s recommended to disable video sync.
+For best results, use this with an adaptive sync monitor.
+"
+
+Settings.Drivers.Audio.DynamicRate = "Dynamic rate"
+
+Settings.Drivers.Audio.DynamicRate.tooltip = "
+(OSS, XAudio2, waveOut drivers only)
+
+Dynamically adjusts the audio frequency by tiny amounts.
+Use this with video sync enabled, and audio sync disabled.
+
+This can produce perfectly smooth video and clean audio,
+but only if your monitor refresh rate is set correctly:
+60 Hz for NTSC games, and 50 Hz for PAL games.
+"
+
+Settings.Drivers.Input.failedToInitialize = "Failed to initialize [|] input driver"
+
+Settings.Drivers.Input.Reload.tooltip = "
+A driver reload can be used to detect hotplugged devices.
+This is useful for APIs that lack auto-hotplug support,
+such as DirectInput and SDL.
+"
+
+Settings.Drivers.syncModePresets = "Synchronization Mode Presets"
+
+Settings.Drivers.syncModePresets.requirements = "
+Adaptive Sync: requires G-Sync or FreeSync monitor.
+Dynamic Rate Control: requires monitor and SNES refresh rates to match.
+"
+
+Settings.Drivers.syncModePresets.AdaptiveSync = "Adaptive Sync"
+
+Settings.Drivers.syncModePresets.AdaptiveSync.failure = "
+Sorry, the current driver configuration is not compatible with adaptive sync mode.
+Adaptive sync requires audio-synchronization support.
+"
+
+Settings.Drivers.syncModePresets.AdaptiveSync.success = "
+Adaptive sync works best in exclusive full-screen mode.
+Use the lowest audio latency setting your system can manage.
+A G-Sync or FreeSync monitor is required.
+Adaptive sync must be enabled in your driver settings panel.
+"
+
+Settings.Drivers.syncModePresets.DynamicRateControl = "Dynamic Rate Control"
+
+Settings.Drivers.syncModePresets.DynamicRateControl.failure = "
+Sorry, the current driver configuration is not compatible with the dynamic-rate-control mode.
+Dynamic rate control requires video synchronization and audio-dynamic-rate support.
+"
+
+Settings.Drivers.syncModePresets.DynamicRateControl.success = "
+Dynamic rate control requires your monitor to be running at:
+60 Hz refresh rate for NTSC games, 50 Hz refresh rate for PAL games.
+Use the lowest audio latency setting your system can manage.
+"
+
+Settings.BuiltinHotkeys.CheckAll   = "Check All"
+Settings.BuiltinHotkeys.UncheckAll = "Uncheck All"
+
+Tools = "Tools"
+
+Tools.SaveState = "Save State"
+Tools.SaveState.Slot = "Slot"
+Tools.SaveState.Slot.Empty = "empty"
+
+Tools.LoadState = "Load State"
+Tools.LoadState.SelectedStateSlot = "Selected state slot"
+Tools.LoadState.UndoLastSave      = "Undo Last Save"
+Tools.LoadState.RedoLastUndo      = "Redo Last Undo"
+Tools.LoadState.RemoveAllStates   = "Remove All States"
+Tools.LoadState.RemoveAllStates.confirm.title = "Remove quick states?"
+Tools.LoadState.RemoveAllStates.confirm = "Are you sure you want to permanently remove all quick states for this game?"
+
+Tools.Speed = "Speed"
+Tools.Speed.Slowest = "Slowest"
+Tools.Speed.Slow    = "Slow"
+Tools.Speed.Normal  = "Normal"
+Tools.Speed.Fast    = "Fast"
+Tools.Speed.Fastest = "Fastest"
+
+Tools.RunMode = "Run Mode"
+Tools.RunMode.Normal         = "Normal"
+Tools.RunMode.PauseEmulation = "Pause Emulation"
+Tools.RunMode.FrameAdvance   = "Frame Advance"
+
+Tools.Movie = "Movie"
+Tools.Movie.Play           = "Play"
+Tools.Movie.Record         = "Record"
+Tools.Movie.ResetAndRecord = "Reset and Record"
+Tools.Movie.Stop           = "Stop"
+
+Tools.TakeScreenshot = "Take Screenshot"
+
+Tools.CheatFinder = "Cheat Finder"
+Tools.CheatFinder.Address = "Address"
+Tools.CheatFinder.Value   = "Value"
+Tools.CheatFinder.Scan    = "Scan"
+Tools.CheatFinder.All     = "All"
+
+Tools.CheatEditor = "Cheat Editor"
+Tools.CheatEditor.remove.confirm.title = "Remove cheat(s)?"
+Tools.CheatEditor.remove.confirm = "Are you sure you want to permanently remove the selected cheat(s)?"
+Tools.CheatEditor.Codes        = "Code(s)"
+Tools.CheatEditor.Enable       = "Enable"
+Tools.CheatEditor.SelectAll    = "Select All"
+Tools.CheatEditor.UnselectAll  = "Unselect All"
+Tools.CheatEditor.AddCheats    = "Add Cheats"
+Tools.CheatEditor.AddCheat     = "Add Cheat"
+Tools.CheatEditor.EditCheat    = "Edit Cheat"
+Tools.CheatEditor.Edit         = "Edit"
+Tools.CheatEditor.FindCheats   = "Find Cheats"
+Tools.CheatEditor.noCheats     = "Sorry, no cheats were found for this game."
+Tools.CheatEditor.EnableCheats = "Enable Cheats"
+
+Tools.CheatEditor.EnableCheats.tooltip = "
+Master enable for all cheat codes.
+When unchecked, no cheat codes will be active.
+
+Use this to bypass game areas that have problems with cheats.
+"
+
+Tools.CheatEditor.EnableCheats.disabled = "All cheat codes are disabled"
+Tools.CheatEditor.EnableCheats.enabled  = "Active cheat codes are enabled"
+Tools.CheatEditor.invalidFormat = "Invalid code(s), please only use codes in the following format"
+
+Tools.StateManager = "State Manager"
+Tools.StateManager.Category = "Category"
+Tools.StateManager.Category.ManagedStates = "Managed States"
+Tools.StateManager.Category.QuickStates   = "Quick States"
+Tools.StateManager.QuickStates.Redo = "Redo"
+Tools.StateManager.QuickStates.Undo = "Undo"
+Tools.StateManager.Preview     = "Preview"
+Tools.StateManager.AddState    = "Add State"
+Tools.StateManager.RenameState = "Rename State"
+Tools.StateManager.remove.confirm.title = "Remove state(s)?"
+Tools.StateManager.remove.confirm = "Are you sure you want to permanently remove the selected state(s)?"
+
+Tools.ManifestViewer = "Manifest Viewer"
+Tools.ManifestViewer.Manifest = "Manifest"
+
+Game.VerifiedGameOpened   = "Verified game opened"
+Game.GameOpened           = "Game opened"
+Game.GameClosed           = "Game closed"
+Game.GameReset            = "Game reset"
+Game.AndPatchApplied      = " and patch applied"
+Game.GameOpeningCancelled = "Game opening cancelled"
+Game.unverifiedGameWarning.title = "Unverified game image"
+
+Game.unverifiedGameWarning = "
+Warning: this game image is unverified.
+Running it *may* be a security risk.
+
+Do you wish to run the game anyway?
+"
+
+Game.unverifiedGameWarning.alwaysQuestion.title = "Disable warning?"
+Game.unverifiedGameWarning.alwaysQuestion = "Do you wish to disable warning when trying to run unverified games?"
+
+Program.Paused   = "Paused"
+Program.Unloaded = "Unloaded"
+Program.CapturedScreenshot = "Captured screenshot"
+Program.Open.MissingRequiredData = "Missing required data"
+
+Program.Load.LoadGameBoyRom         = "Load Game Boy ROM"
+Program.Load.GameBoyRoms            = "Game Boy ROMs"
+Program.Load.LoadBsMemoryRom        = "Load BS Memory ROM"
+Program.Load.BsMemoryRoms           = "BS Memory ROMs"
+Program.Load.LoadSufamiTurboRomSlot = "Load Sufami Turbo ROM – Slot"
+Program.Load.SufamiTurboRoms        = "Sufami Turbo ROMs"
+
+About.Version   = "Version"
+About.Copyright = "Copyright"
+About.License   = "License"
+About.Website   = "Website"
+About.SameBoy.description = "Super Game Boy emulator"
+About.Bsnes.description   = "Super Nintendo emulator"
+About.Bsnes.copyright     = "byuu et al"
+About.Bsnes.license       = "GPLv3 or later"
+
+Browser.OpenSnesRom  = "Open SNES ROM"
+Browser.SnesRoms     = "SNES ROMs"
+Browser.AllFiles     = "All Files"
+Browser.Select       = "Select"
+Browser.SelectFolder = "Select Folder"
+Browser.ChooseFolder = "Choose a folder"
+Browser.ShowHidden   = "Show Hidden"
+Browser.OpenFile     = "Open File"
+Browser.OpenFiles    = "Open Files"
+Browser.OpenFolder   = "Open Folder"
+Browser.OpenObject   = "Open Object"
+Browser.Rename.EnterNewFolderName   = "Enter the new folder name"
+Browser.Rename.EnterNewFileName     = "Enter the new file name"
+Browser.Rename.FailedToRenameFolder = "Failed to rename folder."
+Browser.Rename.FailedToRenameFile   = "Failed to rename file."
+Browser.Create = "Create"
+Browser.Create.EnterName = "Enter a name"
+Browser.CreateFolder = "Create Folder"
+Browser.CreateFolder.EnterNewFolderName = "Enter a new-folder name"
+Browser.Delete.DeleteSelected = "Delete Selected"
+Browser.Delete.FailedToDelete = "Failed to delete |. Continue trying to remove remaining items?"
+Browser.Delete.confirm = "Are you sure you want to permanently delete the |"
+Browser.Delete.confirm.item  = "selected item"
+Browser.Delete.confirm.items = "selected items"
+Browser.SaveFile = "Save File"
+Browser.SaveFile.fileExists.title = "Overwrite file?"
+Browser.SaveFile.fileExists = "File already exists. Overwrite it?"
+
+StatusIcon.verifiedRom.tooltip = "
+This is a known clean game image.
+PCB emulation is 100% accurate.
+"
+
+StatusIcon.unverifiedRom.tooltip = "
+This is not a verified game image.
+PCB emulation is relying on heuristics.
+"
+
+ResetDrivers.message.title = "Reset drivers"
+
+ResetDrivers.message = "
+Hardware drivers have been reset according to the `--resetdrivers` command-line option.
+
+Please reconfigure drivers in the “Settings” → “Drivers” window that will now open.
+"
+
+Rewind.HistoryExhausted = "Rewind history exhausted"
+
+States.incompatibleFormat  = "[|] is in incompatible format"
+States.Loaded              = "Loaded"
+States.NotFound            = "[|] not found"
+States.FailedToSave        = "Failed to save [|]"
+States.UnableToWriteToDisk = "Unable to write [|] to disk"
+States.Saved               = "Saved [|]"
+
+Patch.ipsWarning = "
+(You’re seeing this prompt because IPS is a terrible patch-file format, and nobody can agree on whether SNES ROMs should be headered or not.
+Please consider asking the patch author to use BPS patches instead.)
+
+Does this IPS patch expect to be applied to a headered ROM?
+If you’re not sure, try “No”, and if it fails to work, try again with “Yes”.
+"
+
+Patch.ensureHeaderless = "Please ensure you are using the correct (headerless) ROM for this patch."
+
+Movies.PlayMovie          = "Play Movie"
+Movies.Movies             = "Movies"
+Movies.playbackStarted    = "Movie playback started"
+Movies.playbackStopped    = "Movie playback stopped"
+Movies.formatNotSupported = "Movie format is not supported"
+Movies.recordingStarted   = "Movie recording started"
+Movies.SaveMovie          = "Save Movie"
+Movies.MovieRecorded      = "Movie recorded"
+Movies.MovieNotRecorded   = "Movie not recorded"
+Movies.cantRecord         = "Movie could not be recorded"
+
+Devices.Gamepad = "Gamepad"
+Devices.Mouse   = "Mouse"
+
+Hotkeys.ToggleMouseCapture  = "Toggle Mouse Capture"
+Hotkeys.ToggleCheatCodes    = "Toggle Cheat Codes"
+Hotkeys.Rewind              = "Rewind"
+Hotkeys.LoadUndoState       = "Load Undo State"
+Hotkeys.LoadRedoState       = "Load Redo State"
+Hotkeys.DecrementStateSlot  = "Decrement State Slot"
+Hotkeys.IncrementStateSlot  = "Increment State Slot"
+Hotkeys.FastForward         = "Fast Forward"
+Hotkeys.FrameAdvance        = "Frame Advance"
+Hotkeys.DecreaseHDMode7     = "Decrease HD Mode 7"
+Hotkeys.IncreaseHDMode7     = "Increase HD Mode 7"
+Hotkeys.ToggleSupersampling = "Toggle Supersampling"
+Hotkeys.ResetEmulation      = "Reset Emulation"
+Hotkeys.QuitEmulator        = "Quit Emulator"

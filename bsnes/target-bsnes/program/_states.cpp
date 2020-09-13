@@ -99,19 +99,19 @@ auto Program::loadState(string filename) -> bool {
 		auto serializerRLE = Decode::RLE<1>({memory.data() + 3 * sizeof(uint), memory.size() - 3 * sizeof(uint)});
 		serializer s{serializerRLE.data(), (uint)serializerRLE.size()};
 
-		string message = bms::get("States.incompatibleFormat").data(); // MT.
+		string message = bmt::get("States.incompatibleFormat").data(); // MT.
 
 		if (!emulator->unserialize(s)) {
 			return showMessage(message.replace('|', prefix)), false;
 		}
 
 		rewindReset();  //do not allow rewinding past a state load event
-		string loadedMessage = bms::get("States.Loaded").data(); // MT.
+		string loadedMessage = bmt::get("States.Loaded").data(); // MT.
 
 		return showMessage(loadedMessage.replace('|', prefix)), true;
 	}
 	else {
-		string notFoundMessage = bms::get("States.NotFound").data(); // MT.
+		string notFoundMessage = bmt::get("States.NotFound").data(); // MT.
 		return showMessage(notFoundMessage.replace('|', prefix)), false;
 	}
 }
@@ -124,7 +124,7 @@ auto Program::saveState(string filename) -> bool {
 	string prefix = Location::file(filename);
 
 	serializer s = emulator->serialize();
-	string message = bms::get("States.FailedToSave").data(); // MT.
+	string message = bmt::get("States.FailedToSave").data(); // MT.
 
 	if (!s.size()) {
 		return showMessage(message.replace('|', prefix)), false;
@@ -161,7 +161,7 @@ auto Program::saveState(string filename) -> bool {
 		directory::create(Location::path(location));
 
 		if (!file::write(location, saveState)) {
-			string unableMessage = bms::get("States.UnableToWriteToDisk").data(); // MT.
+			string unableMessage = bmt::get("States.UnableToWriteToDisk").data(); // MT.
 			return showMessage(unableMessage.replace('|', prefix)), false;
 		}
 	}
@@ -203,12 +203,12 @@ auto Program::saveState(string filename) -> bool {
 
 	if (filename.beginsWith("Quick/")) {
 		presentation.updateStateMenus();
-		slotString.replace("Slot", bms::get("Tools.SaveState.Slot").data()); // MT.
+		slotString.replace("Slot", bmt::get("Tools.SaveState.Slot").data()); // MT.
 	}
 
 	stateManager.stateEvent(filename);
 
-	string savedMessage = string(bms::get("States.Saved").data()).replace('|', slotString); // MT.
+	string savedMessage = string(bmt::get("States.Saved").data()).replace('|', slotString); // MT.
 
 	return showMessage(savedMessage), true;
 }

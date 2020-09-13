@@ -11,9 +11,9 @@
 #include "_drivers.cpp"
 
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 Settings settings;
@@ -186,15 +186,15 @@ public:
 auto SettingsWindow::create() -> void {
 	layout.setPadding(5_sx);
 
-	panelList.append(ListViewItem().setText(bms::get("Common.Video").data()).setIcon(Icon::Device::Display));
-	panelList.append(ListViewItem().setText(bms::get("Common.Audio").data()).setIcon(Icon::Device::Speaker));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Input").data()).setIcon(Icon::Device::Joypad));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Hotkeys").data()).setIcon(Icon::Device::Keyboard));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Paths").data()).setIcon(Icon::Emblem::Folder));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Emulator").data()).setIcon(Icon::Action::Settings));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Enhancements").data()).setIcon(Icon::Action::Add));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Compatibility").data()).setIcon(Icon::Action::Remove));
-	panelList.append(ListViewItem().setText(bms::get("Settings.Drivers").data()).setIcon(Icon::Place::Settings));
+	panelList.append(ListViewItem().setText(bmt::get("Common.Video").data()).setIcon(Icon::Device::Display));
+	panelList.append(ListViewItem().setText(bmt::get("Common.Audio").data()).setIcon(Icon::Device::Speaker));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Input").data()).setIcon(Icon::Device::Joypad));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Hotkeys").data()).setIcon(Icon::Device::Keyboard));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Paths").data()).setIcon(Icon::Emblem::Folder));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Emulator").data()).setIcon(Icon::Action::Settings));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Enhancements").data()).setIcon(Icon::Action::Add));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Compatibility").data()).setIcon(Icon::Action::Remove));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.Drivers").data()).setIcon(Icon::Place::Settings));
 
 	panelList.onChange([&] {
 		if (auto item = panelList.selected()) {
@@ -217,7 +217,7 @@ auto SettingsWindow::create() -> void {
 	panelContainer.append(driverSettings, Size{~0, ~0});
 	statusBar.setFont(Font().setBold());
 
-	setTitle(bms::get("Settings").data());
+	setTitle(bmt::get("Settings").data());
 	setSize({680_sx, 400_sy});
 	setAlignment({0.0, 1.0});
 	setDismissable();

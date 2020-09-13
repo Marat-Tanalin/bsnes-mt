@@ -1,11 +1,11 @@
 /* MT. */
 #include "bsnes-mt/messagebox.h"
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 #include "bsnes-mt/app.h"
 
-namespace bms = bsnesMt::strings;
-namespace bmw = bsnesMt::windows;
 namespace bma = bsnesMt::app;
+namespace bmt = bsnesMt::translations;
+namespace bmw = bsnesMt::windows;
 /* /MT. */
 
 auto Program::load() -> void {
@@ -44,15 +44,15 @@ auto Program::load() -> void {
 		auto lock = acquire();
 
 		/* // Commented-out by MT.
-		string alwaysString = bms::get("Common.Always").data(); // MT.
-		string noString     = bms::get("Common.No").data();     // MT.
+		string alwaysString = bmt::get("Common.Always").data(); // MT.
+		string noString     = bmt::get("Common.No").data();     // MT.
 
-		auto response = MessageDialog(bms::get("Game.unverifiedGameWarning").data()).setAlignment(*presentation)
-			.question({alwaysString, bms::get("Common.Yes").data(), noString});
+		auto response = MessageDialog(bmt::get("Game.unverifiedGameWarning").data()).setAlignment(*presentation)
+			.question({alwaysString, bmt::get("Common.Yes").data(), noString});
 
 		if (response == noString) {
 			emulator->unload();
-			return showMessage(bms::get("Game.GameOpeningCancelled").data());
+			return showMessage(bmt::get("Game.GameOpeningCancelled").data());
 		}
 
 		if (response == alwaysString) {
@@ -70,7 +70,7 @@ auto Program::load() -> void {
 		}
 		else {
 			emulator->unload();
-			return showMessage(bms::get("Game.GameOpeningCancelled").data());
+			return showMessage(bmt::get("Game.GameOpeningCancelled").data());
 		}
 		/* /MT. */
 	}
@@ -133,8 +133,8 @@ auto Program::load() -> void {
 
 	// Moved down by MT.
 	showMessage({
-		verified() ? bms::get("Game.VerifiedGameOpened").data() : bms::get("Game.GameOpened").data(),
-		appliedPatch() ? bms::get("Game.AndPatchApplied").data() : "",
+		verified() ? bmt::get("Game.VerifiedGameOpened").data() : bmt::get("Game.GameOpened").data(),
+		appliedPatch() ? bmt::get("Game.AndPatchApplied").data() : "",
 		snesGame ? string({" [", gameRegion, "]"}) : "" // MT.
 	});
 
@@ -437,7 +437,7 @@ auto Program::reset() -> void {
 	rewindReset();  //don't allow rewinding past a reset point
 	hackCompatibility();
 	emulator->reset();
-	showMessage(bms::get("Game.GameReset").data());
+	showMessage(bmt::get("Game.GameReset").data());
 }
 
 auto Program::unload() -> void {
@@ -463,7 +463,7 @@ auto Program::unload() -> void {
 	}
 
 	emulator->unload();
-	showMessage(bms::get("Game.GameClosed").data());
+	showMessage(bmt::get("Game.GameClosed").data());
 
 	superFamicom = {};
 	gameBoy      = {};

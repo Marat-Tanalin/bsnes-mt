@@ -4,9 +4,11 @@
 #include <string>
 
 #include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 #include "bsnes-mt/utils.h"
 
 namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 namespace hiro {
@@ -72,7 +74,7 @@ static auto BrowserWindow_fileDialog(bool save, BrowserWindow::State& state) -> 
 
 auto pBrowserWindow::directory(BrowserWindow::State& state) -> string {
   wchar_t wname[PATH_MAX + 1] = L"";
-  auto chooseFolder = bsnesMt::utf8ToWideString(std::string("\n") + bms::get("Browser.ChooseFolder") + ":"); // MT.
+  auto chooseFolder = bms::utf8ToWideString(std::string("\n") + bmt::get("Browser.ChooseFolder") + ":"); // MT.
 
   BROWSEINFO bi;
   bi.hwndOwner = state.parent ? state.parent->self()->hwnd : 0;

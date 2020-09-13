@@ -1,19 +1,19 @@
 auto CheatDatabase::create() -> void {
 	layout.setPadding(5_sx);
 
-	selectAllButton.setText(bms::get("Tools.CheatEditor.SelectAll").data()).onActivate([&] {
+	selectAllButton.setText(bmt::get("Tools.CheatEditor.SelectAll").data()).onActivate([&] {
 		for (auto item : cheatList.items()) {
 			item.setChecked(true);
 		}
 	});
 
-	unselectAllButton.setText(bms::get("Tools.CheatEditor.UnselectAll").data()).onActivate([&] {
+	unselectAllButton.setText(bmt::get("Tools.CheatEditor.UnselectAll").data()).onActivate([&] {
 		for (auto item : cheatList.items()) {
 			item.setChecked(false);
 		}
 	});
 
-	addCheatsButton.setText(bms::get("Tools.CheatEditor.AddCheats").data()).onActivate([&] {
+	addCheatsButton.setText(bmt::get("Tools.CheatEditor.AddCheats").data()).onActivate([&] {
 		addCheats();
 	});
 
@@ -64,11 +64,11 @@ auto CheatDatabase::findCheats() -> void {
 	}
 
 	/* // Commented-out by MT.
-	MessageDialog().setAlignment(*toolsWindow).setText(bms::get("Tools.CheatEditor.noCheats").data()).information();
+	MessageDialog().setAlignment(*toolsWindow).setText(bmt::get("Tools.CheatEditor.noCheats").data()).information();
 	*/
 
 	bmw::showInfo(
-		bms::get("Tools.CheatEditor.noCheats"),
+		bmt::get("Tools.CheatEditor.noCheats"),
 		"",
 		toolsWindow->handle()
 	); // MT.
@@ -91,7 +91,7 @@ auto CheatWindow::create() -> void {
 	tableLayout.setSize({2, 2});
 	tableLayout.cell(0).setAlignment({1.0, 0.5});
 	tableLayout.cell(2).setAlignment({1.0, 0.0});
-	nameLabel.setText({bms::get("Common.Name").data(), ':'});
+	nameLabel.setText({bmt::get("Common.Name").data(), ':'});
 
 	nameValue.onActivate([&] {
 		if (acceptButton.enabled()) {
@@ -103,20 +103,20 @@ auto CheatWindow::create() -> void {
 		doChange();
 	});
 
-	codeLabel.setText({bms::get("Tools.CheatEditor.Codes").data(), ':'});
+	codeLabel.setText({bmt::get("Tools.CheatEditor.Codes").data(), ':'});
 	codeValue.setFont(Font().setFamily(Font::Mono));
 
 	codeValue.onChange([&] {
 		doChange();
 	});
 
-	enableOption.setText(bms::get("Tools.CheatEditor.Enable").data());
+	enableOption.setText(bmt::get("Tools.CheatEditor.Enable").data());
 
 	acceptButton.onActivate([&] {
 		doAccept();
 	});
 
-	cancelButton.setText(bms::get("Common.Cancel").data()).onActivate([&] {
+	cancelButton.setText(bmt::get("Common.Cancel").data()).onActivate([&] {
 		setVisible(false);
 	});
 
@@ -129,12 +129,12 @@ auto CheatWindow::show(Cheat cheat) -> void {
 	codeValue.setText(cheat.code.split("+").strip().merge("\n"));
 	enableOption.setChecked(cheat.enable);
 	doChange();
-	setTitle(!cheat.name ? bms::get("Tools.CheatEditor.AddCheat").data() : bms::get("Tools.CheatEditor.EditCheat").data());
+	setTitle(!cheat.name ? bmt::get("Tools.CheatEditor.AddCheat").data() : bmt::get("Tools.CheatEditor.EditCheat").data());
 	setAlignment(*toolsWindow);
 	setVisible();
 	setFocused();
 	nameValue.setFocused();
-	acceptButton.setText(!cheat.name ? bms::get("Common.Add").data() : bms::get("Tools.CheatEditor.Edit").data());
+	acceptButton.setText(!cheat.name ? bmt::get("Common.Add").data() : bmt::get("Tools.CheatEditor.Edit").data());
 }
 
 auto CheatWindow::doChange() -> void {
@@ -152,7 +152,7 @@ auto CheatWindow::doAccept() -> void {
 		if (!program.gameBoy.program) {
 			if (!cheatEditor.decodeSNES(code)) {
 				invalid = {
-					bms::get("Tools.CheatEditor.invalidFormat").data(),
+					bmt::get("Tools.CheatEditor.invalidFormat").data(),
 					":\n\n"
 					"Game Genie (eeee-eeee)\n"
 					"Pro Action Replay (aaaaaadd)\n"
@@ -163,7 +163,7 @@ auto CheatWindow::doAccept() -> void {
 		}
 		else if (!cheatEditor.decodeGB(code)) {
 			invalid = {
-				bms::get("Tools.CheatEditor.invalidFormat").data(),
+				bmt::get("Tools.CheatEditor.invalidFormat").data(),
 				":\n\n"
 				"Game Genie (eee-eee)\n"
 				"Game Genie (eee-eee-eee)\n"
@@ -187,7 +187,7 @@ auto CheatWindow::doAccept() -> void {
 
 	Cheat cheat = {nameValue.text().strip(), codes.merge("+"), enableOption.checked()};
 
-	if (acceptButton.text() == bms::get("Common.Add").data()) {
+	if (acceptButton.text() == bmt::get("Common.Add").data()) {
 		cheatEditor.addCheat(cheat);
 	}
 	else {
@@ -241,39 +241,39 @@ auto CheatEditor::create() -> void {
 		cheatList.resizeColumns();
 	});
 
-	findCheatsButton.setText({bms::get("Tools.CheatEditor.FindCheats").data(), "..."}).onActivate([&] {
+	findCheatsButton.setText({bmt::get("Tools.CheatEditor.FindCheats").data(), "..."}).onActivate([&] {
 		cheatDatabase.findCheats();
 	});
 
-	enableCheats.setText(bms::get("Tools.CheatEditor.EnableCheats").data())
-		.setToolTip(bms::get("Tools.CheatEditor.EnableCheats.tooltip").data())
+	enableCheats.setText(bmt::get("Tools.CheatEditor.EnableCheats").data())
+		.setToolTip(bmt::get("Tools.CheatEditor.EnableCheats.tooltip").data())
 		.setChecked(settings.emulator.cheats.enable)
 		.onToggle([&] {
 			settings.emulator.cheats.enable = enableCheats.checked();
 			string message; // MT.
 
 			if (enableCheats.checked()) {
-				message = bms::get("Tools.CheatEditor.EnableCheats.enabled").data();
+				message = bmt::get("Tools.CheatEditor.EnableCheats.enabled").data();
 			}
 			else {
-				message = bms::get("Tools.CheatEditor.EnableCheats.disabled").data();
+				message = bmt::get("Tools.CheatEditor.EnableCheats.disabled").data();
 			}
 
 			program.showMessage(message); // MT.
 			synchronizeCodes();
 		});
 
-	addButton.setText(bms::get("Common.Add").data()).onActivate([&] {
+	addButton.setText(bmt::get("Common.Add").data()).onActivate([&] {
 		cheatWindow.show();
 	});
 
-	editButton.setText(bms::get("Tools.CheatEditor.Edit").data()).onActivate([&] {
+	editButton.setText(bmt::get("Tools.CheatEditor.Edit").data()).onActivate([&] {
 		if (auto item = cheatList.selected()) {
 			cheatWindow.show(cheats[item.offset()]);
 		}
 	});
 
-	removeButton.setText(bms::get("Common.Remove").data()).onActivate([&] {
+	removeButton.setText(bmt::get("Common.Remove").data()).onActivate([&] {
 		removeCheats();
 	});
 
@@ -286,7 +286,7 @@ auto CheatEditor::create() -> void {
 auto CheatEditor::refresh() -> void {
 	cheatList.reset();
 	cheatList.append(TableViewColumn());
-	cheatList.append(TableViewColumn().setText(bms::get("Common.Name").data()).setSorting(Sort::Ascending).setExpandable());
+	cheatList.append(TableViewColumn().setText(bmt::get("Common.Name").data()).setSorting(Sort::Ascending).setExpandable());
 
 	for (auto& cheat : cheats) {
 		TableViewItem item{&cheatList};
@@ -334,8 +334,8 @@ auto CheatEditor::editCheat(Cheat cheat) -> void {
 auto CheatEditor::removeCheats() -> void {
 	if (auto batched = cheatList.batched()) {
 		/* // Commented-out by MT.
-		if (MessageDialog(bms::get("Tools.CheatEditor.remove.confirm").data())
-			.setAlignment(*toolsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) {
+		if (MessageDialog(bmt::get("Tools.CheatEditor.remove.confirm").data())
+			.setAlignment(*toolsWindow).question({bmt::get("Common.Yes").data(), bmt::get("Common.No").data()}) == bmt::get("Common.Yes").data()) {
 		*/
 
 		if (bmw::confirmById("Tools.CheatEditor.remove.confirm", toolsWindow->handle())) { // MT.

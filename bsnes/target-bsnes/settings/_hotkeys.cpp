@@ -1,7 +1,7 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 auto HotkeySettings::create() -> void {
@@ -25,18 +25,18 @@ auto HotkeySettings::create() -> void {
 		mappingList.resizeColumns();
 	});
 
-	logicLabel.setText({bms::get("Settings.Hotkeys.CombinationalLogic").data(), ':'})
-		.setToolTip(bms::get("Settings.Hotkeys.CombinationalLogic.tooltip").data());
+	logicLabel.setText({bmt::get("Settings.Hotkeys.CombinationalLogic").data(), ':'})
+		.setToolTip(bmt::get("Settings.Hotkeys.CombinationalLogic.tooltip").data());
 
-	logicAND.setText(bms::get("Settings.Hotkeys.CombinationalLogic.And").data())
-		.setToolTip(bms::get("Settings.Hotkeys.CombinationalLogic.And.tooltip").data())
+	logicAND.setText(bmt::get("Settings.Hotkeys.CombinationalLogic.And").data())
+		.setToolTip(bmt::get("Settings.Hotkeys.CombinationalLogic.And.tooltip").data())
 		.onActivate([&] {
 			settings.input.hotkey.logic = "and";
 			inputManager.hotkeyLogic = InputMapping::Logic::AND;
 		});
 
-	logicOR.setText(bms::get("Settings.Hotkeys.CombinationalLogic.Or").data())
-		.setToolTip(bms::get("Settings.Hotkeys.CombinationalLogic.Or.tooltip").data())
+	logicOR.setText(bmt::get("Settings.Hotkeys.CombinationalLogic.Or").data())
+		.setToolTip(bmt::get("Settings.Hotkeys.CombinationalLogic.Or.tooltip").data())
 		.onActivate([&] {
 			settings.input.hotkey.logic = "or";
 			inputManager.hotkeyLogic = InputMapping::Logic::OR;
@@ -53,12 +53,12 @@ auto HotkeySettings::create() -> void {
 
 	inputSink.setFocusable();
 
-	assignButton.setText(bms::get("Settings.Common.Assign").data()).onActivate([&] {
+	assignButton.setText(bmt::get("Settings.Common.Assign").data()).onActivate([&] {
 		clearButton.doActivate();
 		assignMapping(mappingList.selected().cell(0));
 	});
 
-	clearButton.setText(bms::get("Common.Clear").data()).onActivate([&] {
+	clearButton.setText(bmt::get("Common.Clear").data()).onActivate([&] {
 		cancelMapping();
 
 		for (auto mapping : mappingList.batched()) {
@@ -75,11 +75,11 @@ auto HotkeySettings::create() -> void {
 
 auto HotkeySettings::reloadMappings() -> void {
 	mappingList.reset();
-	mappingList.append(TableViewColumn().setText(bms::get("Common.Name").data()));
+	mappingList.append(TableViewColumn().setText(bmt::get("Common.Name").data()));
 
 	/* MT. */
 	char space = ' ';
-	string mappingTextPrefix = {bms::get("Settings.Common.Mapping").data(), space, bms::get("Common.number").data(), space};
+	string mappingTextPrefix = {bmt::get("Settings.Common.Mapping").data(), space, bmt::get("Common.number").data(), space};
 	/* /MT. */
 
 	for (uint index : range(BindingLimit)) {
@@ -88,7 +88,7 @@ auto HotkeySettings::reloadMappings() -> void {
 
 	for (auto& hotkey : inputManager.hotkeys) {
 		TableViewItem item{&mappingList};
-		item.append(TableViewCell().setText(bms::getHotkeyString(hotkey.name.data()).data()).setFont(Font().setBold()));
+		item.append(TableViewCell().setText(bmt::getHotkeyString(hotkey.name.data()).data()).setFont(Font().setBold()));
 
 		for (uint index : range(BindingLimit)) {
 			item.append(TableViewCell());
@@ -122,8 +122,8 @@ auto HotkeySettings::assignMapping(TableViewCell cell) -> void {
 
 	/* MT. */
 	char space = ' ';
-	string statusPrefix   = {bms::get("Settings.Common.PressKeyOrButtonForMapping").data(), space, bms::get("Common.number").data(), space};
-	string awaitingString = {"(", bms::get("Settings.Common.AssignLowercase").data(), " ...)"};
+	string statusPrefix   = {bmt::get("Settings.Common.PressKeyOrButtonForMapping").data(), space, bmt::get("Common.number").data(), space};
+	string awaitingString = {"(", bmt::get("Settings.Common.AssignLowercase").data(), " ...)"};
 	/* /MT. */
 
 	for (auto mapping : mappingList.batched()) {
@@ -152,7 +152,7 @@ auto HotkeySettings::inputEvent(shared_pointer<HID::Device> device, uint group, 
 
 	if (activeMapping->bind(device, group, input, oldValue, newValue, activeBinding)) {
 		activeMapping.reset();
-		settingsWindow.statusBar.setText(bms::get("Settings.Common.MappingAssigned").data());
+		settingsWindow.statusBar.setText(bmt::get("Settings.Common.MappingAssigned").data());
 		refreshMappings();
 
 		timer.onActivate([&] {

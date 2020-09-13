@@ -1,7 +1,7 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 auto EnhancementSettings::create() -> void {
@@ -9,32 +9,32 @@ auto EnhancementSettings::create() -> void {
 	setVisible(false);
 
 	/* MT. */
-	string framesString = bms::get("Settings.Enhancements.RunAhead.Frames").data();
+	string framesString = bmt::get("Settings.Enhancements.RunAhead.Frames").data();
 	char space = ' ';
 	/* /MT. */
 
-	runAheadLabel.setText(bms::get("Settings.Enhancements.RunAhead").data()).setFont(Font().setBold());
+	runAheadLabel.setText(bmt::get("Settings.Enhancements.RunAhead").data()).setFont(Font().setBold());
 
-	runAhead0.setText(bms::get("Common.Disabled").data()).onActivate([&] {
+	runAhead0.setText(bmt::get("Common.Disabled").data()).onActivate([&] {
 		settings.emulator.runAhead.frames = 0;
 	});
 
-	runAhead1.setText({bms::get("Settings.Enhancements.RunAhead.One").data(), space, bms::get("Settings.Common.FrameLowercase").data()})
+	runAhead1.setText({bmt::get("Settings.Enhancements.RunAhead.One").data(), space, bmt::get("Settings.Common.FrameLowercase").data()})
 		.onActivate([&] {
 			settings.emulator.runAhead.frames = 1;
 		});
 
-	runAhead2.setText({bms::get("Settings.Enhancements.RunAhead.Two").data(), space, framesString})
+	runAhead2.setText({bmt::get("Settings.Enhancements.RunAhead.Two").data(), space, framesString})
 		.onActivate([&] {
 			settings.emulator.runAhead.frames = 2;
 		});
 
-	runAhead3.setText({bms::get("Settings.Enhancements.RunAhead.Three").data(), space, framesString})
+	runAhead3.setText({bmt::get("Settings.Enhancements.RunAhead.Three").data(), space, framesString})
 		.onActivate([&] {
 			settings.emulator.runAhead.frames = 3;
 		});
 
-	runAhead4.setText({bms::get("Settings.Enhancements.RunAhead.Four").data(), space, framesString})
+	runAhead4.setText({bmt::get("Settings.Enhancements.RunAhead.Four").data(), space, framesString})
 		.onActivate([&] {
 			settings.emulator.runAhead.frames = 4;
 		});
@@ -61,7 +61,7 @@ auto EnhancementSettings::create() -> void {
 
 	runAheadSpacer.setColor(spacerColor);
 
-	overclockingLabel.setText(bms::get("Settings.Enhancements.Overclocking").data()).setFont(Font().setBold());
+	overclockingLabel.setText(bmt::get("Settings.Enhancements.Overclocking").data()).setFont(Font().setBold());
 
 	overclockingLayout.setSize({3, 3});
 	overclockingLayout.column(0).setAlignment(1.0);
@@ -99,9 +99,9 @@ auto EnhancementSettings::create() -> void {
 
 	overclockingSpacer.setColor(spacerColor);
 
-	ppuLabel.setText({"PPU (", bms::get("Settings.Enhancements.Ppu.Video").data(), ")"}).setFont(Font().setBold());
+	ppuLabel.setText({"PPU (", bmt::get("Settings.Enhancements.Ppu.Video").data(), ")"}).setFont(Font().setBold());
 
-	fastPPU.setText(bms::get("Settings.Enhancements.FastMode").data())
+	fastPPU.setText(bmt::get("Settings.Enhancements.FastMode").data())
 		.setChecked(settings.emulator.hack.ppu.fast)
 		.onToggle([&] {
 			bool checked = fastPPU.checked(); // MT.
@@ -113,21 +113,21 @@ auto EnhancementSettings::create() -> void {
 		})
 		.doToggle();
 
-	deinterlace.setText(bms::get("Settings.Enhancements.Ppu.Deinterlace").data())
+	deinterlace.setText(bmt::get("Settings.Enhancements.Ppu.Deinterlace").data())
 		.setChecked(settings.emulator.hack.ppu.deinterlace)
 		.onToggle([&] {
 			settings.emulator.hack.ppu.deinterlace = deinterlace.checked();
 			emulator->configure("Hacks/PPU/Deinterlace", settings.emulator.hack.ppu.deinterlace);
 		});
 
-	noSpriteLimit.setText(bms::get("Settings.Enhancements.Ppu.NoSpriteLimit").data())
+	noSpriteLimit.setText(bmt::get("Settings.Enhancements.Ppu.NoSpriteLimit").data())
 		.setChecked(settings.emulator.hack.ppu.noSpriteLimit)
 		.onToggle([&] {
 			settings.emulator.hack.ppu.noSpriteLimit = noSpriteLimit.checked();
 		});
 
-	mode7Label.setText({"HD Mode 7 (", bms::get("Settings.Enhancements.hdMode7.FastPpuOnly").data(), ")"}).setFont(Font().setBold());
-	mode7ScaleLabel.setText({bms::get("Settings.Enhancements.hdMode7.Scale").data(), ':'});
+	mode7Label.setText({"HD Mode 7 (", bmt::get("Settings.Enhancements.hdMode7.FastPpuOnly").data(), ")"}).setFont(Font().setBold());
+	mode7ScaleLabel.setText({bmt::get("Settings.Enhancements.hdMode7.Scale").data(), ':'});
 
 	/* MT. */
 	for (uint8_t i = 1; i < 9; i++) {
@@ -146,67 +146,67 @@ auto EnhancementSettings::create() -> void {
 		emulator->configure("Hacks/PPU/Mode7/Scale", settings.emulator.hack.ppu.mode7.scale);
 	});
 
-	mode7Perspective.setText(bms::get("Settings.Enhancements.hdMode7.PerspectiveCorrection").data())
+	mode7Perspective.setText(bmt::get("Settings.Enhancements.hdMode7.PerspectiveCorrection").data())
 		.setChecked(settings.emulator.hack.ppu.mode7.perspective)
 		.onToggle([&] {
 			settings.emulator.hack.ppu.mode7.perspective = mode7Perspective.checked();
 			emulator->configure("Hacks/PPU/Mode7/Perspective", settings.emulator.hack.ppu.mode7.perspective);
 		});
 
-	mode7Supersample.setText(bms::get("Settings.Enhancements.hdMode7.Supersampling").data())
+	mode7Supersample.setText(bmt::get("Settings.Enhancements.hdMode7.Supersampling").data())
 		.setChecked(settings.emulator.hack.ppu.mode7.supersample)
 		.onToggle([&] {
 			settings.emulator.hack.ppu.mode7.supersample = mode7Supersample.checked();
 			emulator->configure("Hacks/PPU/Mode7/Supersample", settings.emulator.hack.ppu.mode7.supersample);
 		});
 
-	mode7Mosaic.setText(bms::get("Settings.Enhancements.hdMode7.HdToSdMosaic").data())
+	mode7Mosaic.setText(bmt::get("Settings.Enhancements.hdMode7.HdToSdMosaic").data())
 		.setChecked(settings.emulator.hack.ppu.mode7.mosaic)
 		.onToggle([&] {
 			settings.emulator.hack.ppu.mode7.mosaic = mode7Mosaic.checked();
 			emulator->configure("Hacks/PPU/Mode7/Mosaic", settings.emulator.hack.ppu.mode7.mosaic);
 		});
 
-	dspLabel.setText({"DSP (", bms::get("Settings.Enhancements.Dsp.Audio").data(), ")"}).setFont(Font().setBold());
+	dspLabel.setText({"DSP (", bmt::get("Settings.Enhancements.Dsp.Audio").data(), ")"}).setFont(Font().setBold());
 
-	fastDSP.setText(bms::get("Settings.Enhancements.FastMode").data())
+	fastDSP.setText(bmt::get("Settings.Enhancements.FastMode").data())
 		.setChecked(settings.emulator.hack.dsp.fast)
 		.onToggle([&] {
 			settings.emulator.hack.dsp.fast = fastDSP.checked();
 			emulator->configure("Hacks/DSP/Fast", settings.emulator.hack.dsp.fast);
 		});
 
-	cubicInterpolation.setText(bms::get("Settings.Enhancements.Dsp.CubicInterpolation").data())
+	cubicInterpolation.setText(bmt::get("Settings.Enhancements.Dsp.CubicInterpolation").data())
 		.setChecked(settings.emulator.hack.dsp.cubic)
 		.onToggle([&] {
 			settings.emulator.hack.dsp.cubic = cubicInterpolation.checked();
 			emulator->configure("Hacks/DSP/Cubic", settings.emulator.hack.dsp.cubic);
 		});
 
-	coprocessorLabel.setText(bms::get("Settings.Enhancements.Coprocessors").data()).setFont(Font().setBold());
+	coprocessorLabel.setText(bmt::get("Settings.Enhancements.Coprocessors").data()).setFont(Font().setBold());
 
-	coprocessorDelayedSyncOption.setText(bms::get("Settings.Enhancements.FastMode").data())
+	coprocessorDelayedSyncOption.setText(bmt::get("Settings.Enhancements.FastMode").data())
 		.setChecked(settings.emulator.hack.coprocessor.delayedSync)
 		.onToggle([&] {
 			settings.emulator.hack.coprocessor.delayedSync = coprocessorDelayedSyncOption.checked();
 		});
 
-	coprocessorPreferHLEOption.setText(bms::get("Settings.Enhancements.Coprocessors.PreferHle").data())
+	coprocessorPreferHLEOption.setText(bmt::get("Settings.Enhancements.Coprocessors.PreferHle").data())
 		.setChecked(settings.emulator.hack.coprocessor.preferHLE)
-		.setToolTip(bms::get("Settings.Enhancements.Coprocessors.PreferHle.tooltip").data())
+		.setToolTip(bmt::get("Settings.Enhancements.Coprocessors.PreferHle.tooltip").data())
 		.onToggle([&] {
 			settings.emulator.hack.coprocessor.preferHLE = coprocessorPreferHLEOption.checked();
 		});
 
 	coprocessorSpacer.setColor(spacerColor);
 
-	gameLabel.setText(bms::get("Settings.Enhancements.GameEnhancements").data()).setFont(Font().setBold());
+	gameLabel.setText(bmt::get("Settings.Enhancements.GameEnhancements").data()).setFont(Font().setBold());
 
-	hotfixes.setText(bms::get("Settings.Enhancements.GameEnhancements.Hotfixes").data())
-		.setToolTip(bms::get("Settings.Enhancements.GameEnhancements.Hotfixes.tooltip").data())
+	hotfixes.setText(bmt::get("Settings.Enhancements.GameEnhancements.Hotfixes").data())
+		.setToolTip(bmt::get("Settings.Enhancements.GameEnhancements.Hotfixes.tooltip").data())
 		.setChecked(settings.emulator.hack.hotfixes).onToggle([&] {
 			settings.emulator.hack.hotfixes = hotfixes.checked();
 		});
 
-	note.setText(bms::get("Settings.noteGameRestart").data());
+	note.setText(bmt::get("Settings.noteGameRestart").data());
 }

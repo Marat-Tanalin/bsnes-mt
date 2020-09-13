@@ -1,9 +1,9 @@
 #include <sfc/sfc.hpp>
 
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 namespace SuperFamicom {
@@ -69,7 +69,7 @@ auto Cartridge::load() -> bool {
   string pal  = "PAL";
   /* /MT. */
 
-  if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {bms::get("Common.Auto").data(), ntsc, pal})) { // "Auto"
+  if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {bmt::get("Common.Auto").data(), ntsc, pal})) { // "Auto"
     /* MT. */
     auto   option = loaded.option;
     string auto_  = "Auto";

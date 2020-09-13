@@ -8,9 +8,9 @@
 #include <heuristics/_sufami-turbo.cpp>
 
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 //ROM data is held in memory to support compressed archives, soft-patching, and game hacks
@@ -114,12 +114,12 @@ auto Program::open(uint id, string name, vfs::file::mode mode, bool required) ->
 		auto colonAndSpace = ": "; // MT.
 
 		MessageDialog({
-		bms::get("Common.Error").data(), colonAndSpace,
-		bms::get("Program.Open.MissingRequiredData").data(), name
+		bmt::get("Common.Error").data(), colonAndSpace,
+		bmt::get("Program.Open.MissingRequiredData").data(), name
 		}).setAlignment(*presentation).error();
 		*/
 
-		bmw::showError(string({bms::get("Program.Open.MissingRequiredData").data(), name}).data(), "", presentation->handle()); // MT.
+		bmw::showError(string({bmt::get("Program.Open.MissingRequiredData").data(), name}).data(), "", presentation->handle()); // MT.
 	}
 
 	return result;
@@ -137,10 +137,10 @@ auto Program::load(uint id, string name, string type, vector<string> options) ->
 			superFamicom.location = game(1);
 		}
 		else {
-			dialog.setTitle(bms::get("Browser.OpenSnesRom").data());
+			dialog.setTitle(bmt::get("Browser.OpenSnesRom").data());
 			dialog.setPath(path("Games", settings.path.recent.superFamicom));
-			string snesRomsString = {bms::get("Browser.SnesRoms").data(), "|*.sfc:*.smc:*.zip:*.7z:*.SFC:*.SMC:*.ZIP:*.7Z:*.Sfc:*.Smc:*.Zip"};
-			string allFilesString = {bms::get("Browser.AllFiles").data(), "|*"};
+			string snesRomsString = {bmt::get("Browser.SnesRoms").data(), "|*.sfc:*.smc:*.zip:*.7z:*.SFC:*.SMC:*.ZIP:*.7Z:*.Sfc:*.Smc:*.Zip"};
+			string allFilesString = {bmt::get("Browser.AllFiles").data(), "|*"};
 			dialog.setFilters({snesRomsString, allFilesString});
 			superFamicom.location = openGame(dialog);
 			superFamicom.option = dialog.option();
@@ -162,16 +162,16 @@ auto Program::load(uint id, string name, string type, vector<string> options) ->
 			gameBoy.location = game(1);
 		}
 		else {
-			dialog.setTitle(bms::get("Program.Load.LoadGameBoyRom").data());
+			dialog.setTitle(bmt::get("Program.Load.LoadGameBoyRom").data());
 			dialog.setPath(path("Games", settings.path.recent.gameBoy));
 
 			dialog.setFilters({
 				{
-					bms::get("Program.Load.GameBoyRoms").data(),
+					bmt::get("Program.Load.GameBoyRoms").data(),
 					"|*.gb:*.gbc:*.zip:*.7z:*.GB:*.GBC:*.ZIP:*.7Z:*.Gb:*.Gbc:*.Zip"
 				},
 				{
-					bms::get("Browser.AllFiles").data(),
+					bmt::get("Browser.AllFiles").data(),
 					"|*"
 				}
 			});
@@ -196,16 +196,16 @@ auto Program::load(uint id, string name, string type, vector<string> options) ->
 			bsMemory.location = game(1);
 		}
 		else {
-			dialog.setTitle(bms::get("Program.Load.LoadBsMemoryRom").data());
+			dialog.setTitle(bmt::get("Program.Load.LoadBsMemoryRom").data());
 			dialog.setPath(path("Games", settings.path.recent.bsMemory));
 
 			dialog.setFilters({
 				{
-					bms::get("Program.Load.BsMemoryRoms").data(),
+					bmt::get("Program.Load.BsMemoryRoms").data(),
 					"|*.bs:*.zip:*.7z:*.BS:*.ZIP:*.7Z:*.Bs:*.Zip"
 				},
 				{
-					bms::get("Browser.AllFiles").data(),
+					bmt::get("Browser.AllFiles").data(),
 					"|*"
 				}
 			});
@@ -232,16 +232,16 @@ auto Program::load(uint id, string name, string type, vector<string> options) ->
 			sufamiTurboA.location = game(1);
 		}
 		else {
-			dialog.setTitle({bms::get("Program.Load.LoadSufamiTurboRomSlot").data(), space, 'A'});
+			dialog.setTitle({bmt::get("Program.Load.LoadSufamiTurboRomSlot").data(), space, 'A'});
 			dialog.setPath(path("Games", settings.path.recent.sufamiTurboA));
 
 			dialog.setFilters({
 				{
-					bms::get("Program.Load.SufamiTurboRoms").data(),
+					bmt::get("Program.Load.SufamiTurboRoms").data(),
 					"|*.st:*.zip:*.7z:*.ST:*.ZIP:*.7Z:*.St:*.Zip"
 				},
 				{
-					bms::get("Browser.AllFiles").data(),
+					bmt::get("Browser.AllFiles").data(),
 					"|*"
 				}
 			});
@@ -266,16 +266,16 @@ auto Program::load(uint id, string name, string type, vector<string> options) ->
 			sufamiTurboB.location = game(1);
 		}
 		else {
-			dialog.setTitle({bms::get("Program.Load.LoadSufamiTurboRomSlot").data(), space, 'B'});
+			dialog.setTitle({bmt::get("Program.Load.LoadSufamiTurboRomSlot").data(), space, 'B'});
 			dialog.setPath(path("Games", settings.path.recent.sufamiTurboB));
 
 			dialog.setFilters({
 				{
-					bms::get("Program.Load.SufamiTurboRoms").data(),
+					bmt::get("Program.Load.SufamiTurboRoms").data(),
 					"|*.st:*.zip:*.7z:*.ST:*.ZIP:*.7Z:*.St:*.Zip"
 				},
 				{
-					bms::get("Browser.AllFiles").data(),
+					bmt::get("Browser.AllFiles").data(),
 					"|*"
 				}
 			});
@@ -343,7 +343,7 @@ auto Program::videoFrame(const uint16* data, uint pitch, uint width, uint height
 
 	if (current != previous) {
 		previous = current;
-		showFrameRate({frameCounter * (1 + emulator->frameSkip()), " ", bms::get("Common.Fps").data()});
+		showFrameRate({frameCounter * (1 + emulator->frameSkip()), " ", bmt::get("Common.Fps").data()});
 		frameCounter = 0;
 	}
 }

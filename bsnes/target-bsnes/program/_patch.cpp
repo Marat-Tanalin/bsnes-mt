@@ -42,13 +42,13 @@ auto Program::applyPatchIPS(vector<uint8_t>& data, string location) -> bool {
 	/* // Commented-out by MT.
 	bool headered = false;
 	if (MessageDialog().setAlignment(*presentation).setTitle({Location::prefix(location), ".ips"}).setText(
-		bms::get("Patch.ipsWarning").data()
-	).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) headered = true;
+		bmt::get("Patch.ipsWarning").data()
+	).question({bmt::get("Common.Yes").data(), bmt::get("Common.No").data()}) == bmt::get("Common.Yes").data()) headered = true;
 	*/
 
 	/* MT. */
 	bool headered = bmw::confirm(
-		bms::get("Patch.ipsWarning"),
+		bmt::get("Patch.ipsWarning"),
 		string({Location::prefix(location), ".ips"}).data(),
 		presentation->handle()
 	);
@@ -177,11 +177,11 @@ auto Program::applyPatchBPS(vector<uint8_t>& input, string location) -> bool {
 	/* // Commented-out by MT.
 	MessageDialog({
 		error, "\n\n",
-		bms::get("Patch.ensureHeaderless").data()
+		bmt::get("Patch.ensureHeaderless").data()
 	}).setAlignment(*presentation).error();
 	*/
 
-	bmw::showError(string({error, "\n\n", bms::get("Patch.ensureHeaderless").data()}).data(), "", presentation->handle()); // MT.
+	bmw::showError(string({error, "\n\n", bmt::get("Patch.ensureHeaderless").data()}).data(), "", presentation->handle()); // MT.
 
 	return false;
 }

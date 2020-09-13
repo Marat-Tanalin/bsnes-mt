@@ -23,9 +23,9 @@ auto Program::movieMode(Movie::Mode mode) -> void {
 auto Program::moviePlay() -> void {
 	BrowserDialog dialog;
 
-	dialog.setTitle(bms::get("Movies.PlayMovie").data());
+	dialog.setTitle(bmt::get("Movies.PlayMovie").data());
 	dialog.setPath(Path::desktop());
-	dialog.setFilters({{bms::get("Movies.Movies").data(), " (.bsv)|*.bsv"}});
+	dialog.setFilters({{bmt::get("Movies.Movies").data(), " (.bsv)|*.bsv"}});
 
 	auto location = openFile(dialog);
 
@@ -79,7 +79,7 @@ auto Program::moviePlay() -> void {
 	}
 
 	if (failed) {
-		showMessage(bms::get("Movies.formatNotSupported").data());
+		showMessage(bmt::get("Movies.formatNotSupported").data());
 	}
 	else {
 		movieMode(Movie::Mode::Playing);
@@ -89,7 +89,7 @@ auto Program::moviePlay() -> void {
 			movie.input.append(fp.readl(2L));
 		}
 
-		showMessage(bms::get("Movies.playbackStarted").data());
+		showMessage(bmt::get("Movies.playbackStarted").data());
 	}
 }
 
@@ -112,7 +112,7 @@ auto Program::movieRecord(bool fromBeginning) -> void {
 	}
 
 	movie.input.reset();
-	showMessage(bms::get("Movies.recordingStarted").data());
+	showMessage(bmt::get("Movies.recordingStarted").data());
 }
 
 auto Program::movieStop() -> void {
@@ -121,7 +121,7 @@ auto Program::movieStop() -> void {
 	}
 
 	if (movie.mode == Movie::Mode::Playing) {
-		showMessage(bms::get("Movies.playbackStopped").data());
+		showMessage(bmt::get("Movies.playbackStopped").data());
 	}
 
 	if (movie.mode == Movie::Mode::Recording) {
@@ -130,9 +130,9 @@ auto Program::movieStop() -> void {
 
 		BrowserDialog dialog;
 
-		dialog.setTitle(bms::get("Movies.SaveMovie").data());
+		dialog.setTitle(bmt::get("Movies.SaveMovie").data());
 		dialog.setPath(Path::desktop());
-		dialog.setFilters({{bms::get("Movies.Movies").data(), " (.bsv)|*.bsv"}});
+		dialog.setFilters({{bmt::get("Movies.Movies").data(), " (.bsv)|*.bsv"}});
 
 		if (auto location = saveFile(dialog)) {
 			if (!location.endsWith(".bsv")) {
@@ -151,14 +151,14 @@ auto Program::movieStop() -> void {
 					fp.writel(input, 2L);
 				}
 
-				showMessage(bms::get("Movies.MovieRecorded").data());
+				showMessage(bmt::get("Movies.MovieRecorded").data());
 			}
 			else {
-				showMessage(bms::get("Movies.cantRecord").data());
+				showMessage(bmt::get("Movies.cantRecord").data());
 			}
 		}
 		else {
-			showMessage(bms::get("Movies.MovieNotRecorded").data());
+			showMessage(bmt::get("Movies.MovieNotRecorded").data());
 		}
 	}
 

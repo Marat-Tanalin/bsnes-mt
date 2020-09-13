@@ -1,8 +1,8 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 #include "bsnes-mt/messagebox.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 namespace bmw = bsnesMt::windows;
 /* /MT. */
 
@@ -61,10 +61,10 @@ public:
 
 auto ToolsWindow::create() -> void {
 	layout.setPadding(5_sx);
-	panelList.append(ListViewItem().setText(bms::get("Tools.CheatFinder").data()).setIcon(Icon::Action::Search));
-	panelList.append(ListViewItem().setText(bms::get("Tools.CheatEditor").data()).setIcon(Icon::Edit::Replace));
-	panelList.append(ListViewItem().setText(bms::get("Tools.StateManager").data()).setIcon(Icon::Application::FileManager));
-	panelList.append(ListViewItem().setText(bms::get("Tools.ManifestViewer").data()).setIcon(Icon::Emblem::Text));
+	panelList.append(ListViewItem().setText(bmt::get("Tools.CheatFinder").data()).setIcon(Icon::Action::Search));
+	panelList.append(ListViewItem().setText(bmt::get("Tools.CheatEditor").data()).setIcon(Icon::Edit::Replace));
+	panelList.append(ListViewItem().setText(bmt::get("Tools.StateManager").data()).setIcon(Icon::Application::FileManager));
+	panelList.append(ListViewItem().setText(bmt::get("Tools.ManifestViewer").data()).setIcon(Icon::Emblem::Text));
 
 	panelList.onChange([&] {
 		if (auto item = panelList.selected()) {
@@ -81,7 +81,7 @@ auto ToolsWindow::create() -> void {
 	panelContainer.append(stateManager,   Size{~0, ~0});
 	panelContainer.append(manifestViewer, Size{~0, ~0});
 
-	setTitle(bms::get("Tools").data()); //"Tools"
+	setTitle(bmt::get("Tools").data()); //"Tools"
 	setSize({720_sx, 400_sy});
 	setAlignment({1.0, 1.0});
 	setDismissable();

@@ -46,7 +46,7 @@ auto Program::rewindRun() -> void {
 		serializer s{t.data(), t.size()};  //convert serializer::Save to serializer::Load
 
 		if (!rewind.history) {
-			showMessage(bms::get("Rewind.HistoryExhausted").data());
+			showMessage(bmt::get("Rewind.HistoryExhausted").data());
 			rewindReset();
 		}
 

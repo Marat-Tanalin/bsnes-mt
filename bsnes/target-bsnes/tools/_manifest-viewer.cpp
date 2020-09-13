@@ -2,7 +2,7 @@ auto ManifestViewer::create() -> void {
 	setCollapsible();
 	setVisible(false);
 
-	manifestLabel.setText({bms::get("Tools.ManifestViewer.Manifest").data(), ':'});
+	manifestLabel.setText({bmt::get("Tools.ManifestViewer.Manifest").data(), ':'});
 
 	manifestOption.onChange([&] {
 		selectManifest();

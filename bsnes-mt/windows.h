@@ -2,14 +2,9 @@
 
 #pragma once
 
-#include <cstdint>
-#include <string>
-
 #include <Windows.h>
 
 namespace bsnesMt::windows {
-
-using std::string;
 
 auto getWorkAreaSize() -> SIZE;
 

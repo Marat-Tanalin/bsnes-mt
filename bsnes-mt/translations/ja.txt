@@ -1,0 +1,42 @@
+﻿Common.Yes    = "はい"
+Common.No     = "いいえ"
+Common.Cancel = "キャンセル"
+Common.Open   = "開く"
+Common.Save   = "保存"
+Common.Reset  = "リセット"
+Common.None   = "なし"
+
+Menu.File.OpenGame = "ゲームを読み込み"
+Menu.File.OpenRecentGame = "最新ゲームを読み込み"
+Menu.File.OpenRecentGame.ClearList = "全部を消す"
+Menu.File.CloseGame = "ゲームをアンロード"
+Menu.File.Exit = "終了"
+
+Menu.System = "システム"
+Menu.System.ControllerPort = "コントローラポート"
+Menu.System.ExpansionPort = "拡張ポート"
+
+Menu.Help = "ヘルプ"
+Menu.Help.About = "| について"
+
+Settings = "設定"
+
+Tools = "ツール"
+Tools.SaveState.Slot.Empty = "なし"
+
+Program.Paused = "ポーズ"
+Program.Unloaded = "アンロードされる"
+
+About.Version = "バージョン"
+About.License = "ライセンス"
+About.Website = "公式サイト"
+
+Browser.Select = "選択"
+
+Devices.Gamepad       = "ゲームパッド"
+Devices.Mouse         = "マウス"
+Devices.SuperMultitap = "スーパーマルチタップ"
+Devices.SuperScope    = "スーパースコップ"}
+Devices.Justifier     = "1挺のジャスティファイアー"
+Devices.Justifiers    = "2挺のジャスティファイアー"
+Devices.Satellaview   = "サテラビュー"

@@ -1,10 +1,10 @@
 #include "extension.hpp"
 
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 #include "bsnes-mt/messagebox.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 namespace bmw = bsnesMt::windows;
 /* /MT. */
 

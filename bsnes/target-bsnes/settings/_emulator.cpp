@@ -1,28 +1,28 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 auto EmulatorSettings::create() -> void {
 	setCollapsible();
 	setVisible(false);
 
-	optionsLabel.setText(bms::get("Settings.Emulator.General").data()).setFont(Font().setBold());
+	optionsLabel.setText(bmt::get("Settings.Emulator.General").data()).setFont(Font().setBold());
 
-	warnOnUnverifiedGames.setText(bms::get("Settings.Emulator.General.warnOnUnverifiedGames").data())
+	warnOnUnverifiedGames.setText(bmt::get("Settings.Emulator.General.warnOnUnverifiedGames").data())
 		.setChecked(settings.emulator.warnOnUnverifiedGames)
 		.onToggle([&] {
 			settings.emulator.warnOnUnverifiedGames = warnOnUnverifiedGames.checked();
 		});
 
-	autoSaveMemory.setText(bms::get("Settings.Emulator.General.autoSaveMemory").data())
+	autoSaveMemory.setText(bmt::get("Settings.Emulator.General.autoSaveMemory").data())
 		.setChecked(settings.emulator.autoSaveMemory.enable)
 		.onToggle([&] {
 			settings.emulator.autoSaveMemory.enable = autoSaveMemory.checked();
 		});
 
-	autoSaveStateOnUnload.setText(bms::get("Settings.Emulator.General.autoSaveStateOnUnload").data())
+	autoSaveStateOnUnload.setText(bmt::get("Settings.Emulator.General.autoSaveStateOnUnload").data())
 		.setChecked(settings.emulator.autoSaveStateOnUnload)
 		.onToggle([&] {
 			settings.emulator.autoSaveStateOnUnload = autoSaveStateOnUnload.checked();
@@ -36,13 +36,13 @@ auto EmulatorSettings::create() -> void {
 		})
 		.doToggle();
 
-	autoLoadStateOnLoad.setText(bms::get("Settings.Emulator.General.AutoResumeOnLoad").data())
+	autoLoadStateOnLoad.setText(bmt::get("Settings.Emulator.General.AutoResumeOnLoad").data())
 		.setChecked(settings.emulator.autoLoadStateOnLoad)
 		.onToggle([&] {
 			settings.emulator.autoLoadStateOnLoad = autoLoadStateOnLoad.checked();
 		});
 
-	nativeFileDialogs.setText(bms::get("Settings.Emulator.General.UseNativeFileDialogs").data())
+	nativeFileDialogs.setText(bmt::get("Settings.Emulator.General.UseNativeFileDialogs").data())
 		.setChecked(settings.general.nativeFileDialogs)
 		.onToggle([&] {
 			settings.general.nativeFileDialogs = nativeFileDialogs.checked();
@@ -52,21 +52,21 @@ auto EmulatorSettings::create() -> void {
 
 	optionsSpacer.setColor(spacerColor);
 
-	fastForwardLabel.setText(bms::get("Settings.Emulator.FastForward").data()).setFont(Font().setBold());
+	fastForwardLabel.setText(bmt::get("Settings.Emulator.FastForward").data()).setFont(Font().setBold());
 
 	char colon = ':';
 
-	frameSkipLabel.setText({bms::get("Settings.Emulator.FastForward.FrameSkip").data(), colon})
-		.setToolTip(bms::get("Settings.Emulator.FastForward.FrameSkip.tooltip").data());
+	frameSkipLabel.setText({bmt::get("Settings.Emulator.FastForward.FrameSkip").data(), colon})
+		.setToolTip(bmt::get("Settings.Emulator.FastForward.FrameSkip.tooltip").data());
 
 	/* MT. */
-	string noneString       = bms::get("Common.None").data();
-	string framesString     = bms::get("Settings.Emulator.FastForward.FrameSkip.Frames").data();
-	string frames2to4String = bms::get("Settings.Emulator.FastForward.FrameSkip.Frames2to4").data();
+	string noneString       = bmt::get("Common.None").data();
+	string framesString     = bmt::get("Settings.Emulator.FastForward.FrameSkip.Frames").data();
+	string frames2to4String = bmt::get("Settings.Emulator.FastForward.FrameSkip.Frames2to4").data();
 	/* /MT. */
 
 	frameSkipAmount.append(ComboButtonItem().setText(noneString));
-	frameSkipAmount.append(ComboButtonItem().setText({"1 ", bms::get("Settings.Common.FrameLowercase").data()}));
+	frameSkipAmount.append(ComboButtonItem().setText({"1 ", bmt::get("Settings.Common.FrameLowercase").data()}));
 
 	/* MT. */
 	for (uint8_t i = 2; i < 5; i++) {
@@ -84,8 +84,8 @@ auto EmulatorSettings::create() -> void {
 		settings.fastForward.frameSkip = frameSkipAmount.selected().offset();
 	});
 
-	limiterLabel.setText({bms::get("Settings.Emulator.FastForward.Limiter").data(), colon})
-		.setToolTip(bms::get("Settings.Emulator.FastForward.Limiter.tooltip").data());
+	limiterLabel.setText({bmt::get("Settings.Emulator.FastForward.Limiter").data(), colon})
+		.setToolTip(bmt::get("Settings.Emulator.FastForward.Limiter.tooltip").data());
 
 	limiterAmount.append(ComboButtonItem().setText(noneString));
 
@@ -104,7 +104,7 @@ auto EmulatorSettings::create() -> void {
 		settings.fastForward.limiter = index == 0 ? 0 : index + 1; // MT.
 	});
 
-	fastForwardMute.setText(bms::get("Settings.Emulator.FastForward.mute").data())
+	fastForwardMute.setText(bmt::get("Settings.Emulator.FastForward.mute").data())
 		.setChecked(settings.fastForward.mute)
 		.onToggle([&] {
 			settings.fastForward.mute = fastForwardMute.checked();
@@ -112,12 +112,12 @@ auto EmulatorSettings::create() -> void {
 
 	fastForwardSpacer.setColor(spacerColor);
 
-	rewindLabel.setText(bms::get("Settings.Emulator.Rewind").data()).setFont(Font().setBold());
+	rewindLabel.setText(bmt::get("Settings.Emulator.Rewind").data()).setFont(Font().setBold());
 
-	string everyString = bms::get("Settings.Emulator.Rewind.Frequency.everyFrames").data(); // MT.
+	string everyString = bmt::get("Settings.Emulator.Rewind.Frequency.everyFrames").data(); // MT.
 
-	rewindFrequencyLabel.setText({bms::get("Settings.Emulator.Rewind.Frequency").data(), colon});
-	rewindFrequencyOption.append(ComboButtonItem().setText(bms::get("Common.Disabled").data()));
+	rewindFrequencyLabel.setText({bmt::get("Settings.Emulator.Rewind.Frequency").data(), colon});
+	rewindFrequencyOption.append(ComboButtonItem().setText(bmt::get("Common.Disabled").data()));
 
 	/* MT. */
 	for (uint8_t number = 10; number < 70; number += 10) {
@@ -134,9 +134,9 @@ auto EmulatorSettings::create() -> void {
 		program.rewindReset();
 	});
 
-	string statesString = bms::get("Settings.Emulator.Rewind.Length.states").data(); // MT.
+	string statesString = bmt::get("Settings.Emulator.Rewind.Length.states").data(); // MT.
 
-	rewindLengthLabel.setText({bms::get("Settings.Emulator.Rewind.Length").data(), colon});
+	rewindLengthLabel.setText({bmt::get("Settings.Emulator.Rewind.Length").data(), colon});
 
 	auto length = settings.rewind.length; // MT.
 
@@ -159,7 +159,7 @@ auto EmulatorSettings::create() -> void {
 		program.rewindReset();
 	});
 
-	rewindMute.setText(bms::get("Settings.Emulator.Rewind.mute").data())
+	rewindMute.setText(bmt::get("Settings.Emulator.Rewind.mute").data())
 		.setChecked(settings.rewind.mute)
 		.onToggle([&] {
 			settings.rewind.mute = rewindMute.checked();

@@ -1,5 +1,7 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
+#include <string>
+
 #include <Windows.h>
 #include <Commctrl.h>
 
@@ -7,13 +9,15 @@
 
 #include "app.h"
 #include "strings.h"
+#include "translations.h"
 #include "utils.h"
 
 #include "windows.h"
 
 namespace bsnesMt::windows {
 
-using std::wstring;
+using std::string, std::wstring;
+using namespace strings;
 
 auto getWorkAreaSize() -> SIZE {
 	RECT rect;
@@ -45,12 +49,12 @@ auto showAbout(HWND parentWindow) -> void {
 	TASKDIALOGCONFIG config{};
 
 	// Variables are needed, otherwise `TaskDialogIndirect()` may display random garbage.
-	const wstring windowTitleWide = utf8ToWideString(replace(strings::get("Menu.Help.About"), '|', appTitle));
+	const wstring windowTitleWide = utf8ToWideString(replaceOnce(translations::get("Menu.Help.About"), '|', appTitle));
 	const wstring headingWide     = utf8ToWideString(appTitle + " " + app::version);
 
-	const wstring textWide        = utf8ToWideString(strings::get({
-		{strings::EN, app::infoEn},
-		{strings::RU, app::infoRu}
+	const wstring textWide        = utf8ToWideString(translations::get({
+		{"en", app::infoEn},
+		{"ru", app::infoRu}
 	}));
 
 	config.cbSize             = sizeof(config);

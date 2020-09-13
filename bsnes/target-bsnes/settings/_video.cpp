@@ -1,7 +1,7 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 auto VideoSettings::create() -> void {
@@ -10,12 +10,12 @@ auto VideoSettings::create() -> void {
 
 	char colon = ':';
 
-	colorAdjustmentLabel.setFont(Font().setBold()).setText(bms::get("Settings.Video.ColorAdjustment").data());
+	colorAdjustmentLabel.setFont(Font().setBold()).setText(bmt::get("Settings.Video.ColorAdjustment").data());
 
 	colorLayout.setSize({3, 3});
 	colorLayout.column(0).setAlignment(1.0);
 
-	luminanceLabel.setText({bms::get("Settings.Video.Luminance").data(), colon});
+	luminanceLabel.setText({bmt::get("Settings.Video.Luminance").data(), colon});
 	luminanceValue.setAlignment(0.5);
 
 	luminanceSlider.setLength(101).setPosition(settings.video.luminance)
@@ -27,7 +27,7 @@ auto VideoSettings::create() -> void {
 		})
 		.doChange();
 
-	saturationLabel.setText({bms::get("Settings.Video.Saturation").data(), colon});
+	saturationLabel.setText({bmt::get("Settings.Video.Saturation").data(), colon});
 	saturationValue.setAlignment(0.5);
 
 	saturationSlider.setLength(201).setPosition(settings.video.saturation)
@@ -39,7 +39,7 @@ auto VideoSettings::create() -> void {
 		})
 		.doChange();
 
-	gammaLabel.setText({bms::get("Settings.Video.Gamma").data(), colon});
+	gammaLabel.setText({bmt::get("Settings.Video.Gamma").data(), colon});
 	gammaValue.setAlignment(0.5);
 
 	gammaSlider.setLength(101).setPosition(settings.video.gamma - 100)
@@ -51,14 +51,14 @@ auto VideoSettings::create() -> void {
 		})
 		.doChange();
 
-	dimmingOption.setText(bms::get("Settings.Video.DimVideoWhenIdle").data())
-		.setToolTip(bms::get("Settings.Video.DimVideoWhenIdle.tooltip").data())
+	dimmingOption.setText(bmt::get("Settings.Video.DimVideoWhenIdle").data())
+		.setToolTip(bmt::get("Settings.Video.DimVideoWhenIdle.tooltip").data())
 		.setChecked(settings.video.dimming)
 		.onToggle([&] {
 			settings.video.dimming = dimmingOption.checked();
 		});
 
-	snowOption.setText(bms::get("Settings.Video.DrawSnowEffectWhenIdle").data())
+	snowOption.setText(bmt::get("Settings.Video.DrawSnowEffectWhenIdle").data())
 		.setChecked(settings.video.snow)
 		.onToggle([&] {
 			settings.video.snow = snowOption.checked();

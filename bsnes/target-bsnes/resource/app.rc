@@ -4,7 +4,9 @@
 
 IDI_APPICON ICON "bsnes-mt.ico"
 
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.Manifest"
+IDR_EN_STRINGS TEXTFILE "../../../bsnes-mt/translations/en.txt"
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.manifest"
 
 // Executable version information.
 VS_VERSION_INFO    VERSIONINFO

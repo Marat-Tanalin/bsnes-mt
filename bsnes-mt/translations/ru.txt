@@ -1,0 +1,620 @@
+﻿Common.Yes        = "Да"
+Common.No         = "Нет"
+Common.Cancel     = "Отмена"
+Common.Always     = "Всегда"
+Common.AreYouSure = "Вы уверены?"
+Common.Open       = "Открыть"
+Common.Load       = "Загрузить"
+Common.Save       = "Сохранить"
+Common.Add        = "Добавить"
+Common.Remove     = "Удалить"
+Common.Delete     = "Удалить"
+Common.Rename     = "Переименовать"
+Common.Reset      = "Сброс"
+Common.Clear      = "Очистить"
+Common.None       = "Нет"
+Common.Disabled   = "Отключено"
+Common.Default    = "По умолчанию"
+Common.Name       = "Название"
+Common.Date       = "Дата"
+Common.Success    = "Успех"
+Common.Failure    = "Неудача"
+Common.Error      = "Ошибка"
+Common.Warning    = "Внимание"
+Common.Auto       = "Авто"
+Common.Video      = "Видео"
+Common.Audio      = "Звук"
+Common.Fps        = "к/с"
+Common.Hz         = "Гц"
+Common.number     = "№"
+
+Menu.File = "Файл"
+Menu.File.OpenGame = "Открыть игру"
+Menu.File.OpenRecentGame = "Открыть недавнюю игру"
+Menu.File.OpenRecentGame.ClearList = "Очистить список"
+Menu.File.OpenRecentGame.ClearList.confirm.title = "Очистить список недавних игр?"
+Menu.File.OpenRecentGame.ClearList.confirm = "Вы уверены, что хотите очистить список недавних игр?"
+Menu.File.OpenRecentGame.NoRecentGames = "Нет недавних игр"
+Menu.File.CloseGame = "Закрыть игру"
+Menu.File.Exit = "Выход"
+
+Menu.System = "Система"
+Menu.System.ControllerPort = "Порт контроллера"
+Menu.System.ExpansionPort = "Порт расширения"
+
+Menu.Settings.Size = "Размер"
+Menu.Settings.Size.ShrinkWindowToSize = "Подогнать окно под размер"
+Menu.Settings.Size.CenterWindow = "Центрировать окно"
+Menu.Settings.Size.FullScreenMode = "Полноэкранный режим"
+Menu.Settings.Size.PseudoFullScreenMode = "Псевдополноэкранный режим"
+Menu.Settings.Output = "Изображение"
+Menu.Settings.Output.Center = "По центру"
+Menu.Settings.Output.PixelPerfect = "Целочисленное масштабирование"
+Menu.Settings.Output.Scale = "Масштабирование с сохранением пропорций"
+Menu.Settings.Output.Stretch = "Растяжение без сохранения пропорций"
+Menu.Settings.Output.AspectRatioCorrection = "Коррекция соотношения сторон"
+Menu.Settings.Output.ShowOverscanArea = "Показать область «overscan»"
+Menu.Settings.Output.scalingInfo = "Информация о масштабировании в строке состояния"
+Menu.Settings.Output.HiresBlurEmulation = "Эмуляция размытия в режиме высокого разрешения"
+Menu.Settings.Filter = "Фильтр"
+Menu.Settings.Shader = "Шейдер"
+Menu.Settings.Shader.Blur = "Размытие"
+Menu.Settings.MuteAudio = "Выключить звук"
+Menu.Settings.ShowStatusBar = "Показать строку состояния"
+Menu.Settings.OpenSettingsFolder = "Открыть папку настроек"
+
+Menu.Help = "Справка"
+Menu.Help.About = "О программе |"
+
+Settings = "Настройки"
+
+Settings.Common.Assign = "Задать"
+Settings.Common.AssignLowercase = "задать"
+Settings.Common.Mapping = "Привязка"
+Settings.Common.MappingAssigned = "Привязка задана."
+Settings.Common.PressKeyOrButtonForMapping = "Нажмите клавишу или кнопку для привязки"
+Settings.Common.FrameLowercase = "кадр"
+
+Settings.Video.ColorAdjustment = "Настройка цвета"
+Settings.Video.Luminance       = "Яркость"
+Settings.Video.Saturation      = "Насыщенность"
+Settings.Video.Gamma           = "Контрастность"
+Settings.Video.DimVideoWhenIdle = "Затемнять изображение при простое"
+Settings.Video.DimVideoWhenIdle.tooltip = "Затемняет изображение, чтобы показать, что эмуляция приостановлена."
+Settings.Video.DrawSnowEffectWhenIdle = "Применять эффект снега при простое"
+
+Settings.Audio.Effects = "Эффекты"
+Settings.Audio.Skew = "Частота"
+
+Settings.Audio.Skew.tooltip = "
+Изменяет частоту дискретизации на заданную величину (в Гц).
+
+По сути это статическое управление частотой.
+Сначала включите синхронизацию как для видео, так и для звука.
+Затем попробуйте увеличить или уменьшить это значение для уменьшения ошибок.
+Изменение в одном направлении положительно скажется на видео, но отрицательно — на звуке.
+Изменение в другом направлении приведёт к обратному результату.
+Смысл в том, чтобы найти наилучший компромисс.
+
+При динамическом управлении частотой используйте значение 0.
+"
+
+Settings.Audio.Volume = "Громкость"
+
+Settings.Audio.Volume.tooltip = "
+Изменяет громкость звука.
+
+По возможности не следует использовать значения выше 100%!
+В противном случае возможны искажения из-за превышения максимально возможного уровня.
+"
+
+Settings.Audio.Balance = "Панорама"
+
+Settings.Audio.Balance.tooltip = "
+Панорамирует звук влево (меньшие значения) или вправо (более высокие значения).
+
+Рекомендуемое значение — 50% (по центру).
+"
+
+Settings.Audio.MuteWhenUnfocused = "Отключать звук при неактивном окне программы"
+
+Settings.Input = "Устройства ввода"
+Settings.Input.WhenFocusIsLost = "При неактивном окне программы"
+Settings.Input.WhenFocusIsLost.PauseEmulation = "Приостановить эмуляцию"
+Settings.Input.WhenFocusIsLost.BlockInput = "Блокировать ввод"
+Settings.Input.WhenFocusIsLost.AllowInput = "Разрешить ввод"
+Settings.Input.Port = "Порт"
+Settings.Input.Device = "Устройство"
+Settings.Input.TurboRate = "Частота турбо"
+Settings.Input.TurboRate.tooltip = "Количество кадров между срабатываниями турбо-кнопок."
+Settings.Input.MouseLeft = "Левая кнопка мыши"
+Settings.Input.MouseMiddle = "Средняя кнопка мыши"
+Settings.Input.MouseRight = "Правая кнопка мыши"
+Settings.Input.MouseXAxis = "Мышь по оси X"
+Settings.Input.MouseYAxis = "Мышь по оси Y"
+
+Settings.Hotkeys = "Горячие клавиши"
+Settings.Hotkeys.CombinationalLogic = "Комбинационная логика"
+
+Settings.Hotkeys.CombinationalLogic.tooltip = "
+Определяет, все или любое из соответствий требуется нажать для активации горячих клавиш.
+Используйте логику «И», если для активации горячих клавиш вам нужны такие сочетания клавиш, как Ctrl+F.
+Используйте логику «ИЛИ», если для активации одних и тех же горячих клавиш вы хотите использовать как клавиатуру, так и геймпад.
+"
+
+Settings.Hotkeys.CombinationalLogic.And = "И"
+Settings.Hotkeys.CombinationalLogic.And.tooltip = "Для активации заданных горячих клавиш требуется нажать все соответствия."
+Settings.Hotkeys.CombinationalLogic.Or = "ИЛИ"
+Settings.Hotkeys.CombinationalLogic.Or.tooltip = "Для активации заданных горячих клавиш можно нажать любое из соответствий."
+Settings.Hotkeys.Rewind.enableFirst = "Пожалуйста, сначала включите поддержку перемотки: «Настройки» → «Эмулятор»"
+
+Settings.BuiltinHotkeys = "Горячие клавиши (встроенные)"
+
+Settings.Paths = "Пути"
+Settings.Paths.Games            = "Игры"
+Settings.Paths.Patches          = "Патчи"
+Settings.Paths.Saves            = "Сохранения"
+Settings.Paths.Cheats           = "Читы"
+Settings.Paths.States           = "Быстрые сохранения"
+Settings.Paths.Screenshots      = "Скриншоты"
+Settings.Paths.LastRecentlyUsed = "последняя использованная папка"
+Settings.Paths.SameAsLoadedGame = "папка текущей игры"
+
+Settings.Emulator = "Эмулятор"
+Settings.Emulator.General = "Общие"
+Settings.Emulator.General.warnOnUnverifiedGames = "Предупреждать при открытии непроверенных игр"
+Settings.Emulator.General.autoSaveMemory = "Периодически сохранять память"
+Settings.Emulator.General.autoSaveStateOnUnload = "Сохранять состояние отмены действия при закрытии игр"
+Settings.Emulator.General.AutoResumeOnLoad = "Возобновлять при загрузке"
+Settings.Emulator.General.UseNativeFileDialogs = "Использовать стандартные окна открытия/сохранения файлов"
+Settings.Emulator.FastForward = "Перемотка вперёд (Fast Forward)"
+Settings.Emulator.FastForward.FrameSkip = "Пропуск кадров"
+
+Settings.Emulator.FastForward.FrameSkip.tooltip = "
+Задаёт, сколько кадров пропускать при перемотке вперёд.
+Пропуск кадров позволяет увеличить скорость перемотки.
+"
+
+Settings.Emulator.FastForward.FrameSkip.Frames2to4 = "| кадра"
+Settings.Emulator.FastForward.FrameSkip.Frames     = "| кадров"
+Settings.Emulator.FastForward.Limiter = "Ограничение"
+Settings.Emulator.FastForward.Limiter.tooltip = "Задаёт максимальную скорость при перемотке вперёд."
+Settings.Emulator.FastForward.mute = "Отключать звук при перемотке вперёд"
+Settings.Emulator.Rewind = "Перемотка назад (Rewind)"
+Settings.Emulator.Rewind.Frequency = "Частота"
+Settings.Emulator.Rewind.Frequency.everyFrames = "Каждые | кадров"
+Settings.Emulator.Rewind.Length = "Длина"
+Settings.Emulator.Rewind.Length.states = "| состояний"
+Settings.Emulator.Rewind.mute = "Отключать звук при перемотке назад"
+
+Settings.Enhancements = "Улучшения"
+Settings.Enhancements.FastMode = "Быстрый режим"
+Settings.Enhancements.RunAhead = "Опережающая эмуляция (Run-Ahead)"
+Settings.Enhancements.RunAhead.Frames = "кадра"
+Settings.Enhancements.RunAhead.One    = "Один"
+Settings.Enhancements.RunAhead.Two    = "Два"
+Settings.Enhancements.RunAhead.Three  = "Три"
+Settings.Enhancements.RunAhead.Four   = "Четыре"
+Settings.Enhancements.Overclocking = "Разгон"
+Settings.Enhancements.Ppu.Video         = "видео"
+Settings.Enhancements.Ppu.Deinterlace   = "Устранение чересстрочности"
+Settings.Enhancements.Ppu.NoSpriteLimit = "Не ограничивать количество спрайтов"
+Settings.Enhancements.hdMode7.FastPpuOnly           = "только в быстром режиме PPU"
+Settings.Enhancements.hdMode7.Scale                 = "Масштаб"
+Settings.Enhancements.hdMode7.PerspectiveCorrection = "Коррекция перспективы"
+Settings.Enhancements.hdMode7.Supersampling         = "Избыточная выборка"
+Settings.Enhancements.hdMode7.HdToSdMosaic          = "Мозаичность HD→SD"
+Settings.Enhancements.Dsp.Audio = "звук"
+Settings.Enhancements.Dsp.CubicInterpolation = "Кубическая интерполяция"
+Settings.Enhancements.Coprocessors = "Сопроцессоры"
+Settings.Enhancements.Coprocessors.PreferHle = "Предпочитать высокоуровневую эмуляцию (HLE)"
+
+Settings.Enhancements.Coprocessors.PreferHle.tooltip = "
+Когда включено, менее точная высокоуровневая эмуляция будет использоваться всегда, когда возможно.
+Когда выключено, высокоуровневая эмуляция будет использоваться только при отсутствии низкоуровневой (LLE) прошивки.
+"
+
+Settings.Enhancements.GameEnhancements = "Улучшения игр"
+Settings.Enhancements.GameEnhancements.Hotfixes = "Исправления ошибок"
+
+Settings.Enhancements.GameEnhancements.Hotfixes.tooltip = "
+Даже в коммерчески лицензированных и официально выпущенных программах иногда есть ошибки.
+Этот параметр исправит определённые проблемы, которые имели место на реальном оборудовании.
+"
+
+Settings.Compatibility = "Совместимость"
+Settings.Compatibility.entropy = "Энтропия (степень случайности)"
+
+Settings.Compatibility.entropy.None.tooltip = "
+При запуске вся память и регистры устанавливаются в постоянные значения.
+Используйте этот вариант для совместимости с очень старыми самодельными играми демосцены.
+"
+
+Settings.Compatibility.entropy.Low = "Низкая"
+
+Settings.Compatibility.entropy.Low.tooltip = "
+При запуске вся память заполняется повторяющимися случайными значениями, все регистры устанавливаются в случайные значения.
+Используйте этот вариант для наиболее точного соответствия реальной SNES.
+"
+
+Settings.Compatibility.entropy.High = "Высокая"
+
+Settings.Compatibility.entropy.High.tooltip = "
+Вся память и регистры устанавливаются в максимально случайные значения.
+Используйте этот вариант при разработке новых программ для SNES,
+чтобы гарантировать максимальную совместимость с реальным оборудованием.
+"
+
+Settings.Compatibility.cpu.Processor = "процессор"
+Settings.Compatibility.cpu.FastMath  = "Быстрая математика"
+
+Settings.Compatibility.cpu.FastMath.tooltip = "
+На реальной SNES умножение и деление средствами процессора занимает время.
+Старые эмуляторы не учитывали эти задержки и возвращали результат сразу.
+Этот параметр нужен некоторым старым ROM-хакам, которые не ждали завершения математических операций.
+"
+
+Settings.Compatibility.ppu.Video          = "видео"
+Settings.Compatibility.ppu.NoVramBlocking = "Не блокировать видеопамять (VRAM)"
+
+Settings.Compatibility.ppu.NoVramBlocking.tooltip = "
+Этот параметр включает эмуляцию ошибки старых версий ZSNES and Snes9x, где не было эмуляции блокировки видеопамяти.
+Некоторые старые ROM-хаки рассчитывали на это поведение и будут отрисовываться неправильно, если этот параметр не включить.
+Это не только сильно отличается от поведения реального оборудования, но и снижает быстродействие быстрого PPU.
+Не включайте этот параметр, если вам не требуется поиграть в игру, в противном случае работающую неправильно.
+"
+
+Settings.Compatibility.dsp.Audio         = "звук"
+Settings.Compatibility.dsp.EchoShadowRam = "Отображать теневую память (echo shadow RAM)"
+
+Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
+Этот параметр включает эмуляцию ошибки ZSNES, где отображаемая память (echo RAM) рассматривалась отдельно от памяти APU.
+Многие старые ROM-хаки «Super Mario World» рассчитывали на это поведение и не будут работать без включения этого параметра.
+Однако это сильно отличается от поведения реального оборудования, и не следует включать этот параметр без необходимости.
+"
+
+Settings.Drivers = "Драйверы"
+Settings.Drivers.Driver        = "Драйвер"
+Settings.Drivers.Change        = "Изменить"
+Settings.Drivers.Reload        = "Перезагрузить"
+Settings.Drivers.ExclusiveMode = "Эксклюзивный режим"
+Settings.Drivers.Synchronize   = "Синхронизация"
+Settings.Drivers.ActiveDriver  = "Активный драйвер"
+Settings.Drivers.changeConfirm.title = "Изменить драйвер?"
+
+Settings.Drivers.changeConfirm = "
+Внимание: несовместимые драйверы могут привести к невозможности работы программы.
+Для безопасности настоятельно рекомендуется сначала закрыть вашу игру.
+Хотите ли вы изменить драйвер в любом случае?
+"
+
+Settings.noteGameRestart = "Примечание: некоторые настройки применяются только после перезагрузки игры."
+
+Settings.Drivers.Video.failedToInitialize = "Не удалось инициализировать видеодрайвер [|]"
+Settings.Drivers.Video.FullScreenMonitor = "Монитор для полноэкранного режима"
+Settings.Drivers.Video.FullScreenMonitor.tooltip = "Задаёт, на какой монитор выводится изображение в полноэкранном режиме."
+Settings.Drivers.Video.Format = "Формат"
+
+Settings.Drivers.Video.ExclusiveMode.tooltip = "
+Приводит к тому, что в полноэкранном режиме изображение занимает все мониторы.
+Улучшает работу адаптивной синхронизации (adaptive sync) и уменьшает задержку ввода.
+Однако пользователям многомониторных конфигураций имеет смысл отключить этот параметр.
+Примечание: для Direct3D в эксклюзивном режиме также не учитывается выбранный монитор.
+"
+
+Settings.Drivers.Video.Synchronize.tooltip = "
+Ожидает готовности видеокарты перед отрисовкой кадров.
+Устраняет пропуск или повторение кадров, но может искажать звук.
+
+При использовании этого параметра рекомендуется отключить синхронизацию
+звука и включить динамическое управление частотой. Как вариант,
+подстройте звуковой параметр «Частота» для снижения вероятности
+опустошения или переполнения буфера.
+"
+
+Settings.Drivers.Video.GpuSync = "Синхронизация GPU"
+
+Settings.Drivers.Video.GpuSync.tooltip = "
+(Только для драйвера OpenGL)
+
+Заставляет видеокарту ожидать, пока кадры не будут полностью отрисованы.
+В лучшем случае это может устранить до одного кадра задержки ввода.
+Однако при этом быстродействие снижается примерно на 20%.
+
+Следует отключить этот параметр, если он вам не требуется.
+"
+
+Settings.Drivers.Audio.failedToInitialize = "Не удалось инициализировать аудиодрайвер [|]"
+Settings.Drivers.Audio.OutputDevice       = "Устройство вывода"
+Settings.Drivers.Audio.SampleRate         = "Частота дискретизации"
+Settings.Drivers.Audio.Latency            = "Задержка"
+
+Settings.Drivers.Audio.ExclusiveMode.tooltip = "
+(Только для драйвера WASAPI)
+
+Включает исключительный доступ к звуковой карте.
+Это может существенно снизить задержку вывода звука.
+Однако звуки от всех других приложений заблокируются.
+"
+
+Settings.Drivers.Audio.Synchronize.tooltip = "
+Ожидает готовности звуковой карты перед выводом звука.
+Устраняет искажения звука, но может искажать видео.
+
+При использовании этого параметра рекомендуется отключить синхронизацию видео.
+Для наилучших результатов используйте этот параметр
+с монитором, поддерживающим адаптивную синхронизацию.
+"
+
+Settings.Drivers.Audio.DynamicRate = "Динамическая частота"
+
+Settings.Drivers.Audio.DynamicRate.tooltip = "
+(Только для драйверов OSS, XAudio2, waveOut)
+
+Динамически подстраивает частоту звука на небольшие величины.
+Используйте при включённой синхронизации видео
+и отключённой синхронизации звука.
+
+Может обеспечить идеально плавное видео и чистый звук,
+но только при правильно установленной частоте обновления монитора:
+60 Гц для игр NTSC и 50 Гц для игр PAL.
+"
+
+Settings.Drivers.Input.failedToInitialize = "Не удалось инициализировать драйвер устройства ввода [|]"
+
+Settings.Drivers.Input.Reload.tooltip = "
+Перезагрузку драйвера можно использовать для обнаружения
+устройств, подключённых в «горячем» режиме.
+Полезно для программных интерфейсов (API), не поддерживающих
+«горячее» подключение, таких как DirectInput и SDL.
+"
+
+Settings.Drivers.syncModePresets = "Предустановки режимов синхронизации"
+
+Settings.Drivers.syncModePresets.requirements = "
+Адаптивная синхронизация: требуется монитор с поддержкой G-Sync или FreeSync.
+Динамическое управление частотой: частоты обновления монитора и SNES должны совпадать.
+"
+
+Settings.Drivers.syncModePresets.AdaptiveSync = "Адаптивная синхронизация"
+
+Settings.Drivers.syncModePresets.AdaptiveSync.failure = "
+Извините, текущая конфигурация драйверов несовместима с режимом адаптивной синхронизации.
+Для адаптивной синхронизации требуется поддержка синхронизации звука.
+"
+
+Settings.Drivers.syncModePresets.AdaptiveSync.success = "
+Адаптивная синхронизация лучше всего работает в эксклюзивном полноэкранном режиме.
+Используйте минимальную задержку звука, которая возможна на вашей системе.
+Требуется монитор с поддержкой G-Sync или FreeSync.
+Требуется включить адаптивную синхронизацию в панели управления вашего видеодрайвера.
+"
+
+Settings.Drivers.syncModePresets.DynamicRateControl = "Динамическое управление частотой"
+
+Settings.Drivers.syncModePresets.DynamicRateControl.failure = "
+Извините, текущая конфигруация драйверов несовместима с режимом динамического управления частотой.
+Для динамического управления частотой требуется поддержка вертикальной синхронизации и динамического изменения частоты звука.
+"
+
+Settings.Drivers.syncModePresets.DynamicRateControl.success = "
+Для динамического управления частотой требуется, чтобы частота обновления вашего монитора была:
+60 Гц для игр NTSC, 50 Гц для игр PAL.
+Используйте минимальную задержку звука, которая возможна на вашей системе.
+"
+
+Settings.BuiltinHotkeys.CheckAll   = "Включить всё"
+Settings.BuiltinHotkeys.UncheckAll = "Выключить всё"
+
+Tools = "Инструменты"
+Tools.SaveState = "Сохранить состояние"
+Tools.SaveState.Slot = "Слот"
+Tools.SaveState.Slot.Empty = "пусто"
+
+Tools.LoadState = "Загрузить состояние"
+Tools.LoadState.SelectedStateSlot = "Выбран слот быстрого сохранения"
+Tools.LoadState.UndoLastSave      = "Отменить последнее сохранение"
+Tools.LoadState.RedoLastUndo      = "Вернуть последнее отменённое сохранение"
+Tools.LoadState.RemoveAllStates   = "Удалить все сохранения"
+Tools.LoadState.RemoveAllStates.confirm.title = "Удалить быстрые сохранения?"
+Tools.LoadState.RemoveAllStates.confirm = "Вы уверены, что хотите навсегда удалить все быстрые сохранения для этой игры?"
+
+Tools.Speed = "Скорость"
+Tools.Speed.Slowest = "Очень медленно"
+Tools.Speed.Slow    = "Медленно"
+Tools.Speed.Normal  = "Обычная скорость"
+Tools.Speed.Fast    = "Быстро"
+Tools.Speed.Fastest = "Очень быстро"
+
+Tools.RunMode = "Режим исполнения"
+Tools.RunMode.Normal         = "Обычный"
+Tools.RunMode.PauseEmulation = "Приостановить эмуляцию"
+Tools.RunMode.FrameAdvance   = "Покадрово (Frame Advance)"
+
+Tools.Movie = "Видеозапись"
+Tools.Movie.Play           = "Воспроизведение"
+Tools.Movie.Record         = "Запись"
+Tools.Movie.ResetAndRecord = "Сброс и запись"
+Tools.Movie.Stop           = "Стоп"
+
+Tools.TakeScreenshot = "Снять скриншот"
+
+Tools.CheatFinder = "Поиск читов"
+Tools.CheatFinder.Address = "Адрес"
+Tools.CheatFinder.Value   = "Значение"
+Tools.CheatFinder.Scan    = "Сканировать"
+Tools.CheatFinder.All     = "Все"
+
+Tools.CheatEditor = "Редактор читов"
+Tools.CheatEditor.remove.confirm.title = "Удалить читы?"
+Tools.CheatEditor.remove.confirm = "Вы уверены, что хотите навсегда удалить выделенные читы?"
+Tools.CheatEditor.Codes        = "Код(ы)"
+Tools.CheatEditor.Enable       = "Включить"
+Tools.CheatEditor.SelectAll    = "Выделить всё"
+Tools.CheatEditor.UnselectAll  = "Снять выделение"
+Tools.CheatEditor.AddCheats    = "Добавить читы"
+Tools.CheatEditor.AddCheat     = "Добавить чит"
+Tools.CheatEditor.EditCheat    = "Изменить чит"
+Tools.CheatEditor.Edit         = "Изменить"
+Tools.CheatEditor.FindCheats   = "Найти читы"
+Tools.CheatEditor.noCheats     = "К сожалению, читы для этой игры не найдены."
+Tools.CheatEditor.EnableCheats = "Включить читы"
+
+Tools.CheatEditor.EnableCheats.tooltip = "
+Включает все чит-коды.
+Когда выключено, ни один чит-код не будет активен.
+
+Используйте при прохождении частей игр, где читы приводят к проблемам.
+"
+
+Tools.CheatEditor.EnableCheats.disabled = "Все чит-коды выключены"
+Tools.CheatEditor.EnableCheats.enabled  = "Активные чит-коды включены"
+Tools.CheatEditor.invalidFormat = "Некорректный код(ы), пожалуста, используйте следующий формат"
+
+Tools.StateManager = "Менеджер сохранений"
+Tools.StateManager.Category = "Категория"
+Tools.StateManager.Category.ManagedStates = "Управляемые состояния"
+Tools.StateManager.Category.QuickStates   = "Быстрые сохранения"
+Tools.StateManager.QuickStates.Redo = "Вернуть"
+Tools.StateManager.QuickStates.Undo = "Отменить"
+Tools.StateManager.Preview     = "Предпросмотр"
+Tools.StateManager.AddState    = "Добавить состояние"
+Tools.StateManager.RenameState = "Переименовать состояние"
+Tools.StateManager.remove.confirm.title = "Удалить сохранения?"
+Tools.StateManager.remove.confirm = "Вы уверены, что хотите навсегда удалить выделенные сохранения?"
+
+Tools.ManifestViewer = "Просмотр манифеста"
+Tools.ManifestViewer.Manifest = "Манифест"
+
+Game.VerifiedGameOpened   = "Открыта проверенная игра"
+Game.GameOpened           = "Открыта игра"
+Game.GameClosed           = "Закрыта игра"
+Game.GameReset            = "Игра сброшена"
+Game.AndPatchApplied      = ", и применён патч"
+Game.GameOpeningCancelled = "Открытие игры отменено"
+Game.unverifiedGameWarning.title = "Непроверенный образ игры"
+
+Game.unverifiedGameWarning = "
+Внимание: этот образ игры не проверен.
+Запуск игры *может* быть небезопасным.
+
+Хотите ли вы запустить игру в любом случае?
+"
+
+Game.unverifiedGameWarning.alwaysQuestion.title = "Отключить предупреждение?"
+Game.unverifiedGameWarning.alwaysQuestion = "Отключить предупреждение при запуске непроверенных игр?"
+
+Program.Paused   = "Пауза"
+Program.Unloaded = "Простой"
+Program.CapturedScreenshot = "Снят скриншот"
+Program.Open.MissingRequiredData = "Отсутствуют необходимые данные"
+
+Program.Load.LoadGameBoyRom         = "Загрузить игру Game Boy"
+Program.Load.GameBoyRoms            = "Игры Game Boy"
+Program.Load.LoadBsMemoryRom        = "Загрузить образ BS-памяти"
+Program.Load.BsMemoryRoms           = "Образы BS-памяти"
+Program.Load.LoadSufamiTurboRomSlot = "Загрузить игру Sufami Turbo — слот"
+Program.Load.SufamiTurboRoms        = "Игры Sufami Turbo"
+
+About.Version   = "Версия"
+About.Copyright = "Авторские права"
+About.License   = "Лицензия"
+About.Website   = "Сайт"
+About.SameBoy.description = "Эмулятор Super Game Boy"
+About.Bsnes.description   = "Эмулятор Super Nintendo"
+About.Bsnes.copyright     = "byuu и другие"
+About.Bsnes.license       = "GPLv3 или новее"
+
+Browser.OpenSnesRom  = "Открыть игру SNES"
+Browser.SnesRoms     = "Игры SNES"
+Browser.AllFiles     = "Все файлы"
+Browser.Select       = "Выбрать"
+Browser.SelectFolder = "Выбрать папку"
+Browser.ChooseFolder = "Выберите папку"
+Browser.ShowHidden   = "Показать скрытые"
+Browser.OpenFile     = "Открыть файл"
+Browser.OpenFiles    = "Открыть файлы"
+Browser.OpenFolder   = "Открыть папку"
+Browser.OpenObject   = "Открыть объект"
+Browser.Rename.EnterNewFolderName   = "Введите новое имя папки"
+Browser.Rename.EnterNewFileName     = "Введите новое имя файла"
+Browser.Rename.FailedToRenameFolder = "Не удалось переименовать папку."
+Browser.Rename.FailedToRenameFile   = "Не удалось переименовать файл."
+Browser.Create = "Создать"
+Browser.Create.EnterName = "Введите имя"
+Browser.CreateFolder = "Создать папку"
+Browser.CreateFolder.EnterNewFolderName = "Введите имя новой папки"
+Browser.Delete.DeleteSelected = "Удалить выделенные"
+Browser.Delete.FailedToDelete = "Не удалось удалить |. Попытаться удалить остальные элементы?"
+Browser.Delete.confirm = "Вы уверены, что хотите навсегда удалить |"
+Browser.Delete.confirm.item  = "выделенный элемент"
+Browser.Delete.confirm.items = "выделенные элементы"
+Browser.SaveFile = "Сохранить файл"
+Browser.SaveFile.fileExists.title = "Заменить файл?"
+Browser.SaveFile.fileExists = "Файл уже существует. Заменить его?"
+
+StatusIcon.verifiedRom.tooltip = "
+Это известный качественный образ игры.
+Эмуляция платы (PCB) на 100% точная.
+"
+
+StatusIcon.unverifiedRom.tooltip = "
+Этот образ игры не проверен.
+При эмуляции платы (PCB) будет использоваться эвристика.
+"
+
+ResetDrivers.message.title = "Сброс драйверов"
+
+ResetDrivers.message = "
+Драйверы оборудования были сброшены согласно параметру командной строки `--resetdrivers`.
+
+Пожалуйста, выберите новые настройки драйверов в окне «Настройки» → «Драйверы», которое сейчас откроется.
+"
+
+Rewind.HistoryExhausted = "История перемотки исчерпана"
+
+States.incompatibleFormat  = "[|] имеет несовместимый формат"
+States.Loaded              = "Загружено"
+States.NotFound            = "[|] не найдено"
+States.FailedToSave        = "Не удалось сохранить [|]"
+States.UnableToWriteToDisk = "Не удаётся записать [|] на диск"
+States.Saved               = "Сохранено [|]"
+
+Patch.ipsWarning = "
+(Вы видите этот запрос потому, что IPS — ужасный формат файлов патчей, и нет единого мнения, должны ли SNES-игры снабжаться заголовками.
+Пожалуйста, попробуйте попросить автора патча использовать формат BPS.)
+
+Предусмотрена ли в этом IPS-патче возможность применения к игре с заголовком?
+Если вы не уверены, попробуйте «Нет», а если не сработает, попробуйте снова с ответом «Да».
+"
+
+Patch.ensureHeaderless = "Пожалуйста, удостоверьтесь, что используете для этого патча правильный (без заголовка) образ."
+
+Movies.PlayMovie          = "Воспроизвести видео"
+Movies.Movies             = "Видеозаписи"
+Movies.playbackStarted    = "Началось воспроизведение видео"
+Movies.playbackStopped    = "Воспроизведение видео остановлено"
+Movies.formatNotSupported = "Формат видео не поддерживается"
+Movies.recordingStarted   = "Началась запись видео"
+Movies.SaveMovie          = "Сохранить видео"
+Movies.MovieRecorded      = "Видео записано"
+Movies.MovieNotRecorded   = "Видео не записано"
+Movies.cantRecord         = "Не удаётся записать видео"
+
+Devices.Gamepad = "Геймпад"
+Devices.Mouse   = "Мышь"
+
+Hotkeys.ToggleMouseCapture  = "Захватить указатель мыши"
+Hotkeys.ToggleCheatCodes    = "Включить чит-коды"
+Hotkeys.Rewind              = "Перемотать назад (Rewind)"
+Hotkeys.LoadUndoState       = "Загрузить состояние отмены действия"
+Hotkeys.LoadRedoState       = "Загрузить состояния повтора действия"
+Hotkeys.DecrementStateSlot  = "Предыдущий слот быстрого сохранения"
+Hotkeys.IncrementStateSlot  = "Следующий слот быстрого сохранения"
+Hotkeys.FastForward         = "Перемотать вперёд (Fast Forward)"
+Hotkeys.FrameAdvance        = "Следующий кадр в покадровом режиме"
+Hotkeys.DecreaseHDMode7     = "Уменьшить разрешение HD Mode 7"
+Hotkeys.IncreaseHDMode7     = "Увеличить разрешение HD Mode 7"
+Hotkeys.ToggleSupersampling = "Включить избыточную выборку"
+Hotkeys.ResetEmulation      = "Сбросить эмуляцию"
+Hotkeys.QuitEmulator        = "Выйти из эмулятора"

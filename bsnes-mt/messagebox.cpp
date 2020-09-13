@@ -1,22 +1,19 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
 #include <Windows.h>
-#include <Commctrl.h>
 
 #include "strings.h"
-#include "utils.h"
+#include "translations.h"
 
 #include "messagebox.h"
 
 namespace bsnesMt::windows {
 
-using std::wstring;
-
 auto messageBox(const string &text, const string &title, uint32_t flags, uintptr_t parentWindow) -> int {
 	return MessageBoxW(
 		reinterpret_cast<HWND>(parentWindow),
-		utf8ToWideString(text).data(),
-		utf8ToWideString(title).data(),
+		strings::utf8ToWideString(text).data(),
+		strings::utf8ToWideString(title).data(),
 		flags
 	);
 }
@@ -35,7 +32,7 @@ auto showMessage(const string &text, const string &title, uint32_t flags, uintpt
 auto showError(const string &text, const string &title, uintptr_t parentWindow) -> void {
 	showMessage(
 		text,
-		"" == title ? strings::get("Common.Error") : title,
+		"" == title ? translations::get("Common.Error") : title,
 		MB_ICONERROR,
 		parentWindow
 	);
@@ -52,7 +49,7 @@ auto showInfo(const string &text, const string &title, uintptr_t parentWindow) -
 auto confirm(const string &text, const string &title, uintptr_t parentWindow) -> bool {
 	return IDYES == messageBox(
 		text,
-		"" == title ? strings::get("Common.AreYouSure") : title,
+		"" == title ? translations::get("Common.AreYouSure") : title,
 		MB_ICONQUESTION | MB_YESNO | MB_DEFBUTTON2,
 		parentWindow
 	);
@@ -62,8 +59,8 @@ auto confirmById(const string &textId, uintptr_t parentWindow) -> bool {
 	string titleId = textId + ".title";
 
 	return confirm(
-		strings::get(textId),
-		strings::has(titleId) ? strings::get(titleId) : strings::get("Common.AreYouSure"),
+		translations::get(textId),
+		translations::has(titleId) ? translations::get(titleId) : translations::get("Common.AreYouSure"),
 		parentWindow
 	);
 }

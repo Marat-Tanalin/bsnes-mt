@@ -11,7 +11,7 @@ auto Program::updateInputDriver(Window parent) -> void {
 	hotkeySettings.reloadMappings();
 
 	if (!input.ready()) {
-		string message = bms::get("Settings.Drivers.Input.failedToInitialize").data(); // MT.
+		string message = bmt::get("Settings.Drivers.Input.failedToInitialize").data(); // MT.
 
 		// MessageDialog(message.replace('|', settings.input.driver)).setAlignment(parent).error(); // Commented-out by MT.
 		bmw::showError(message.replace('|', settings.input.driver).data(), "", parent.handle()); // MT.

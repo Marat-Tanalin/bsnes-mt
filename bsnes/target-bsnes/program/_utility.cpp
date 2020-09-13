@@ -1,9 +1,11 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/files.h"
+#include "bsnes-mt/translations.h"
 #include "bsnes-mt/utils.h"
 #include "bsnes-mt/windows.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmf = bsnesMt::files;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 /* MT. */
@@ -84,16 +86,16 @@ auto Program::updateStatus() -> void {
 	string frameRate;
 
 	if (!emulator->loaded()) {
-		frameRate = bms::get("Program.Unloaded").data();
+		frameRate = bmt::get("Program.Unloaded").data();
 	}
 	else if (presentation.frameAdvance.checked() && frameAdvanceLock) {
-		frameRate = bms::get("Tools.RunMode.FrameAdvance").data();
+		frameRate = bmt::get("Tools.RunMode.FrameAdvance").data();
 	}
 	else if (presentation.pauseEmulation.checked()) {
-		frameRate = bms::get("Program.Paused").data();
+		frameRate = bmt::get("Program.Paused").data();
 	}
 	else if (!focused() && inputSettings.pauseEmulation.checked()) {
-		frameRate = bms::get("Program.Paused").data();
+		frameRate = bmt::get("Program.Paused").data();
 	}
 	else {
 		frameRate = statusFrameRate;
@@ -145,10 +147,10 @@ auto Program::captureScreenshot() -> bool {
 		}
 	}
 
-	bsnesMt::saveBgraArrayAsPngImage(data, width, height, filename.get()); // MT.
+	bmf::saveBgraArrayAsPngImage(data, width, height, filename.get()); // MT.
 
 	//if (Encode::BMP::create(filename, data, width << 2, width, height, /* alpha = */ false)) { // Commented-out by MT.
-	showMessage({bms::get("Program.CapturedScreenshot").data(), " [", Location::file(filename), "]"});
+	showMessage({bmt::get("Program.CapturedScreenshot").data(), " [", Location::file(filename), "]"});
 
 	return true;
 	//} // Commented-out by MT.

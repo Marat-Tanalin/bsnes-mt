@@ -1,139 +1,128 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
-#include <stdexcept>
+#include <memory>
 
-#include <windows.h>
-
-#include "utils.h"
+#include <Windows.h>
 
 #include "strings.h"
 
 namespace bsnesMt::strings {
 
-using std::wstring, std::out_of_range;
+using std::make_unique;
 
-auto getLocale() -> uint8_t {
-	wstring commandLine = GetCommandLineW();
-	wstring paramStart  = L"--locale=";
-	auto    paramPos    = commandLine.find(paramStart);
+auto utf8ToWideString(const string &utf8) -> wstring {
+	wstring wide;
 
-	if (string::npos != paramPos) {
-		wstring value = commandLine.substr(paramPos + paramStart.size(), 2);
+	auto utf8c = utf8.data();
+	int  size  = MultiByteToWideChar(CP_UTF8, 0, utf8c, -1, 0, 0);
 
-		if (L"ru" == value) {
-			return RU;
-		}
-		else if (L"it" == value) {
-			return IT;
-		}
-		else if (L"ja" == value || L"jp" == value) { // `jp` for backward compatibility.
-			return JA;
-		}
-		else if (L"en" == value) {
-			return EN;
-		}
+	if (size > 0) {
+		auto buffer = make_unique<wchar_t[]>(size);
+		MultiByteToWideChar(CP_UTF8, 0, utf8c, -1, buffer.get(), size);
+		wide = buffer.get();
 	}
 
-	auto lang = getUiLang();
+	return wide;
+}
 
-	uint8_t locale;
+auto wideStringToUtf8String(const wstring &wide) -> string {
+	string utf8;
 
-	if (LANG_RUSSIAN == lang) {
-		locale = RU;
+	auto widec = wide.data();
+	int  size  = WideCharToMultiByte(CP_UTF8, 0, widec, -1, 0, 0, 0, 0);
+
+	if (size > 0) {
+		auto buffer = std::make_unique<char[]>(size);
+		WideCharToMultiByte(CP_UTF8, 0, widec, -1, buffer.get(), size, 0, 0);
+		utf8 = buffer.get();
 	}
-	else if (LANG_ITALIAN == lang) {
-		locale = IT;
+
+	return utf8;
+}
+
+auto replaceByRef(string &str, const string &search, const string &replacement) -> void {
+	if (search.empty()) {
+		return;
 	}
-	else if (LANG_JAPANESE == lang) {
-		locale = JA;
+
+	const auto searchLength  = search.length();
+	const auto replaceLength = replacement.length();
+
+	string::size_type pos = 0;
+
+	while ((pos = str.find(search, pos)) != string::npos) {
+		str.replace(pos, searchLength, replacement);
+		pos += replaceLength;
+	}
+}
+
+auto replace(string str, const string &search, const string &replacement) -> string {
+	replaceByRef(str, search, replacement);
+	return str;
+}
+
+auto replace(const string &str, const string &search, char replacement) -> string {
+	return replace(str, search, string(1, replacement));
+}
+
+auto replace(const string &s, char search, char replacement) -> string {
+	return replace(s, string(1, search), string(1, replacement));
+}
+
+auto replaceOnce(const string &s, char search, const string replacement) -> string {
+	auto pos = s.find(search);
+
+	if (string::npos == pos) {
+		return s;
+	}
+
+	return s.substr(0, pos) + replacement + s.substr(pos + 1);
+}
+
+auto unifyLineFeeds(string text) -> string {
+	text = replace(text, "\r\n", '\n');
+	text = replace(text, '\r', '\n');
+
+	return text;
+}
+
+auto trimByRef(string &s, const string &chars) -> void {
+	string::size_type pos = s.find_last_not_of(chars);
+
+	if (pos != string::npos) {
+		s.erase(pos + 1);
+		pos = s.find_first_not_of(chars);
+
+		if (pos != string::npos) {
+			s.erase(0, pos);
+		}
 	}
 	else {
-		locale = EN;
+		s.erase(s.begin(), s.end());
 	}
-
-	return locale;
 }
 
-auto genericHas(const map<string, map<uint8_t, string>> &items, const string &key) -> bool {
-	try {
-		auto test = items.at(key);
-	}
-	catch (const out_of_range &e) {
-		return false;
-	}
-
-	return true;
+auto trim(string s, const string &chars) -> string {
+	trimByRef(s, chars);
+	return s;
 }
 
-auto genericHas(const map<string, string> &items, const string &key) -> bool {
-	try {
-		auto test = items.at(key);
-	}
-	catch (const out_of_range &e) {
-		return false;
-	}
-
-	return true;
+auto trim(const string &s) -> string {
+	return trim(s, " \t\r\n");
 }
 
-auto has(const string &id) -> bool {
-	return genericHas(strings, id);
+auto isWhiteSpace(const string &s) -> bool {
+	return "" == trim(s);
 }
 
-auto valueHasLocale(const map<uint8_t, string> &value, uint8_t locale) -> bool {
-	try {
-		auto test = value.at(locale);
-	}
-	catch (const out_of_range &e) {
-		return false;
+auto ucharVectorToString(const vector<unsigned char> &data) -> string {
+	string dataString;
+
+	for (auto &byte : data) {
+		dataString += byte;
 	}
 
-	return true;
-}
-
-auto get(const map<uint8_t, string> &value) -> string {
-	if (valueHasLocale(value, locale)) {
-		return value.at(locale);
-	}
-
-	return valueHasLocale(value, EN) ? value.at(EN) : "";
-}
-
-auto get(const string &id) -> string {
-	return has(id) ? get(strings.at(id)) : "";
-}
-
-auto getStringOrId(const map<string, map<uint8_t, string>> &values, const string &id) -> string {
-	auto value = values.at(id);
-
-	if (valueHasLocale(value, locale)) {
-		return value.at(locale);
-	}
-
-	return valueHasLocale(value, EN) ? value.at(EN) : id;
-}
-
-auto getDedicatedString(
-	const map<string, map<uint8_t, string>> &values,
-	const map<string, string> &dedicatedToRegularStrings,
-	const string &id
-) -> string
-{
-	if (genericHas(values, id)) {
-		return getStringOrId(values, id);
-	}
-
-	return genericHas(dedicatedToRegularStrings, id)
-	     ? get(dedicatedToRegularStrings.at(id))
-	     : id;
-}
-
-auto getDeviceString(const string &id) -> string {
-	return getDedicatedString(deviceStrings, deviceStringsToRegularStrings, id);
-}
-
-auto getHotkeyString(const string &id) -> string {
-	return getDedicatedString(hotkeyStrings, hotkeyStringsToRegularStrings, id);
+	return dataString;
 }
 
 } // namespace bsnesMt::strings

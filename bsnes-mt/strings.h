@@ -2,39 +2,30 @@
 
 #pragma once
 
-#include <cstdint>
-#include <map>
 #include <string>
-
-#include "translations.h"
+#include <vector>
 
 namespace bsnesMt::strings {
 
-using std::map, std::string;
+using std::string, std::wstring, std::vector;
 
-auto getLocale() -> uint8_t;
+auto utf8ToWideString(const string &utf8) -> wstring;
+auto wideStringToUtf8String(const wstring &wide) -> string;
 
-static uint8_t locale = getLocale();
+auto replaceByRef(string &str, const string &search, const string &replacement) -> void;
+auto replace(string str, const string &search, const string &replacement) -> string;
+auto replace(const string &str, const string &search, char replacement) -> string;
+auto replace(const string &s, char search, char replacement) -> string;
+auto replaceOnce(const string &s, char search, const string replacement) -> string;
 
-auto genericHas(const map<string, map<uint8_t, string>> &items, const string &key) -> bool;
-auto genericHas(const map<string, string>               &items, const string &key) -> bool;
+auto unifyLineFeeds(string text) -> string;
 
-auto has(const string &id) -> bool;
+auto trimByRef(string &s, const string &chars) -> void;
+auto trim(string s, const string &chars) -> string;
+auto trim(const string &s) -> string;
 
-auto valueHasLocale(const map<uint8_t, string> &value, uint8_t locale) -> bool;
+auto isWhiteSpace(const string &s) -> bool;
 
-auto get(const map<uint8_t, string> &value) -> string;
-auto get(const string &id) -> string;
-
-auto getStringOrId(const map<string, map<uint8_t, string>> &values, const string &id) -> string;
-
-auto getDedicatedString(
-	const map<string, map<uint8_t, string>> &values,
-	const map<string, string> &dedicatedToRegularStrings,
-	const string &id
-) -> string;
-
-auto getDeviceString(const string &id) -> string;
-auto getHotkeyString(const string &id) -> string;
+auto ucharVectorToString(const vector<unsigned char> &data) -> string;
 
 } // namespace bsnesMt::strings

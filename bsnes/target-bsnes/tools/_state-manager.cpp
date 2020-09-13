@@ -2,7 +2,7 @@
 
 auto StateWindow::create() -> void {
 	layout.setPadding(5_sx);
-	nameLabel.setText({bms::get("Common.Name").data(), ':'});
+	nameLabel.setText({bmt::get("Common.Name").data(), ':'});
 
 	nameValue.onActivate([&] {
 		if (acceptButton.enabled()) {
@@ -18,7 +18,7 @@ auto StateWindow::create() -> void {
 		doAccept();
 	});
 
-	cancelButton.setText(bms::get("Common.Cancel").data()).onActivate([&] {
+	cancelButton.setText(bmt::get("Common.Cancel").data()).onActivate([&] {
 		setVisible(false);
 	});
 
@@ -31,12 +31,12 @@ auto StateWindow::show(string name) -> void {
 	setAttribute("name", {name.split("/").last()});
 	nameValue.setText(attribute("name"));
 	doChange();
-	setTitle(!attribute("name") ? bms::get("Tools.StateManager.AddState").data() : bms::get("Tools.StateManager.RenameState").data());
+	setTitle(!attribute("name") ? bmt::get("Tools.StateManager.AddState").data() : bmt::get("Tools.StateManager.RenameState").data());
 	setAlignment(*toolsWindow);
 	setVisible();
 	setFocused();
 	nameValue.setFocused();
-	acceptButton.setText(!attribute("name") ? bms::get("Common.Add").data() : bms::get("Common.Rename").data());
+	acceptButton.setText(!attribute("name") ? bmt::get("Common.Add").data() : bmt::get("Common.Rename").data());
 }
 
 auto StateWindow::doChange() -> void {
@@ -57,7 +57,7 @@ auto StateWindow::doChange() -> void {
 auto StateWindow::doAccept() -> void {
 	string name = {attribute("type"), nameValue.text().strip()};
 
-	if (acceptButton.text() == bms::get("Common.Add").data()) {
+	if (acceptButton.text() == bmt::get("Common.Add").data()) {
 		stateManager.createState(name);
 	}
 	else {
@@ -93,12 +93,12 @@ auto StateManager::create() -> void {
 		stateList.resizeColumns();
 	});
 
-	categoryLabel.setText({bms::get("Tools.StateManager.Category").data(), ':'});
+	categoryLabel.setText({bmt::get("Tools.StateManager.Category").data(), ':'});
 
-	auto managedItem = ComboButtonItem().setText(bms::get("Tools.StateManager.Category.ManagedStates").data())
+	auto managedItem = ComboButtonItem().setText(bmt::get("Tools.StateManager.Category.ManagedStates").data())
 	                                    .setAttribute("type", "Managed/");
 
-	auto quickItem   = ComboButtonItem().setText(bms::get("Tools.StateManager.Category.QuickStates").data())
+	auto quickItem   = ComboButtonItem().setText(bmt::get("Tools.StateManager.Category.QuickStates").data())
 	                                    .setAttribute("type", "Quick/");
 
 	categoryOption.append(managedItem);
@@ -111,32 +111,32 @@ auto StateManager::create() -> void {
 	Color separatorColor = {192, 192, 192}; // MT.
 
 	statePreviewSeparator1.setColor(separatorColor);
-	statePreviewLabel.setFont(Font().setBold()).setText(bms::get("Tools.StateManager.Preview").data());
+	statePreviewLabel.setFont(Font().setBold()).setText(bmt::get("Tools.StateManager.Preview").data());
 	statePreviewSeparator2.setColor(separatorColor);
 
-	loadButton.setText(bms::get("Common.Load").data()).onActivate([&] {
+	loadButton.setText(bmt::get("Common.Load").data()).onActivate([&] {
 		if (auto item = stateList.selected()) {
 			program.loadState(item.attribute("name"));
 		}
 	});
 
-	saveButton.setText(bms::get("Common.Save").data()).onActivate([&] {
+	saveButton.setText(bmt::get("Common.Save").data()).onActivate([&] {
 		if (auto item = stateList.selected()) {
 			program.saveState(item.attribute("name"));
 		}
 	});
 
-	addButton.setText(bms::get("Common.Add").data()).onActivate([&] {
+	addButton.setText(bmt::get("Common.Add").data()).onActivate([&] {
 		stateWindow.show(type());
 	});
 
-	editButton.setText(bms::get("Common.Rename").data()).onActivate([&] {
+	editButton.setText(bmt::get("Common.Rename").data()).onActivate([&] {
 		if (auto item = stateList.selected()) {
 			stateWindow.show(item.attribute("name"));
 		}
 	});
 
-	removeButton.setText(bms::get("Common.Remove").data()).onActivate([&] {
+	removeButton.setText(bmt::get("Common.Remove").data()).onActivate([&] {
 		removeStates();
 	});
 }
@@ -147,15 +147,15 @@ auto StateManager::type() const -> string {
 
 auto StateManager::loadStates() -> void {
 	stateList.reset();
-	stateList.append(TableViewColumn().setText(bms::get("Common.Name").data()).setSorting(Sort::Ascending).setExpandable());
-	stateList.append(TableViewColumn().setText(bms::get("Common.Date").data()).setForegroundColor({160, 160, 160}));
+	stateList.append(TableViewColumn().setText(bmt::get("Common.Name").data()).setSorting(Sort::Ascending).setExpandable());
+	stateList.append(TableViewColumn().setText(bmt::get("Common.Date").data()).setForegroundColor({160, 160, 160}));
 
 	auto type = this->type();
 
 	/* MT. */
-	string redoTranslated = bms::get("Tools.StateManager.QuickStates.Redo").data();
-	string undoTranslated = bms::get("Tools.StateManager.QuickStates.Undo").data();
-	string slotTranslated = bms::get("Tools.SaveState.Slot").data();
+	string redoTranslated = bmt::get("Tools.StateManager.QuickStates.Redo").data();
+	string undoTranslated = bmt::get("Tools.StateManager.QuickStates.Undo").data();
+	string slotTranslated = bmt::get("Tools.SaveState.Slot").data();
 	/* /MT. */
 
 	for (auto& state : program.availableStates(type)) {
@@ -213,8 +213,8 @@ auto StateManager::modifyState(string name) -> void {
 auto StateManager::removeStates() -> void {
 	if (auto batched = stateList.batched()) {
 		/* // Commented-out by MT.
-		if (MessageDialog(bms::get("Tools.StateManager.remove.confirm").data())
-			.setAlignment(*toolsWindow).question({bms::get("Common.Yes").data(), bms::get("Common.No").data()}) == bms::get("Common.Yes").data()) {
+		if (MessageDialog(bmt::get("Tools.StateManager.remove.confirm").data())
+			.setAlignment(*toolsWindow).question({bmt::get("Common.Yes").data(), bmt::get("Common.No").data()}) == bmt::get("Common.Yes").data()) {
 		*/
 
 		if (bmw::confirmById("Tools.StateManager.remove.confirm"), toolsWindow->handle()) { // MT.

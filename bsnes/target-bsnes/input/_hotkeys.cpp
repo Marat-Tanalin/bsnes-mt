@@ -1,9 +1,9 @@
 /* MT. */
 #include "bsnes-mt/app.h"
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
 namespace bma = bsnesMt::app;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 auto InputHotkey::logic() const -> Logic {
@@ -43,7 +43,7 @@ auto InputManager::bindHotkeys() -> void {
 		}
 
 		if (program.rewind.frequency == 0) {
-			program.showMessage(bms::get("Settings.Hotkeys.Rewind.enableFirst").data());
+			program.showMessage(bmt::get("Settings.Hotkeys.Rewind.enableFirst").data());
 			return;
 		}
 
@@ -92,7 +92,7 @@ auto InputManager::bindHotkeys() -> void {
 			stateSlot = bma::quickStatesNumber;
 		}
 
-		program.showMessage({bms::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot});
+		program.showMessage({bmt::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot});
 	}));
 
 	hotkeys.append(InputHotkey("Increment State Slot").onPress([&] {
@@ -100,7 +100,7 @@ auto InputManager::bindHotkeys() -> void {
 			stateSlot = 1;
 		}
 
-		program.showMessage({bms::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot});
+		program.showMessage({bmt::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot});
 	}));
 
 	hotkeys.append(InputHotkey("Capture Screenshot").onPress([] {

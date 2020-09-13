@@ -3,8 +3,10 @@
 
 /* MT. */
 #include "bsnes-mt/keyboard.h"
+#include "bsnes-mt/translations.h"
 
 namespace bmk = bsnesMt::keyboard;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 Video video;
@@ -65,6 +67,8 @@ auto locate(string name) -> string {
 #include <nall/main.hpp>
 
 auto nall::main(Arguments arguments) -> void {
+	bmt::initLocale(); // MT.
+
 	settings.location = locate("bsnes-mt-settings.bml");
 
 	for (auto argument : arguments) {

@@ -1,8 +1,8 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 #include "bsnes-mt/messagebox.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 namespace bmw = bsnesMt::windows;
 /* /MT. */
 
@@ -75,8 +75,8 @@ auto Program::create() -> void {
 	/* MT. */
 	if (resetDrivers) {
 		bmw::showNotice(
-			bms::get("ResetDrivers.message"),
-			bms::get("ResetDrivers.message.title"),
+			bmt::get("ResetDrivers.message"),
+			bmt::get("ResetDrivers.message.title"),
 			presentation.handle()
 		);
 

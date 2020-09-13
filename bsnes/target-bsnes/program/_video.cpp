@@ -27,7 +27,7 @@ auto Program::updateVideoDriver(Window parent) -> void {
 	});
 
 	if (!video.ready()) {
-		string message = bms::get("Settings.Drivers.Video.failedToInitialize").data(); // MT.
+		string message = bmt::get("Settings.Drivers.Video.failedToInitialize").data(); // MT.
 
 		// MessageDialog(message.replace('|', settings.video.driver)).setAlignment(parent).error(); // Commented-out by MT.
 		bmw::showError(message.replace('|', settings.video.driver).data(), "", parent.handle()); // MT.

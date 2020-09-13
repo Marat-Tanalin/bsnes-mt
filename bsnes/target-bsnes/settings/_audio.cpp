@@ -1,7 +1,7 @@
 /* MT. */
-#include "bsnes-mt/strings.h"
+#include "bsnes-mt/translations.h"
 
-namespace bms = bsnesMt::strings;
+namespace bmt = bsnesMt::translations;
 /* /MT. */
 
 auto AudioSettings::create() -> void {
@@ -10,13 +10,13 @@ auto AudioSettings::create() -> void {
 
 	char colon = ':';
 
-	effectsLabel.setFont(Font().setBold()).setText(bms::get("Settings.Audio.Effects").data());
+	effectsLabel.setFont(Font().setBold()).setText(bmt::get("Settings.Audio.Effects").data());
 
 	effectsLayout.setSize({3, 3});
 	effectsLayout.column(0).setAlignment(1.0);
 
-	skewLabel.setText({bms::get("Settings.Audio.Skew").data(), colon})
-		.setToolTip(bms::get("Settings.Audio.Skew.tooltip").data());
+	skewLabel.setText({bmt::get("Settings.Audio.Skew").data(), colon})
+		.setToolTip(bmt::get("Settings.Audio.Skew.tooltip").data());
 
 	skewValue.setAlignment(0.5).setToolTip(skewLabel.toolTip());
 
@@ -32,8 +32,8 @@ auto AudioSettings::create() -> void {
 		})
 		.doChange();
 
-	volumeLabel.setText({bms::get("Settings.Audio.Volume").data(), colon})
-		.setToolTip(bms::get("Settings.Audio.Volume.tooltip").data());
+	volumeLabel.setText({bmt::get("Settings.Audio.Volume").data(), colon})
+		.setToolTip(bmt::get("Settings.Audio.Volume.tooltip").data());
 
 	volumeValue.setAlignment(0.5).setToolTip(volumeLabel.toolTip());
 
@@ -46,8 +46,8 @@ auto AudioSettings::create() -> void {
 		})
 		.doChange();
 
-	balanceLabel.setText({bms::get("Settings.Audio.Balance").data(), colon})
-		.setToolTip(bms::get("Settings.Audio.Balance.tooltip").data());
+	balanceLabel.setText({bmt::get("Settings.Audio.Balance").data(), colon})
+		.setToolTip(bmt::get("Settings.Audio.Balance.tooltip").data());
 
 	balanceValue.setAlignment(0.5).setToolTip(balanceLabel.toolTip());
 
@@ -60,7 +60,7 @@ auto AudioSettings::create() -> void {
 		})
 		.doChange();
 
-	muteUnfocused.setText(bms::get("Settings.Audio.MuteWhenUnfocused").data())
+	muteUnfocused.setText(bmt::get("Settings.Audio.MuteWhenUnfocused").data())
 		.setChecked(settings.audio.muteUnfocused)
 		.onToggle([&] {
 			settings.audio.muteUnfocused = muteUnfocused.checked();
