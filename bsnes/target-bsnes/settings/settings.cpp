@@ -1,4 +1,8 @@
+#include <string> // MT.
+
 #include "../bsnes.hpp"
+
+#include "bsnes-mt/strings.h" // MT.
 
 #include "_video.cpp"
 #include "_audio.cpp"
@@ -246,6 +250,15 @@ auto SettingsWindow::setVisible(bool visible) -> SettingsWindow& {
 	return Window::setVisible(visible), *this;
 }
 
+/* MT. */
+auto setSettingsWindowTitle(std::string id) -> void {
+	static string title   = bmt::get("Settings").data();
+	static string postfix = {u8" ← ", title}; // MT.
+
+	settingsWindow.setTitle("" == id ? title : string({bmt::get(id).data(), postfix}));
+}
+/* /MT. */
+
 auto SettingsWindow::show(int index) -> void {
 	settingsHome.setVisible(false);
 	videoSettings.setVisible(false);
@@ -260,33 +273,43 @@ auto SettingsWindow::show(int index) -> void {
 	panelList.item(index).setSelected();
 
 	if (index == -1) {
+		setSettingsWindowTitle(""); // MT.
 		settingsHome.setVisible(true);
 	}
 	else if (index == 0) {
+		setSettingsWindowTitle("Common.Video"); // MT.
 		videoSettings.setVisible(true);
 	}
 	else if (index == 1) {
+		setSettingsWindowTitle("Common.Audio"); // MT.
 		audioSettings.setVisible(true);
 	}
 	else if (index == 2) {
+		setSettingsWindowTitle("Settings.Input"); // MT.
 		inputSettings.setVisible(true);
 	}
 	else if (index == 3) {
+		setSettingsWindowTitle("Settings.Hotkeys"); // MT.
 		hotkeySettings.setVisible(true);
 	}
 	else if (index == 4) {
+		setSettingsWindowTitle("Settings.Paths"); // MT.
 		pathSettings.setVisible(true);
 	}
 	else if (index == 5) {
+		setSettingsWindowTitle("Settings.Emulator"); // MT.
 		emulatorSettings.setVisible(true);
 	}
 	else if (index == 6) {
+		setSettingsWindowTitle("Settings.Enhancements"); // MT.
 		enhancementSettings.setVisible(true);
 	}
 	else if (index == 7) {
+		setSettingsWindowTitle("Settings.Compatibility"); // MT.
 		compatibilitySettings.setVisible(true);
 	}
 	else if (index == 8) {
+		setSettingsWindowTitle("Settings.Drivers"); // MT.
 		driverSettings.setVisible(true);
 	}
 
