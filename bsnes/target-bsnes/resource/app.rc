@@ -4,4 +4,36 @@
 
 IDI_APPICON ICON "bsnes-mt.ico"
 
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.manifest"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.Manifest"
+
+// Executable version information.
+VS_VERSION_INFO    VERSIONINFO
+FILEVERSION        1,2,0,0
+PRODUCTVERSION     1,2,0,0
+FILEFLAGSMASK      VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+  FILEFLAGS        VS_FF_DEBUG | VS_FF_PRERELEASE
+#else
+  FILEFLAGS        0
+#endif
+FILEOS             VOS_NT_WINDOWS32
+FILETYPE           VFT_APP
+FILESUBTYPE        VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "080904b0"
+    BEGIN
+      VALUE "CompanyName", "Marat Tanalin"
+      VALUE "FileDescription", "bsnes-mt by Marat Tanalin"
+      VALUE "FileVersion", "1.2.0.0"
+      VALUE "LegalCopyright", "Marat Tanalin | http://tanalin.com"
+      VALUE "ProductName", "bsnes-mt by Marat Tanalin"
+      VALUE "ProductVersion", "1.2.0.0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x809, 1200
+  END
+END
