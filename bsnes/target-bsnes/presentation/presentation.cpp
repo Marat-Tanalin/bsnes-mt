@@ -30,7 +30,7 @@ auto Presentation::create() -> void {
 	loadRecentGame.setIcon(Icon::Action::Open).setText(bmt::get("Menu.File.OpenRecentGame").data());
 	updateRecentGames();
 
-	unloadGame.setIcon(Icon::Action::Remove).setText({bmt::get("Menu.File.CloseGame").data(), "\tCtrl+W"}).setEnabled(false).onActivate([&] {
+	unloadGame.setIcon(Icon::Action::Remove).setText({bmt::get("Menu.File.CloseGame").data(), "\tCtrl+W, Ctrl+F4"}).setEnabled(false).onActivate([&] {
 		program.unload();
 	});
 
@@ -442,7 +442,7 @@ auto Presentation::create() -> void {
 		program.movieStop();
 	});
 
-	captureScreenshot.setIcon(Icon::Emblem::Image).setText({bmt::get("Tools.TakeScreenshot").data(), "\tPrintScreen"}).onActivate([&] {
+	captureScreenshot.setIcon(Icon::Emblem::Image).setText({bmt::get("Tools.TakeScreenshot").data(), "\tF9, PrintScreen"}).onActivate([&] {
 		program.captureScreenshot();
 	});
 
@@ -783,7 +783,7 @@ auto Presentation::updateSizeMenu() -> void {
 	}));
 
 	/* MT. */
-	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText({bmt::get("Menu.Settings.Size.FullScreenMode").data(), "\tAlt+Enter"}).onActivate([&] {
+	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText({bmt::get("Menu.Settings.Size.FullScreenMode").data(), "\tF11, Alt+Enter"}).onActivate([&] {
 		program.toggleVideoFullScreen();
 	}));
 	/* /MT. */

@@ -28,13 +28,19 @@ auto hotkeyHookCallback(WPARAM keyCode, bool keyDown, bool shiftPressed, bool ct
 		return;
 	}
 
-	if (VK_RETURN == keyCode) {
+	if (VK_F9 == keyCode) {
+		program.captureScreenshot();
+	}
+	else if (VK_RETURN == keyCode) {
 		if (shiftPressed) {
 			program.toggleVideoPseudoFullScreen();
 		}
 		else if (altPressed) {
 			program.toggleVideoFullScreen();
 		}
+	}
+	else if (VK_F11 == keyCode) {
+		program.toggleVideoFullScreen();
 	}
 	else if (altPressed && VK_F4 == keyCode) {
 		program.quit();
@@ -43,6 +49,9 @@ auto hotkeyHookCallback(WPARAM keyCode, bool keyDown, bool shiftPressed, bool ct
 		program.load();
 	}
 	else if (ctrlPressed && 0x57 == keyCode && isMainWindowActive()) {
+		program.unload();
+	}
+	else if (ctrlPressed && VK_F4 == keyCode && isMainWindowActive()) {
 		program.unload();
 	}
 	else if (VK_F5 == keyCode && (isMainWindowActive() || video.fullScreen())) {
