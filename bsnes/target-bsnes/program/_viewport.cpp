@@ -1,9 +1,28 @@
 #include "bsnes-mt/scaling.h" // MT.
 
-namespace bmi = bsnesMt::scaling;
+namespace bmi = bsnesMt::scaling; // MT.
 
 extern uint16_t SnowData[800];
 extern  uint8_t SnowVelDist[800];
+
+/* MT. */
+struct ScalingData {
+	uint width, height, scaledWidth, scaledHeight, areaWidth, areaHeight;
+	string output;
+};
+
+auto isSameScalingData(const ScalingData &a, const ScalingData &b) -> bool {
+    return a.width        == b.width
+        && a.height       == b.height
+        && a.scaledWidth  == b.scaledWidth
+        && a.scaledHeight == b.scaledHeight
+        && a.areaWidth    == b.areaWidth
+        && a.areaHeight   == b.areaHeight
+        && a.output       == b.output;
+}
+
+static ScalingData prevScalingData;
+/* /MT. */
 
 /* MT. */
 auto Program::showScalingInfo(
@@ -11,10 +30,18 @@ auto Program::showScalingInfo(
 	uint areaWidth, uint areaHeight, string outputSetting
 ) -> void
 {
+	ScalingData scalingData = {width, height, scaledWidth, scaledHeight, areaWidth, areaHeight, outputSetting};
+
+	if (isSameScalingData(prevScalingData, scalingData)) {
+		return;
+	}
+
 	showMessage({
 		width, "×", height, " → ", scaledWidth, "×", scaledHeight,
 		" <", areaWidth, "×", areaHeight, "> [", outputSetting , "]"
 	});
+
+	prevScalingData = scalingData;
 }
 /* /MT. */
 
