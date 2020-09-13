@@ -85,7 +85,7 @@ auto Program::load() -> void {
 	presentation.setFocused();
 	presentation.setTitle({emulator->title(), " — ", bma::windowTitle.data()}); // Added emulator title and version by MT.
 	presentation.resetSystem.setEnabled(true);
-	presentation.unloadGame.setEnabled(true);
+	presentation.closeGame.setEnabled(true);
 	presentation.toolsMenu.setVisible(true);
 	presentation.updateStateMenus();
 	presentation.speedNormal.setChecked();
@@ -473,7 +473,7 @@ auto Program::unload() -> void {
 
 	presentation.setTitle(bma::windowTitle.data());
 	presentation.resetSystem.setEnabled(false);
-	presentation.unloadGame.setEnabled(false);
+	presentation.closeGame.setEnabled(false);
 	presentation.toolsMenu.setVisible(false);
 	presentation.updateProgramIcon();
 	presentation.updateStatusIcon();

@@ -1,6 +1,7 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
 #include <memory>
+#include <sstream>
 
 #include <Windows.h>
 
@@ -69,7 +70,7 @@ auto replace(const string &s, char search, char replacement) -> string {
 	return replace(s, string(1, search), string(1, replacement));
 }
 
-auto replaceOnce(const string &s, char search, const string replacement) -> string {
+auto replaceOnce(const string &s, char search, const string &replacement) -> string {
 	auto pos = s.find(search);
 
 	if (string::npos == pos) {
@@ -77,6 +78,16 @@ auto replaceOnce(const string &s, char search, const string replacement) -> stri
 	}
 
 	return s.substr(0, pos) + replacement + s.substr(pos + 1);
+}
+
+auto replaceOnce(const string &s, const string &search, const string &replacement) -> string {
+	auto pos = s.find(search);
+
+	if (string::npos == pos) {
+		return s;
+	}
+
+	return s.substr(0, pos) + replacement + s.substr(pos + search.size());
 }
 
 auto unifyLineFeeds(string text) -> string {
@@ -123,6 +134,37 @@ auto ucharVectorToString(const vector<unsigned char> &data) -> string {
 	}
 
 	return dataString;
+}
+
+auto split(string s, const string &delim) -> vector<string> {
+	s += delim;
+	vector<string> elems;
+	string::size_type delimLen = delim.length();
+	string::size_type pos = 0;
+	string elem;
+
+	while ((pos = s.find(delim)) != string::npos) {
+		elem = s.substr(0, pos);
+		elems.push_back(elem);
+		s.erase(0, pos + delimLen);
+	}
+
+	return elems;
+}
+
+auto join(const vector<string> &v, const string &delim) -> string {
+	std::stringstream ss;
+	vector<string>::size_type count = v.size();
+
+	for (vector<string>::size_type i = 0; i < count; i++) {
+		if (i != 0) {
+			ss << delim;
+		}
+
+		ss << v[i];
+	}
+
+	return ss.str();
 }
 
 } // namespace bsnesMt::strings

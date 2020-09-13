@@ -20,57 +20,82 @@ auto isMainWindowActive() -> bool {
 }
 
 auto hotkeyHookCallback(WPARAM keyCode, bool keyDown, bool shiftPressed, bool ctrlPressed, bool altPressed) -> void {
+	auto s = settings.builtinHotkeys;
+	bool mainWindowActive = isMainWindowActive();
+
 	if (!keyDown) {
-		if (VK_SNAPSHOT == keyCode) {
-			program.captureScreenshot();
+		if (VK_SNAPSHOT == keyCode && mainWindowActive) {
+			if (s.takeScreenshot_PrintScreen) {
+				program.captureScreenshot();
+			}
 		}
 
 		return;
 	}
 
-	if (VK_F9 == keyCode) {
-		program.captureScreenshot();
+	if (VK_F9 == keyCode && mainWindowActive) {
+		if (s.takeScreenshot_F9) {
+			program.captureScreenshot();
+		}
 	}
-	else if (VK_RETURN == keyCode) {
+	else if (VK_RETURN == keyCode && mainWindowActive) {
 		if (shiftPressed) {
-			program.toggleVideoPseudoFullScreen();
+			if (s.pseudoFullScreen_ShiftEnter) {
+				program.toggleVideoPseudoFullScreen();
+			}
 		}
 		else if (altPressed) {
+			if (s.fullScreen_AltEnter) {
+				program.toggleVideoFullScreen();
+			}
+		}
+	}
+	else if (VK_F11 == keyCode && mainWindowActive) {
+		if (s.fullScreen_F11) {
 			program.toggleVideoFullScreen();
 		}
 	}
-	else if (VK_F11 == keyCode) {
-		program.toggleVideoFullScreen();
-	}
-	else if (altPressed && VK_F4 == keyCode) {
+	else if (altPressed && VK_F4 == keyCode && (mainWindowActive || video.fullScreen())) {
 		program.quit();
 	}
-	else if (ctrlPressed && 0x4F == keyCode && isMainWindowActive() && !video.fullScreen()) {
-		program.load();
+	else if (ctrlPressed && mainWindowActive) {
+		if (0x4F == keyCode && !video.fullScreen()) {
+			if (s.openGame_CtrlO) {
+				program.load();
+			}
+		}
+		else if (0x57 == keyCode) {
+			if (s.closeGame_CtrlW) {
+				program.unload();
+			}
+		}
+		else if (VK_F4 == keyCode) {
+			if (s.closeGame_CtrlF4) {
+				program.unload();
+			}
+		}
 	}
-	else if (ctrlPressed && 0x57 == keyCode && isMainWindowActive()) {
-		program.unload();
-	}
-	else if (ctrlPressed && VK_F4 == keyCode && isMainWindowActive()) {
-		program.unload();
-	}
-	else if (VK_F5 == keyCode && (isMainWindowActive() || video.fullScreen())) {
-		program.reset();
+	else if (VK_F5 == keyCode && (mainWindowActive || video.fullScreen())) {
+		if (s.resetEmulation_F5) {
+			program.reset();
+		}
 	}
 	else if (VK_ESCAPE == keyCode) {
 		if (video.fullScreen()) {
 			program.disableVideoFullScreen();
 		}
-		else if (presentation.fullScreen() && isMainWindowActive()) {
+		else if (presentation.fullScreen() && mainWindowActive) {
 			program.disableVideoPseudoFullScreen();
 		}
 	}
-	else if (VK_PAUSE == keyCode) {
-		if (presentation.runEmulation.checked()) {
-			presentation.pauseEmulation.setChecked().doActivate();
-		}
-		else {
-			presentation.runEmulation.setChecked().doActivate();
+	else if (VK_PAUSE == keyCode && mainWindowActive) {
+		if (s.pauseEmulation_PauseBreak) {
+			if (presentation.runEmulation.checked()) {
+				presentation.pauseEmulation.setChecked().doActivate();
+			}
+			else {
+				presentation.runEmulation.setChecked().doActivate();
+			}
 		}
 	}
 }

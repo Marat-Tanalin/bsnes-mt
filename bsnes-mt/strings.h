@@ -16,7 +16,8 @@ auto replaceByRef(string &str, const string &search, const string &replacement) 
 auto replace(string str, const string &search, const string &replacement) -> string;
 auto replace(const string &str, const string &search, char replacement) -> string;
 auto replace(const string &s, char search, char replacement) -> string;
-auto replaceOnce(const string &s, char search, const string replacement) -> string;
+auto replaceOnce(const string &s, char search, const string &replacement) -> string;
+auto replaceOnce(const string &s, const string &search, const string &replacement) -> string;
 
 auto unifyLineFeeds(string text) -> string;
 
@@ -27,5 +28,8 @@ auto trim(const string &s) -> string;
 auto isWhiteSpace(const string &s) -> bool;
 
 auto ucharVectorToString(const vector<unsigned char> &data) -> string;
+
+auto split(string s, const string &delim) -> vector<string>;
+auto join(const vector<string> &v, const string &delim) -> string;
 
 } // namespace bsnesMt::strings

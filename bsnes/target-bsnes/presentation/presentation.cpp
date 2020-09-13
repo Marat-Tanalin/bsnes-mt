@@ -1,4 +1,8 @@
-#include <cstdint> // MT.
+/* MT. */
+#include <cstdint>
+#include <map>
+#include <vector>
+/* /MT. */
 
 #include "../bsnes.hpp"
 
@@ -6,11 +10,13 @@
 #include "bsnes-mt/app.h"
 #include "bsnes-mt/messagebox.h"
 #include "bsnes-mt/scaling.h"
+#include "bsnes-mt/strings.h"
 #include "bsnes-mt/translations.h"
 #include "bsnes-mt/utils.h"
 #include "bsnes-mt/windows.h"
 
 namespace bma = bsnesMt::app;
+namespace bms = bsnesMt::strings;
 namespace bmt = bsnesMt::translations;
 namespace bmw = bsnesMt::windows;
 /* /MT. */
@@ -20,17 +26,27 @@ Presentation& presentation = Instances::presentation();
 
 auto Presentation::create() -> void {
 	auto ellipsis = "..."; // MT.
+	auto s = settings.builtinHotkeys; // MT.
 
 	fileMenu.setText(bmt::get("Menu.File").data()); // MT.
 
-	loadGame.setIcon(Icon::Action::Open).setText({bmt::get("Menu.File.OpenGame").data(), ellipsis, "\tCtrl+O"}).onActivate([&] {
+	string openGameHotkey = s.openGame_CtrlO ? "\tCtrl+O" : ""; // MT.
+
+	openGame.setIcon(Icon::Action::Open).setText({bmt::get("Menu.File.OpenGame").data(), ellipsis, openGameHotkey}).onActivate([&] {
 		program.load();
 	});
 
-	loadRecentGame.setIcon(Icon::Action::Open).setText(bmt::get("Menu.File.OpenRecentGame").data());
+	openRecentGame.setIcon(Icon::Action::Open).setText(bmt::get("Menu.File.OpenRecentGame").data());
 	updateRecentGames();
 
-	unloadGame.setIcon(Icon::Action::Remove).setText({bmt::get("Menu.File.CloseGame").data(), "\tCtrl+W, Ctrl+F4"}).setEnabled(false).onActivate([&] {
+	/* MT. */
+	string closeGameHotkey = bsnesMt::generateMenuItemHotkey({
+		{"Ctrl+W",  s.closeGame_CtrlW},
+		{"Ctrl+F4", s.closeGame_CtrlF4}
+	}).data();
+	/* /MT. */
+
+	closeGame.setIcon(Icon::Action::Remove).setText({bmt::get("Menu.File.CloseGame").data(), closeGameHotkey}).setEnabled(false).onActivate([&] {
 		program.unload();
 	});
 
@@ -40,7 +56,9 @@ auto Presentation::create() -> void {
 
 	systemMenu.setText(bmt::get("Menu.System").data());
 
-	resetSystem.setIcon(Icon::Action::Refresh).setText({bmt::get("Common.Reset").data(), "\tF5"}).setEnabled(false).onActivate([&] {
+	string resetSystemHotkey = s.resetEmulation_F5 ? "\tF5" : ""; // MT.
+
+	resetSystem.setIcon(Icon::Action::Refresh).setText({bmt::get("Common.Reset").data(), resetSystemHotkey}).setEnabled(false).onActivate([&] {
 		program.reset();
 	});
 
@@ -295,24 +313,30 @@ auto Presentation::create() -> void {
 		settingsWindow.show(3);
 	});
 
-	pathSettings.setIcon(Icon::Emblem::Folder).setText({bmt::get("Settings.Paths").data(), ellipsis}).onActivate([&] {
+	/* MT. */
+	builtinHotkeysSettings.setIcon(Icon::Device::Keyboard).setText({bmt::get("Settings.BuiltinHotkeys").data(), ellipsis}).onActivate([&] {
 		settingsWindow.show(4);
 	});
+	/* /MT. */
 
-	emulatorSettings.setIcon(Icon::Action::Settings).setText({bmt::get("Settings.Emulator").data(), ellipsis}).onActivate([&] {
+	pathSettings.setIcon(Icon::Emblem::Folder).setText({bmt::get("Settings.Paths").data(), ellipsis}).onActivate([&] {
 		settingsWindow.show(5);
 	});
 
-	enhancementSettings.setIcon(Icon::Action::Add).setText({bmt::get("Settings.Enhancements").data(), ellipsis}).onActivate([&] {
+	emulatorSettings.setIcon(Icon::Action::Settings).setText({bmt::get("Settings.Emulator").data(), ellipsis}).onActivate([&] {
 		settingsWindow.show(6);
 	});
 
-	compatibilitySettings.setIcon(Icon::Action::Remove).setText({bmt::get("Settings.Compatibility").data(), ellipsis}).onActivate([&] {
+	enhancementSettings.setIcon(Icon::Action::Add).setText({bmt::get("Settings.Enhancements").data(), ellipsis}).onActivate([&] {
 		settingsWindow.show(7);
 	});
 
-	driverSettings.setIcon(Icon::Place::Settings).setText({bmt::get("Settings.Drivers").data(), ellipsis}).onActivate([&] {
+	compatibilitySettings.setIcon(Icon::Action::Remove).setText({bmt::get("Settings.Compatibility").data(), ellipsis}).onActivate([&] {
 		settingsWindow.show(8);
+	});
+
+	driverSettings.setIcon(Icon::Place::Settings).setText({bmt::get("Settings.Drivers").data(), ellipsis}).onActivate([&] {
+		settingsWindow.show(9);
 	});
 
 	/* MT. */
@@ -415,7 +439,9 @@ auto Presentation::create() -> void {
 
 	runEmulation.setText(bmt::get("Tools.RunMode.Normal").data()).onActivate([&] {});
 
-	pauseEmulation.setText({bmt::get("Tools.RunMode.PauseEmulation").data(), "\tPause/Break"}).onActivate([&] {
+	string pauseEmulationHotkey = s.pauseEmulation_PauseBreak ? "\tPause/Break" : ""; // MT.
+
+	pauseEmulation.setText({bmt::get("Tools.RunMode.PauseEmulation").data(), pauseEmulationHotkey}).onActivate([&] {
 		audio.clear();
 	});
 
@@ -442,7 +468,14 @@ auto Presentation::create() -> void {
 		program.movieStop();
 	});
 
-	captureScreenshot.setIcon(Icon::Emblem::Image).setText({bmt::get("Tools.TakeScreenshot").data(), "\tF9, PrintScreen"}).onActivate([&] {
+	/* MT. */
+	string screenshotHotkey = bsnesMt::generateMenuItemHotkey({
+		{"F9",          s.takeScreenshot_F9},
+		{"PrintScreen", s.takeScreenshot_PrintScreen}
+	}).data();
+	/* /MT. */
+
+	captureScreenshot.setIcon(Icon::Emblem::Image).setText({bmt::get("Tools.TakeScreenshot").data(), screenshotHotkey}).onActivate([&] {
 		program.captureScreenshot();
 	});
 
@@ -783,15 +816,30 @@ auto Presentation::updateSizeMenu() -> void {
 	}));
 
 	/* MT. */
-	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText({bmt::get("Menu.Settings.Size.FullScreenMode").data(), "\tF11, Alt+Enter"}).onActivate([&] {
-		program.toggleVideoFullScreen();
-	}));
-	/* /MT. */
+	auto s = settings.builtinHotkeys; // MT.
 
-	/* MT. */
-	sizeMenu.append(MenuItem().setIcon(Icon::Device::Display).setText({bmt::get("Menu.Settings.Size.PseudoFullScreenMode").data(), "\tShift+Enter"}).onActivate([&] {
-		program.toggleVideoPseudoFullScreen();
-	}));
+	string fullScreenHotkey = bsnesMt::generateMenuItemHotkey({
+		{"F11",       s.fullScreen_F11},
+		{"Alt+Enter", s.fullScreen_AltEnter}
+	}).data();
+
+	fullScreenMenuItem.setIcon(Icon::Device::Display)
+		.setText({bmt::get("Menu.Settings.Size.FullScreenMode").data(), fullScreenHotkey})
+		.onActivate([&] {
+			program.toggleVideoFullScreen();
+		});
+
+	sizeMenu.append(fullScreenMenuItem);
+
+	string pseudoFullScreenHotkey = s.pseudoFullScreen_ShiftEnter ? "\tShift+Enter" : "";
+
+	pseudoFullScreenMenuItem.setIcon(Icon::Device::Display)
+		.setText({bmt::get("Menu.Settings.Size.PseudoFullScreenMode").data(), pseudoFullScreenHotkey})
+		.onActivate([&] {
+			program.toggleVideoPseudoFullScreen();
+		});
+
+	sizeMenu.append(pseudoFullScreenMenuItem);
 	/* /MT. */
 }
 
@@ -852,7 +900,7 @@ auto Presentation::updateStateMenus() -> void {
 }
 
 auto Presentation::updateRecentGames() -> void {
-	loadRecentGame.reset();
+	openRecentGame.reset();
 
 	static string gameRecentPrefix = "Game/Recent/"; // MT.
 
@@ -888,7 +936,7 @@ auto Presentation::updateRecentGames() -> void {
 
 	for (auto index : range(RecentGames)) {
 		if (auto game = settings[{gameRecentPrefix, 1 + index}].text()) {
-			MenuItem item{&loadRecentGame}; // Moved inside `if` block by MT.
+			MenuItem item{&openRecentGame}; // Moved inside `if` block by MT.
 			string displayName;
 			auto games = game.split("|");
 
@@ -916,9 +964,9 @@ auto Presentation::updateRecentGames() -> void {
 	}
 
 	if (recentGamesCount) { // MT.
-		loadRecentGame.append(MenuSeparator());
+		openRecentGame.append(MenuSeparator());
 
-		loadRecentGame.append(MenuItem().setIcon(Icon::Edit::Clear)
+		openRecentGame.append(MenuItem().setIcon(Icon::Edit::Clear)
 			.setText(bmt::get("Menu.File.OpenRecentGame.ClearList").data())
 			.onActivate([&] {
 				if (bmw::confirmById("Menu.File.OpenRecentGame.ClearList.confirm", handle())) {
@@ -932,7 +980,7 @@ auto Presentation::updateRecentGames() -> void {
 	} // MT.
 	/* MT. */
 	else {
-		loadRecentGame.append(MenuItem().setIcon(Icon::Emblem::File).setEnabled(false)
+		openRecentGame.append(MenuItem().setIcon(Icon::Emblem::File).setEnabled(false)
 			.setText({"(", bmt::get("Menu.File.OpenRecentGame.NoRecentGames").data(), ")"}));
 	}
 	/* /MT. */

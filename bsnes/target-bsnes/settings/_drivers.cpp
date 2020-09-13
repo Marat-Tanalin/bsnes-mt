@@ -94,9 +94,9 @@ auto DriverSettings::create() -> void {
 		audioDeviceChange();
 	});
 
-	audioFrequencyLabel.setText({bmt::get("Settings.Drivers.Audio.SampleRate").data(), colon});
+	audioSampleRateLabel.setText({bmt::get("Settings.Drivers.Audio.SampleRate").data(), colon});
 
-	audioFrequencyOption.onChange([&] {
+	audioSampleRateOption.onChange([&] {
 		audioFrequencyChange();
 	});
 
@@ -461,10 +461,10 @@ auto DriverSettings::audioDeviceChange() -> void {
 }
 
 auto DriverSettings::audioFrequencyChanged() -> void {
-	audioFrequencyOption.reset();
+	audioSampleRateOption.reset();
 
 	for (auto& frequency : audio.hasFrequencies()) {
-		ComboButtonItem item{&audioFrequencyOption};
+		ComboButtonItem item{&audioSampleRateOption};
 		item.setText({frequency, ' ', bmt::get("Common.Hz").data()});
 
 		if (frequency == audio.frequency()) {
@@ -472,12 +472,12 @@ auto DriverSettings::audioFrequencyChanged() -> void {
 		}
 	}
 
-	//audioFrequencyOption.setEnabled(audio->hasFrequency());
+	//audioSampleRateOption.setEnabled(audio->hasFrequency());
 	setGeometry(geometry());
 }
 
 auto DriverSettings::audioFrequencyChange() -> void {
-	auto item = audioFrequencyOption.selected();
+	auto item = audioSampleRateOption.selected();
 	settings.audio.frequency = item.text().natural();
 	program.updateAudioFrequency();
 }

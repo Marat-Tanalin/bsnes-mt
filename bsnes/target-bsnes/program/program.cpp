@@ -41,6 +41,7 @@ auto Program::create() -> void {
 	audioSettings.create();
 	inputSettings.create();
 	hotkeySettings.create();
+	builtinHotkeysSettings.create(); // MT.
 	pathSettings.create();
 	emulatorSettings.create();
 	enhancementSettings.create();

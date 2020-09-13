@@ -28,9 +28,9 @@ struct Presentation : Window {
 
 	MenuBar menuBar{this};
 	Menu fileMenu{&menuBar}; // MT.
-		MenuItem loadGame{&fileMenu};           // `systemMenu` => `fileMenu` by MT.
-		Menu loadRecentGame{&fileMenu};         // `systemMenu` => `fileMenu` by MT.
-		MenuItem unloadGame{&fileMenu};         // `systemMenu` => `fileMenu` by MT.
+		MenuItem openGame{&fileMenu};           // `systemMenu` => `fileMenu` by MT.
+		Menu openRecentGame{&fileMenu};         // `systemMenu` => `fileMenu` by MT.
+		MenuItem closeGame{&fileMenu};          // `systemMenu` => `fileMenu` by MT.
 		MenuSeparator quitSeparator{&fileMenu}; // `systemMenu` => `fileMenu` by MT.
 		MenuItem quit{&fileMenu};               // `systemMenu` => `fileMenu` by MT.
 	Menu systemMenu{&menuBar};
@@ -41,6 +41,8 @@ struct Presentation : Window {
 		Menu expansionPort{&systemMenu};
 		Menu settingsMenu{&menuBar};
 			Menu sizeMenu{&settingsMenu};
+				MenuItem fullScreenMenuItem; // MT.
+				MenuItem pseudoFullScreenMenuItem; // MT.
 			Group sizeGroup;
 			Menu outputMenu{&settingsMenu};
 				MenuRadioItem centerViewport{&outputMenu};
@@ -96,6 +98,7 @@ struct Presentation : Window {
 			MenuItem audioSettings{&settingsMenu};
 			MenuItem inputSettings{&settingsMenu};
 			MenuItem hotkeySettings{&settingsMenu};
+			MenuItem builtinHotkeysSettings{&settingsMenu}; // MT.
 			MenuItem pathSettings{&settingsMenu};
 			MenuItem emulatorSettings{&settingsMenu};
 			MenuItem enhancementSettings{&settingsMenu};

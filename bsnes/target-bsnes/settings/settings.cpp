@@ -3,11 +3,13 @@
 #include "../bsnes.hpp"
 
 #include "bsnes-mt/strings.h" // MT.
+#include "bsnes-mt/utils.h"   // MT.
 
 #include "_video.cpp"
 #include "_audio.cpp"
 #include "_input.cpp"
 #include "_hotkeys.cpp"
+#include "_builtin-hotkeys.cpp" // MT.
 #include "_paths.cpp"
 #include "_emulator.cpp"
 #include "_enhancements.cpp"
@@ -25,6 +27,7 @@ VideoSettings videoSettings;
 AudioSettings audioSettings;
 InputSettings inputSettings;
 HotkeySettings hotkeySettings;
+BuiltinHotkeysSettings builtinHotkeysSettings; // MT.
 PathSettings pathSettings;
 EmulatorSettings emulatorSettings;
 EnhancementSettings enhancementSettings;
@@ -102,6 +105,20 @@ auto Settings::process(bool load) -> void {
 	bind(text,    "Input/Defocus",         input.defocus);
 	bind(natural, "Input/Turbo/Frequency", input.turbo.frequency);
 	bind(text,    "Input/Hotkey/Logic",    input.hotkey.logic);
+
+	/* MT. */
+	// Underscores cannot be used in settings paths (2nd `bind()` parameter) -- settings are not saved.
+	bind(boolean, "BuiltinHotkeys/openGame/CtrlO",              builtinHotkeys.openGame_CtrlO);
+	bind(boolean, "BuiltinHotkeys/closeGame/CtrlW",             builtinHotkeys.closeGame_CtrlW);
+	bind(boolean, "BuiltinHotkeys/closeGame/CtrlF4",            builtinHotkeys.closeGame_CtrlF4);
+	bind(boolean, "BuiltinHotkeys/fullScreen/F11",              builtinHotkeys.fullScreen_F11);
+	bind(boolean, "BuiltinHotkeys/fullScreen/AltEnter",         builtinHotkeys.fullScreen_AltEnter);
+	bind(boolean, "BuiltinHotkeys/pseudoFullScreen/ShiftEnter", builtinHotkeys.pseudoFullScreen_ShiftEnter);
+	bind(boolean, "BuiltinHotkeys/takeScreenshot/PrintScreen",  builtinHotkeys.takeScreenshot_PrintScreen);
+	bind(boolean, "BuiltinHotkeys/takeScreenshot/F9",           builtinHotkeys.takeScreenshot_F9);
+	bind(boolean, "BuiltinHotkeys/resetEmulation/F5",           builtinHotkeys.resetEmulation_F5);
+	bind(boolean, "BuiltinHotkeys/pauseEmulation/PauseBreak",   builtinHotkeys.pauseEmulation_PauseBreak);
+	/* /MT. */
 
 	bind(text,    "Path/Games",       path.games);
 	bind(text,    "Path/Patches",     path.patches);
@@ -195,6 +212,7 @@ auto SettingsWindow::create() -> void {
 	panelList.append(ListViewItem().setText(bmt::get("Common.Audio").data()).setIcon(Icon::Device::Speaker));
 	panelList.append(ListViewItem().setText(bmt::get("Settings.Input").data()).setIcon(Icon::Device::Joypad));
 	panelList.append(ListViewItem().setText(bmt::get("Settings.Hotkeys").data()).setIcon(Icon::Device::Keyboard));
+	panelList.append(ListViewItem().setText(bmt::get("Settings.BuiltinHotkeys").data()).setIcon(Icon::Device::Keyboard)); // MT.
 	panelList.append(ListViewItem().setText(bmt::get("Settings.Paths").data()).setIcon(Icon::Emblem::Folder));
 	panelList.append(ListViewItem().setText(bmt::get("Settings.Emulator").data()).setIcon(Icon::Action::Settings));
 	panelList.append(ListViewItem().setText(bmt::get("Settings.Enhancements").data()).setIcon(Icon::Action::Add));
@@ -215,6 +233,7 @@ auto SettingsWindow::create() -> void {
 	panelContainer.append(audioSettings, Size{~0, ~0});
 	panelContainer.append(inputSettings, Size{~0, ~0});
 	panelContainer.append(hotkeySettings, Size{~0, ~0});
+	panelContainer.append(builtinHotkeysSettings, Size{~0, ~0}); // MT.
 	panelContainer.append(pathSettings, Size{~0, ~0});
 	panelContainer.append(emulatorSettings, Size{~0, ~0});
 	panelContainer.append(enhancementSettings, Size{~0, ~0});
@@ -223,7 +242,7 @@ auto SettingsWindow::create() -> void {
 	statusBar.setFont(Font().setBold());
 
 	setTitle(bmt::get("Settings").data());
-	setSize({680_sx, 400_sy});
+	setSize({750_sx, 400_sy}); // `680_sx` => `750_sx` by MT.
 	setAlignment({0.0, 1.0});
 	setDismissable();
 
@@ -265,12 +284,16 @@ auto SettingsWindow::show(int index) -> void {
 	audioSettings.setVisible(false);
 	inputSettings.setVisible(false);
 	hotkeySettings.setVisible(false);
+	builtinHotkeysSettings.setVisible(false); // MT.
 	pathSettings.setVisible(false);
 	emulatorSettings.setVisible(false);
 	enhancementSettings.setVisible(false);
 	compatibilitySettings.setVisible(false);
 	driverSettings.setVisible(false);
 	panelList.item(index).setSelected();
+
+	string title        = bmt::get("Settings").data();
+	string titlePostfix = {u8" ← ", title}; // MT.
 
 	if (index == -1) {
 		setSettingsWindowTitle(""); // MT.
@@ -292,23 +315,29 @@ auto SettingsWindow::show(int index) -> void {
 		setSettingsWindowTitle("Settings.Hotkeys"); // MT.
 		hotkeySettings.setVisible(true);
 	}
+	/* MT. */
 	else if (index == 4) {
+		setSettingsWindowTitle("Settings.BuiltinHotkeys"); // MT.
+		builtinHotkeysSettings.setVisible(true);
+	}
+	/* /MT. */
+	else if (index == 5) {
 		setSettingsWindowTitle("Settings.Paths"); // MT.
 		pathSettings.setVisible(true);
 	}
-	else if (index == 5) {
+	else if (index == 6) {
 		setSettingsWindowTitle("Settings.Emulator"); // MT.
 		emulatorSettings.setVisible(true);
 	}
-	else if (index == 6) {
+	else if (index == 7) {
 		setSettingsWindowTitle("Settings.Enhancements"); // MT.
 		enhancementSettings.setVisible(true);
 	}
-	else if (index == 7) {
+	else if (index == 8) {
 		setSettingsWindowTitle("Settings.Compatibility"); // MT.
 		compatibilitySettings.setVisible(true);
 	}
-	else if (index == 8) {
+	else if (index == 9) {
 		setSettingsWindowTitle("Settings.Drivers"); // MT.
 		driverSettings.setVisible(true);
 	}

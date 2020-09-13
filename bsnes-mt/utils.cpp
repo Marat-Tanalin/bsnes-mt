@@ -1,5 +1,8 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
+#include <algorithm>
+#include <vector>
+
 #include <Windows.h>
 
 #include "strings.h"
@@ -7,6 +10,8 @@
 #include "utils.h"
 
 namespace bsnesMt {
+
+using std::vector;
 
 auto getTime() -> time {
 	SYSTEMTIME value;
@@ -29,6 +34,22 @@ auto open(const wstring &path) -> void {
 
 auto open(const string &path) -> void {
 	open(strings::utf8ToWideString(path));
+}
+
+auto generateMenuItemHotkey(map<string, bool> hotkeys) -> string {
+	vector<string> enabledHotkeys;
+
+	for (auto const& [hotkey, enabled] : hotkeys) {
+		if (enabled) {
+			enabledHotkeys.push_back(hotkey);
+		}
+	}
+
+	return enabledHotkeys.size() ? string("\t") + strings::join(enabledHotkeys, ", ") : "";
+}
+
+auto inArray(const vector<string> &items, const string &search) -> bool {
+	return end(items) != std::find(begin(items), end(items), search);
 }
 
 } // namespace bsnesMt

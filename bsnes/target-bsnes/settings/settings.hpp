@@ -1,3 +1,5 @@
+#include <vector> // MT.
+
 struct Settings : Markup::Node {
 	using string = nall::string;
 
@@ -61,6 +63,21 @@ struct Settings : Markup::Node {
 			string logic = "or";
 		} hotkey;
 	} input;
+
+	/* MT. */
+	struct BuiltinHotkeys {
+		bool openGame_CtrlO              = true;
+		bool closeGame_CtrlW             = true;
+		bool closeGame_CtrlF4            = true;
+		bool fullScreen_F11              = true;
+		bool fullScreen_AltEnter         = true;
+		bool pseudoFullScreen_ShiftEnter = true;
+		bool takeScreenshot_PrintScreen  = true;
+		bool takeScreenshot_F9           = true;
+		bool resetEmulation_F5           = true;
+		bool pauseEmulation_PauseBreak   = true;
+	} builtinHotkeys;
+	/* /MT. */
 
 	struct Path {
 		string games;
@@ -242,13 +259,6 @@ struct InputSettings : VerticalLayout {
 public:
 	Timer timer;
 
-	HorizontalLayout inputFocusLayout{this, Size{~0, 0}};
-		Label inputFocusLabel{&inputFocusLayout, Size{0, 0}};
-		RadioLabel pauseEmulation{&inputFocusLayout, Size{0, 0}};
-		RadioLabel blockInput{&inputFocusLayout, Size{0, 0}};
-		RadioLabel allowInput{&inputFocusLayout, Size{0, 0}};
-		Group inputFocusGroup{&pauseEmulation, &blockInput, &allowInput};
-	Canvas separator{this, Size{~0, 1}};
 	HorizontalLayout selectionLayout{this, Size{~0, 0}};
 		Label portLabel{&selectionLayout, Size{0, 0}};
 		ComboButton portList{&selectionLayout, Size{~0, 0}};
@@ -264,6 +274,13 @@ public:
 		Canvas inputSink{&controlLayout, Size{~0, ~0}};
 		Button assignButton{&controlLayout, Size{80_sx, 0}};
 		Button clearButton{&controlLayout, Size{80_sx, 0}};
+	Canvas separator{this, Size{~0, 1}};
+	HorizontalLayout inputFocusLayout{this, Size{~0, 0}};
+		Label inputFocusLabel{&inputFocusLayout, Size{0, 0}};
+		RadioLabel pauseEmulation{&inputFocusLayout, Size{0, 0}};
+		RadioLabel blockInput{&inputFocusLayout, Size{0, 0}};
+		RadioLabel allowInput{&inputFocusLayout, Size{0, 0}};
+		Group inputFocusGroup{&pauseEmulation, &blockInput, &allowInput};
 };
 
 struct HotkeySettings : VerticalLayout {
@@ -290,6 +307,45 @@ private:
 		Button assignButton{&controlLayout, Size{80_sx, 0}};
 		Button clearButton{&controlLayout, Size{80_sx, 0}};
 };
+
+/* MT. */
+struct BuiltinHotkeysSettings : VerticalLayout {
+	auto create() -> void;
+
+public:
+	CheckLabel openGame_CtrlO{this, Size{~0, 0}};
+	CheckLabel closeGame_CtrlW{this, Size{~0, 0}};
+	CheckLabel closeGame_CtrlF4{this, Size{~0, 0}};
+	CheckLabel fullScreen_F11{this, Size{~0, 0}};
+	CheckLabel fullScreen_AltEnter{this, Size{~0, 0}};
+	CheckLabel pseudoFullScreen_ShiftEnter{this, Size{~0, 0}};
+	CheckLabel takeScreenshot_F9{this, Size{~0, 0}};
+	CheckLabel takeScreenshot_PrintScreen{this, Size{~0, 0}};
+	CheckLabel resetEmulation_F5{this, Size{~0, 0}};
+	CheckLabel pauseEmulation_PauseBreak{this, Size{~0, 0}};
+	HorizontalLayout checkUncheckAllLayout{this, Size{~0, 0}};
+		Button checkAll{&checkUncheckAllLayout, Size{0, 0}};
+		Button uncheckAll{&checkUncheckAllLayout, Size{0, 0}};
+
+protected:
+	std::vector<hiro::CheckLabel> labels = {
+		openGame_CtrlO,
+		closeGame_CtrlW,
+		closeGame_CtrlF4,
+		fullScreen_F11,
+		fullScreen_AltEnter,
+		pseudoFullScreen_ShiftEnter,
+		takeScreenshot_F9,
+		takeScreenshot_PrintScreen,
+		resetEmulation_F5,
+		pauseEmulation_PauseBreak
+	};
+
+	auto allChecked() -> bool;
+	auto allUnchecked() -> bool;
+	auto enableDisableButtons() -> void;
+};
+/* /MT. */
 
 struct PathSettings : VerticalLayout {
 	auto create() -> void;
@@ -533,10 +589,11 @@ public:
 		HorizontalLayout audioPropertyLayout{&audioLayout, Size{~0, 0}};
 			Label audioDeviceLabel{&audioPropertyLayout, Size{0, 0}};
 			ComboButton audioDeviceOption{&audioPropertyLayout, Size{0, 0}};
-			Label audioFrequencyLabel{&audioPropertyLayout, Size{0, 0}};
-			ComboButton audioFrequencyOption{&audioPropertyLayout, Size{0, 0}};
-			Label audioLatencyLabel{&audioPropertyLayout, Size{0, 0}};
-			ComboButton audioLatencyOption{&audioPropertyLayout, Size{0, 0}};
+			HorizontalLayout audioSampleRateAndLatencyLayout{&audioLayout, Size{~0, 0}}; // MT.
+				Label audioSampleRateLabel{&audioSampleRateAndLatencyLayout, Size{0, 0}};
+				ComboButton audioSampleRateOption{&audioSampleRateAndLatencyLayout, Size{0, 0}};
+				Label audioLatencyLabel{&audioSampleRateAndLatencyLayout, Size{0, 0}};
+				ComboButton audioLatencyOption{&audioSampleRateAndLatencyLayout, Size{0, 0}};
 	HorizontalLayout audioToggleLayout{this, Size{~0, 0}};
 		CheckLabel audioExclusiveToggle{&audioToggleLayout, Size{0, 0}};
 		CheckLabel audioBlockingToggle{&audioToggleLayout, Size{0, 0}};
@@ -572,7 +629,7 @@ struct SettingsWindow : Window, Lock {
 public:
 	VerticalLayout layout{this};
 		HorizontalLayout panelLayout{&layout, Size{~0, ~0}};
-			ListView panelList{&panelLayout, Size{125_sx, ~0}};
+			ListView panelList{&panelLayout, Size{180_sx, ~0}}; // `125_sx` => `180_sx` by MT.
 			VerticalLayout panelContainer{&panelLayout, Size{~0, ~0}};
 	StatusBar statusBar{this};
 };
@@ -582,6 +639,7 @@ extern VideoSettings videoSettings;
 extern AudioSettings audioSettings;
 extern InputSettings inputSettings;
 extern HotkeySettings hotkeySettings;
+extern BuiltinHotkeysSettings builtinHotkeysSettings; // MT.
 extern PathSettings pathSettings;
 extern EmulatorSettings emulatorSettings;
 extern EnhancementSettings enhancementSettings;
