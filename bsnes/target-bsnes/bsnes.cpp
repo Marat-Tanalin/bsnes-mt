@@ -15,30 +15,55 @@ Input input;
 unique_pointer<Emulator::Interface> emulator;
 
 /* MT. */
-auto CALLBACK hotkeyHookCallback(int code, WPARAM wParam, LPARAM lParam) -> LRESULT {
-	auto altPressed   = bmk::isKeyPressed(VK_MENU);
-	auto ctrlPressed  = bmk::isKeyPressed(VK_CONTROL);
-	auto shiftPressed = bmk::isKeyPressed(VK_SHIFT);
-	auto keyDown      = !(HIWORD(lParam) & 0xC000);
+auto isMainWindowActive() -> bool {
+	return GetActiveWindow() == (HWND)presentation.handle();
+}
 
-	if (HC_ACTION == code && keyDown) {
-		if (VK_RETURN == wParam) {
-			if (shiftPressed) {
-				program.toggleVideoPseudoFullScreen();
-			}
-			else if (altPressed) {
-				program.toggleVideoFullScreen();
-			}
+auto hotkeyHookCallback(WPARAM keyCode, bool keyDown, bool shiftPressed, bool ctrlPressed, bool altPressed) -> void {
+	if (!keyDown) {
+		if (VK_SNAPSHOT == keyCode) {
+			program.captureScreenshot();
 		}
-		else if (VK_F4 == wParam && altPressed) {
-			program.quit();
-		}
-		else if (ctrlPressed && 0x4F == wParam && GetActiveWindow() == (HWND)presentation.handle()) {
-			program.load();
-		}
+
+		return;
 	}
 
-	return CallNextHookEx((HHOOK)hotkeyHookCallback, code, wParam, lParam);
+	if (VK_RETURN == keyCode) {
+		if (shiftPressed) {
+			program.toggleVideoPseudoFullScreen();
+		}
+		else if (altPressed) {
+			program.toggleVideoFullScreen();
+		}
+	}
+	else if (altPressed && VK_F4 == keyCode) {
+		program.quit();
+	}
+	else if (ctrlPressed && 0x4F == keyCode && isMainWindowActive() && !video.fullScreen()) {
+		program.load();
+	}
+	else if (ctrlPressed && 0x57 == keyCode && isMainWindowActive()) {
+		program.unload();
+	}
+	else if (VK_F5 == keyCode && (isMainWindowActive() || video.fullScreen())) {
+		program.reset();
+	}
+	else if (VK_ESCAPE == keyCode) {
+		if (video.fullScreen()) {
+			program.disableVideoFullScreen();
+		}
+		else if (presentation.fullScreen() && isMainWindowActive()) {
+			program.disableVideoPseudoFullScreen();
+		}
+	}
+	else if (VK_PAUSE == keyCode) {
+		if (presentation.runEmulation.checked()) {
+			presentation.pauseEmulation.setChecked().doActivate();
+		}
+		else {
+			presentation.runEmulation.setChecked().doActivate();
+		}
+	}
 }
 /* /MT. */
 

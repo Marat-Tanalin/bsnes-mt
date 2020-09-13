@@ -30,7 +30,7 @@ auto Presentation::create() -> void {
 	loadRecentGame.setIcon(Icon::Action::Open).setText(bmt::get("Menu.File.OpenRecentGame").data());
 	updateRecentGames();
 
-	unloadGame.setIcon(Icon::Action::Remove).setText(bmt::get("Menu.File.CloseGame").data()).setEnabled(false).onActivate([&] {
+	unloadGame.setIcon(Icon::Action::Remove).setText({bmt::get("Menu.File.CloseGame").data(), "\tCtrl+W"}).setEnabled(false).onActivate([&] {
 		program.unload();
 	});
 
@@ -40,7 +40,7 @@ auto Presentation::create() -> void {
 
 	systemMenu.setText(bmt::get("Menu.System").data());
 
-	resetSystem.setIcon(Icon::Action::Refresh).setText(bmt::get("Common.Reset").data()).setEnabled(false).onActivate([&] {
+	resetSystem.setIcon(Icon::Action::Refresh).setText({bmt::get("Common.Reset").data(), "\tF5"}).setEnabled(false).onActivate([&] {
 		program.reset();
 	});
 
@@ -415,7 +415,7 @@ auto Presentation::create() -> void {
 
 	runEmulation.setText(bmt::get("Tools.RunMode.Normal").data()).onActivate([&] {});
 
-	pauseEmulation.setText(bmt::get("Tools.RunMode.PauseEmulation").data()).onActivate([&] {
+	pauseEmulation.setText({bmt::get("Tools.RunMode.PauseEmulation").data(), "\tPause/Break"}).onActivate([&] {
 		audio.clear();
 	});
 
@@ -442,7 +442,7 @@ auto Presentation::create() -> void {
 		program.movieStop();
 	});
 
-	captureScreenshot.setIcon(Icon::Emblem::Image).setText(bmt::get("Tools.TakeScreenshot").data()).onActivate([&] {
+	captureScreenshot.setIcon(Icon::Emblem::Image).setText({bmt::get("Tools.TakeScreenshot").data(), "\tPrintScreen"}).onActivate([&] {
 		program.captureScreenshot();
 	});
 

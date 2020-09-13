@@ -5,9 +5,24 @@
 namespace bsnesMt::keyboard {
 
 static HHOOK hook;
+static hookCallbackType hookCallback;
 
-auto initHook(HOOKPROC callback) -> void {
-	hook = SetWindowsHookExW(WH_KEYBOARD, callback, NULL, GetCurrentThreadId());
+auto CALLBACK hotkeyHookCallback(int code, WPARAM wParam, LPARAM lParam) -> LRESULT {
+	auto altPressed   = isKeyPressed(VK_MENU);
+	auto ctrlPressed  = isKeyPressed(VK_CONTROL);
+	auto shiftPressed = isKeyPressed(VK_SHIFT);
+	auto keyDown      = !(HIWORD(lParam) & 0xC000);
+
+	if (HC_ACTION == code) {
+		hookCallback(wParam, keyDown, shiftPressed, ctrlPressed, altPressed);
+	}
+
+	return CallNextHookEx((HHOOK)hotkeyHookCallback, code, wParam, lParam);
+}
+
+auto initHook(hookCallbackType callback) -> void {
+	hookCallback = callback;
+	hook = SetWindowsHookExW(WH_KEYBOARD, hotkeyHookCallback, NULL, GetCurrentThreadId());
 }
 
 auto shutdownHook() -> bool {

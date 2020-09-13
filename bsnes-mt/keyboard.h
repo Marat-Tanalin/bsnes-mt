@@ -6,7 +6,9 @@
 
 namespace bsnesMt::keyboard {
 
-auto initHook(HOOKPROC callback) -> void;
+typedef void (*hookCallbackType)(WPARAM keyCode, bool keyDown, bool shiftPressed, bool ctrlPressed, bool altPressed);
+
+auto initHook(hookCallbackType callback) -> void;
 
 auto shutdownHook() -> bool;
 
