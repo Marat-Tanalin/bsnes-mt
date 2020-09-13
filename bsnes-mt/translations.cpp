@@ -105,8 +105,11 @@ auto initTranslation(const string &locale) -> void {
 	string path       = folderPath + locale + extension;
 
 	if (!files::fileExists(path)) {
-		string locale = getLocaleName();
-		path = folderPath + locale + extension;
+		if ("en" == locale) {
+			return;
+		}
+
+		path = folderPath + getLocaleName() + extension;
 
 		if (!files::fileExists(path)) {
 			return;
