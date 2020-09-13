@@ -54,12 +54,22 @@ auto calculateScaledSizeScale(
 	bool parInsteadOfAr
 ) -> is::Size
 {
-	double aspect = aspectCorrection
-	              ? (parInsteadOfAr ? parAspect : defaultAspect)
-	              : (double)origWidth / origHeight;
+	double aspect;
 
-	if (showOverscan) {
-		aspect /= overscanRatio;
+	if (aspectCorrection) {
+		if (parInsteadOfAr) {
+			aspect = showOverscan ? parOverAspect : parAspect;
+		}
+		else {
+			aspect = defaultAspect;
+
+			if (showOverscan) {
+				aspect /= overscanRatio;
+			}
+		}
+	}
+	else {
+		aspect = (double)origWidth / (showOverscan ? origOverHeight : origHeight);
 	}
 
 	uint32_t width, height;
