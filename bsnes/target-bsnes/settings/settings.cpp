@@ -292,9 +292,6 @@ auto SettingsWindow::show(int index) -> void {
 	driverSettings.setVisible(false);
 	panelList.item(index).setSelected();
 
-	string title        = bmt::get("Settings").data();
-	string titlePostfix = {u8" ← ", title}; // MT.
-
 	if (index == -1) {
 		setSettingsWindowTitle(""); // MT.
 		settingsHome.setVisible(true);

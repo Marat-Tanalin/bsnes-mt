@@ -973,7 +973,7 @@ auto Presentation::updateRecentGames() -> void {
 					for (auto index : range(RecentGames)) {
 						settings({gameRecentPrefix, 1 + index}).setValue("");
 					}
-		
+
 					updateRecentGames();
 				}
 			}));
