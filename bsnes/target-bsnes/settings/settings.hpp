@@ -277,10 +277,11 @@ public:
 	Canvas separator{this, Size{~0, 1}};
 	HorizontalLayout inputFocusLayout{this, Size{~0, 0}};
 		Label inputFocusLabel{&inputFocusLayout, Size{0, 0}};
-		RadioLabel pauseEmulation{&inputFocusLayout, Size{0, 0}};
-		RadioLabel blockInput{&inputFocusLayout, Size{0, 0}};
-		RadioLabel allowInput{&inputFocusLayout, Size{0, 0}};
-		Group inputFocusGroup{&pauseEmulation, &blockInput, &allowInput};
+		HorizontalLayout inputFocusRadioLayout{this, Size{~0, 0}}; // MT.
+			RadioLabel pauseEmulation{&inputFocusRadioLayout, Size{0, 0}};
+			RadioLabel blockInput{&inputFocusRadioLayout, Size{0, 0}};
+			RadioLabel allowInput{&inputFocusRadioLayout, Size{0, 0}};
+			Group inputFocusGroup{&pauseEmulation, &blockInput, &allowInput};
 };
 
 struct HotkeySettings : VerticalLayout {
