@@ -102,9 +102,13 @@ auto calculateScaledSizeCenter(
 ) -> is::Size
 {
 	if (!aspectCorrection) {
+		uint32_t imageHeightForPar1     = getHeightForPar1(imageWidth, imageHeight);
+		uint32_t imageOverHeightForPar1 = imageHeightForPar1 == origHeight ? origOverHeight : origDoubleOverHeight;	
+
 		return is::calculateSize(
 			areaWidth, areaHeight,
-			imageWidth, getHeightForPar1(imageWidth, imageHeight)
+			imageWidth,
+			showOverscan ? imageOverHeightForPar1 : imageHeightForPar1
 		);
 	}
 
