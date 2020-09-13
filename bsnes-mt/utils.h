@@ -4,13 +4,15 @@
 
 #include <string>
 
-#include <Windows.h>
-
 namespace bsnesMt {
 
 using std::string, std::wstring;
 
-auto getTime() -> SYSTEMTIME;
+struct time {
+	uint16_t year, month, day, hours, minutes, seconds, ms;
+};
+
+auto getTime() -> time;
 
 auto open(const wstring &path) -> void;
 auto open(const string  &path) -> void;

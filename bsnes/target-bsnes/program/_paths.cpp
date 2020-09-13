@@ -100,18 +100,18 @@ auto Program::screenshotPath() -> string {
 
 	string basePath = {
 		location,
-		time.wYear, '-',
-		pad(time.wMonth,  2, '0'), '-',
-		pad(time.wDay,    2, '0'), ' ',
-		pad(time.wHour,   2, '0'), '-',
-		pad(time.wMinute, 2, '0'), '-',
-		pad(time.wSecond, 2, '0')
+		time.year, '-',
+		pad(time.month,  2, '0'), '-',
+		pad(time.day,    2, '0'), ' ',
+		pad(time.hours,   2, '0'), '-',
+		pad(time.minutes, 2, '0'), '-',
+		pad(time.seconds, 2, '0')
 	};
 
 	string filePath = {basePath, ext};
 
 	if (file::exists(filePath)) {
-		string msSuffix = {'-', pad(time.wMilliseconds, 3, '0')};
+		string msSuffix = {'-', pad(time.ms, 3, '0')};
 
 		filePath = {basePath, msSuffix, ext};
 
