@@ -40,16 +40,22 @@ static const string articleUrlRu = urlRoot + articlePath;
 
 static const string infoEn = u8"Improved version of bsnes:\n\n" +
                              bullet + linkStartTagStart + articleUrlEn + linkStartTagEnd +
-                             u8"pixel-perfect integer-ratio scaling" + linkEndTag + ";\n" +
+                                      u8"pixel-perfect integer-ratio scaling" + linkEndTag + ";\n" +
                              bullet + u8"precise 4:3 in the “Center” and “Scale” modes;\n" +
-                             bullet + u8"compressed PNG screenshots, and more.\n\n" +
+                             bullet + u8"compressed PNG screenshots;\n" +
+                             bullet + u8"multilanguage user interface;\n" +
+                             bullet + u8"built-in hotkeys for common actions;\n" +
+                             bullet + u8"and more.\n\n" +
                              copyYear + space + authorEn + "\n" + pageLinkEn;
 
 static const string infoRu = u8"Улучшенная версия bsnes:\n\n" +
                              bullet + linkStartTagStart + articleUrlRu + linkStartTagEnd +
-                             u8"целочисленное масштабирование без размытия" + linkEndTag + ";\n" +
+                                      u8"целочисленное масштабирование без размытия" + linkEndTag + ";\n" +
                              bullet + u8"точное 4:3 в режимах «Center» и «Scale»;\n" +
-                             bullet + u8"PNG-скриншоты со сжатием, и проч.\n\n" +
+                             bullet + u8"скриншоты в формате PNG со сжатием;\n" +
+                             bullet + u8"многоязычный пользовательский интерфейс;\n" +
+                             bullet + u8"встроенные горячие клавиши для частых действий;\n" +
+                             bullet + u8"и многое другое.\n\n" +
                              copyYear + space + authorRu + "\n" + pageLinkRu;
 
 static const string windowTitle = title + space + version;
