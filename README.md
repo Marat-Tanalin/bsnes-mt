@@ -5,7 +5,8 @@ bsnes version with image-quality, user-experience and other improvements:
 * Pixel-perfect integer-ratio scaling.
 * Precise 4:3 in the “Center” and “Scale” modes.
 * Compressed PNG screenshots.
-* User interface in both English and Russian, and more.
+* Multilanguage user interface.
+* Built-in hotkeys for common actions, and more.
 
 See the project [webpage](http://tanalin.com/en/projects/bsnes-mt/) for details.
 
@@ -13,9 +14,14 @@ See the project [webpage](http://tanalin.com/en/projects/bsnes-mt/) for details.
 
 Feel free to contribute user-interface translations. That’s easy even if you are not a programmer.
 
-The app is already available in English and Russian, and partially Japanese. English and Russian translations are complete and don’t need contributions.
+The app is already available in English and Russian, and partially Italian and Japanese. English and Russian translations are complete and don’t need contributions. The English translation is built into the executable, other translations are loaded from text files when starting the application.
 
-Translations are in the [`bsnes-mt/translations.h`](https://github.com/Marat-Tanalin/bsnes-mt/blob/master/bsnes-mt/translations.h) file (uses UTF-8 character encoding).
+Each translation is in a text file in the [`bsnes-mt/translations`](https://github.com/Marat-Tanalin/bsnes-mt/blob/master/bsnes-mt/translations) folder. The files use the UTF-8 character encoding. The files are named according to two-letter codes defined in the ISO 639-1 standard:
+
+* `en.txt` for English;
+* `ru.txt` for Russian;
+* `it.txt` for Italian;
+* `ja.txt` for Japanese.
 
 Partial translations are possible: if a string is not translated, just the original English-language string is automatically used instead.
 
