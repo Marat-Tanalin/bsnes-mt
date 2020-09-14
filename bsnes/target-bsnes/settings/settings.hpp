@@ -11,8 +11,8 @@ struct Settings : Markup::Node {
 
 	struct Video {
 		string driver;
-		bool exclusive = true; // Changed from `false` by MT.
-		bool blocking  = true; // Changed from `false` by MT.
+		bool exclusive = false;
+		bool blocking  = true;  // Changed from `false` by MT.
 		bool flush = false;
 		string monitor = "Primary";
 		string format = "Default";
