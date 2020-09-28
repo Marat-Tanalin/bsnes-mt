@@ -1,6 +1,7 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
 #include <stdexcept>
+#include <vector>
 
 #include <Windows.h>
 
@@ -13,21 +14,25 @@
 
 namespace bsnesMt::translations {
 
-using std::wstring, std::out_of_range;
+using std::wstring, std::vector, std::out_of_range;
 using namespace strings;
 
 string locale;
 
-auto getLocaleName() -> string {
+auto getSystemLocale() -> string {
 	wchar_t buffer[LOCALE_NAME_MAX_LENGTH];
 
 	auto length = GetUserDefaultLocaleName(buffer, LOCALE_NAME_MAX_LENGTH);
-	auto locale = wstring(buffer).substr(0, length - (size_t)1);
+	auto locale = toLowerCase(wideStringToUtf8String(wstring(buffer).substr(0, length - (size_t)1)));
+
+	return locale;
+}
+
+auto getShortSystemLocale() -> string {
+	auto locale = getSystemLocale();
 	auto sepPos = locale.find('-');
 
-	locale = wstring::npos == sepPos ? locale : locale.substr(0, sepPos);
-
-	return wideStringToUtf8String(locale);
+	return string::npos == sepPos ? locale : locale.substr(0, sepPos);
 }
 
 auto getFileDataFromResource(int name, int type, DWORD &size, const char* &data) -> void {
@@ -37,16 +42,6 @@ auto getFileDataFromResource(int name, int type, DWORD &size, const char* &data)
 
 	size = SizeofResource(handle, rc);
 	data = static_cast<const char*>(LockResource(rcData));
-}
-
-auto getInternalStrings(map<string, string> &strings) -> void {
-	DWORD size = 0;
-	const char* data = NULL;
-	string code;
-	
-	getFileDataFromResource(IDR_EN_STRINGS, TEXTFILE, size, data);
-	code.assign(data, size);
-	parseTranslation(code, strings);
 }
 
 auto parseTranslation(const string &code, map<string, string> &strings) -> void {
@@ -97,47 +92,86 @@ auto parseTranslation(const string &code, map<string, string> &strings) -> void 
 	}
 }
 
-auto initTranslation(const string &locale) -> void {
-	getInternalStrings(strings);
+auto getLocalePath(const string &locale) -> string {
+	static string folder    = "translations/",
+	              extension = ".txt";
 
-	string folderPath = string("translations/");
-	string extension  = ".txt";
-	string path       = folderPath + locale + extension;
+	return folder + locale + extension;
+}
 
-	if (!files::fileExists(path)) {
-		if ("en" == locale) {
-			return;
-		}
+auto localeFileExists(const string &locale) -> bool {
+	return files::fileExists(getLocalePath(locale));
+}
 
-		path = folderPath + getLocaleName() + extension;
+auto getAvailableLocaleSlice(const string &locale) -> string {
+	if (localeFileExists(locale)) {
+		return locale;
+	}
 
-		if (!files::fileExists(path)) {
-			return;
+	auto parts = strings::split(locale, "-");
+	auto count = parts.size();
+
+	for (auto i = 1; i < count; i++) {
+		auto curLocale = join(vector<string>(parts.begin(), parts.end() - i), "-");
+
+		if (localeFileExists(curLocale)) {
+			return curLocale;
 		}
 	}
 
-	parseTranslation(files::getTextFileContents(path), strings);
+	return "";
+}
+
+auto initInternalStrings() -> void {
+	DWORD size = 0;
+	const char* data = NULL;
+	string code;
+	
+	getFileDataFromResource(IDR_EN_STRINGS, TEXTFILE, size, data);
+	code.assign(data, size);
+	parseTranslation(code, strings);
+}
+
+auto getCommandLineLocale() -> string {
+	string commandLine = wideStringToUtf8String(GetCommandLineW());
+	auto   params      = split(commandLine, " ");
+	string paramStart  = "--locale=";
+	auto   valuePos    = paramStart.size();
+
+	for (auto &param : params) {
+		if (param.substr(0, valuePos) == paramStart) {
+			string locale = param.substr(valuePos);
+			return "jp" == locale ? "ja" : locale;
+		}
+	}
+
+	return "";
 }
 
 auto initLocale() -> void {
-	string commandLine = wideStringToUtf8String(GetCommandLineW());
-	string paramStart  = "--locale=";
-	auto   paramPos    = commandLine.find(paramStart);
+	initInternalStrings();
 
-	string curLocale;
+	auto commandLineLocale = getCommandLineLocale();
+	auto curLocale = getAvailableLocaleSlice(commandLineLocale);
 
-	if (string::npos == paramPos) {
-		curLocale = getLocaleName();
+	if ("" == curLocale) {
+		if ("en" == commandLineLocale) {
+			locale = commandLineLocale;
+			return;
+		}
+
+		curLocale = getAvailableLocaleSlice(getSystemLocale());
+	}
+
+	if ("" == curLocale) {
+		curLocale = getShortSystemLocale();
 	}
 	else {
-		curLocale = commandLine.substr(paramPos + paramStart.size(), 2);
-
-		if ("jp" == curLocale) { // For backward compatibility.
-			curLocale = "ja";
-		}
+		auto path = getLocalePath(curLocale);
+		auto code = files::getTextFileContents(path);
+		parseTranslation(code, strings);
 	}
 
-	initTranslation(curLocale);
 	locale = curLocale;
 }
 

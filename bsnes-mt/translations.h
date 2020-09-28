@@ -46,12 +46,6 @@ static map<string, string> hotkeyStrings = {
 	{"Pause Emulation",          "Tools.RunMode.PauseEmulation"}
 };
 
-auto getLocaleName() -> string;
-
-auto getInternalStrings(map<string, string> &strings) -> void;
-
-auto parseTranslation(const string &code, map<string, string> &strings) -> void;
-auto initTranslation(const string &locale) -> void;
 auto initLocale() -> void;
 
 auto genericHas(const map<string, string> &items, const string &key) -> bool;

@@ -1,5 +1,7 @@
 ﻿/*! bsnes-mt by Marat Tanalin | http://tanalin.com/en/projects/bsnes-mt/ */
 
+#include <algorithm>
+#include <locale>
 #include <memory>
 #include <sstream>
 
@@ -40,6 +42,11 @@ auto wideStringToUtf8String(const wstring &wide) -> string {
 
 	return utf8;
 }
+
+auto toLowerCase(string str) -> string {
+	std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+	return str;
+};
 
 auto replaceByRef(string &str, const string &search, const string &replacement) -> void {
 	if (search.empty()) {
