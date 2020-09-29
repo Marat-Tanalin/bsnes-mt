@@ -38,7 +38,7 @@ Menu.File.OpenRecentGame.NoRecentGames = "Nenhum Jogo Recente"
 Menu.File.CloseGame = "Fechar o Jogo"
 Menu.File.Exit = "Encerrar"
 
-Menu.System = "Systema"
+Menu.System = "Sistema"
 Menu.System.ControllerPort = "Porta do Controle"
 Menu.System.ExpansionPort = "Porta de Expansão"
 
@@ -65,7 +65,7 @@ Menu.Settings.ShowStatusBar = "Exibir a Barra de Status"
 Menu.Settings.OpenSettingsFolder = "Abrir o Diretório das Configurações"
 
 Menu.Help = "Ajuda"
-Menu.Help.About = "Sobre |"
+Menu.Help.About = "Sobre o |"
 
 Settings = "Configurações"
 
