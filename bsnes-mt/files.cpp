@@ -23,7 +23,13 @@ auto getTextFileContents(const string &name) -> string {
 	std::ifstream in(name);
 	std::stringstream ss;
 	ss << in.rdbuf();
-	return ss.str();
+	string s = ss.str();
+
+	if (s.size() > 2 && (char)239 == s[0] && (char)187 == s[1] && (char)191 == s[2]) {
+		s.erase(0, 3);
+	}
+
+	return s;
 }
 
 auto saveFile(const string &data, const string &path) -> bool {
