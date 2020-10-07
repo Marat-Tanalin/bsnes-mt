@@ -8,13 +8,14 @@ static HHOOK hook;
 static hookCallbackType hookCallback;
 
 auto CALLBACK hotkeyHookCallback(int code, WPARAM wParam, LPARAM lParam) -> LRESULT {
-	auto altPressed   = isKeyPressed(VK_MENU);
-	auto ctrlPressed  = isKeyPressed(VK_CONTROL);
-	auto shiftPressed = isKeyPressed(VK_SHIFT);
-	auto keyDown      = !(HIWORD(lParam) & 0xC000);
-
 	if (HC_ACTION == code) {
-		hookCallback(wParam, keyDown, shiftPressed, ctrlPressed, altPressed);
+		hookCallback(
+			wParam,
+			!(HIWORD(lParam) & 0xC000), // keyDown
+			isKeyPressed(VK_SHIFT),
+			isKeyPressed(VK_CONTROL),
+			isKeyPressed(VK_MENU) // Alt key
+		);
 	}
 
 	return CallNextHookEx((HHOOK)hotkeyHookCallback, code, wParam, lParam);
