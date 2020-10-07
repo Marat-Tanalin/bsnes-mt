@@ -630,7 +630,7 @@ struct SettingsWindow : Window, Lock {
 public:
 	VerticalLayout layout{this};
 		HorizontalLayout panelLayout{&layout, Size{~0, ~0}};
-			ListView panelList{&panelLayout, Size{180_sx, ~0}}; // `125_sx` => `180_sx` by MT.
+			ListView panelList{&panelLayout, Size{190_sx, ~0}}; // `125_sx` => `190_sx` by MT.
 			VerticalLayout panelContainer{&panelLayout, Size{~0, ~0}};
 	StatusBar statusBar{this};
 };
