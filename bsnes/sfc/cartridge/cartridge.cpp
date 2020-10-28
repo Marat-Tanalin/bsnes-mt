@@ -70,13 +70,10 @@ auto Cartridge::load() -> bool {
   /* /MT. */
 
   if(auto loaded = platform->load(ID::SuperFamicom, "Super Famicom", "sfc", {bmt::get("Common.Auto").data(), ntsc, pal})) { // "Auto"
-    /* MT. */
-    auto   option = loaded.option;
-    string auto_  = "Auto";
-    /* /MT. */
+    auto option = loaded.option; // MT.
 
     information.pathID = loaded.pathID;
-    information.region = option == auto_ || option == ntsc || option == pal ? option : auto_;
+    information.region = option == ntsc || option == pal ? option : "Auto";
   } else return false;
 
   if(auto fp = platform->open(ID::SuperFamicom, "manifest.bml", File::Read, File::Required)) {
