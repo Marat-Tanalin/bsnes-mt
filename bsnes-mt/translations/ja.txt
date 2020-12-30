@@ -1,4 +1,7 @@
-﻿Common.Yes    = "はい"
+﻿Translation.author  = "byuu"
+Translation.version = "1.0"
+
+Common.Yes    = "はい"
 Common.No     = "いいえ"
 Common.Cancel = "キャンセル"
 Common.Open   = "開く"

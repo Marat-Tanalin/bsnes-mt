@@ -1,4 +1,7 @@
-﻿Common.Yes        = "Si"
+﻿Translation.author  = "theheroGAC"
+Translation.version = "1.2"
+
+Common.Yes        = "Si"
 Common.No         = "No"
 Common.Cancel     = "Cancella"
 Common.Always     = "Sempre"

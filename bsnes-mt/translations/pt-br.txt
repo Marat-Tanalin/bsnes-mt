@@ -1,4 +1,7 @@
-﻿Common.Yes        = "Sim"
+﻿Translation.author  = "Wellington Uemura (wtuemura)"
+Translation.version = "1.3.2"
+
+Common.Yes        = "Sim"
 Common.No         = "Não"
 Common.Cancel     = "Cancelar"
 Common.Always     = "Sempre"
