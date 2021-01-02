@@ -12,18 +12,17 @@ See the project [webpage](http://tanalin.com/en/projects/bsnes-mt/) for details.
 
 ## Contributing translations
 
-Feel free to contribute user-interface translations. That’s easy even if you are not a programmer.
+Feel free to contribute user-interface translations. That’s easy even if you are not a programmer. Translations are regular text files with simple `key="value"` syntax.
 
-The app is already available in English and Russian, and partially Italian and Japanese. English and Russian translations are complete and don’t need contributions. The English translation is built into the executable, other translations are loaded from text files when starting the application.
+The canonical translation is [English](https://github.com/Marat-Tanalin/bsnes-mt/blob/master/bsnes-mt/translations/en.txt), other translations should be based on&nbsp;it. Partial translations are possible: if a string is not translated, just the original English-language string is automatically used instead.
 
-Each translation is in a text file in the [`bsnes-mt/translations`](https://github.com/Marat-Tanalin/bsnes-mt/blob/master/bsnes-mt/translations) folder. The files use the UTF-8 character encoding. The files are named according to two-letter codes defined in the ISO 639-1 standard:
+The app comes with multiple translations. The default English translation is built into the executable, other translations are loaded dynamically from text files when starting the application. The English and Russian translations are complete and don’t need contributions.
+
+Each translation is in a text file in the [`bsnes-mt/translations`](https://github.com/Marat-Tanalin/bsnes-mt/blob/master/bsnes-mt/translations) folder. The files use the UTF-8 character encoding. The files have lowercase names and are named according to two-letter language codes defined in the [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard with optional subtags according to [BCP&nbsp;47](https://tools.ietf.org/html/bcp47), for example:
 
 * `en.txt` for English;
 * `ru.txt` for Russian;
-* `it.txt` for Italian;
-* `ja.txt` for Japanese.
-
-Partial translations are possible: if a string is not translated, just the original English-language string is automatically used instead.
+* `pt-br.txt` for Brazilian Portugues.
 
 Start with translating menus (`Menu.*`), then settings (`Settings.*`) and common strings (`Common.*`) — they form the main part of the user interface.
 
