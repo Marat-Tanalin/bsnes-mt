@@ -602,7 +602,7 @@ Movies.cantRecord         = "Film konnte nicht aufgenommen werden"
 Devices.Gamepad = "Gamepad"
 Devices.Mouse   = "Maus"
 
-Hotkeys.ToggleMouseCapture  = "Mauseinfangen umschalten"
+Hotkeys.ToggleMouseCapture  = "Maussperre umschalten"
 Hotkeys.ToggleCheatCodes    = "Cheat-Codes umschalten"
 Hotkeys.Rewind              = "Zurückspulen"
 Hotkeys.LoadUndoState       = "Rückgängig-Zwischenstand laden"
