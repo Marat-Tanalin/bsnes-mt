@@ -139,15 +139,15 @@ Settings.Hotkeys.CombinationalLogic = "Kombinatorische Logik"
 
 Settings.Hotkeys.CombinationalLogic.tooltip = "
 Legt fest, ob alle oder nur bestimmte Belegungen gedrückt werden müssen, um Tastaturkürzel zu aktivieren.
-Verwenden Sie die "UND"-Logik, wenn Sie möchten, dass Tastenkombinationen wie Strg+F einen Tastenkürzel auslösen.
-Verwenden Sie die "ODER"-Logik, wenn Sie möchten, dass sowohl eine Tastatur als auch ein Gamepad denselben Hotkey auslösen.
+Verwenden Sie die “UND”-Logik, wenn Sie möchten, dass Tastenkombinationen wie Strg+F einen Tastenkürzel auslösen.
+Verwenden Sie die “ODER”-Logik, wenn Sie möchten, dass sowohl eine Tastatur als auch ein Gamepad denselben Hotkey auslösen.
 "
 
 Settings.Hotkeys.CombinationalLogic.And = "UND"
 Settings.Hotkeys.CombinationalLogic.And.tooltip = "Jede Belegung muss gedrückt werden, um einen bestimmten Tastenkürzel zu aktivieren."
 Settings.Hotkeys.CombinationalLogic.Or = "ODER"
 Settings.Hotkeys.CombinationalLogic.Or.tooltip = "Jede Belegung kann gedrückt werden, um einen bestimmten Hotkey zu aktivieren."
-Settings.Hotkeys.Rewind.enableFirst = "Bitte aktivieren Sie zunächst die Zurückspulunterstützung unter "Einstellungen" → "Emulator"."
+Settings.Hotkeys.Rewind.enableFirst = "Bitte aktivieren Sie zunächst die Zurückspulunterstützung unter “Einstellungen” → “Emulator”."
 
 Settings.BuiltinHotkeys = "Tastenkürzel (eingebaut)"
 
@@ -223,7 +223,7 @@ Auch kommerziell lizenzierte und offiziell veröffentlichte Software wird manchm
 Mit dieser Option werden bestimmte Probleme behoben, die auch auf echter Hardware aufgetreten sind.
 "
 
-Settings.Compatibility = "Kampatibilität"
+Settings.Compatibility = "Kompatibilität"
 Settings.Compatibility.entropy = "Entropie (Randomisierung)"
 
 Settings.Compatibility.entropy.None.tooltip = "
@@ -270,7 +270,7 @@ Settings.Compatibility.dsp.EchoShadowRam = "Echo-Schatten-RAM"
 
 Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
 Diese Option ermöglicht die Emulation eines Fehlers in ZSNES, bei dem das Echo-RAM als getrennt vom APU-RAM behandelt wurde.
-Viele ältere ROM-Hacks für "Super Mario World" verließen sich auf dieses Verhalten und stürzen ohne Aktivierung dieser Option ab.
+Viele ältere ROM-Hacks für “Super Mario World” verließen sich auf dieses Verhalten und stürzen ohne Aktivierung dieser Option ab.
 Es ist jedoch extrem ungenau gegenüber echter Hardware und sollte nicht aktiviert werden, wenn es nicht erforderlich ist.
 "
 
@@ -309,7 +309,7 @@ Eliminiert ausgelassene oder doppelte Frames, kann aber den Ton verzerren.
 
 Mit dieser Option wird empfohlen, die Tonsynchronisation zu deaktivieren,
 und die dynamische Ratensteuerung zu aktivieren. Oder passen Sie alternativ
-die Option "Tonversatz" an, um Pufferunter-/-überläufe zu reduzieren.
+die Option “Tonversatz” an, um Pufferunter-/-überläufe zu reduzieren.
 "
 
 Settings.Drivers.Video.GpuSync = "GPU-Synchronisation"
@@ -390,7 +390,7 @@ Adaptive Synchronisation muss in Ihrem Treibereinstellungsmenü aktiviert sein.
 Settings.Drivers.syncModePresets.DynamicRateControl = "Dynamische Ratensteuerung"
 
 Settings.Drivers.syncModePresets.DynamicRateControl.failure = "
-Die aktuelle Treiberkonfiguration ist leider nicht mit dem Modus "Dynamische Ratensteuerung" kompatibel.
+Die aktuelle Treiberkonfiguration ist leider nicht mit dem Modus “Dynamische Ratensteuerung” kompatibel.
 Die dynamische Ratensteuerung erfordert eine Bildsynchronisation und die Unterstützung von dynamischen Tonraten.
 "
 
@@ -566,7 +566,7 @@ ResetDrivers.message.title = "Treiber zurücksetzen"
 ResetDrivers.message = "
 Die Hardware-Treiber wurden gemäß der Kommandozeilenoption `--resetdrivers` zurückgesetzt.
 
-Bitte konfigurieren Sie die Treiber im Fenster "Einstellungen" → "Treiber", das sich nun öffnet, neu.
+Bitte konfigurieren Sie die Treiber im Fenster “Einstellungen” → “Treiber”, das sich nun öffnet, neu.
 "
 
 Rewind.HistoryExhausted = "Rückspulhistorie erschöpft"
@@ -583,7 +583,7 @@ Patch.ipsWarning = "
 Bitte erwägen Sie, den Patch-Autor zu bitten, stattdessen BPS-Patches zu verwenden.)
 
 Erwartet dieser IPS-Patch, dass er auf ein Headered-ROM angewendet wird?
-Wenn Sie sich nicht sicher sind, versuchen Sie "Nein", und wenn es nicht funktioniert, versuchen Sie es erneut mit "Ja".
+Wenn Sie sich nicht sicher sind, versuchen Sie “Nein”, und wenn es nicht funktioniert, versuchen Sie es erneut mit “Ja”.
 "
 
 Patch.ensureHeaderless = "Bitte stellen Sie sicher, dass Sie das richtige (headerlose) ROM für diesen Patch verwenden."
