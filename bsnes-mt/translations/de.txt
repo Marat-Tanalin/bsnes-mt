@@ -22,8 +22,8 @@ Common.Failure    = "Fehlschlag"
 Common.Error      = "Fehler"
 Common.Warning    = "Warnung"
 Common.Auto       = "Auto"
-Common.Video      = "Bild"
-Common.Audio      = "Ton"
+Common.Video      = "Video"
+Common.Audio      = "Audio"
 Common.Fps        = "fps"
 Common.Hz         = "Hz"
 Common.number     = "#"
@@ -60,7 +60,7 @@ Menu.Settings.Output.HiresBlurEmulation = "Hochauflösende Unschärfeemulation"
 Menu.Settings.Filter = "Filter"
 Menu.Settings.Shader = "Shader"
 Menu.Settings.Shader.Blur = "Unschärfe"
-Menu.Settings.MuteAudio = "Ton stummschalten"
+Menu.Settings.MuteAudio = "Audio stummschalten"
 Menu.Settings.ShowStatusBar = "Statusleiste anzeigen"
 Menu.Settings.OpenSettingsFolder = "Einstellungsordner öffnen"
 
@@ -80,15 +80,15 @@ Settings.Video.ColorAdjustment = "Farbanpassung"
 Settings.Video.Luminance       = "Leuchtstärke"
 Settings.Video.Saturation      = "Sättigung"
 Settings.Video.Gamma           = "Gamma"
-Settings.Video.DimVideoWhenIdle = "Bild abdunkeln, wenn untätig"
-Settings.Video.DimVideoWhenIdle.tooltip = "Dunkelt das Bild ab, um anzuzeigen, dass die Emulation nicht läuft."
+Settings.Video.DimVideoWhenIdle = "Video abdunkeln, wenn untätig"
+Settings.Video.DimVideoWhenIdle.tooltip = "Dunkelt das Videosignal ab, um anzuzeigen, dass die Emulation nicht läuft."
 Settings.Video.DrawSnowEffectWhenIdle = "Schneeeffekt anzeigen, wenn untätig"
 
 Settings.Audio.Effects = "Effekte"
 Settings.Audio.Skew = "Versatz"
 
 Settings.Audio.Skew.tooltip = "
-Passt die Tonfrequenz um den Versatzwert an (in Hz).
+Passt die Audiofrequenz um den Versatzwert an (in Hz).
 
 Dies ist im Wesentlichen eine statische Ratensteuerung.
 Aktivieren Sie zunächst sowohl die Video- als auch die Audiosynchronisation.
@@ -103,16 +103,16 @@ Sie sollten diesen Wert auf 0 belassen, wenn Sie die dynamische Ratensteuerung v
 Settings.Audio.Volume = "Lautstärke"
 
 Settings.Audio.Volume.tooltip = "
-Passt die Lautstärke der Tonausgabe an.
+Passt die Lautstärke der Audioausgabe an.
 
 Sie sollten, wenn möglich, keine Werte über 100% verwenden!
-Wenn Sie dies tun, können Tonschnittverzerrungen auftreten.
+Wenn Sie dies tun, können Audioschnittverzerrungen auftreten.
 "
 
 Settings.Audio.Balance = "Balance"
 
 Settings.Audio.Balance.tooltip = "
-Verschiebt den Ton nach links (niedrigere Werte) oder rechts (höhere Werte).
+Verschiebt die Audioausgabe nach links (niedrigere Werte) oder rechts (höhere Werte).
 
 50% (zentriert) ist die empfohlene Einstellung.
 "
@@ -197,7 +197,7 @@ Settings.Enhancements.RunAhead.Two    = "Zwei"
 Settings.Enhancements.RunAhead.Three  = "Drei"
 Settings.Enhancements.RunAhead.Four   = "Vier"
 Settings.Enhancements.Overclocking = "Übertaktung"
-Settings.Enhancements.Ppu.Video         = "Bild"
+Settings.Enhancements.Ppu.Video         = "Video"
 Settings.Enhancements.Ppu.Deinterlace   = "Deinterlace"
 Settings.Enhancements.Ppu.NoSpriteLimit = "Kein Sprite-Limit"
 Settings.Enhancements.hdMode7.FastPpuOnly           = "nur schnelle PPU"
@@ -205,7 +205,7 @@ Settings.Enhancements.hdMode7.Scale                 = "Skalierung"
 Settings.Enhancements.hdMode7.PerspectiveCorrection = "Perspektivenkorrektur"
 Settings.Enhancements.hdMode7.Supersampling         = "Supersampling"
 Settings.Enhancements.hdMode7.HdToSdMosaic          = "HD→SD Mosaik"
-Settings.Enhancements.Dsp.Audio = "Ton"
+Settings.Enhancements.Dsp.Audio = "Audio"
 Settings.Enhancements.Dsp.CubicInterpolation = "Kubische Interpolation"
 Settings.Enhancements.Coprocessors = "Koprozessoren"
 Settings.Enhancements.Coprocessors.PreferHle = "High-Level-Emulation (HLE) bevorzugen"
@@ -255,7 +255,7 @@ CPU-Multiplikation und -Division benötigen Zeit, um auf einem echten SNES abges
 Einige ältere ROM-Hacks warten nicht auf den Abschluss von mathematischen Operationen und benötigen diesen Hack.
 "
 
-Settings.Compatibility.ppu.Video          = "Bild"
+Settings.Compatibility.ppu.Video          = "Video"
 Settings.Compatibility.ppu.NoVramBlocking = "Keine Blockierung des Videospeichers (VRAM)"
 
 Settings.Compatibility.ppu.NoVramBlocking.tooltip = "
@@ -265,7 +265,7 @@ Dies ist nicht nur extrem ungenau gegenüber echter Hardware, es schadet auch de
 Aktivieren Sie diese Option nicht, es sei denn, Sie müssen ein Spiel spielen, das sonst nicht korrekt funktioniert.
 "
 
-Settings.Compatibility.dsp.Audio         = "Ton"
+Settings.Compatibility.dsp.Audio         = "Audio"
 Settings.Compatibility.dsp.EchoShadowRam = "Echo-Schatten-RAM"
 
 Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
@@ -291,9 +291,9 @@ Möchten Sie jetzt trotzdem mit dem Treiberwechsel fortfahren?
 
 Settings.noteGameRestart = "Hinweis: Einige Einstellungen werden erst beim erneuten Laden des Spiels wirksam."
 
-Settings.Drivers.Video.failedToInitialize = "Initialisierung des [|]-Bildtreibers fehlgeschlagen"
+Settings.Drivers.Video.failedToInitialize = "Initialisierung des [|]-Videotreibers fehlgeschlagen"
 Settings.Drivers.Video.FullScreenMonitor = "Vollbild-Monitor"
-Settings.Drivers.Video.FullScreenMonitor.tooltip = "Legt fest, an welchen Monitor das Bild im Vollbildmodus gesendet wird."
+Settings.Drivers.Video.FullScreenMonitor.tooltip = "Legt fest, an welchen Monitor das Videosignal im Vollbildmodus gesendet wird."
 Settings.Drivers.Video.Format = "Format"
 
 Settings.Drivers.Video.ExclusiveMode.tooltip = "
@@ -304,12 +304,12 @@ Hinweis: Der Direct3D-Exklusivmodus beachtet auch nicht den gewünschten Monitor
 "
 
 Settings.Drivers.Video.Synchronize.tooltip = "
-Wartet, bis die Grafikkarte bereit ist, bevor Bilder gerendert werden.
-Eliminiert ausgelassene oder doppelte Frames, kann aber den Ton verzerren.
+Wartet, bis die Grafikkarte bereit ist, bevor Einzelbilder gerendert werden.
+Eliminiert ausgelassene oder doppelte Einzelbilder, kann aber das Audiosignal verzerren.
 
-Mit dieser Option wird empfohlen, die Tonsynchronisation zu deaktivieren,
+Mit dieser Option wird empfohlen, die Audiosynchronisation zu deaktivieren,
 und die dynamische Ratensteuerung zu aktivieren. Oder passen Sie alternativ
-die Option “Tonversatz” an, um Pufferunter-/-überläufe zu reduzieren.
+die Option “Audioversatz” an, um Pufferunter-/-überläufe zu reduzieren.
 "
 
 Settings.Drivers.Video.GpuSync = "GPU-Synchronisation"
@@ -318,13 +318,13 @@ Settings.Drivers.Video.GpuSync.tooltip = "
 (Nur OpenGL-Treiber)
 
 Bewirkt, dass die GPU wartet, bis Frames vollständig gerendert sind.
-Im besten Fall kann dies bis zu einem Bild der Eingabeverzögerung beseitigen.
-Allerdings ist dies mit einem Leistungsverlust von etwa 20 % verbunden.
+Im besten Fall kann dies bis zu einem Einzelbild bei der Eingabeverzögerung beseitigen.
+Allerdings ist dies mit einem Leistungsverlust von etwa 20% verbunden.
 
 Sie sollten diese Option deaktivieren, wenn Sie es nicht für notwendig halten.
 "
 
-Settings.Drivers.Audio.failedToInitialize = "Initialisierung des [|]-Tontreibers fehlgeschlagen"
+Settings.Drivers.Audio.failedToInitialize = "Initialisierung des [|]-Audiotreibers fehlgeschlagen"
 Settings.Drivers.Audio.OutputDevice       = "Ausgabegerät"
 Settings.Drivers.Audio.SampleRate         = "Abtastrate"
 Settings.Drivers.Audio.Latency            = "Verzögerung"
@@ -333,15 +333,15 @@ Settings.Drivers.Audio.ExclusiveMode.tooltip = "
 (Nur WASAPI-Treiber)
 
 Übernimmt die exklusive Kontrolle über das Soundkartengerät.
-Dies kann die Tonverzögerung erheblich reduzieren.
+Dies kann die Audioverzögerung erheblich reduzieren.
 Allerdings werden dadurch Töne von allen anderen Anwendungen blockiert.
 "
 
 Settings.Drivers.Audio.Synchronize.tooltip = "
 Wartet, bis die Soundkarte bereit ist, bevor Samples ausgegeben werden.
-Eliminiert Tonverzerrungen, kann aber das Bild verzerren.
+Eliminiert Audioverzerrungen, kann aber das Videosignal verzerren.
 
-Mit dieser Option wird empfohlen, die Bildsynchronisation zu deaktivieren.
+Mit dieser Option wird empfohlen, die Videosynchronisation zu deaktivieren.
 Die besten Ergebnisse erzielen Sie, wenn Sie diese Option mit einem adaptiven Sync-Monitor verwenden.
 "
 
@@ -350,10 +350,10 @@ Settings.Drivers.Audio.DynamicRate = "Dynamische Rate"
 Settings.Drivers.Audio.DynamicRate.tooltip = "
 (Nur OSS-, XAudio2-, waveOut-Treiber)
 
-Passt die Tonfrequenz dynamisch um kleine Beträge an.
-Verwenden Sie dies mit aktivierter Bildsynchronisation und deaktivierter Tonsynchronisation.
+Passt die Audiofrequenz dynamisch um kleine Beträge an.
+Verwenden Sie dies mit aktivierter Bildsynchronisation und deaktivierter Audiosynchronisation.
 
-Dies kann perfektes, flüssiges Bild und sauberen Ton erzeugen,
+Dies kann perfektes, flüssiges Video und sauberes Audio erzeugen,
 aber nur, wenn die Bildwiederholfrequenz Ihres Monitors richtig eingestellt ist:
 60 Hz für NTSC-Spiele und 50 Hz für PAL-Spiele.
 "
@@ -377,12 +377,12 @@ Settings.Drivers.syncModePresets.AdaptiveSync = "Adaptive Synchronisation"
 
 Settings.Drivers.syncModePresets.AdaptiveSync.failure = "
 Die aktuelle Treiberkonfiguration ist leider nicht mit dem adaptiven Synchronisationsmodus kompatibel.
-Adaptive Synchronisation erfordert die Unterstützung der Tonsynchronisation.
+Adaptive Synchronisation erfordert die Unterstützung der Audiosynchronisation.
 "
 
 Settings.Drivers.syncModePresets.AdaptiveSync.success = "
 Adaptive Synchronisation funktioniert am besten im exklusiven Vollbildmodus.
-Verwenden Sie die niedrigste Tonverzögerungseinstellung, die Ihr System bewältigen kann.
+Verwenden Sie die niedrigste Audioverzögerungseinstellung, die Ihr System bewältigen kann.
 Ein G-Sync- oder FreeSync-Monitor ist erforderlich.
 Adaptive Synchronisation muss in Ihrem Treibereinstellungsmenü aktiviert sein.
 "
@@ -391,13 +391,13 @@ Settings.Drivers.syncModePresets.DynamicRateControl = "Dynamische Ratensteuerung
 
 Settings.Drivers.syncModePresets.DynamicRateControl.failure = "
 Die aktuelle Treiberkonfiguration ist leider nicht mit dem Modus “Dynamische Ratensteuerung” kompatibel.
-Die dynamische Ratensteuerung erfordert eine Bildsynchronisation und die Unterstützung von dynamischen Tonraten.
+Die dynamische Ratensteuerung erfordert eine Videosynchronisation und die Unterstützung von dynamischen Audioraten.
 "
 
 Settings.Drivers.syncModePresets.DynamicRateControl.success = "
 Die dynamische Ratensteuerung erfordert, dass Ihr Monitor mit folgenden Bildfrequenzen läuft:
 60 Hz für NTSC-Spiele, 50 Hz für PAL-Spiele.
-Verwenden Sie die niedrigste Tonverzögerungseinstellung, die Ihr System bewältigen kann.
+Verwenden Sie die niedrigste Audioverzögerungseinstellung, die Ihr System bewältigen kann.
 "
 
 Settings.BuiltinHotkeys.CheckAll   = "Alle auswählen"
@@ -543,7 +543,7 @@ Browser.Create.EnterName = "Geben Sie einen Namen ein"
 Browser.CreateFolder = "Ordner erstellen"
 Browser.CreateFolder.EnterNewFolderName = "Geben Sie einen Namen für den neuen Ordner ein"
 Browser.Delete.DeleteSelected = "Auswahl löschen"
-Browser.Delete.FailedToDelete = "| konnte nicht gelöscht werden. Weiter versuchen, die verbleibenden Elemente zu entfernen???"
+Browser.Delete.FailedToDelete = "| konnte nicht gelöscht werden. Weiter versuchen, die verbleibenden Elemente zu entfernen?"
 Browser.Delete.confirm = "Sind Sie sicher, dass Sie das/die | permanent löschen wollen"
 Browser.Delete.confirm.item  = "ausgewählte Element"
 Browser.Delete.confirm.items = "ausgewählten Elemente"
@@ -553,7 +553,7 @@ Browser.SaveFile.fileExists = "Datei existiert bereits. Soll sie überschrieben 
 
 StatusIcon.verifiedRom.tooltip = "
 Dies ist ein bekanntes, sauberes Spielabbild.
-Die PCB-Emulation ist 100 % genau.
+Die PCB-Emulation ist 100% genau.
 "
 
 StatusIcon.unverifiedRom.tooltip = "
@@ -602,7 +602,7 @@ Movies.cantRecord         = "Film konnte nicht aufgenommen werden"
 Devices.Gamepad = "Gamepad"
 Devices.Mouse   = "Maus"
 
-Hotkeys.ToggleMouseCapture  = "Maussperre umschalten"
+Hotkeys.ToggleMouseCapture  = "Mauseinfangen umschalten"
 Hotkeys.ToggleCheatCodes    = "Cheat-Codes umschalten"
 Hotkeys.Rewind              = "Zurückspulen"
 Hotkeys.LoadUndoState       = "Rückgängig-Zwischenstand laden"
