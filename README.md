@@ -26,6 +26,12 @@ Each translation is in a text file in the [`bsnes-mt/translations`](https://gith
 
 Start with translating menus (`Menu.*`), then settings (`Settings.*`) and common strings (`Common.*`) — they form the main part of the user interface.
 
+Don’t bother translating `Browser.*` strings — they are related to non-native file dialogs that are disabled by default and going to be removed from both bsnes and bsnes-mt.
+
+Please ignore capitalization (uppercased first letter of each word) and don’t try to maintain it when translating. For example, translate “Open **R**ecent **G**ame” as if it was “Open **r**ecent **g**ame” with lowercase “r” and “g”.
+
+The “|” character in strings is a placeholder meant to be replaced with a number or word(s) — don’t capitalize words after that character.
+
 ## How to compile/build
 
 [Install MinGW](https://github.com/orlp/dev-on-windows/wiki/Installing-GCC--&-MSYS2), then execute the following command inside the folder with bsnes-mt source code:
