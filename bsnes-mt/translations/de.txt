@@ -1,4 +1,7 @@
-﻿Common.Yes        = "Ja"
+﻿Translation.author  = "Erendel"
+Translation.version = "1.3.3"
+
+Common.Yes        = "Ja"
 Common.No         = "Nein"
 Common.Cancel     = "Abbrechen"
 Common.Always     = "Immer"
