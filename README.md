@@ -22,7 +22,7 @@ Each translation is in a text file in the [`bsnes-mt/translations`](https://gith
 
 * `en.txt` for English;
 * `ru.txt` for Russian;
-* `pt-br.txt` for Brazilian Portugues.
+* `pt-br.txt` for Brazilian Portuguese.
 
 Start with translating menus (`Menu.*`), then settings (`Settings.*`) and common strings (`Common.*`) — they form the main part of the user interface.
 
