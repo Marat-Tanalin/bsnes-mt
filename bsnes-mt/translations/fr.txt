@@ -97,7 +97,7 @@ Une direction pourra aider la vidéo mais nuira à l’audio.
 L’autre sens fera l’inverse.
 L’idée est de trouver le meilleur compromis.
 
-Vous devriez laisser cette valeur à 0 lorsque vous utilisez le contrôle de vitesse dynamique.
+Vous devriez laisser cette valeur à 0 lorsque vous utilisez le contrôle du taux dynamique.
 "
 
 Settings.Audio.Volume = "Volume"
@@ -308,7 +308,7 @@ Attend que la carte vidéo soit prête avant d’afficher les images.
 Élimine les images perdues ou dupliquées, mais peut déformer le son.
 
 Avec cette option, il est recommandé de désactiver la synchronisation audio,
-et d’activer le contrôle dynamique de la vitesse. Ou alors, ajuster
+et d’activer le contrôle dynamique du taux. Ou alors, ajuster
 l’option de compensation audio pour réduire les sous-débits et les débordements de la mémoire tampon.
 "
 
@@ -369,11 +369,11 @@ tels que DirectInput et SDL.
 Settings.Drivers.syncModePresets = "Préréglages du mode de synchronisation"
 
 Settings.Drivers.syncModePresets.requirements = "
-Adaptive Sync : nécessite un moniteur G-Sync ou FreeSync.
-Dynamic Rate Control : nécessite que le moniteur et les taux de rafraîchissement SNES correspondent.
+Synchronisation adaptative : nécessite un moniteur G-Sync ou FreeSync.
+Contrôle dynamique du taux : nécessite que le moniteur et les taux de rafraîchissement SNES correspondent.
 "
 
-Settings.Drivers.syncModePresets.AdaptiveSync = "Synchronisation adaptive"
+Settings.Drivers.syncModePresets.AdaptiveSync = "Synchronisation adaptative"
 
 Settings.Drivers.syncModePresets.AdaptiveSync.failure = "
 Désolé, la configuration actuelle du pilote n’est pas compatible avec le mode de synchronisation adaptative.
@@ -387,15 +387,15 @@ Un moniteur G-Sync ou FreeSync est nécessaire.
 La synchronisation adaptative doit être activée dans le panneau de configuration de votre pilote.
 "
 
-Settings.Drivers.syncModePresets.DynamicRateControl = "Controle dynamique du taux"
+Settings.Drivers.syncModePresets.DynamicRateControl = "Contrôle dynamique du taux"
 
 Settings.Drivers.syncModePresets.DynamicRateControl.failure = "
-Désolé, la configuration actuelle du pilote n’est pas compatible avec le mode de contrôle de la vitesse dynamique.
-Le contrôle de la vitesse dynamique nécessite la synchronisation vidéo et la prise en charge de la vitesse audio-dynamique.
+Désolé, la configuration actuelle du pilote n’est pas compatible avec le mode de contrôle dynamique du taux.
+Le contrôle dynamique du taux nécessite la synchronisation vidéo et la prise en charge du taux audio-dynamique.
 "
 
 Settings.Drivers.syncModePresets.DynamicRateControl.success = "
-Le contrôle dynamique de la vitesse exige que votre moniteur fonctionne à : 
+Le contrôle dynamique du taux exige que votre moniteur fonctionne à : 
 60 Hz pour les jeux NTSC, 50 Hz pour les jeux PAL.
 Utilisez le réglage de latence audio le plus bas que votre système peut gérer.
 "
