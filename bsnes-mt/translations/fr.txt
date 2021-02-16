@@ -2,7 +2,7 @@
 Common.No         = "Non"
 Common.Cancel     = "Annuler"
 Common.Always     = "Toujours"
-Common.AreYouSure = "Etes vous sûr?"
+Common.AreYouSure = "Etes vous sûr ?"
 Common.Open       = "Ouvrir"
 Common.Load       = "Charger"
 Common.Save       = "Sauver"
@@ -32,8 +32,8 @@ Menu.File = "Fichier"
 Menu.File.OpenGame = "Ouvrir jeux"
 Menu.File.OpenRecentGame = "Ouvrir jeux récent"
 Menu.File.OpenRecentGame.ClearList = "Effacer liste"
-Menu.File.OpenRecentGame.ClearList.confirm.title = "Effacer la liste des jeux récents?"
-Menu.File.OpenRecentGame.ClearList.confirm = "Etes vous sûr de vouloir effacer la liste des jeux récents?"
+Menu.File.OpenRecentGame.ClearList.confirm.title = "Effacer la liste des jeux récents ?"
+Menu.File.OpenRecentGame.ClearList.confirm = "Etes vous sûr de vouloir effacer la liste des jeux récents ?"
 Menu.File.OpenRecentGame.NoRecentGames = "Aucun jeux récents"
 Menu.File.CloseGame = "Fermer jeux"
 Menu.File.Exit = "Quitter"
@@ -105,7 +105,7 @@ Settings.Audio.Volume = "Volume"
 Settings.Audio.Volume.tooltip = "
 Régle le volume de la sortie audio.
 
-Si possible, il est déconseillé d’utiliser une valeur au delà de 100%.
+Si possible, il est déconseillé d’utiliser une valeur au delà de 100% !
 Si vous le faites, une distorsion par coupure audio peut se produire.
 "
 
@@ -139,15 +139,15 @@ Settings.Hotkeys.CombinationalLogic = "Logique combinatoire"
 
 Settings.Hotkeys.CombinationalLogic.tooltip = "
 Détermine si tout ou partie des mappings doit être appuyé pour activer les raccourcis.
-Utilisez la logique “ET” si vous souhaitez une combinaison de touche comme Ctrl+F pour déclencher le raccourcis.
-Utilisez la logique “OU” si vous souhaitez que le clavier et le joypad déclenchent tous les deux le même raccourcis.
+Utilisez la logique « ET » si vous souhaitez une combinaison de touche comme Ctrl+F pour déclencher le raccourcis.
+Utilisez la logique « OU » si vous souhaitez que le clavier et le joypad déclenchent tous les deux le même raccourcis.
 "
 
 Settings.Hotkeys.CombinationalLogic.And = "ET"
 Settings.Hotkeys.CombinationalLogic.And.tooltip = "Chaque mapping doit être appuyé pour activer un raccourcis en particulier."
 Settings.Hotkeys.CombinationalLogic.Or = "OU"
 Settings.Hotkeys.CombinationalLogic.Or.tooltip = "N’importe quel mapping peut être appuyé pour activer un raccourcis en particulier."
-Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer le rembobinage dans le menu “Paramètres” → “Emulateur”"
+Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer le rembobinage dans le menu « Paramètres » → « Emulateur »"
 
 Settings.BuiltinHotkeys = "Raccourcis (intégrés)"
 
@@ -270,7 +270,7 @@ Settings.Compatibility.dsp.EchoShadowRam = "Echo RAM ombragée"
 
 Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
 Cette option permet d’émuler un bogue dans ZSNES où l’écho de la RAM était traitée comme distincte de la RAM de l’APU.
-De nombreuses anciennes ROM bidouillées pour “Super Mario World” reposaient sur ce comportement, et planteront sans l’activer.
+De nombreuses anciennes ROM bidouillées pour « Super Mario World » reposaient sur ce comportement, et planteront sans l’activer.
 Elle est cependant extrêmement imprécise par rapport au matériel réel et ne devrait pas être activée à moins que cela ne soit nécessaire.
 "
 
@@ -281,15 +281,15 @@ Settings.Drivers.Reload        = "Recharger"
 Settings.Drivers.ExclusiveMode = "Mode exclusif"
 Settings.Drivers.Synchronize   = "Synchroniser"
 Settings.Drivers.ActiveDriver  = "Pilote actif"
-Settings.Drivers.changeConfirm.title = "Changer de pilote?"
+Settings.Drivers.changeConfirm.title = "Changer de pilote ?"
 
 Settings.Drivers.changeConfirm = "
-Attention: les pilotes incompatibles peuvent provoquer un plantage de l’application.
+Attention : les pilotes incompatibles peuvent provoquer un plantage de l’application.
 Il est fortement recommandé de décharger d’abord votre jeu pour être sûr.
-Souhaitez-vous quand même procéder au changement de pilote malgré tout?
+Souhaitez-vous quand même procéder au changement de pilote malgré tout ?
 "
 
-Settings.noteGameRestart = "Note: certains paramètres ne prendront effet qu’au rechargement du jeu."
+Settings.noteGameRestart = "Note : certains paramètres ne prendront effet qu’au rechargement du jeu."
 
 Settings.Drivers.Video.failedToInitialize = "Echec de l’initialisation [|] du pilote vidéo"
 Settings.Drivers.Video.FullScreenMonitor = "Moniteur Plein-écran"
@@ -300,7 +300,7 @@ Settings.Drivers.Video.ExclusiveMode.tooltip = "
 Le mode plein écran prend le dessus sur tous les moniteurs.
 Cela permet à la synchronisation adaptative de mieux fonctionner et de réduire la latence d’entrée.
 Toutefois, les utilisateurs de moniteurs multiples doivent désactiver cette option.
-Note: Le mode exclusif Direct3D n’honore pas non plus le moniteur demandé.
+Note : Le mode exclusif Direct3D n’honore pas non plus le moniteur demandé.
 "
 
 Settings.Drivers.Video.Synchronize.tooltip = "
@@ -354,7 +354,7 @@ Ajuste dynamiquement la fréquence audio par de minuscules quantités.
 Utilisez-le avec la synchronisation vidéo activée, et la synchronisation audio désactivée.
 
 Cela permet de produire une vidéo parfaitement fluide et un son propre,
-mais seulement si le taux de rafraîchissement de votre moniteur est correctement réglé:
+mais seulement si le taux de rafraîchissement de votre moniteur est correctement réglé : 
 60 Hz pour les jeux NTSC, et 50 Hz pour les jeux PAL.
 "
 
@@ -369,7 +369,7 @@ tels que DirectInput et SDL.
 Settings.Drivers.syncModePresets = "Préréglages du mode de synchronisation"
 
 Settings.Drivers.syncModePresets.requirements = "
-Adaptive Sync: nécessite un moniteur G-Sync ou FreeSync.
+Adaptive Sync : nécessite un moniteur G-Sync ou FreeSync.
 Dynamic Rate Control : nécessite que le moniteur et les taux de rafraîchissement SNES correspondent.
 "
 
@@ -395,7 +395,7 @@ Le contrôle de la vitesse dynamique nécessite la synchronisation vidéo et la 
 "
 
 Settings.Drivers.syncModePresets.DynamicRateControl.success = "
-Le contrôle dynamique de la vitesse exige que votre moniteur fonctionne à:
+Le contrôle dynamique de la vitesse exige que votre moniteur fonctionne à : 
 60 Hz pour les jeux NTSC, 50 Hz pour les jeux PAL.
 Utilisez le réglage de latence audio le plus bas que votre système peut gérer.
 "
@@ -414,8 +414,8 @@ Tools.LoadState.SelectedStateSlot = "Emplacement d’état sélectionné"
 Tools.LoadState.UndoLastSave      = "Annuler précédente sauvegarde"
 Tools.LoadState.RedoLastUndo      = "Rétablir dernière annulation"
 Tools.LoadState.RemoveAllStates   = "Enlever tous les états"
-Tools.LoadState.RemoveAllStates.confirm.title = "Enlever les états rapides?"
-Tools.LoadState.RemoveAllStates.confirm = "Etes vous sûr de vouloir enlever de manière permanente tous les états rapides pour ce jeux?"
+Tools.LoadState.RemoveAllStates.confirm.title = "Enlever les états rapides ?"
+Tools.LoadState.RemoveAllStates.confirm = "Etes vous sûr de vouloir enlever de manière permanente tous les états rapides pour ce jeux ?"
 
 Tools.Speed = "Vitesse"
 Tools.Speed.Slowest = "Le plus lent"
@@ -444,8 +444,8 @@ Tools.CheatFinder.Scan    = "Scanner"
 Tools.CheatFinder.All     = "Tout"
 
 Tools.CheatEditor = "Editeur de triches"
-Tools.CheatEditor.remove.confirm.title = "Enlever triche(s)?"
-Tools.CheatEditor.remove.confirm = "Etes vous sûr de vouloir enlever de manière permanente la ou les triche(s) sélectionnée(s)?"
+Tools.CheatEditor.remove.confirm.title = "Enlever triche(s) ?"
+Tools.CheatEditor.remove.confirm = "Etes vous sûr de vouloir enlever de manière permanente la ou les triche(s) sélectionnée(s) ?"
 Tools.CheatEditor.Codes        = "Code(s)"
 Tools.CheatEditor.Enable       = "Activer"
 Tools.CheatEditor.SelectAll    = "Sélectionner tout"
@@ -478,8 +478,8 @@ Tools.StateManager.QuickStates.Undo = "Annuler"
 Tools.StateManager.Preview     = "Previsualiser"
 Tools.StateManager.AddState    = "Ajouter état"
 Tools.StateManager.RenameState = "Renommer état"
-Tools.StateManager.remove.confirm.title = "Enlever état(s)?"
-Tools.StateManager.remove.confirm = "Etes vous sûr de vouloir enlever de manière permanente la ou les état(s) sélectionné(s)?"
+Tools.StateManager.remove.confirm.title = "Enlever état(s) ?"
+Tools.StateManager.remove.confirm = "Etes vous sûr de vouloir enlever de manière permanente la ou les état(s) sélectionné(s) ?"
 
 Tools.ManifestViewer = "Visionneuse de manifeste"
 Tools.ManifestViewer.Manifest = "Manifeste"
@@ -493,14 +493,14 @@ Game.GameOpeningCancelled = "Ouverture du jeux annulée"
 Game.unverifiedGameWarning.title = "Image de jeux non vérifiée"
 
 Game.unverifiedGameWarning = "
-Attention: cette image de jeu n’est pas vérifiée.
+Attention : cette image de jeu n’est pas vérifiée.
 Son exécution *peut* constituer un risque pour la sécurité.
 
-Souhaitez-vous quand même lancer le jeu?
+Souhaitez-vous quand même lancer le jeu ?
 "
 
-Game.unverifiedGameWarning.alwaysQuestion.title = "Désactiver les avertissements?"
-Game.unverifiedGameWarning.alwaysQuestion = "Souhaitez-vous désactiver l’avertissement lors de l’exécution de jeux non vérifiés?"
+Game.unverifiedGameWarning.alwaysQuestion.title = "Désactiver les avertissements ?"
+Game.unverifiedGameWarning.alwaysQuestion = "Souhaitez-vous désactiver l’avertissement lors de l’exécution de jeux non vérifiés ?"
 
 Program.Paused   = "En pause"
 Program.Unloaded = "Déchargé"
@@ -543,13 +543,13 @@ Browser.Create.EnterName = "Saisir un nom"
 Browser.CreateFolder = "Créer dossier"
 Browser.CreateFolder.EnterNewFolderName = "Saisir un nom pour le nouveau-dossier"
 Browser.Delete.DeleteSelected = "Supprimer la sélection"
-Browser.Delete.FailedToDelete = "Echec lors de la suppression |. Continuer à essayer de supprimer les éléments restants?"
+Browser.Delete.FailedToDelete = "Echec lors de la suppression |. Continuer à essayer de supprimer les éléments restants ?"
 Browser.Delete.confirm = "Etes vous sûr de vouloir supprimer de manière permanente le |"
 Browser.Delete.confirm.item  = "Elément selectionné"
 Browser.Delete.confirm.items = "Elements sélectionnés"
 Browser.SaveFile = "Sauvegarder fichier"
-Browser.SaveFile.fileExists.title = "Ecraser le fichier?"
-Browser.SaveFile.fileExists = "Le fichier existe déjà. Voulez-vous l’écraser?"
+Browser.SaveFile.fileExists.title = "Ecraser le fichier ?"
+Browser.SaveFile.fileExists = "Le fichier existe déjà. Voulez-vous l’écraser ?"
 
 StatusIcon.verifiedRom.tooltip = "
 Il s’agit d’une image de jeu propre connue.
@@ -566,7 +566,7 @@ ResetDrivers.message.title = "Réinitialiser les pilotes"
 ResetDrivers.message = "
 Les pilotes de matériel ont été réinitialisés selon l’option de ligne de commande `Resetdrivers`.
 
-Veuillez reconfigurer les pilotes dans la fenêtre “Paramètres” → “Pilotes” qui va maintenant s’ouvrir.
+Veuillez reconfigurer les pilotes dans la fenêtre « Paramètres » → « Pilotes » qui va maintenant s’ouvrir.
 "
 
 Rewind.HistoryExhausted = "Historique du rembobinage saturé"
@@ -582,8 +582,8 @@ Patch.ipsWarning = "
 (Vous voyez cette invite parce que l’IPS est un format de fichier patch terrible, et personne ne peut se mettre d’accord sur le fait que les ROMs SNES doivent contenir une en-tête ou non.
 Veuillez envisager de demander à l’auteur du patch d’utiliser plutôt des patchs BPS).
 
-Est-ce que ce patch IPS s’attend à être appliqué à une ROM avec une en-tête?
-Si vous n’êtes pas sûr, essayez “Non”, et si cela ne fonctionne pas, essayez à nouveau avec “Oui”.
+Est-ce que ce patch IPS s’attend à être appliqué à une ROM avec une en-tête ?
+Si vous n’êtes pas sûr, essayez « Non », et si cela ne fonctionne pas, essayez à nouveau avec « Oui ».
 "
 
 Patch.ensureHeaderless = "Veuillez vous assurer que vous utilisez la bonne ROM (sans en-tête) pour ce patch."
