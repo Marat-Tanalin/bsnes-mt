@@ -547,7 +547,7 @@ Browser.Delete.FailedToDelete = "Echec lors de la suppression |. Continuer à es
 Browser.Delete.confirm = "Etes vous sûr de vouloir supprimer de manière permanente le |"
 Browser.Delete.confirm.item  = "Elément selectionné"
 Browser.Delete.confirm.items = "Elements sélectionnés"
-Browser.SaveFile = "Sauvegarder fichier"
+Browser.SaveFile = "Enregistrer fichier"
 Browser.SaveFile.fileExists.title = "Ecraser le fichier ?"
 Browser.SaveFile.fileExists = "Le fichier existe déjà. Voulez-vous l’écraser ?"
 
