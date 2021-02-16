@@ -520,7 +520,7 @@ About.License   = "Licence"
 About.Website   = "Site web"
 About.SameBoy.description = "Emulateur Super Game Boy"
 About.Bsnes.description   = "Emulateur Super Nintendo"
-About.Bsnes.copyright     = "byuu et al"
+About.Bsnes.copyright     = "Équipe bsnes"
 About.Bsnes.license       = "GPLv3 ou ultérieur"
 
 Browser.OpenSnesRom  = "Ouvrir ROM SNES"
