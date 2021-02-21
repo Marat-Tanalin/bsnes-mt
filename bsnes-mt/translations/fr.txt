@@ -17,8 +17,8 @@ Common.Disabled   = "Désactiver"
 Common.Default    = "Défaut"
 Common.Name       = "Nom"
 Common.Date       = "Date"
-Common.Success    = "Succes"
-Common.Failure    = "Echec"
+Common.Success    = "Succès"
+Common.Failure    = "Échec"
 Common.Error      = "Erreur"
 Common.Warning    = "Avertissement"
 Common.Auto       = "Auto"
@@ -45,18 +45,18 @@ Menu.System.ExpansionPort = "Port d’expansion"
 Menu.Settings.Size = "Taille"
 Menu.Settings.Size.ShrinkWindowToSize = "Réduire la fenêtre à l’écran"
 Menu.Settings.Size.CenterWindow = "Centrer la fenêtre"
-Menu.Settings.Size.FullScreenMode = "Mode plein-écran"
-Menu.Settings.Size.PseudoFullScreenMode = "Mode pseudo-plein-écran"
+Menu.Settings.Size.FullScreenMode = "Mode plein écran"
+Menu.Settings.Size.PseudoFullScreenMode = "Mode pseudo-plein écran"
 Menu.Settings.Output = "Sortie"
 Menu.Settings.Output.Center = "Centrer"
 Menu.Settings.Output.PixelPerfect = "Pixel-parfait"
-Menu.Settings.Output.Scale = "Echelle"
-Menu.Settings.Output.Stretch = "Etirer"
+Menu.Settings.Output.Scale = "Échelle"
+Menu.Settings.Output.Stretch = "Étirer"
 Menu.Settings.Output.AspectRatioCorrection = "Corriger le ratio de l’aspect"
 Menu.Settings.Output.parInsteadOfAr = "8:7 PAR au lieu de l’AR 4:3"
 Menu.Settings.Output.ShowOverscanArea = "Afficher la zone de surbalayage"
 Menu.Settings.Output.scalingInfo = "Info d’échelle dans la barre de status"
-Menu.Settings.Output.HiresBlurEmulation = "Emulation du flou HR"
+Menu.Settings.Output.HiresBlurEmulation = "Émulation du flou HR"
 Menu.Settings.Filter = "Filtrer"
 Menu.Settings.Shader = "Shader"
 Menu.Settings.Shader.Blur = "Flou"
@@ -65,7 +65,7 @@ Menu.Settings.ShowStatusBar = "Afficher la barre de status"
 Menu.Settings.OpenSettingsFolder = "Ouvrir le dossier de configuration"
 
 Menu.Help = "Aide"
-Menu.Help.About = "A propos |"
+Menu.Help.About = "À propos de |"
 
 Settings = "Paramètres"
 
@@ -88,7 +88,7 @@ Settings.Audio.Effects = "Effets"
 Settings.Audio.Skew = "Compensation"
 
 Settings.Audio.Skew.tooltip = "
-Régler la fréquence audio par la valeur de compensation (en HZ).
+Règle la fréquence audio par la valeur de compensation (en HZ).
 
 Il s’agit essentiellement d’un contrôle statique du taux d’échantillonage.
 Tout d’abord, il faut activation la synchronisation vidéo et audio.
@@ -103,7 +103,7 @@ Vous devriez laisser cette valeur à 0 lorsque vous utilisez le contrôle du tau
 Settings.Audio.Volume = "Volume"
 
 Settings.Audio.Volume.tooltip = "
-Régle le volume de la sortie audio.
+Règle le volume de la sortie audio.
 
 Si possible, il est déconseillé d’utiliser une valeur au delà de 100% !
 Si vous le faites, une distorsion par coupure audio peut se produire.
@@ -147,7 +147,7 @@ Settings.Hotkeys.CombinationalLogic.And = "ET"
 Settings.Hotkeys.CombinationalLogic.And.tooltip = "Chaque mapping doit être appuyé pour activer un raccourcis en particulier."
 Settings.Hotkeys.CombinationalLogic.Or = "OU"
 Settings.Hotkeys.CombinationalLogic.Or.tooltip = "N’importe quel mapping peut être appuyé pour activer un raccourcis en particulier."
-Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer le rembobinage dans le menu « Paramètres » → « Emulateur »"
+Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer le rembobinage dans le menu « Paramètres » → « Émulateur »"
 
 Settings.BuiltinHotkeys = "Raccourcis (intégrés)"
 
@@ -161,7 +161,7 @@ Settings.Paths.Screenshots      = "Captures"
 Settings.Paths.LastRecentlyUsed = "dernièrement utilisé"
 Settings.Paths.SameAsLoadedGame = "même que le jeu chargé"
 
-Settings.Emulator = "Emulateur"
+Settings.Emulator = "Émulateur"
 Settings.Emulator.General = "Général"
 Settings.Emulator.General.warnOnUnverifiedGames = "Avertir lors de l’ouverture de jeux qui n’ont pas été vérifiés"
 Settings.Emulator.General.autoSaveMemory = "Sauvegarder la mémoire périodiquement"
@@ -190,7 +190,7 @@ Settings.Emulator.Rewind.mute = "Sourdine lors du rembobinage"
 
 Settings.Enhancements = "Améliorations"
 Settings.Enhancements.FastMode = "Mode rapide"
-Settings.Enhancements.RunAhead = "Execution-à venir (Run-Ahead)"
+Settings.Enhancements.RunAhead = "Exécution-à venir (Run-Ahead)"
 Settings.Enhancements.RunAhead.Frames = "trames"
 Settings.Enhancements.RunAhead.One    = "Une"
 Settings.Enhancements.RunAhead.Two    = "Deux"
@@ -201,17 +201,17 @@ Settings.Enhancements.Ppu.Video         = "vidéo"
 Settings.Enhancements.Ppu.Deinterlace   = "Désentrelacer"
 Settings.Enhancements.Ppu.NoSpriteLimit = "Pas de limite de sprite"
 Settings.Enhancements.hdMode7.FastPpuOnly           = "PPU rapide uniquement"
-Settings.Enhancements.hdMode7.Scale                 = "Echelle"
+Settings.Enhancements.hdMode7.Scale                 = "Échelle"
 Settings.Enhancements.hdMode7.PerspectiveCorrection = "Correction de la perspective"
 Settings.Enhancements.hdMode7.Supersampling         = "Superéchantillonnage"
-Settings.Enhancements.hdMode7.HdToSdMosaic          = "HD→SD mosaique"
+Settings.Enhancements.hdMode7.HdToSdMosaic          = "HD→SD mosaïque"
 Settings.Enhancements.Dsp.Audio = "audio"
 Settings.Enhancements.Dsp.CubicInterpolation = "Interpolation cubique"
 Settings.Enhancements.Coprocessors = "Coprocesseurs"
 Settings.Enhancements.Coprocessors.PreferHle = "Préférer l’émulation haut-niveau (HLE)"
 
 Settings.Enhancements.Coprocessors.PreferHle.tooltip = "
-Lorsque coché, une émulation HLE moins précise sera toujours utilisée lorsque celà est possible.
+Lorsque coché, une émulation HLE moins précise sera toujours utilisée lorsque cela est possible.
 Lorsque décoché, le HLE sera utilisé uniquement si le microprogramme de l’émulation bas-niveau (LLE) est manquant.
 "
 
@@ -291,9 +291,9 @@ Souhaitez-vous quand même procéder au changement de pilote malgré tout ?
 
 Settings.noteGameRestart = "Note : certains paramètres ne prendront effet qu’au rechargement du jeu."
 
-Settings.Drivers.Video.failedToInitialize = "Echec de l’initialisation [|] du pilote vidéo"
-Settings.Drivers.Video.FullScreenMonitor = "Moniteur plein-écran"
-Settings.Drivers.Video.FullScreenMonitor.tooltip = "Définit quel moniteur utiliser lors du pasage en mode plein-écran."
+Settings.Drivers.Video.failedToInitialize = "Échec de l’initialisation [|] du pilote vidéo"
+Settings.Drivers.Video.FullScreenMonitor = "Moniteur plein écran"
+Settings.Drivers.Video.FullScreenMonitor.tooltip = "Définit quel moniteur utiliser lors du pasage en mode plein écran."
 Settings.Drivers.Video.Format = "Format"
 
 Settings.Drivers.Video.ExclusiveMode.tooltip = "
@@ -319,12 +319,12 @@ Settings.Drivers.Video.GpuSync.tooltip = "
 
 Fait attendre le GPU jusqu’à ce que les images soient entièrement affichées.
 Dans le meilleur des cas, cela peut supprimer jusqu’à une trame de retard d’entrée.
-Cependant, cela entraîne une perte de performance d’environ 20 %.
+Cependant, cela entraîne une perte de performance d’environ 20%.
 
 Vous devriez désactiver cette option, sauf si vous l’estimez nécessaire.
 "
 
-Settings.Drivers.Audio.failedToInitialize = "Echec de l’initialisation [|] du pilote audio"
+Settings.Drivers.Audio.failedToInitialize = "Échec de l’initialisation [|] du pilote audio"
 Settings.Drivers.Audio.OutputDevice       = "Périphérique de sortie"
 Settings.Drivers.Audio.SampleRate         = "Taux d’échantillonage"
 Settings.Drivers.Audio.Latency            = "Latence"
@@ -358,7 +358,7 @@ mais seulement si le taux de rafraîchissement de votre moniteur est correctemen
 60 Hz pour les jeux NTSC, et 50 Hz pour les jeux PAL.
 "
 
-Settings.Drivers.Input.failedToInitialize = "Echec de l’initialisation [|] du pilote d’entrée"
+Settings.Drivers.Input.failedToInitialize = "Échec de l’initialisation [|] du pilote d’entrée"
 
 Settings.Drivers.Input.Reload.tooltip = "
 La recharge d’un pilote peut être utilisée pour détecter les appareils branchés à chaud.
@@ -382,9 +382,9 @@ La synchronisation adaptative nécessite la prise en charge de la synchronisatio
 
 Settings.Drivers.syncModePresets.AdaptiveSync.success = "
 La synchronisation adaptative fonctionne mieux en mode plein écran exclusif.
-Utilisez le réglage de latence audio le plus faible que votre système peut gérer.
+Utilisez le réglage de latence audio le plus faible que vôtre système peut gérer.
 Un moniteur G-Sync ou FreeSync est nécessaire.
-La synchronisation adaptative doit être activée dans le panneau de configuration de votre pilote.
+La synchronisation adaptative doit être activée dans le panneau de configuration de vôtre pilote.
 "
 
 Settings.Drivers.syncModePresets.DynamicRateControl = "Contrôle dynamique du taux"
@@ -397,7 +397,7 @@ Le contrôle dynamique du taux nécessite la synchronisation vidéo et la prise 
 Settings.Drivers.syncModePresets.DynamicRateControl.success = "
 Le contrôle dynamique du taux exige que votre moniteur fonctionne à : 
 60 Hz pour les jeux NTSC, 50 Hz pour les jeux PAL.
-Utilisez le réglage de latence audio le plus bas que votre système peut gérer.
+Utilisez le réglage de latence audio le plus bas que vôtre système peut gérer.
 "
 
 Settings.BuiltinHotkeys.CheckAll   = "Cocher tout"
@@ -424,7 +424,7 @@ Tools.Speed.Normal  = "Normal"
 Tools.Speed.Fast    = "Rapide"
 Tools.Speed.Fastest = "Le plus rapide"
 
-Tools.RunMode = "Mode d’éxecution"
+Tools.RunMode = "Mode d’exécution"
 Tools.RunMode.Normal         = "Normal"
 Tools.RunMode.PauseEmulation = "Pause émulation"
 Tools.RunMode.FrameAdvance   = "Avancer trame"
@@ -443,7 +443,7 @@ Tools.CheatFinder.Value   = "Valeur"
 Tools.CheatFinder.Scan    = "Scanner"
 Tools.CheatFinder.All     = "Tout"
 
-Tools.CheatEditor = "Editeur de triches"
+Tools.CheatEditor = "Éditeur de triches"
 Tools.CheatEditor.remove.confirm.title = "Enlever triche(s) ?"
 Tools.CheatEditor.remove.confirm = "Êtes vous sûr de vouloir enlever de manière permanente la ou les triche(s) sélectionnée(s) ?"
 Tools.CheatEditor.Codes        = "Code(s)"
@@ -452,17 +452,17 @@ Tools.CheatEditor.SelectAll    = "Sélectionner tout"
 Tools.CheatEditor.UnselectAll  = "Désélectionner tout"
 Tools.CheatEditor.AddCheats    = "Ajouter triches"
 Tools.CheatEditor.AddCheat     = "Ajouter triche"
-Tools.CheatEditor.EditCheat    = "Editer triche"
-Tools.CheatEditor.Edit         = "Editer"
+Tools.CheatEditor.EditCheat    = "Éditer triche"
+Tools.CheatEditor.Edit         = "Éditer"
 Tools.CheatEditor.FindCheats   = "Rechercher triches"
 Tools.CheatEditor.noCheats     = "Désolé, aucunes triches n’a été trouvé pour ce jeux."
 Tools.CheatEditor.EnableCheats = "Activer triches"
 
 Tools.CheatEditor.EnableCheats.tooltip = "
-Activation principale pour tout les codes de triche.
+Activation principale pour tous les codes de triche.
 Lorsque décoché, aucun code de triche ne sera actif.
 
-A utiliser pour contourner les zones de jeux qui ont des problèmes avec les triches.
+À utiliser pour contourner les zones de jeux qui ont des problèmes avec les triches.
 "
 
 Tools.CheatEditor.EnableCheats.disabled = "Tous les codes de triche sont désactivés"
@@ -475,7 +475,7 @@ Tools.StateManager.Category.ManagedStates = "États gérés"
 Tools.StateManager.Category.QuickStates   = "États rapides"
 Tools.StateManager.QuickStates.Redo = "Rétablir"
 Tools.StateManager.QuickStates.Undo = "Annuler"
-Tools.StateManager.Preview     = "Previsualiser"
+Tools.StateManager.Preview     = "Prévisualiser"
 Tools.StateManager.AddState    = "Ajouter état"
 Tools.StateManager.RenameState = "Renommer état"
 Tools.StateManager.remove.confirm.title = "Enlever état(s) ?"
@@ -536,19 +536,19 @@ Browser.OpenFolder   = "Ouvrir dossier"
 Browser.OpenObject   = "Ouvrir objet"
 Browser.Rename.EnterNewFolderName   = "Saisir le nom du nouveau dossier"
 Browser.Rename.EnterNewFileName     = "Saisir le nom du nouveau fichier"
-Browser.Rename.FailedToRenameFolder = "Echec lors du renommage du dossier."
-Browser.Rename.FailedToRenameFile   = "Echec lors du renommage du fichier."
+Browser.Rename.FailedToRenameFolder = "Échec lors du renommage du dossier."
+Browser.Rename.FailedToRenameFile   = "Échec lors du renommage du fichier."
 Browser.Create = "Créer"
 Browser.Create.EnterName = "Saisir un nom"
 Browser.CreateFolder = "Créer dossier"
 Browser.CreateFolder.EnterNewFolderName = "Saisir un nom pour le nouveau-dossier"
 Browser.Delete.DeleteSelected = "Supprimer la sélection"
-Browser.Delete.FailedToDelete = "Echec lors de la suppression |. Continuer à essayer de supprimer les éléments restants ?"
-Browser.Delete.confirm = "Êtes vous sûr de vouloir supprimer de manière permanente le |"
-Browser.Delete.confirm.item  = "Elément selectionné"
-Browser.Delete.confirm.items = "Elements sélectionnés"
+Browser.Delete.FailedToDelete = "Échec lors de la suppression |. Continuer à essayer de supprimer les éléments restants ?"
+Browser.Delete.confirm = "Êtes-vous sûr de vouloir supprimer de manière permanente l' |"
+Browser.Delete.confirm.item  = "élément selectionné"
+Browser.Delete.confirm.items = "éléments sélectionnés"
 Browser.SaveFile = "Enregistrer fichier"
-Browser.SaveFile.fileExists.title = "Ecraser le fichier ?"
+Browser.SaveFile.fileExists.title = "Écraser le fichier ?"
 Browser.SaveFile.fileExists = "Le fichier existe déjà. Voulez-vous l’écraser ?"
 
 StatusIcon.verifiedRom.tooltip = "
@@ -607,8 +607,8 @@ Hotkeys.ToggleCheatCodes    = "Basculer les codes de triche"
 Hotkeys.Rewind              = "Rembobinage"
 Hotkeys.LoadUndoState       = "Charger annulation d’état"
 Hotkeys.LoadRedoState       = "Charger refaire état"
-Hotkeys.DecrementStateSlot  = "Decrementer l’emplacement d’état"
-Hotkeys.IncrementStateSlot  = "Incrementer l’emplacement d’état"
+Hotkeys.DecrementStateSlot  = "Décrémenter l’emplacement d’état"
+Hotkeys.IncrementStateSlot  = "Incrémenter l’emplacement d’état"
 Hotkeys.FastForward         = "Avance rapide"
 Hotkeys.FrameAdvance        = "Avancer trame"
 Hotkeys.DecreaseHDMode7     = "Diminuer le Mode 7 HD"
