@@ -43,7 +43,7 @@ Menu.System.ControllerPort = "Port du contrôleur"
 Menu.System.ExpansionPort = "Port d’expansion"
 
 Menu.Settings.Size = "Taille"
-Menu.Settings.Size.ShrinkWindowToSize = "Adapter la fenêtre aux dimensions de l'image"
+Menu.Settings.Size.ShrinkWindowToSize = "Adapter la fenêtre aux dimensions de l’image"
 Menu.Settings.Size.CenterWindow = "Centrer la fenêtre"
 Menu.Settings.Size.FullScreenMode = "Mode plein écran"
 Menu.Settings.Size.PseudoFullScreenMode = "Mode pseudo-plein écran"
@@ -55,13 +55,13 @@ Menu.Settings.Output.Stretch = "Étirer"
 Menu.Settings.Output.AspectRatioCorrection = "Corriger le ratio de l’aspect"
 Menu.Settings.Output.parInsteadOfAr = "8:7 PAR au lieu de l’AR 4:3"
 Menu.Settings.Output.ShowOverscanArea = "Afficher la zone de surbalayage (overscan)"
-Menu.Settings.Output.scalingInfo = "Info d’échelle dans la barre d'état"
+Menu.Settings.Output.scalingInfo = "Info d’échelle dans la barre d’état"
 Menu.Settings.Output.HiresBlurEmulation = "Émulation du flou haute résolution"
 Menu.Settings.Filter = "Filtrer"
 Menu.Settings.Shader = "Shader"
 Menu.Settings.Shader.Blur = "Flou"
 Menu.Settings.MuteAudio = "Désactiver le son"
-Menu.Settings.ShowStatusBar = "Afficher la barre d'état"
+Menu.Settings.ShowStatusBar = "Afficher la barre d’état"
 Menu.Settings.OpenSettingsFolder = "Ouvrir le dossier des paramètres"
 
 Menu.Help = "Aide"
@@ -127,7 +127,7 @@ Settings.Input.WhenFocusIsLost.AllowInput = "Autoriser l’entrée"
 Settings.Input.Port = "Port"
 Settings.Input.Device = "Périphérique"
 Settings.Input.TurboRate = "Vitesse du turbo"
-Settings.Input.TurboRate.tooltip = "Le nombre d'images à attendre entre l’activation des boutons turbo."
+Settings.Input.TurboRate.tooltip = "Le nombre d’images à attendre entre l’activation des boutons turbo."
 Settings.Input.MouseLeft = "Clic gauche"
 Settings.Input.MouseMiddle = "Clic milieu"
 Settings.Input.MouseRight = "Clic droit"
@@ -147,7 +147,7 @@ Settings.Hotkeys.CombinationalLogic.And = "ET"
 Settings.Hotkeys.CombinationalLogic.And.tooltip = "Chaque mapping doit être appuyé pour activer un raccourcis en particulier."
 Settings.Hotkeys.CombinationalLogic.Or = "OU"
 Settings.Hotkeys.CombinationalLogic.Or.tooltip = "N’importe quel mapping peut être appuyé pour activer un raccourcis en particulier."
-Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer l'option de rembobinage dans le menu « Paramètres » → « Émulateur »"
+Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer la fonctionnalité de rembobinage dans le menu « Paramètres » → « Émulateur »"
 
 Settings.BuiltinHotkeys = "Raccourcis (intégrés)"
 
@@ -157,7 +157,7 @@ Settings.Paths.Patches          = "Patches"
 Settings.Paths.Saves            = "Sauvegardes"
 Settings.Paths.Cheats           = "Triches"
 Settings.Paths.States           = "États"
-Settings.Paths.Screenshots      = "Captures d'écran"
+Settings.Paths.Screenshots      = "Captures d’écran"
 Settings.Paths.LastRecentlyUsed = "dernièrement utilisé"
 Settings.Paths.SameAsLoadedGame = "même que le jeu chargé"
 
@@ -169,7 +169,7 @@ Settings.Emulator.General.autoSaveStateOnUnload = "Sauvegarder l’état d’ann
 Settings.Emulator.General.AutoResumeOnLoad = "Reprendre lors du chargement"
 Settings.Emulator.General.UseNativeFileDialogs = "Utiliser les boites de dialogues natives"
 Settings.Emulator.FastForward = "Avance rapide"
-Settings.Emulator.FastForward.FrameSkip = "Nombre d'images à éviter"
+Settings.Emulator.FastForward.FrameSkip = "Nombre d’images à éviter"
 
 Settings.Emulator.FastForward.FrameSkip.tooltip = "
 Définit le nombre d’images à éviter lors de l’avance rapide.
@@ -499,7 +499,7 @@ Son exécution *peut* constituer un risque pour la sécurité.
 Souhaitez-vous quand même lancer le jeu ?
 "
 
-Game.unverifiedGameWarning.alwaysQuestion.title = "Désactiver l'avertissement ?"
+Game.unverifiedGameWarning.alwaysQuestion.title = "Désactiver l’avertissement ?"
 Game.unverifiedGameWarning.alwaysQuestion = "Souhaitez-vous désactiver l’avertissement lors de l’exécution de jeux non vérifiés ?"
 
 Program.Paused   = "En pause"
@@ -545,7 +545,7 @@ Browser.CreateFolder.EnterNewFolderName = "Saisir un nom pour le nouveau-dossier
 Browser.Delete.DeleteSelected = "Supprimer la sélection"
 Browser.Delete.FailedToDelete = "Échec lors de la suppression |. Continuer à essayer de supprimer les éléments restants ?"
 Browser.Delete.confirm = "Êtes-vous sûr de vouloir supprimer de manière permanente |"
-Browser.Delete.confirm.item  = "l'élément selectionné"
+Browser.Delete.confirm.item  = "l’élément selectionné"
 Browser.Delete.confirm.items = "les éléments sélectionnés"
 Browser.SaveFile = "Enregistrer fichier"
 Browser.SaveFile.fileExists.title = "Écraser le fichier ?"
@@ -553,7 +553,7 @@ Browser.SaveFile.fileExists = "Le fichier existe déjà. Voulez-vous l’écrase
 
 StatusIcon.verifiedRom.tooltip = "
 Il s’agit d’une image de jeu propre connue.
-L'émulation de la carte du circuit imprimé (PCB) est précise à 100%.
+L’émulation de la carte du circuit imprimé (PCB) est précise à 100%.
 "
 
 StatusIcon.unverifiedRom.tooltip = "
