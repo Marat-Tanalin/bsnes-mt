@@ -1,0 +1,663 @@
+﻿Translation.author  = "KarLKoX-FR"
+Translation.version = "1.3.3"
+
+Common.Yes        = "Oui"
+Common.No         = "Non"
+Common.Cancel     = "Annuler"
+Common.Always     = "Toujours"
+Common.AreYouSure = "Êtes vous sûr ?"
+Common.Open       = "Ouvrir"
+Common.Load       = "Charger"
+Common.Save       = "Sauver"
+Common.Add        = "Ajouter"
+Common.Remove     = "Enlever"
+Common.Delete     = "Supprimer"
+Common.Rename     = "Renommer"
+Common.Reset      = "Réinitialiser"
+Common.Clear      = "Effacer"
+Common.None       = "Aucun"
+Common.Disabled   = "Désactivé"
+Common.Default    = "Défaut"
+Common.Name       = "Nom"
+Common.Date       = "Date"
+Common.Success    = "Succès"
+Common.Failure    = "Échec"
+Common.Error      = "Erreur"
+Common.Warning    = "Avertissement"
+Common.Auto       = "Auto"
+Common.Video      = "Vidéo"
+Common.Audio      = "Audio"
+Common.Fps        = "ips"
+Common.Hz         = "Hz"
+Common.number     = "#"
+
+Menu.File = "Fichier"
+Menu.File.OpenGame = "Ouvrir jeu"
+Menu.File.OpenRecentGame = "Ouvrir jeu récent"
+Menu.File.OpenRecentGame.ClearList = "Effacer liste"
+Menu.File.OpenRecentGame.ClearList.confirm.title = "Effacer la liste des jeux récents ?"
+Menu.File.OpenRecentGame.ClearList.confirm = "Êtes vous sûr de vouloir effacer la liste des jeux récents ?"
+Menu.File.OpenRecentGame.NoRecentGames = "Aucun jeux récents"
+Menu.File.CloseGame = "Fermer jeu"
+Menu.File.Exit = "Quitter"
+
+Menu.System = "Système"
+Menu.System.ControllerPort = "Port du contrôleur"
+Menu.System.ExpansionPort = "Port d’expansion"
+
+Menu.Settings.Size = "Taille"
+Menu.Settings.Size.ShrinkWindowToSize = "Adapter la fenêtre aux dimensions de l’image"
+Menu.Settings.Size.CenterWindow = "Centrer la fenêtre"
+Menu.Settings.Size.FullScreenMode = "Mode plein écran"
+Menu.Settings.Size.PseudoFullScreenMode = "Mode pseudo-plein écran"
+Menu.Settings.Output = "Sortie"
+Menu.Settings.Output.Center = "Centrer"
+Menu.Settings.Output.PixelPerfect = "Pixel-parfait"
+Menu.Settings.Output.Scale = "Échelle"
+Menu.Settings.Output.Stretch = "Étirer"
+Menu.Settings.Output.AspectRatioCorrection = "Corriger le ratio de l’aspect"
+Menu.Settings.Output.parInsteadOfAr = "8:7 PAR au lieu de l’AR 4:3"
+Menu.Settings.Output.ShowOverscanArea = "Afficher la zone de surbalayage (overscan)"
+Menu.Settings.Output.scalingInfo = "Info d’échelle dans la barre d’état"
+Menu.Settings.Output.HiresBlurEmulation = "Émulation du flou haute résolution"
+Menu.Settings.Filter = "Filtrer"
+Menu.Settings.Shader = "Shader"
+Menu.Settings.Shader.Blur = "Flou"
+Menu.Settings.MuteAudio = "Désactiver le son"
+Menu.Settings.ShowStatusBar = "Afficher la barre d’état"
+Menu.Settings.OpenSettingsFolder = "Ouvrir le dossier des paramètres"
+
+Menu.Help = "Aide"
+Menu.Help.About = "À propos de |"
+
+Settings = "Paramètres"
+
+Settings.Common.Assign = "Affecter"
+Settings.Common.AssignLowercase = "affecter"
+Settings.Common.Mapping = "Mapping"
+Settings.Common.MappingAssigned = "Mapping affecté."
+Settings.Common.PressKeyOrButtonForMapping = "Appuyez sur une touche ou un bouton pour mapper"
+Settings.Common.FrameLowercase = "image"
+
+Settings.Video.ColorAdjustment = "Ajuster couleur"
+Settings.Video.Luminance       = "Luminosité"
+Settings.Video.Saturation      = "Saturation"
+Settings.Video.Gamma           = "Gamma"
+Settings.Video.DimVideoWhenIdle = "Diminuez la luminosité de l’écran lorsque l’émulateur n’est pas utilisé"
+Settings.Video.DimVideoWhenIdle.tooltip = "Assombrir l’écran pour indiquer que l’émulateur n’est pas utilisé."
+Settings.Video.DrawSnowEffectWhenIdle = "Afficher l’effet de neige lorsque l’émulateur n’est pas utilisé"
+
+Settings.Audio.Effects = "Effets"
+Settings.Audio.Skew = "Décalage du taux"
+
+Settings.Audio.Skew.tooltip = "
+Règle la fréquence audio par la valeur de décalage du taux (en Hz).
+
+Il s’agit essentiellement d’un contrôle statique du taux d’échantillonage.
+Tout d’abord, il faut activation la synchronisation vidéo et audio.
+Ensuite, augmenter ou diminuer cette valeur afin de réduire les erreurs.
+Une direction pourra aider la vidéo mais nuira à l’audio.
+L’autre sens fera l’inverse.
+L’idée est de trouver le meilleur compromis.
+
+Vous devriez laisser cette valeur à 0 lorsque vous utilisez le contrôle 
+du taux dynamique.
+"
+
+Settings.Audio.Volume = "Volume"
+
+Settings.Audio.Volume.tooltip = "
+Règle le volume de la sortie audio.
+
+Si possible, il est déconseillé d’utiliser une valeur au delà de 100% !
+Si vous le faites, une distorsion par coupure audio peut se produire.
+"
+
+Settings.Audio.Balance = "Balance"
+
+Settings.Audio.Balance.tooltip = "
+Balance audio à gauche (valeurs les plus faibles) 
+ou à droite (valeurs les plus élevées).
+
+50% (centré) est la valeur recommandée.
+"
+
+Settings.Audio.MuteWhenUnfocused = "Désactiver le son si perte de focus"
+
+Settings.Input = "Entrée"
+Settings.Input.WhenFocusIsLost = "Lorsque le focus est perdu"
+Settings.Input.WhenFocusIsLost.PauseEmulation = "Suspendre l’émulation"
+Settings.Input.WhenFocusIsLost.BlockInput = "Bloquer l’entrée"
+Settings.Input.WhenFocusIsLost.AllowInput = "Autoriser l’entrée"
+Settings.Input.Port = "Port"
+Settings.Input.Device = "Périphérique"
+Settings.Input.TurboRate = "Vitesse du turbo"
+Settings.Input.TurboRate.tooltip = "Le nombre d’images à attendre entre l’activation des boutons turbo."
+Settings.Input.MouseLeft = "Clic gauche"
+Settings.Input.MouseMiddle = "Clic milieu"
+Settings.Input.MouseRight = "Clic droit"
+Settings.Input.MouseXAxis = "Axe-X de la souris"
+Settings.Input.MouseYAxis = "Axe-Y de la souris"
+
+Settings.Hotkeys = "Raccourcis"
+Settings.Hotkeys.CombinationalLogic = "Logique combinatoire"
+
+Settings.Hotkeys.CombinationalLogic.tooltip = "
+Détermine si tout ou partie des mappings doit être appuyé 
+pour activer les raccourcis.
+
+Utilisez la logique « ET » si vous souhaitez une combinaison 
+de touche comme Ctrl+F pour déclencher le raccourcis.
+
+Utilisez la logique « OU » si vous souhaitez que le clavier 
+et le joypad déclenchent tous les deux le même raccourcis.
+"
+
+Settings.Hotkeys.CombinationalLogic.And = "ET"
+Settings.Hotkeys.CombinationalLogic.And.tooltip = "Chaque mapping doit être appuyé pour activer un raccourcis en particulier."
+Settings.Hotkeys.CombinationalLogic.Or = "OU"
+Settings.Hotkeys.CombinationalLogic.Or.tooltip = "N’importe quel mapping peut être appuyé pour activer un raccourcis en particulier."
+Settings.Hotkeys.Rewind.enableFirst = "Veuillez d’abord activer la fonctionnalité de rembobinage dans le menu « Paramètres » → « Émulateur »"
+
+Settings.BuiltinHotkeys = "Raccourcis (intégrés)"
+
+Settings.Paths = "Chemins"
+Settings.Paths.Games            = "Jeux"
+Settings.Paths.Patches          = "Patches"
+Settings.Paths.Saves            = "Sauvegardes"
+Settings.Paths.Cheats           = "Triches"
+Settings.Paths.States           = "États"
+Settings.Paths.Screenshots      = "Captures d’écran"
+Settings.Paths.LastRecentlyUsed = "dernièrement utilisé"
+Settings.Paths.SameAsLoadedGame = "même que le jeu chargé"
+
+Settings.Emulator = "Émulateur"
+Settings.Emulator.General = "Général"
+Settings.Emulator.General.warnOnUnverifiedGames = "Avertir lors de l’ouverture de jeux qui n’ont pas été vérifiés"
+Settings.Emulator.General.autoSaveMemory = "Sauvegarder la mémoire périodiquement"
+Settings.Emulator.General.autoSaveStateOnUnload = "Sauvegarder l’état d’annulation lors du déchargement des jeux"
+Settings.Emulator.General.AutoResumeOnLoad = "Reprendre lors du chargement"
+Settings.Emulator.General.UseNativeFileDialogs = "Utiliser les boites de dialogues natives"
+Settings.Emulator.FastForward = "Avance rapide (Fast Forward)"
+Settings.Emulator.FastForward.FrameSkip = "Nombre d’images à éviter"
+
+Settings.Emulator.FastForward.FrameSkip.tooltip = "
+Définit le nombre d’images à éviter lors de l’avance rapide.
+Éviter le rendu d’images permet une vitesse d’avance rapide maximale plus élevée.
+"
+
+Settings.Emulator.FastForward.FrameSkip.Frames2to4 = "| images"
+Settings.Emulator.FastForward.FrameSkip.Frames     = "| images"
+Settings.Emulator.FastForward.Limiter = "Limiteur"
+Settings.Emulator.FastForward.Limiter.tooltip = "Définit la vitesse maximale lors de l’avance rapide."
+Settings.Emulator.FastForward.mute = "Désactiver le son lors de l’avance rapide"
+Settings.Emulator.Rewind = "Rembobinage"
+Settings.Emulator.Rewind.Frequency = "Fréquence"
+Settings.Emulator.Rewind.Frequency.everyFrames = "Chaque | images"
+Settings.Emulator.Rewind.Length = "Durée"
+Settings.Emulator.Rewind.Length.states = "| états"
+Settings.Emulator.Rewind.mute = "Désactiver le son lors du rembobinage"
+
+Settings.Enhancements = "Améliorations"
+Settings.Enhancements.FastMode = "Mode rapide"
+Settings.Enhancements.RunAhead = "Exécution à venir (Run-Ahead)"
+Settings.Enhancements.RunAhead.Frames = "images"
+Settings.Enhancements.RunAhead.One    = "Une"
+Settings.Enhancements.RunAhead.Two    = "Deux"
+Settings.Enhancements.RunAhead.Three  = "Trois"
+Settings.Enhancements.RunAhead.Four   = "Quatre"
+Settings.Enhancements.Overclocking = "Overclocking"
+Settings.Enhancements.Ppu.Video         = "vidéo"
+Settings.Enhancements.Ppu.Deinterlace   = "Désentrelacer"
+Settings.Enhancements.Ppu.NoSpriteLimit = "Pas de limite de sprite"
+Settings.Enhancements.hdMode7.FastPpuOnly           = "PPU rapide uniquement"
+Settings.Enhancements.hdMode7.Scale                 = "Échelle"
+Settings.Enhancements.hdMode7.PerspectiveCorrection = "Correction de la perspective"
+Settings.Enhancements.hdMode7.Supersampling         = "Suréchantillonnage"
+Settings.Enhancements.hdMode7.HdToSdMosaic          = "HD→SD mosaïque"
+Settings.Enhancements.Dsp.Audio = "audio"
+Settings.Enhancements.Dsp.CubicInterpolation = "Interpolation cubique"
+Settings.Enhancements.Coprocessors = "Coprocesseurs"
+Settings.Enhancements.Coprocessors.PreferHle = "Préférer l’émulation de haut niveau (HLE)"
+
+Settings.Enhancements.Coprocessors.PreferHle.tooltip = "
+Lorsque coché, une émulation HLE moins précise sera 
+toujours utilisée lorsque cela est possible.
+
+Lorsque décoché, le HLE sera utilisé uniquement si le micro-
+programme de l’émulation bas-niveau (LLE) est manquant.
+"
+
+Settings.Enhancements.GameEnhancements = "Améliorations de jeux"
+Settings.Enhancements.GameEnhancements.Hotfixes = "Correctifs"
+
+Settings.Enhancements.GameEnhancements.Hotfixes.tooltip = "
+Même les logiciels sous licence commerciale et les logiciels 
+officiels sont parfois livrés avec des bogues.
+
+Cette option permettra de corriger certains problèmes 
+qui se sont produits même sur du matériel réel.
+"
+
+Settings.Compatibility = "Compatibilité"
+Settings.Compatibility.entropy = "Entropie (randomisation)"
+
+Settings.Compatibility.entropy.None.tooltip = "
+Toutes les mémoires et tous les registres sont 
+initialisés à des valeurs constantes au démarrage.
+
+A utiliser pour la compatibilité avec les très anciens 
+jeux fait maison de la démoscene.
+"
+
+Settings.Compatibility.entropy.Low = "Bas"
+
+Settings.Compatibility.entropy.Low.tooltip = "
+Toute la mémoire est randomisée avec des motifs répétitifs, 
+tous les registres sont randomisés au démarrage.
+
+A utiliser pour obtenir la représentation la plus précise 
+possible d’une vraie SNES.
+"
+
+Settings.Compatibility.entropy.High = "Haut"
+
+Settings.Compatibility.entropy.High.tooltip = "
+Toutes les mémoires et tous les registres sont randomisés autant que possible.
+
+Utilisez cette méthode lors du développement de nouveaux logiciels SNES 
+pour garantir une compatibilité maximale avec le matériel réel.
+"
+
+Settings.Compatibility.cpu.Processor = "processeur"
+Settings.Compatibility.cpu.FastMath  = "Mathématique rapide"
+
+Settings.Compatibility.cpu.FastMath.tooltip = "
+La multiplication et la division du CPU prennent 
+du temps à être réalisés sur une vraie SNES.
+
+Les anciens émulateurs ne simulaient pas ces délais, 
+et fournissaient des résultats immédiatement.
+
+Certaines anciennes ROM bidouillées n’attendent pas 
+que les opérations mathématiques soient terminées 
+et ont besoin de ce bidouillage.
+"
+
+Settings.Compatibility.ppu.Video          = "vidéo"
+Settings.Compatibility.ppu.NoVramBlocking = "Pas de blocage de la mémoire vidéo (VRAM)"
+
+Settings.Compatibility.ppu.NoVramBlocking.tooltip = "
+Cette option permet d’émuler un bogue dans les anciennes versions 
+de ZSNES et Snes9x où le verrouillage de la VRAM n’était pas émulé.
+
+Quelques anciennes ROM bidouillées reposaient sur ce comportement, 
+et afficheront les graphiques de manière incorrecte s’ils ne sont pas activés.
+
+Non seulement ce comportement est extrêmement imprécis par rapport 
+au matériel réel, mais il nuit également à la vitesse du PPU rapide.
+
+N’activez pas cette option, sauf si vous avez besoin de jouer 
+à un jeu qui ne fonctionne pas correctement autrement.
+"
+
+Settings.Compatibility.dsp.Audio         = "audio"
+Settings.Compatibility.dsp.EchoShadowRam = "Echo RAM ombragée"
+
+Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
+Cette option permet d’émuler un bogue dans ZSNES où l’écho 
+de la RAM était traitée comme distincte de la RAM de l’APU.
+
+De nombreuses anciennes ROM bidouillées pour « Super Mario World » 
+reposaient sur ce comportement, et planteront sans l’activer.
+
+Elle est cependant extrêmement imprécise par rapport au matériel réel 
+et ne devrait pas être activée à moins que cela ne soit nécessaire.
+"
+
+Settings.Drivers = "Pilotes"
+Settings.Drivers.Driver        = "Pilote"
+Settings.Drivers.Change        = "Changer"
+Settings.Drivers.Reload        = "Recharger"
+Settings.Drivers.ExclusiveMode = "Mode exclusif"
+Settings.Drivers.Synchronize   = "Synchroniser"
+Settings.Drivers.ActiveDriver  = "Pilote actif"
+Settings.Drivers.changeConfirm.title = "Changer de pilote ?"
+
+Settings.Drivers.changeConfirm = "
+Attention : les pilotes incompatibles peuvent provoquer un plantage de l’application.
+Il est fortement recommandé de décharger d’abord votre jeu pour être sûr.
+Souhaitez-vous quand même procéder au changement de pilote malgré tout ?
+"
+
+Settings.noteGameRestart = "Note : certains paramètres ne prendront effet qu’au rechargement du jeu."
+
+Settings.Drivers.Video.failedToInitialize = "Échec de l’initialisation [|] du pilote vidéo"
+Settings.Drivers.Video.FullScreenMonitor = "Moniteur plein écran"
+Settings.Drivers.Video.FullScreenMonitor.tooltip = "Détermine vers quel moniteur le signal vidéo est envoyé en mode plein écran."
+Settings.Drivers.Video.Format = "Format"
+
+Settings.Drivers.Video.ExclusiveMode.tooltip = "
+Provoque le mode plein écran à prendre le dessus sur tous les moniteurs.
+Cela permet à la synchronisation adaptative de mieux fonctionner et de réduire la latence d’entrée.
+Toutefois, les utilisateurs de moniteurs multiples doivent désactiver cette option.
+Note : Le mode exclusif Direct3D n’honore pas non plus le moniteur demandé.
+"
+
+Settings.Drivers.Video.Synchronize.tooltip = "
+Attend que la carte vidéo soit prête avant d’afficher les images.
+Élimine les images perdues ou dupliquées, mais peut déformer le son.
+
+Avec cette option, il est recommandé de désactiver la synchronisation 
+audio, et d’activer le contrôle dynamique du taux. Ou alors, ajuster
+l’option de compensation audio pour réduire les sous-débits 
+et les débordements de la mémoire tampon.
+"
+
+Settings.Drivers.Video.GpuSync = "Synchronisation du GPU"
+
+Settings.Drivers.Video.GpuSync.tooltip = "
+(Pilote OpenGL uniquement)
+
+Fait attendre le GPU jusqu’à ce que les images soient entièrement affichées.
+Dans le meilleur des cas, cela peut supprimer jusqu’à une image de retard d’entrée.
+Cependant, cela entraîne une perte de performance d’environ 20%.
+
+Vous devriez désactiver cette option, sauf si vous l’estimez nécessaire.
+"
+
+Settings.Drivers.Audio.failedToInitialize = "Échec de l’initialisation [|] du pilote audio"
+Settings.Drivers.Audio.OutputDevice       = "Périphérique de sortie"
+Settings.Drivers.Audio.SampleRate         = "Taux d’échantillonage"
+Settings.Drivers.Audio.Latency            = "Latence"
+
+Settings.Drivers.Audio.ExclusiveMode.tooltip = "
+(Pilote WASAPI uniquement)
+
+Acquiert le contrôle exclusif du périphérique audio.
+Cela peut réduire considérablement la latence audio.
+Cependant, cela bloquera les sons provenant de toutes les autres applications.
+"
+
+Settings.Drivers.Audio.Synchronize.tooltip = "
+Attend que la carte audio soit prête avant de produire des échantillons.
+Élimine la distorsion audio, mais peut déformer la vidéo.
+
+Avec cette option, il est recommandé de désactiver la synchronisation vidéo.
+Pour de meilleurs résultats, utilisez cette option avec un moniteur à synchronisation adaptative.
+"
+
+Settings.Drivers.Audio.DynamicRate = "Taux dynamique"
+
+Settings.Drivers.Audio.DynamicRate.tooltip = "
+(Pilotes OSS, XAudio2, waveOut uniquement)
+
+Ajuste dynamiquement la fréquence audio par de minuscules quantités.
+Utilisez-le avec la synchronisation vidéo activée, et la synchronisation audio désactivée.
+
+Cela permet de produire une vidéo parfaitement fluide et un son propre, mais 
+seulement si le taux de rafraîchissement de votre moniteur est correctement réglé : 
+60 Hz pour les jeux NTSC, et 50 Hz pour les jeux PAL.
+"
+
+Settings.Drivers.Input.failedToInitialize = "Échec de l’initialisation [|] du pilote d’entrée"
+
+Settings.Drivers.Input.Reload.tooltip = "
+La recharge d’un pilote peut être utilisée pour détecter 
+les appareils branchés à chaud.
+
+Cela est utile pour les API qui ne prennent pas en charge 
+l’auto-hotplug, tels que DirectInput et SDL.
+"
+
+Settings.Drivers.syncModePresets = "Préréglages du mode de synchronisation"
+
+Settings.Drivers.syncModePresets.requirements = "
+Synchronisation adaptative : nécessite un moniteur G-Sync ou FreeSync.
+Contrôle dynamique du taux : nécessite que le moniteur et les taux de rafraîchissement SNES correspondent.
+"
+
+Settings.Drivers.syncModePresets.AdaptiveSync = "Synchronisation adaptative"
+
+Settings.Drivers.syncModePresets.AdaptiveSync.failure = "
+Désolé, la configuration actuelle du pilote n’est pas compatible avec le mode de synchronisation adaptative.
+La synchronisation adaptative nécessite la prise en charge de la synchronisation audio.
+"
+
+Settings.Drivers.syncModePresets.AdaptiveSync.success = "
+La synchronisation adaptative fonctionne mieux en mode plein écran exclusif.
+Utilisez le réglage de latence audio le plus faible que vôtre système peut gérer.
+Un moniteur G-Sync ou FreeSync est nécessaire.
+La synchronisation adaptative doit être activée dans le panneau de configuration de vôtre pilote.
+"
+
+Settings.Drivers.syncModePresets.DynamicRateControl = "Contrôle dynamique du taux"
+
+Settings.Drivers.syncModePresets.DynamicRateControl.failure = "
+Désolé, la configuration actuelle du pilote n’est pas compatible avec le mode de contrôle dynamique du taux.
+Le contrôle dynamique du taux nécessite la synchronisation vidéo et la prise en charge du taux audio-dynamique.
+"
+
+Settings.Drivers.syncModePresets.DynamicRateControl.success = "
+Le contrôle dynamique du taux exige que votre moniteur fonctionne à ces taux de rafraîchissement :
+60 Hz pour les jeux NTSC, 50 Hz pour les jeux PAL.
+Utilisez le réglage de latence audio le plus bas que vôtre système peut gérer.
+"
+
+Settings.BuiltinHotkeys.CheckAll   = "Cocher tout"
+Settings.BuiltinHotkeys.UncheckAll = "Décocher tout"
+
+Tools = "Outils"
+
+Tools.SaveState = "Sauvegarder état"
+Tools.SaveState.Slot = "Emplacement"
+Tools.SaveState.Slot.Empty = "vide"
+
+Tools.LoadState = "Charger état"
+Tools.LoadState.SelectedStateSlot = "Emplacement d’état sélectionné"
+Tools.LoadState.UndoLastSave      = "Annuler la précédente sauvegarde"
+Tools.LoadState.RedoLastUndo      = "Refaire la dernière annulation"
+Tools.LoadState.RemoveAllStates   = "Enlever tous les états"
+Tools.LoadState.RemoveAllStates.confirm.title = "Enlever les états rapides ?"
+Tools.LoadState.RemoveAllStates.confirm = "Êtes vous sûr de vouloir enlever de manière permanente tous les états rapides pour ce jeu ?"
+
+Tools.Speed = "Vitesse"
+Tools.Speed.Slowest = "Le plus lent"
+Tools.Speed.Slow    = "Lent"
+Tools.Speed.Normal  = "Normal"
+Tools.Speed.Fast    = "Rapide"
+Tools.Speed.Fastest = "Le plus rapide"
+
+Tools.RunMode = "Mode d’exécution"
+Tools.RunMode.Normal         = "Normal"
+Tools.RunMode.PauseEmulation = "Pause émulation"
+Tools.RunMode.FrameAdvance   = "Image par image (Frame Advance)"
+
+Tools.Movie = "Film"
+Tools.Movie.Play           = "Jouer"
+Tools.Movie.Record         = "Enregistrer"
+Tools.Movie.ResetAndRecord = "Réinitialiser et enregistrer"
+Tools.Movie.Stop           = "Arrêter"
+
+Tools.TakeScreenshot = "Prendre une capture d’écran"
+
+Tools.CheatFinder = "Recherche de triche"
+Tools.CheatFinder.Address = "Adresse"
+Tools.CheatFinder.Value   = "Valeur"
+Tools.CheatFinder.Scan    = "Analyser"
+Tools.CheatFinder.All     = "Tout"
+
+Tools.CheatEditor = "Éditeur de triches"
+Tools.CheatEditor.remove.confirm.title = "Enlever triche(s) ?"
+Tools.CheatEditor.remove.confirm = "Êtes vous sûr de vouloir enlever de manière permanente la ou les triche(s) sélectionnée(s) ?"
+Tools.CheatEditor.Codes        = "Code(s)"
+Tools.CheatEditor.Enable       = "Activer"
+Tools.CheatEditor.SelectAll    = "Sélectionner tout"
+Tools.CheatEditor.UnselectAll  = "Désélectionner tout"
+Tools.CheatEditor.AddCheats    = "Ajouter triches"
+Tools.CheatEditor.AddCheat     = "Ajouter triche"
+Tools.CheatEditor.EditCheat    = "Éditer triche"
+Tools.CheatEditor.Edit         = "Éditer"
+Tools.CheatEditor.FindCheats   = "Rechercher triches"
+Tools.CheatEditor.noCheats     = "Désolé, aucunes triches n’a été trouvé pour ce jeu."
+Tools.CheatEditor.EnableCheats = "Activer triches"
+
+Tools.CheatEditor.EnableCheats.tooltip = "
+Activation des codes de triche.
+Lorsque décoché, aucun code de triche ne sera actif.
+
+À utiliser pour contourner les zones de jeux qui ont 
+des problèmes avec les triches.
+"
+
+Tools.CheatEditor.EnableCheats.disabled = "Tous les codes de triche sont désactivés"
+Tools.CheatEditor.EnableCheats.enabled  = "Les codes de triche actifs sont activés"
+Tools.CheatEditor.invalidFormat = "Code(s) invalide(s), veuillez n’utiliser des codes que dans le format suivant"
+
+Tools.StateManager = "Gestionnaire d’état"
+Tools.StateManager.Category = "Catégorie"
+Tools.StateManager.Category.ManagedStates = "États gérés"
+Tools.StateManager.Category.QuickStates   = "États rapides"
+Tools.StateManager.QuickStates.Redo = "Refaire"
+Tools.StateManager.QuickStates.Undo = "Annuler"
+Tools.StateManager.Preview     = "Prévisualiser"
+Tools.StateManager.AddState    = "Ajouter état"
+Tools.StateManager.RenameState = "Renommer état"
+Tools.StateManager.remove.confirm.title = "Enlever état(s) ?"
+Tools.StateManager.remove.confirm = "Êtes vous sûr de vouloir enlever de manière permanente la ou les état(s) sélectionné(s) ?"
+
+Tools.ManifestViewer = "Visionneuse de manifeste"
+Tools.ManifestViewer.Manifest = "Manifeste"
+
+Game.VerifiedGameOpened   = "Jeu vérifié ouvert"
+Game.GameOpened           = "Jeu ouvert"
+Game.GameClosed           = "Jeu fermé"
+Game.GameReset            = "Jeu réinitialisé"
+Game.AndPatchApplied      = " et patch appliqué"
+Game.GameOpeningCancelled = "Ouverture du jeu annulée"
+Game.unverifiedGameWarning.title = "Image de jeu non vérifiée"
+
+Game.unverifiedGameWarning = "
+Attention : cette image de jeu n’est pas vérifiée.
+Son exécution *peut* constituer un risque pour la sécurité.
+
+Souhaitez-vous quand même lancer le jeu ?
+"
+
+Game.unverifiedGameWarning.alwaysQuestion.title = "Désactiver l’avertissement ?"
+Game.unverifiedGameWarning.alwaysQuestion = "Souhaitez-vous désactiver l’avertissement lors de l’exécution de jeux non vérifiés ?"
+
+Program.Paused   = "En pause"
+Program.Unloaded = "Déchargé"
+Program.CapturedScreenshot = "Capture d’écran effectuée"
+Program.Open.MissingRequiredData = "Données requises manquantes"
+
+Program.Load.LoadGameBoyRom         = "Charger ROM Game Boy"
+Program.Load.GameBoyRoms            = "ROMs Game Boy"
+Program.Load.LoadBsMemoryRom        = "Charger ROM BS Memory"
+Program.Load.BsMemoryRoms           = "ROMs BS Memory"
+Program.Load.LoadSufamiTurboRomSlot = "Charger ROM Sufami Turbo – Slot"
+Program.Load.SufamiTurboRoms        = "ROMs Sufami Turbo"
+
+About.Version   = "Version"
+About.Copyright = "Copyright"
+About.License   = "Licence"
+About.Website   = "Site web"
+About.SameBoy.description = "Émulateur de Super Game Boy"
+About.Bsnes.description   = "Émulateur de Super Nintendo"
+About.Bsnes.copyright     = "Équipe bsnes"
+About.Bsnes.license       = "GPLv3 ou ultérieur"
+
+Browser.OpenSnesRom  = "Ouvrir ROM SNES"
+Browser.SnesRoms     = "ROMs SNES"
+Browser.AllFiles     = "Tous les fichiers"
+Browser.Select       = "Sélectionner"
+Browser.SelectFolder = "Sélectionner dossier"
+Browser.ChooseFolder = "Choisir un dossier"
+Browser.ShowHidden   = "Montrer caché"
+Browser.OpenFile     = "Ouvrir fichier"
+Browser.OpenFiles    = "Ouvrir fichiers"
+Browser.OpenFolder   = "Ouvrir dossier"
+Browser.OpenObject   = "Ouvrir objet"
+Browser.Rename.EnterNewFolderName   = "Saisir le nom du nouveau dossier"
+Browser.Rename.EnterNewFileName     = "Saisir le nom du nouveau fichier"
+Browser.Rename.FailedToRenameFolder = "Échec lors du renommage du dossier."
+Browser.Rename.FailedToRenameFile   = "Échec lors du renommage du fichier."
+Browser.Create = "Créer"
+Browser.Create.EnterName = "Saisir un nom"
+Browser.CreateFolder = "Créer dossier"
+Browser.CreateFolder.EnterNewFolderName = "Saisir un nom pour le nouveau-dossier"
+Browser.Delete.DeleteSelected = "Supprimer la sélection"
+Browser.Delete.FailedToDelete = "Échec lors de la suppression |. Continuer à essayer de supprimer les éléments restants ?"
+Browser.Delete.confirm = "Êtes-vous sûr de vouloir supprimer de manière permanente |"
+Browser.Delete.confirm.item  = "l’élément selectionné"
+Browser.Delete.confirm.items = "les éléments sélectionnés"
+Browser.SaveFile = "Enregistrer fichier"
+Browser.SaveFile.fileExists.title = "Écraser le fichier ?"
+Browser.SaveFile.fileExists = "Le fichier existe déjà. Voulez-vous l’écraser ?"
+
+StatusIcon.verifiedRom.tooltip = "
+Il s’agit d’une image de jeu propre connue.
+L’émulation de la carte du circuit imprimé (PCB) est précise à 100%.
+"
+
+StatusIcon.unverifiedRom.tooltip = "
+Il ne s’agit pas d’une image de jeu vérifiée.
+L’émulation du PCB repose sur l’heuristique.
+"
+
+ResetDrivers.message.title = "Réinitialiser les pilotes"
+
+ResetDrivers.message = "
+Les pilotes de matériel ont été réinitialisés selon l’option de ligne de commande `--resetdrivers`.
+
+Veuillez reconfigurer les pilotes dans la fenêtre « Paramètres » → « Pilotes » qui va maintenant s’ouvrir.
+"
+
+Rewind.HistoryExhausted = "Historique du rembobinage saturé"
+
+States.incompatibleFormat  = "[|] est dans un format incompatible"
+States.Loaded              = "Chargé"
+States.NotFound            = "[|] introuvable"
+States.FailedToSave        = "Échec de la sauvegarde [|]"
+States.UnableToWriteToDisk = "Impossible d’écrire [|] sur le disque"
+States.Saved               = "Sauvegardé [|]"
+
+Patch.ipsWarning = "
+(Vous voyez cette invite parce que l’IPS est un format de fichier patch terrible, et personne ne peut se mettre d’accord sur le fait que les ROMs SNES doivent contenir une en-tête ou non.
+Veuillez envisager de demander à l’auteur du patch d’utiliser plutôt des patchs BPS).
+
+Est-ce que ce patch IPS s’attend à être appliqué à une ROM avec une en-tête ?
+Si vous n’êtes pas sûr, essayez « Non », et si cela ne fonctionne pas, essayez à nouveau avec « Oui ».
+"
+
+Patch.ensureHeaderless = "Veuillez vous assurer que vous utilisez la bonne ROM (sans en-tête) pour ce patch."
+
+Movies.PlayMovie          = "Jouer film"
+Movies.Movies             = "Films"
+Movies.playbackStarted    = "Début de la lecture du film"
+Movies.playbackStopped    = "Arrêt de la lecture du film"
+Movies.formatNotSupported = "Le format du film n’est pas pris en charge"
+Movies.recordingStarted   = "Début de l’enregistrement du film"
+Movies.SaveMovie          = "Sauvegarder le film"
+Movies.MovieRecorded      = "Film enregistré"
+Movies.MovieNotRecorded   = "Film non enregistré"
+Movies.cantRecord         = "Le film ne peut être enregistré"
+
+Devices.Gamepad = "Gamepad"
+Devices.Mouse   = "Souris"
+
+Hotkeys.ToggleMouseCapture  = "Basculer la capture de souris"
+Hotkeys.ToggleCheatCodes    = "Basculer les codes de triche"
+Hotkeys.Rewind              = "Rembobinage"
+Hotkeys.LoadUndoState       = "Charger annulation d’état"
+Hotkeys.LoadRedoState       = "Charger refaire état"
+Hotkeys.DecrementStateSlot  = "Décrémenter l’emplacement d’état"
+Hotkeys.IncrementStateSlot  = "Incrémenter l’emplacement d’état"
+Hotkeys.FastForward         = "Avance rapide (Fast Forward)"
+Hotkeys.FrameAdvance        = "Image suivante (Frame Advance)"
+Hotkeys.DecreaseHDMode7     = "Diminuer le Mode 7 HD"
+Hotkeys.IncreaseHDMode7     = "Augmenter le mode 7 HD"
+Hotkeys.ToggleSupersampling = "Basculer le superéchantillonnage"
+Hotkeys.ResetEmulation      = "Réinitialiser l’émulation"
+Hotkeys.QuitEmulator        = "Quitter l’émulateur"
