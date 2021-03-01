@@ -1,4 +1,7 @@
-﻿Common.Yes        = "Oui"
+﻿Translation.author  = "KarLKoX-FR"
+Translation.version = "1.3.3"
+
+Common.Yes        = "Oui"
 Common.No         = "Non"
 Common.Cancel     = "Annuler"
 Common.Always     = "Toujours"
