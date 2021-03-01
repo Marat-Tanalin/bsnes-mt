@@ -100,7 +100,8 @@ Une direction pourra aider la vidéo mais nuira à l’audio.
 L’autre sens fera l’inverse.
 L’idée est de trouver le meilleur compromis.
 
-Vous devriez laisser cette valeur à 0 lorsque vous utilisez le contrôle du taux dynamique.
+Vous devriez laisser cette valeur à 0 lorsque vous utilisez le contrôle 
+du taux dynamique.
 "
 
 Settings.Audio.Volume = "Volume"
@@ -115,7 +116,8 @@ Si vous le faites, une distorsion par coupure audio peut se produire.
 Settings.Audio.Balance = "Balance"
 
 Settings.Audio.Balance.tooltip = "
-Balance audio à gauche (valeurs les plus faibles) ou à droite (valeurs les plus élevées).
+Balance audio à gauche (valeurs les plus faibles) 
+ou à droite (valeurs les plus élevées).
 
 50% (centré) est la valeur recommandée.
 "
@@ -141,9 +143,14 @@ Settings.Hotkeys = "Raccourcis"
 Settings.Hotkeys.CombinationalLogic = "Logique combinatoire"
 
 Settings.Hotkeys.CombinationalLogic.tooltip = "
-Détermine si tout ou partie des mappings doit être appuyé pour activer les raccourcis.
-Utilisez la logique « ET » si vous souhaitez une combinaison de touche comme Ctrl+F pour déclencher le raccourcis.
-Utilisez la logique « OU » si vous souhaitez que le clavier et le joypad déclenchent tous les deux le même raccourcis.
+Détermine si tout ou partie des mappings doit être appuyé 
+pour activer les raccourcis.
+
+Utilisez la logique « ET » si vous souhaitez une combinaison 
+de touche comme Ctrl+F pour déclencher le raccourcis.
+
+Utilisez la logique « OU » si vous souhaitez que le clavier 
+et le joypad déclenchent tous les deux le même raccourcis.
 "
 
 Settings.Hotkeys.CombinationalLogic.And = "ET"
@@ -214,67 +221,98 @@ Settings.Enhancements.Coprocessors = "Coprocesseurs"
 Settings.Enhancements.Coprocessors.PreferHle = "Préférer l’émulation de haut niveau (HLE)"
 
 Settings.Enhancements.Coprocessors.PreferHle.tooltip = "
-Lorsque coché, une émulation HLE moins précise sera toujours utilisée lorsque cela est possible.
-Lorsque décoché, le HLE sera utilisé uniquement si le microprogramme de l’émulation bas-niveau (LLE) est manquant.
+Lorsque coché, une émulation HLE moins précise sera 
+toujours utilisée lorsque cela est possible.
+
+Lorsque décoché, le HLE sera utilisé uniquement si le micro-
+programme de l’émulation bas-niveau (LLE) est manquant.
 "
 
 Settings.Enhancements.GameEnhancements = "Améliorations de jeux"
 Settings.Enhancements.GameEnhancements.Hotfixes = "Correctifs"
 
 Settings.Enhancements.GameEnhancements.Hotfixes.tooltip = "
-Même les logiciels sous licence commerciale et les logiciels officiels sont parfois livrés avec des bogues.
-Cette option permettra de corriger certains problèmes qui se sont produits même sur du matériel réel.
+Même les logiciels sous licence commerciale et les logiciels 
+officiels sont parfois livrés avec des bogues.
+
+Cette option permettra de corriger certains problèmes 
+qui se sont produits même sur du matériel réel.
 "
 
 Settings.Compatibility = "Compatibilité"
 Settings.Compatibility.entropy = "Entropie (randomisation)"
 
 Settings.Compatibility.entropy.None.tooltip = "
-Toutes les mémoires et tous les registres sont initialisés à des valeurs constantes au démarrage.
-A utiliser pour la compatibilité avec les très anciens jeux fait maison de la démoscene.
+Toutes les mémoires et tous les registres sont 
+initialisés à des valeurs constantes au démarrage.
+
+A utiliser pour la compatibilité avec les très anciens 
+jeux fait maison de la démoscene.
 "
 
 Settings.Compatibility.entropy.Low = "Bas"
 
 Settings.Compatibility.entropy.Low.tooltip = "
-Toute la mémoire est randomisée avec des motifs répétitifs, tous les registres sont randomisés au démarrage.
-A utiliser pour obtenir la représentation la plus précise possible d’une vraie SNES.
+Toute la mémoire est randomisée avec des motifs répétitifs, 
+tous les registres sont randomisés au démarrage.
+
+A utiliser pour obtenir la représentation la plus précise 
+possible d’une vraie SNES.
 "
 
 Settings.Compatibility.entropy.High = "Haut"
 
 Settings.Compatibility.entropy.High.tooltip = "
 Toutes les mémoires et tous les registres sont randomisés autant que possible.
-Utilisez cette méthode lors du développement de nouveaux logiciels SNES pour garantir 
-une compatibilité maximale avec le matériel réel.
+
+Utilisez cette méthode lors du développement de nouveaux logiciels SNES 
+pour garantir une compatibilité maximale avec le matériel réel.
 "
 
 Settings.Compatibility.cpu.Processor = "processeur"
 Settings.Compatibility.cpu.FastMath  = "Mathématique rapide"
 
 Settings.Compatibility.cpu.FastMath.tooltip = "
-La multiplication et la division du CPU prennent du temps à être réalisés sur une vraie SNES.
-Les anciens émulateurs ne simulaient pas ces délais, et fournissaient des résultats immédiatement.
-Certaines anciennes ROM bidouillées n’attendent pas que les opérations mathématiques soient terminées et ont besoin de ce bidouillage.
+La multiplication et la division du CPU prennent 
+du temps à être réalisés sur une vraie SNES.
+
+Les anciens émulateurs ne simulaient pas ces délais, 
+et fournissaient des résultats immédiatement.
+
+Certaines anciennes ROM bidouillées n’attendent pas 
+que les opérations mathématiques soient terminées 
+et ont besoin de ce bidouillage.
 "
 
 Settings.Compatibility.ppu.Video          = "vidéo"
 Settings.Compatibility.ppu.NoVramBlocking = "Pas de blocage de la mémoire vidéo (VRAM)"
 
 Settings.Compatibility.ppu.NoVramBlocking.tooltip = "
-Cette option permet d’émuler un bogue dans les anciennes versions de ZSNES et Snes9x où le verrouillage de la VRAM n’était pas émulé.
-Quelques anciennes ROM bidouillées reposaient sur ce comportement, et afficheront les graphiques de manière incorrecte s’ils ne sont pas activés.
-Non seulement ce comportement est extrêmement imprécis par rapport au matériel réel, mais il nuit également à la vitesse du PPU rapide.
-N’activez pas cette option, sauf si vous avez besoin de jouer à un jeu qui ne fonctionne pas correctement autrement.
+Cette option permet d’émuler un bogue dans les anciennes versions 
+de ZSNES et Snes9x où le verrouillage de la VRAM n’était pas émulé.
+
+Quelques anciennes ROM bidouillées reposaient sur ce comportement, 
+et afficheront les graphiques de manière incorrecte s’ils ne sont pas activés.
+
+Non seulement ce comportement est extrêmement imprécis par rapport 
+au matériel réel, mais il nuit également à la vitesse du PPU rapide.
+
+N’activez pas cette option, sauf si vous avez besoin de jouer 
+à un jeu qui ne fonctionne pas correctement autrement.
 "
 
 Settings.Compatibility.dsp.Audio         = "audio"
 Settings.Compatibility.dsp.EchoShadowRam = "Echo RAM ombragée"
 
 Settings.Compatibility.dsp.EchoShadowRam.tooltip = "
-Cette option permet d’émuler un bogue dans ZSNES où l’écho de la RAM était traitée comme distincte de la RAM de l’APU.
-De nombreuses anciennes ROM bidouillées pour « Super Mario World » reposaient sur ce comportement, et planteront sans l’activer.
-Elle est cependant extrêmement imprécise par rapport au matériel réel et ne devrait pas être activée à moins que cela ne soit nécessaire.
+Cette option permet d’émuler un bogue dans ZSNES où l’écho 
+de la RAM était traitée comme distincte de la RAM de l’APU.
+
+De nombreuses anciennes ROM bidouillées pour « Super Mario World » 
+reposaient sur ce comportement, et planteront sans l’activer.
+
+Elle est cependant extrêmement imprécise par rapport au matériel réel 
+et ne devrait pas être activée à moins que cela ne soit nécessaire.
 "
 
 Settings.Drivers = "Pilotes"
@@ -310,9 +348,10 @@ Settings.Drivers.Video.Synchronize.tooltip = "
 Attend que la carte vidéo soit prête avant d’afficher les images.
 Élimine les images perdues ou dupliquées, mais peut déformer le son.
 
-Avec cette option, il est recommandé de désactiver la synchronisation audio,
-et d’activer le contrôle dynamique du taux. Ou alors, ajuster
-l’option de compensation audio pour réduire les sous-débits et les débordements de la mémoire tampon.
+Avec cette option, il est recommandé de désactiver la synchronisation 
+audio, et d’activer le contrôle dynamique du taux. Ou alors, ajuster
+l’option de compensation audio pour réduire les sous-débits 
+et les débordements de la mémoire tampon.
 "
 
 Settings.Drivers.Video.GpuSync = "Synchronisation du GPU"
@@ -356,17 +395,19 @@ Settings.Drivers.Audio.DynamicRate.tooltip = "
 Ajuste dynamiquement la fréquence audio par de minuscules quantités.
 Utilisez-le avec la synchronisation vidéo activée, et la synchronisation audio désactivée.
 
-Cela permet de produire une vidéo parfaitement fluide et un son propre,
-mais seulement si le taux de rafraîchissement de votre moniteur est correctement réglé : 
+Cela permet de produire une vidéo parfaitement fluide et un son propre, mais 
+seulement si le taux de rafraîchissement de votre moniteur est correctement réglé : 
 60 Hz pour les jeux NTSC, et 50 Hz pour les jeux PAL.
 "
 
 Settings.Drivers.Input.failedToInitialize = "Échec de l’initialisation [|] du pilote d’entrée"
 
 Settings.Drivers.Input.Reload.tooltip = "
-La recharge d’un pilote peut être utilisée pour détecter les appareils branchés à chaud.
-Cela est utile pour les API qui ne prennent pas en charge l’auto-hotplug,
-tels que DirectInput et SDL.
+La recharge d’un pilote peut être utilisée pour détecter 
+les appareils branchés à chaud.
+
+Cela est utile pour les API qui ne prennent pas en charge 
+l’auto-hotplug, tels que DirectInput et SDL.
 "
 
 Settings.Drivers.syncModePresets = "Préréglages du mode de synchronisation"
@@ -465,7 +506,8 @@ Tools.CheatEditor.EnableCheats.tooltip = "
 Activation des codes de triche.
 Lorsque décoché, aucun code de triche ne sera actif.
 
-À utiliser pour contourner les zones de jeux qui ont des problèmes avec les triches.
+À utiliser pour contourner les zones de jeux qui ont 
+des problèmes avec les triches.
 "
 
 Tools.CheatEditor.EnableCheats.disabled = "Tous les codes de triche sont désactivés"
