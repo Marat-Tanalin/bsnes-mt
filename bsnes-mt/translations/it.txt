@@ -1,5 +1,6 @@
-﻿Translation.author  = "Vecna"
-Translation.version = "1.3.3"
+﻿Translation.language = "Italian"
+Translation.author   = "Vecna"
+Translation.version  = "1.3.3"
 
 Common.Yes        = "Sì"
 Common.No         = "No"

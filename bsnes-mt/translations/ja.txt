@@ -1,5 +1,6 @@
-﻿Translation.author  = "byuu"
-Translation.version = "1.0"
+﻿Translation.language = "Japanese"
+Translation.author   = "byuu"
+Translation.version  = "1.0"
 
 Common.Yes    = "はい"
 Common.No     = "いいえ"

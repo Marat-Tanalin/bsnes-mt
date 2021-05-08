@@ -1,5 +1,6 @@
-﻿Translation.author  = "theheroGAC"
-Translation.version = "1.2"
+﻿Translation.language = "Italian"
+Translation.author   = "theheroGAC"
+Translation.version  = "1.2"
 
 Common.Yes        = "Si"
 Common.No         = "No"

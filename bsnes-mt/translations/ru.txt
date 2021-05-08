@@ -1,5 +1,6 @@
-﻿Translation.author  = "Marat Tanalin"
-Translation.version = "1.3"
+﻿Translation.language = "Russian"
+Translation.author   = "Marat Tanalin"
+Translation.version  = "1.3"
 
 Common.Yes        = "Да"
 Common.No         = "Нет"
