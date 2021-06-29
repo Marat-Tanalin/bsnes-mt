@@ -37,7 +37,7 @@ The “|” character in strings is a placeholder meant to be replaced with a nu
 [Install MinGW](https://github.com/orlp/dev-on-windows/wiki/Installing-GCC--&-MSYS2), then execute the following command inside the folder with bsnes-mt source code:
 
 ```
-mingw32-make -C bsnes target=bsnes
+mingw32-make -C bsnes
 ```
 
 Like original bsnes, bsnes-mt cannot be built with Visual Studio for now.
