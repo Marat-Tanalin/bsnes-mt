@@ -10,8 +10,8 @@ CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "app.manifest"
 
 // Executable version information.
 VS_VERSION_INFO    VERSIONINFO
-FILEVERSION        1,3,3,0
-PRODUCTVERSION     1,3,3,0
+FILEVERSION        1,3,4,0
+PRODUCTVERSION     1,3,4,0
 FILEFLAGSMASK      VS_FFI_FILEFLAGSMASK
 #ifdef _DEBUG
   FILEFLAGS        VS_FF_DEBUG | VS_FF_PRERELEASE
@@ -28,10 +28,10 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "Marat Tanalin"
       VALUE "FileDescription", "bsnes-mt by Marat Tanalin"
-      VALUE "FileVersion", "1.3.3.0"
+      VALUE "FileVersion", "1.3.4.0"
       VALUE "LegalCopyright", "Marat Tanalin | http://tanalin.com"
       VALUE "ProductName", "bsnes-mt by Marat Tanalin"
-      VALUE "ProductVersion", "1.3.3.0"
+      VALUE "ProductVersion", "1.3.4.0"
     END
   END
   BLOCK "VarFileInfo"

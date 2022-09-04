@@ -14,8 +14,11 @@ static const uint8_t quickStatesNumber = 25;
 static const uint8_t recentGamesNumber = 25;
 
 static const string title       = "bsnes-mt";
-static const string version     = "1.3.3";
-static const string copyYear    = u8"© 2020";
+static const string version     = "1.3.4";
+static const string copyYearA   = u8"© 2020";
+static const string copyYearB   = "2022";
+static const string copyDashEn  = u8"–";
+static const string copyDashRu  = u8"—";
 static const string authorEn    = "Marat Tanalin";
 static const string authorRu    = u8"Марат Таналин";
 static const string urlRoot     = "http://tanalin.com";
@@ -46,7 +49,7 @@ static const string infoEn = u8"Improved version of bsnes:\n\n" +
                              bullet + u8"multilanguage user interface;\n" +
                              bullet + u8"built-in hotkeys for common actions;\n" +
                              bullet + u8"and more.\n\n" +
-                             copyYear + space + authorEn + "\n" + pageLinkEn;
+                             copyYearA + copyDashEn + copyYearB + space + authorEn + "\n" + pageLinkEn;
 
 static const string infoRu = u8"Улучшенная версия bsnes:\n\n" +
                              bullet + linkStartTagStart + articleUrlRu + linkStartTagEnd +
@@ -56,7 +59,7 @@ static const string infoRu = u8"Улучшенная версия bsnes:\n\n" +
                              bullet + u8"многоязычный пользовательский интерфейс;\n" +
                              bullet + u8"встроенные горячие клавиши для частых действий;\n" +
                              bullet + u8"и многое другое.\n\n" +
-                             copyYear + space + authorRu + "\n" + pageLinkRu;
+                             copyYearA + copyDashRu + copyYearB + space + authorRu + "\n" + pageLinkRu;
 
 static const string windowTitle = title + space + version;
 
