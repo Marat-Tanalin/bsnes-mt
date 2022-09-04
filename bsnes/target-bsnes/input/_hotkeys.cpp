@@ -85,14 +85,12 @@ auto InputManager::bindHotkeys() -> void {
 		program.loadState("Quick/Redo");
 	}));
 
-	char space = ' '; // MT.
-
 	hotkeys.append(InputHotkey("Decrement State Slot").onPress([&] {
 		if (--stateSlot < 1) {
 			stateSlot = bma::quickStatesNumber;
 		}
 
-		program.showMessage({bmt::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot});
+		program.showMessage({bmt::get("Tools.LoadState.SelectedStateSlot").data(), ' ', stateSlot});
 	}));
 
 	hotkeys.append(InputHotkey("Increment State Slot").onPress([&] {
@@ -100,7 +98,7 @@ auto InputManager::bindHotkeys() -> void {
 			stateSlot = 1;
 		}
 
-		program.showMessage({bmt::get("Tools.LoadState.SelectedStateSlot").data(), space, stateSlot});
+		program.showMessage({bmt::get("Tools.LoadState.SelectedStateSlot").data(), ' ', stateSlot});
 	}));
 
 	hotkeys.append(InputHotkey("Capture Screenshot").onPress([] {
